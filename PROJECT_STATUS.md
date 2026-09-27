@@ -51,9 +51,11 @@
    - 开题报告 V1 $\rightarrow$ V5 的最大教训是早期“算法口号贴太多、约束包揽太满”；必须采用平实严谨的工程语言；
    - 毕业论文全部数学公式必须采用 Word 原生 `<m:oMath>`（OMML），严禁嵌入公式截图。
 2. **Word 自动化排版核心发现**：
-   - 学校官方模板正文字体为小四号宋体 + Times New Roman，1.5 倍行距，**仅一/二级标题有段前段后 0.5 行间距，正文与参考文献严禁设置段前段后间距**。
+   - 学校官方《任务书》与《开题报告》模板正文字体为小四号宋体 + Times New Roman，1.5 倍行距，**仅一/二级标题有段前段后 0.5 行间距，正文与参考文献严禁设置段前段后间距**；
+   - **封面表格 (`Table 0`) 底部对齐铁律**：官方模板封面信息栏所有单元格均为 `vAlign="bottom"`（靠下对齐，紧贴下横线）、单倍行距、无段前段后间距、四号字（`14.0 pt`），填充时严禁使用正文表格的 `WD_ALIGN_VERTICAL.CENTER` 垂直居中；
+   - **分阶段排版参数隔离**：《任务书/开题报告》（小四号正文 + 1.5 倍行距）与《毕业论文最终正稿》（五号正文 + 固定值 18 磅行距，源自 `D:\tj\模板\带学院.doc` 47 条批注）在 [`academic-doc-builder/SKILL.md`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md) 中分表隔离管理，同时吸收了物理量斜体/单位正体、复合单位严禁双斜杠 `/`、公式不加虚线引导符、先见文后见图表、跨页重复表头 `<w:tblHeader/>` 等 7 项通用国标细则。
 3. **工作区四大技能（`.agents/skills/`）分工**：
-   - [`academic-doc-builder`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md)：负责文档撰写、原生 OMML 公式转换、GB/T 7714 参考文献及去 AI 腔润色（内嵌 `Supervisor-Skills` 证据门控与润色规范）；
+   - [`academic-doc-builder`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md)：负责文档撰写、原生 OMML 公式转换、GB/T 7714 参考文献及去 AI 腔润色（内嵌 `Supervisor-Skills` 证据门控、本科毕业论文正稿规范与三大国标细则）；
    - [`rov-modeling-control-px4`](file:///d:/tj/Graduation%20Project/.agents/skills/rov-modeling-control-px4/SKILL.md)：负责 6-DOF 建模、系统辨识、运动控制、$6 \times 8$ 推力分配及 `Autoresearch` 定量指标迭代实验闭环；
    - [`paper-translation-reader`](file:///d:/tj/Graduation%20Project/.agents/skills/paper-translation-reader/SKILL.md)：负责外文文献 100% 全译、双语网页阅读器更新及引文两步真伪核验；
    - [`drawio-reconstruction`](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md)：负责将参考架构图、控制框图一键重建为可编辑的 `.drawio` 矢量源文件。
@@ -66,4 +68,5 @@
   - 完成 Git 仓库初始化与用户标注版开题报告恢复（[用户标注版_开题报告_已恢复.doc](file:///d:/tj/Graduation%20Project/开题报告/用户标注版_开题报告_已恢复.doc)）；
   - 完成 `LaTeX -> MathML -> OMML` 原生 Word 公式引擎 [`omml_converter.py`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 开发与测试；
   - 完成 `HKUSTDial/Supervisor-Skills`、`codex-autoresearch`、`planning-with-files` 精华吸收与本土化配置，落地本总控台账 `PROJECT_STATUS.md`；
-  - 通过 `/grill-me` 达成开题报告四维度优化共识并落地执行：新增图 1（坐标系与八推进器空间布置图）与表 1（控制与推力分配方案对比表），升级图 2（技术路线图）与图 3（PX4/SITL 架构框图）并导出 `.drawio`，补充毕业论文六章大纲、5 项研究方法与式(3) $6 \times 8$ 控制分配方程，完成去 AI 腔润色与 20 篇文献顺序编码更新，同步输出正式纯净版与差异高亮对比版 `.docx`/`.doc`。
+  - 通过 `/grill-me` 达成开题报告四维度优化共识并落地执行：新增图 1（坐标系与八推进器空间布置图）与表 1（控制与推力分配方案对比表），升级图 2（技术路线图）与图 3（PX4/SITL 架构框图）并导出 `.drawio`，补充毕业论文六章大纲、5 项研究方法与式(3) $6 \times 8$ 控制分配方程，完成去 AI 腔润色与 20 篇文献顺序编码更新，同步输出正式纯净版与差异高亮对比版 `.docx`/`.doc`；
+  - 完成 `D:\tj\模板` 往年模板及三大国标与当前模板的全面对比，将《毕业论文最终正稿》47 条批注规范与 7 项跨阶段通用国标细则纳入 [`academic-doc-builder/SKILL.md`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md)，并修复《开题报告》与《任务书》封面单元格垂直对齐（恢复 `vAlign="bottom"`、单倍行距、零段间距与四号 `14.0 pt` 字号）。

@@ -683,10 +683,32 @@ def remove_protection(doc):
         dp.getparent().remove(dp)
 
 
+def set_repeat_table_header(row):
+    """设置表格首行在跨页时自动重复表头 (<w:tblHeader/>)"""
+    trPr = row._tr.get_or_add_trPr()
+    if trPr.find(qn("w:tblHeader")) is None:
+        trPr.append(OxmlElement("w:tblHeader"))
+
+
+def set_cover_cell_text(cell, text, cn_font="宋体", en_font="Times New Roman", size_pt=14.0):
+    """填充封面信息表单元格：严格保持原模板 vAlign='bottom'（靠底贴线对齐）、无段间距、单倍行距与四号字"""
+    cell.text = ""
+    cell.vertical_alignment = WD_ALIGN_VERTICAL.BOTTOM
+    p = cell.paragraphs[0]
+    p.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    pPr = p._p.get_or_add_pPr()
+    for tag in ("w:spacing", "w:ind"):
+        old = pPr.find(qn(tag))
+        if old is not None:
+            pPr.remove(old)
+    r = p.add_run(text)
+    set_run_font(r, cn_font=cn_font, en_font=en_font, size_pt=size_pt, bold=False)
+
+
 def set_cell_text(cell, text, cn_font="宋体", en_font="Times New Roman", size_pt=14.0,
                   bold=False, align=WD_ALIGN_PARAGRAPH.CENTER,
                   highlight_diff=False, force_hl=False):
-    """清空单元格并写入指定格式文本（支持 {{math:key}} 公式与 {{hl}} 高亮）"""
+    """清空正文表格单元格并写入指定格式文本（支持 {{math:key}} 公式与 {{hl}} 高亮）"""
     cell.text = ""
     cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
     p = cell.paragraphs[0]
@@ -721,14 +743,14 @@ def build_single_docx(out_docx_path, highlight_diff=False):
             set_run_font(r, cn_font="黑体", en_font="Times New Roman", size_pt=36.0, bold=False)
             break
 
-    # 2. 填充封面信息表 (Table 0)
+    # 2. 填充封面信息表 (Table 0)：使用 set_cover_cell_text 保持底部对齐与原模板一致
     t_info = doc.tables[0]
-    set_cell_text(t_info.cell(0, 1), "基于PX4的水下航行器模型控制方法研究", size_pt=14.0)
-    set_cell_text(t_info.cell(1, 1), "", size_pt=14.0)
-    set_cell_text(t_info.cell(2, 1), "机械工程与机器人学院", size_pt=14.0)
-    set_cell_text(t_info.cell(3, 1), "机械设计制造及其自动化", size_pt=14.0)
-    set_cell_text(t_info.cell(4, 1), "张卫恒", size_pt=14.0)
-    set_cell_text(t_info.cell(4, 3), "2352407", size_pt=14.0)
+    set_cover_cell_text(t_info.cell(0, 1), "基于PX4的水下航行器模型控制方法研究", size_pt=14.0)
+    set_cover_cell_text(t_info.cell(1, 1), "", size_pt=14.0)
+    set_cover_cell_text(t_info.cell(2, 1), "机械工程与机器人学院", size_pt=14.0)
+    set_cover_cell_text(t_info.cell(3, 1), "机械设计制造及其自动化", size_pt=14.0)
+    set_cover_cell_text(t_info.cell(4, 1), "张卫恒", size_pt=14.0)
+    set_cover_cell_text(t_info.cell(4, 3), "2352407", size_pt=14.0)
 
     # 3. 清理模板中原有的章节占位段落（从“一、毕业设计（论文）课题背景”到“四、审核意见”之前）
     p_audit = None
@@ -879,6 +901,7 @@ def build_single_docx(out_docx_path, highlight_diff=False):
     tbl_cmp = doc.add_table(rows=len(cmp_data), cols=6)
     tbl_cmp.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_borders(tbl_cmp)
+    set_repeat_table_header(tbl_cmp.rows[0])
     cmp_col_widths = [Cm(2.3), Cm(1.5), Cm(3.2), Cm(2.7), Cm(2.6), Cm(3.1)]
     for r_idx, row_tuple in enumerate(cmp_data):
         is_header = (r_idx == 0)
@@ -1075,16 +1098,17 @@ def build_single_docx(out_docx_path, highlight_diff=False):
         ("5", "水下航行器动力学与推进器建模、PX4/SITL基础环境搭建", "2026.10.12~2026.11.20\n（第5~10周）"),
         ("6", "系统辨识与模型验证、运动控制方法研究", "2026.11.23~2026.12.25\n（第11~15周）"),
         ("7", "中期检查及中期答辩", "2026.12.28~2027.1.15\n（第16~18周）"),
-        ("8", "运动控制、八推进器控制分配及PX4/SITL闭环集成", "2027.2.22~2027.3.12\n（第1～3周）"),
-        ("9", "SITL闭环仿真、典型工况验证与结果分析", "2027.3.15~2027.4.2\n（第4～6周）"),
-        ("10", "论文撰写与仿真补充", "2027.4.5~2027.4.16\n（第7～8周）"),
-        ("11", "论文查重、导师评阅、专家评阅、学生修改完善论文并定稿、毕业答辩", "2027.4.19~2027.4.28\n（第9～10周）"),
-        ("12", "论文评优、论文各类资料（书面版和电子版）整理、归档", "2027.5.3~2027.5.14\n（第11～12周）"),
+        ("8", "运动控制、八推进器控制分配及PX4/SITL闭环集成", "2027.2.22~2027.3.12\n（第1~3周）"),
+        ("9", "SITL闭环仿真、典型工况验证与结果分析", "2027.3.15~2027.4.2\n（第4~6周）"),
+        ("10", "论文撰写与仿真补充", "2027.4.5~2027.4.16\n（第7~8周）"),
+        ("11", "论文查重、导师评阅、专家评阅、学生修改完善论文并定稿、毕业答辩", "2027.4.19~2027.4.28\n（第9~10周）"),
+        ("12", "论文评优、论文各类资料（书面版和电子版）整理、归档", "2027.5.3~2027.5.14\n（第11~12周）"),
     ]
 
     tbl_sched = doc.add_table(rows=len(sched_data), cols=3)
     tbl_sched.alignment = WD_TABLE_ALIGNMENT.CENTER
     set_table_borders(tbl_sched)
+    set_repeat_table_header(tbl_sched.rows[0])
     col_widths = [Cm(1.8), Cm(8.8), Cm(4.8)]
     for r_idx, row_tuple in enumerate(sched_data):
         is_header = (r_idx == 0)
