@@ -1,0 +1,25 @@
+# Office 临时与锁死文件
+~$*
+*.tmp
+*.wbk
+*.asd
+
+# 超大压缩包与超大参考书籍（避免撑爆 git 仓库）
+*.zip
+*.tar.gz
+*.7z
+Springer Handbook of Robotics.pdf
+
+# Python 缓存与虚拟环境
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+env/
+
+# IDE 与编辑器临时文件
+.vscode/
+.idea/
+*.swp
+*.swo

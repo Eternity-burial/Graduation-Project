@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>毕业设计文献研读平台 - 论文精读阅读器</title>
+  
+  <!-- Google Fonts & FontAwesome Icons -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- KaTeX CSS & JS for crisp mathematical rendering -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css" />
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"></script>
+
+  <!-- Reader Styles -->
+  <link rel="stylesheet" href="css/reader.css" />
+</head>
+<body>
+
+  <div class="app-container">
+    <!-- Left Sidebar: Paper Selector & Table of Contents -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo-icon"><i class="fa-solid fa-book-open"></i></div>
+        <div class="title-wrap">
+          <h1>毕业设计文献研读平台</h1>
+          <p>Graduation Project Literature Reader</p>
+        </div>
+      </div>
+
+      <!-- Paper Selector -->
+      <div class="paper-selector-wrap">
+        <div class="section-label">精选文献库 (Select Paper)</div>
+        <div class="paper-nav-list" id="paperNavList">
+          <div class="paper-nav-item active" data-paper="paper1">
+            <span class="p-badge">P1</span>
+            <div class="p-info">
+              <div class="p-title">NMPC 与 DFBC 对比研究</div>
+              <div class="p-sub">IEEE T-RO 2022 · 72 km/h 敏捷飞行</div>
+            </div>
+          </div>
+          <div class="paper-nav-item" data-paper="paper2">
+            <span class="p-badge">P2</span>
+            <div class="p-info">
+              <div class="p-title">自适应增量动态逆 A-INDI</div>
+              <div class="p-sub">AIAA JGCD 2016 · 延迟补偿与自适应</div>
+            </div>
+          </div>
+          <div class="paper-nav-item" data-paper="paper3">
+            <span class="p-badge">P3</span>
+            <div class="p-info">
+              <div class="p-title">水下特技作业 AUV 姿态控制</div>
+              <div class="p-sub">IEEE/RSJ IROS 2022 · 6-DOF 水下 INDI</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Table of Contents -->
+      <div class="toc-container">
+        <div class="section-label">章节目录 (Outline)</div>
+        <ul class="toc-list" id="tocList"></ul>
+      </div>
+
+      <!-- Sidebar Footer -->
+      <div class="sidebar-footer">
+        <button class="btn-icon" id="btnOpenDrawer" title="生词本 (Starred Vocab)"><i class="fa-solid fa-star"></i></button>
+        <button class="btn-icon" id="btnThemeToggle" title="深色/浅色模式"><i class="fa-solid fa-moon"></i></button>
+      </div>
+    </aside>
+
+    <!-- Main Content Area -->
+    <main class="main-content">
+      <!-- Top Control Toolbar -->
+      <header class="top-toolbar">
+        <div class="toolbar-left">
+          <div class="toggle-group">
+            <button class="toggle-btn active" data-mode="bilingual"><i class="fa-solid fa-language"></i> 中英双语</button>
+            <button class="toggle-btn" data-mode="en-only"><i class="fa-solid fa-globe"></i> 仅看英文</button>
+            <button class="toggle-btn" data-mode="zh-only"><i class="fa-solid fa-align-left"></i> 仅看译文</button>
+          </div>
+        </div>
+
+        <div class="toolbar-right">
+          <div class="toggle-group">
+            <button class="toggle-btn" id="btnFontDec" title="缩小字号"><i class="fa-solid fa-minus"></i> A</button>
+            <button class="toggle-btn" id="btnFontInc" title="放大字号">A <i class="fa-solid fa-plus"></i></button>
+          </div>
+        </div>
+      </header>
+
+      <!-- Scrollable Reading Canvas -->
+      <div class="reading-canvas" id="readingCanvas">
+        <article class="article-wrapper" id="articleContent">
+          <!-- Dynamically Injected Content -->
+        </article>
+      </div>
+    </main>
+  </div>
+
+  <!-- Interactive Vocabulary Popover Tooltip -->
+  <div class="vocab-popover" id="vocabPopover">
+    <div class="popover-header">
+      <div>
+        <div class="popover-word" id="popWord">Word</div>
+        <div class="popover-ipa" id="popIpa">/ipa/</div>
+      </div>
+      <div class="popover-actions">
+        <button class="popover-btn" id="btnAudioUs" title="美音发音"><i class="fa-solid fa-volume-high"></i></button>
+        <button class="popover-btn" id="btnAudioUk" title="英音发音"><i class="fa-solid fa-headphones"></i></button>
+        <button class="popover-btn" id="btnPopStar" title="收藏到生词本"><i class="fa-regular fa-star"></i></button>
+        <button class="popover-btn" id="btnPopPin" title="锁定气泡"><i class="fa-solid fa-thumbtack"></i></button>
+      </div>
+    </div>
+    <div class="popover-meaning" id="popMeaning">Meaning</div>
+    <div class="popover-footer">
+      <span id="popLevel">🔴 重点核心词</span>
+      <span>点击任意处关闭</span>
+    </div>
+  </div>
+
+  <!-- Image Lightbox Modal -->
+  <div class="lightbox-modal" id="lightboxModal">
+    <img src="" alt="Zoomed Figure" class="lightbox-img" id="lightboxImg" />
+  </div>
+
+  <!-- Starred Vocab Book Drawer -->
+  <div class="vocab-drawer" id="vocabDrawer">
+    <div class="drawer-header">
+      <h2><i class="fa-solid fa-star" style="color:#f59e0b;"></i> 我的生词本</h2>
+      <button class="btn-icon" id="btnCloseDrawer"><i class="fa-solid fa-xmark"></i></button>
+    </div>
+    <div class="drawer-body">
+      <div class="drawer-list" id="drawerList"></div>
+    </div>
+  </div>
+
+  <!-- Load Data Files -->
+  <script src="js/data_paper1.js"></script>
+  <script src="js/data_paper2.js"></script>
+  <script src="js/data_paper3.js"></script>
+
+  <!-- Load Application Logic -->
+  <script src="js/reader_app.js"></script>
+</body>
+</html>
