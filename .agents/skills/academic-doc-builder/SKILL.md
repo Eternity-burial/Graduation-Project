@@ -47,9 +47,10 @@ description: >-
    - 若需将论文参考图、控制框图或系统架构图重建为**可编辑的 `.drawio` 矢量源文件**，联动激活工作区技能 [drawio-reconstruction](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md)。
 5. **第四步：基于官方模板生成/更新 `.docx`（默认仅生成 `.docx`，原生 OMML 公式注入）**
    - 运行 Python 脚本（参考 [build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py)），挂载官方模板原生样式、通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 写入原生 OMML 数学公式与上标交叉引用，产出规范 `.docx` 文档。
-   - **格式铁律（DOCX 优先）**：除用户明确要求外，所有毕设学术文档默认且仅生成 `.docx` 格式，不再自动调用 Word COM 另存为 `.doc`，以消除后台锁死、加快构建并防止排版降级。仅在用户明确要求或传入 `--doc` 时按需导出 `.doc`。
-6. **第五步：生成修改对比版（当用户需要向导师展示修改痕迹时）**
-   - 自动生成带有逐段差异高亮的对比文档并存放于 `归档/修改对比版/`（如 `归档/修改对比版/*-新旧版本修改对比版_逐段差异高亮.docx`），而**正式提交版必须确保全篇清除所有高亮（`HighlightColorIndex = 0`）**。
+6. **第五步：生成修改对比版与版本归档（当需要向导师展示修改痕迹时）**
+   - 当前最新轮次的逐段差异高亮对比版直接保存在工作区根目录（如 `*-新旧版本修改对比版_逐段差异高亮.docx`），与正式纯净版并存供导师直接审阅查验；
+   - **历次对比版归档铁律**：后续每一轮修改并生成新对比版前，上一轮旧对比版打上时间戳快照移入 `归档/历次修改对比版/`（支持脚本 `--archive-old-diff` 自动快照），并在 `归档/README.md` 台账中记录修改说明，绝不静默覆盖；
+   - 正式提交版必须确保全篇清除所有高亮（`HighlightColorIndex = 0`）。
 7. **第六步：Git 里程碑版本提交与 `PROJECT_STATUS.md` 同步**
    - 文档与脚本自检验证通过后，同步更新根目录 [PROJECT_STATUS.md](file:///d:/tj/Graduation%20Project/PROJECT_STATUS.md) 台账，并在终端执行 `git add` 与清晰规范的 Git Commit（如 `git commit -m "docs: 更新开题报告..."`），固化阶段成果。
 

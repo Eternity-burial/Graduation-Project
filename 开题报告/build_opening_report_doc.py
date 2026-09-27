@@ -35,14 +35,16 @@ BASE_DIR = r"D:\tj\Graduation Project"
 TEMPLATE_PATH = os.path.join(BASE_DIR, "模板", "2毕业设计(论文)开题报告.docx")
 OUT_DIR = os.path.join(BASE_DIR, "开题报告")
 ARCHIVE_DIR = os.path.join(OUT_DIR, "归档")
-DIFF_DIR = os.path.join(ARCHIVE_DIR, "修改对比版")
-os.makedirs(DIFF_DIR, exist_ok=True)
+DIFF_HISTORY_DIR = os.path.join(ARCHIVE_DIR, "历次修改对比版")
+DOC_ARCHIVE_DIR = os.path.join(ARCHIVE_DIR, "历史DOC版本")
+os.makedirs(DIFF_HISTORY_DIR, exist_ok=True)
+os.makedirs(DOC_ARCHIVE_DIR, exist_ok=True)
 
 OUT_DOCX = os.path.join(OUT_DIR, "开题报告-基于PX4的水下航行器模型控制方法研究.docx")
-OUT_DOC = os.path.join(OUT_DIR, "开题报告-基于PX4的水下航行器模型控制方法研究.doc")
+OUT_DOC = os.path.join(DOC_ARCHIVE_DIR, "开题报告-基于PX4的水下航行器模型控制方法研究.doc")
 
-DIFF_DOCX = os.path.join(DIFF_DIR, "开题报告-新旧版本修改对比版_逐段差异高亮.docx")
-DIFF_DOC = os.path.join(DIFF_DIR, "开题报告-新旧版本修改对比版_逐段差异高亮.doc")
+DIFF_DOCX = os.path.join(OUT_DIR, "开题报告-新旧版本修改对比版_逐段差异高亮.docx")
+DIFF_DOC = os.path.join(DOC_ARCHIVE_DIR, "开题报告-新旧版本修改对比版_逐段差异高亮.doc")
 
 FIG0_PATH = os.path.join(OUT_DIR, "figures", "fig0_rov_coord_thrusters.png")
 FIG1_PATH = os.path.join(OUT_DIR, "figures", "fig1_technical_roadmap.png")
@@ -1195,22 +1197,45 @@ def convert_docx_to_doc_batch(pairs):
         print(f"[WARN] win32com 转换 .doc 异常: {e}")
 
 
-def build_document(generate_doc=False, generate_diff=True):
+def archive_previous_diff(description=""):
+    """
+    若开题报告根目录下已存在旧的修改对比版，在生成新对比版前将其归档至
+    '开题报告/归档/历次修改对比版/'，并打上时间戳快照。
+    """
+    if not os.path.exists(DIFF_DOCX):
+        return None
+    import datetime
+    mtime = os.path.getmtime(DIFF_DOCX)
+    date_str = datetime.datetime.fromtimestamp(mtime).strftime("%Y%m%d_%H%M%S")
+    desc_part = f"_{description}" if description else ""
+    archived_name = f"开题报告-新旧版本修改对比版_逐段差异高亮_{date_str}{desc_part}.docx"
+    archived_path = os.path.join(DIFF_HISTORY_DIR, archived_name)
+    shutil.copy2(DIFF_DOCX, archived_path)
+    print(f"[INFO] 已将上一版修改对比版归档至: {archived_path}")
+    return archived_path
+
+
+def build_document(generate_doc=False, generate_diff=True, archive_old_diff=False, diff_desc=""):
+    # 0. 若指定在生成新对比版前先归档现存的上一版对比版
+    if archive_old_diff:
+        archive_previous_diff(diff_desc)
+
     # 1. 构建正式提交纯净版 (.docx)
     build_single_docx(OUT_DOCX, highlight_diff=False)
-    # 2. 构建新旧修改对比高亮版 (.docx, 输出至归档目录)
+    # 2. 构建新旧修改对比高亮版 (.docx, 位于 开题报告 根目录作为当前活跃对比版)
     if generate_diff:
         build_single_docx(DIFF_DOCX, highlight_diff=True)
-    # 3. 仅在明确指定时才使用 Word COM 批量转换为 .doc (除明确要求外，默认仅生成 .docx)
+    # 3. 仅在明确指定时才使用 Word COM 批量转换为 .doc 并输出至归档/历史DOC版本/
     if generate_doc:
         pairs = [(OUT_DOCX, OUT_DOC)]
         if generate_diff:
             pairs.append((DIFF_DOCX, DIFF_DOC))
         convert_docx_to_doc_batch(pairs)
     else:
-        print("[INFO] 默认模式：仅生成 .docx 文档。如需同步导出 .doc 请添加参数 --doc")
+        print("[INFO] 默认模式：仅生成 .docx 文档。如需同步导出 .doc 请添加参数 --doc (将保存至 归档/历史DOC版本/)")
 
 
 if __name__ == "__main__":
     gen_doc = ("--doc" in sys.argv or "--all" in sys.argv)
-    build_document(generate_doc=gen_doc)
+    archive_old = ("--archive-old-diff" in sys.argv)
+    build_document(generate_doc=gen_doc, archive_old_diff=archive_old)

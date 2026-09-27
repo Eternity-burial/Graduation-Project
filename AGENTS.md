@@ -60,14 +60,14 @@
 - `模板/`：存放学校官方下发的原始空白 `.doc` / `.docx` 模板文件（**只读基准，严禁直接覆盖修改**）。
 - `参考/`：往届优秀任务书与相关参考文档（只读参考）。
 - `选题/`：课题筛选记录及 [PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md) 深度调研报告。
-- `开题报告/`：任务书与开题报告正式版、开题报告全文草稿（[开题报告_全文草稿.md](file:///d:/tj/Graduation%20Project/开题报告/开题报告_全文草稿.md)）、高清架构图生成脚本（[generate_report_figures.py](file:///d:/tj/Graduation%20Project/开题报告/generate_report_figures.py)）、Word 自动化生成脚本（[build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py)）及系统化归档目录（`归档/用户标注备份/`、`归档/任务书前期版本/`、`归档/修改对比版/`，详见 [开题报告/归档/README.md](file:///d:/tj/Graduation%20Project/开题报告/归档/README.md)）。
+- `开题报告/`：任务书与开题报告正式版（`.docx`）、当前活跃修改对比版（[开题报告-新旧版本修改对比版_逐段差异高亮.docx](file:///d:/tj/Graduation%20Project/开题报告/开题报告-新旧版本修改对比版_逐段差异高亮.docx)）、开题报告全文草稿（[开题报告_全文草稿.md](file:///d:/tj/Graduation%20Project/开题报告/开题报告_全文草稿.md)）、高清架构图生成脚本（[generate_report_figures.py](file:///d:/tj/Graduation%20Project/开题报告/generate_report_figures.py)）、Word 自动化生成脚本（[build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py)）及系统化归档目录（`归档/历史DOC版本/`、`归档/历次修改对比版/`、`归档/用户标注备份/`、`归档/任务书前期版本/`，详见 [开题报告/归档/README.md](file:///d:/tj/Graduation%20Project/开题报告/归档/README.md)）。
 - `资料/`：核心英文文献 PDF（`01`~`05`）、中文全译 Markdown 及双语文献精读平台（[index.html](file:///d:/tj/Graduation%20Project/资料/index.html)、`js/data_paper*.js`、`master_vocab_cache.json`）。
 - `PX4_INDI_Research/`：前期 PX4 架构调研、INDI 嵌入式 C++ 原型代码与 Python 离线仿真实验。
 
 ### Windows / PowerShell 与 Python 执行铁律
 1. **终端 UTF-8 编码保护**：在 PowerShell 中执行含中文路径或输出的命令时，开头务必加上 `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8;`；在所有 Python 脚本头部必须声明 `# -*- coding: utf-8 -*-` 并调用 `sys.stdout.reconfigure(encoding="utf-8")`。
 2. **Word 进程锁检查**：在运行任何 `python-docx` 写入或 `win32com`（`Word.Application`）自动化脚本前，若遇到文件占用或 COM 异常，需先检查是否存在残留锁死进程（如 `~$*.doc` 临时文件或后台 `WINWORD.EXE`），并在 `try...finally` 块中确保 `word.Quit()` 被可靠调用。
-3. **文档格式铁律（DOCX 优先）**：除用户明确要求外，所有毕设学术文档（任务书、开题报告、中期检查、毕业论文等）**默认且仅生成 `.docx` 格式**，不再自动调用 Word COM 接口将 `.docx` 另存为 `.doc`。仅在用户明确指定或传入 `--doc` 参数时按需导出 `.doc` 格式。这样既消除了 Word 进程锁死、后台卡顿和格式降级风险，又大幅提升了构建速度。
+3. **文档格式铁律（DOCX 优先与归档准则）**：除用户明确要求外，所有毕设学术文档（任务书、开题报告、中期检查、毕业论文等）**默认且仅生成 `.docx` 格式**，不再自动调用 Word COM 接口将 `.docx` 另存为 `.doc`。旧的 `.doc` 文件统一归档至 `开题报告/归档/历史DOC版本/`；当前轮次的修改对比版 `.docx` 保留在工作区根目录供审阅，之后每次迭代产生新对比版前，上一轮旧对比版打上时间戳快照移入 `开题报告/归档/历次修改对比版/` 并在台账中记录。
 
 ---
 
