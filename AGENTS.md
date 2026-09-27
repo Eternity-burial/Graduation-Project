@@ -88,11 +88,19 @@
 
 ---
 
-## 6. 项目全流程运行与协同总规范
+## 6. 项目全流程运行与协同总规范（含跨对话记忆与科研质量门禁）
 
 为确保毕业论文高质高效推进，日常开发与写作遵循以下统一闭环：
 
-1. **学术严谨性**：始终对标 [学长毕设全过程资料深度解析与演进避坑指南.md](file:///d:/tj/Graduation%20Project/参考/学长毕设全过程资料深度解析与演进避坑指南.md)，保持学术语言克制，留有算法比选余地；
-2. **公式规范**：所有 Word 公式必须通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 输出原生 OMML，严禁使用图片；
-3. **参考文献规范**：严格遵守 GB/T 7714-2015 顺序编码制，正文首次引用递增，同步维护 `references.bib` 与 `references.ris`。
+1. **跨对话持久化记忆（Planning with Files 铁律）**：
+   - 根目录维护单文件总控台账 [PROJECT_STATUS.md](file:///d:/tj/Graduation%20Project/PROJECT_STATUS.md)（含四阶段里程碑进度、当前待办、关键决策发现与交接记录）；
+   - **新窗口必读**：开启新对话推进项目任务时，优先查阅 `PROJECT_STATUS.md` 恢复上下文；
+   - **里程碑必更**：每完成一节论文修改、一次系统辨识/控制仿真实验或重要配置升级，必须在执行 `git commit` 前同步更新 `PROJECT_STATUS.md`。
+2. **学术严谨性、去 AI 腔与证据门控**：
+   - 始终对标 [学长毕设全过程资料深度解析与演进避坑指南.md](file:///d:/tj/Graduation%20Project/参考/学长毕设全过程资料深度解析与演进避坑指南.md) 与 [supervisor_writing_and_figure_guide.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/supervisor_writing_and_figure_guide.md)，保持学术语言克制、禁用破折号连接分句与浮夸词汇，严守 L0~L4 证据门控纪律（严禁编造实验数据与未核实引文）；
+3. **公式与图表规范**：
+   - 所有 Word 公式必须通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 输出原生 OMML，严禁使用图片；
+   - 仿真曲线采用颜色+线型双重编码（300 DPI），可编辑矢量框图可通过 [drawio-reconstruction](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md) 重建为 `.drawio` 文件；
+4. **参考文献规范**：严格遵守 GB/T 7714-2015 顺序编码制，正文首次引用递增，同步维护 `references.bib` 与 `references.ris`。
+
 

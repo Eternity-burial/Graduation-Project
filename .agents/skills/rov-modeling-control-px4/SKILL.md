@@ -90,5 +90,40 @@ description: >-
 ## 五、 仿真实验与图表输出验证规范
 
 每次运行仿真或对比实验脚本时：
-1. **定量指标自动输出**：必须在终端或日志中量化输出**状态跟踪误差（如 RMSE、最大超调量、调节时间）**以及**控制分配误差（$\|\boldsymbol{e}_{\tau}\|_2$ 均值与峰值、各推进器推力饱和占比）**。
-2. **学术级绘图标准**：所有 Matplotlib 生成的仿真曲线图必须配置中英文字体兼容（中文宋体/黑体、英文 Times New Roman / Arial，修复负号显示 `axes.unicode_minus = False`），分辨率不少于 300 DPI，图例、坐标轴物理量及单位（如 $\text{m}, \text{deg}, \text{rad/s}, \text{N}, \text{N}\cdot\text{m}$）标注齐全。
+1. **定量指标自动输出**：必须在终端或日志中量化输出**状态跟踪误差（如 RMSE、ITAE、最大超调量 $\sigma\%$、调节时间 $t_s$）**以及**控制分配误差（$\|\boldsymbol{e}_{\tau}\|_2$ 均值与峰值、各推进器推力饱和占比）**。
+2. **学术级绘图标准**：所有 Matplotlib 生成的仿真曲线图必须配置中英文字体兼容（中文宋体/黑体、英文 Times New Roman / Arial，修复负号显示 `axes.unicode_minus = False`），分辨率不少于 300 DPI，采用**颜色 + 线型双重编码**区分算法曲线（详见 [supervisor_writing_and_figure_guide.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/supervisor_writing_and_figure_guide.md)），坐标轴物理量及单位（如 $\text{m}, \text{deg}, \text{rad/s}, \text{N}, \text{N}\cdot\text{m}$）标注齐全。
+
+---
+
+## 六、 Autoresearch 定量指标驱动的自动辨识与控制器整定闭环
+*(吸收自 `leo-lilinxiao/codex-autoresearch` 核心范式，结合 Antigravity `/goal` 指令与 Git 版本控制)*
+
+当开展**未知水动力参数辨识寻优**或**运动控制器（PID / FBL / INDI）参数整定与横向对比**时，严禁盲目同时乱改多处参数，必须遵循以下可复现的 **Autoresearch 单步迭代实验闭环**：
+
+```text
+[1. 明确量化目标与约束 Guard]
+        │
+        ▼
+[2. 运行基线脚本，记录 Baseline 指标]
+        │
+        ▼
+[3. 提出假设，每次仅修改单一参数组或单一补偿项]
+        │
+        ▼
+[4. 运行评估脚本，解析 JSON/终端量化指标]
+        │
+        ├── 指标改善 且 满足推力饱和约束 (Guard Passes) ──► 保留改动 + 记录实验台账 + Git Commit
+        │
+        └── 指标劣化 或 触发发散/严重饱和 (Guard Fails) ──► 立即回滚该次改动 + 记录失败原因
+        │
+        ▼
+[5. 循环迭代直至达到收敛阈值或迭代上限]
+```
+
+### 执行细则：
+1. **定义单一标量评价函数（Objective Metric）与护栏约束（Regression Guard）**：
+   - **水动力辨识阶段**：以验证集上的六自由度速度预测综合均方根误差 $J_{\text{ID}} = \sum w_i \cdot \text{RMSE}(\nu_i, \hat{\nu}_i)$ 为优化目标（越小越好）；以物理合理性（附加质量与阻尼矩阵正定性 $M_A > 0, D > 0$）为护栏约束。
+   - **运动控制整定阶段**：以阶跃与扰动工况下的综合跟踪指标 $J_{\text{ctrl}} = w_1 \cdot \text{RMSE}(\boldsymbol{e}_{\eta}) + w_2 \cdot \sigma_{\max}\% + w_3 \cdot \|\boldsymbol{e}_{\tau}\|_2$ 为目标；以**推进器饱和率 $< 15\%$ 且无高频抖振**为护栏约束。
+2. **结果落盘与台账同步**：
+   - 每轮有效改进必须将参数配置、指标对比表更新至实验日志及根目录 [PROJECT_STATUS.md](file:///d:/tj/Graduation%20Project/PROJECT_STATUS.md)，严禁仅停留在终端输出中。
+

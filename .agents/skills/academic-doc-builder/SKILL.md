@@ -25,8 +25,9 @@ description: >-
    - 强调“依托已有平台参数资料和相关数据开展系统辨识与模型验证，分析模型误差及适用范围”。
    - 运动控制部分表述为“结合航行器模型特性补偿与实时状态反馈构建闭环运动控制系统，计算期望广义力和力矩，实现姿态、深度和航向等基本运动状态的闭环控制”，为后续具体算法比选（如模型前馈 + PID、反馈线性化 FBL、增量非线性动态逆 INDI 等）留出充分空间。
    - 控制分配部分表述为“根据八推进器安装位置、推力方向及力臂关系建立控制分配矩阵，考虑推进器基本推力输出范围，分析控制分配误差及各推进器输出情况”，不随意承诺难以验证的复杂硬件约束（如推力变化率动态约束等）。
-3. **行文规范**：
-   - 杜绝口语化与空洞套话，段落逻辑严密，数学符号与 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md) 中的 Fossen 6-DOF 符号体系 100% 保持一致。
+3. **行文规范、去 AI 腔与证据门控（Supervisor-Skills 融合规范）**：
+   - 杜绝口语化、空洞套话与大模型浮夸词（如“卓越、颠覆性、完美解决、赋能”，以及破折号 `——` 连接分句），数学符号与 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md) 中的 Fossen 6-DOF 符号体系 100% 保持一致。
+   - **撰写或润色任何正文段落与设计配图前，必须阅读并执行**：[supervisor_writing_and_figure_guide.md](./references/supervisor_writing_and_figure_guide.md)（包含 L0~L4 证据门控防幻觉纪律、中英文去 AI 腔禁用词表、审稿人逻辑自查清单及双重编码科研作图规范）。
 
 ---
 
@@ -41,14 +42,15 @@ description: >-
    - 先在对应的 Markdown 草稿文件（如 [开题报告_全文草稿.md](file:///d:/tj/Graduation%20Project/开题报告/开题报告_全文草稿.md)）中完成文本、公式、表格与技术路线图的编写或修订。
 3. **第二步：参考文献顺序校验与 `.bib` / `.ris` 题录库同步**
    - 按 GB/T 7714-2015 顺序编码制，严格依据文献在正文中**首次出现的先后顺序**编号 `[1] ~ [N]`，同步更新 [references.bib](file:///d:/tj/Graduation%20Project/开题报告/references.bib) 与 [references.ris](file:///d:/tj/Graduation%20Project/开题报告/references.ris)，支持一键导入本地 **Zotero**（`C:\Program Files\Zotero\zotero.exe`）或 **EndNote**。
-4. **第三步：300 DPI 高清配图生成（如需更新配图）**
-   - 使用 Python（Pillow / Matplotlib）脚本（参考 [generate_report_figures.py](file:///d:/tj/Graduation%20Project/开题报告/generate_report_figures.py)）生成 300 DPI 出版级白底高清 PNG 配图，严禁使用低分辨率截图。
+4. **第三步：300 DPI 高清配图与可编辑 `.drawio` 架构图生成（如需更新配图）**
+   - 使用 Python（Pillow / Matplotlib）脚本（参考 [generate_report_figures.py](file:///d:/tj/Graduation%20Project/开题报告/generate_report_figures.py)）生成 300 DPI 出版级白底高清 PNG 配图，严禁使用低分辨率截图；
+   - 若需将论文参考图、控制框图或系统架构图重建为**可编辑的 `.drawio` 矢量源文件**，联动激活工作区技能 [drawio-reconstruction](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md)。
 5. **第四步：基于官方模板生成/更新 `.docx` 并同步转换 `.doc`（原生 OMML 公式注入）**
    - 运行 Python 脚本（参考 [build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py)），挂载官方模板原生样式、通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 写入原生 OMML 数学公式与上标交叉引用，同时产出 `.docx` 与二进制 `.doc`（`FileFormat=0`）。
 6. **第五步：生成修改对比版（当用户需要向导师展示修改痕迹时）**
    - 自动生成一份带有逐段差异高亮的对比文档（如 `*-新旧版本修改对比版_逐段差异高亮.doc` / `.docx`），而**正式提交版必须确保全篇清除所有高亮（`HighlightColorIndex = 0`）**。
-7. **第六步：Git 里程碑版本提交**
-   - 文档与脚本自检验证通过后，立即在终端执行 `git add` 并提交清晰规范的 Git Commit（如 `git commit -m "docs: 更新开题报告..."`），固化阶段成果。
+7. **第六步：Git 里程碑版本提交与 `PROJECT_STATUS.md` 同步**
+   - 文档与脚本自检验证通过后，同步更新根目录 [PROJECT_STATUS.md](file:///d:/tj/Graduation%20Project/PROJECT_STATUS.md) 台账，并在终端执行 `git add` 与清晰规范的 Git Commit（如 `git commit -m "docs: 更新开题报告..."`），固化阶段成果。
 
 ---
 

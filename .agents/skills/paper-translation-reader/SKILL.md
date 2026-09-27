@@ -103,3 +103,18 @@ window.BISHE_DATA['paperX'] = {
    - 在 `资料/js/` 下生成 `data_paper<X>.js`；
    - 在 [index.html](file:///d:/tj/Graduation%20Project/资料/index.html#L38-L61) 的 `#paperNavList` 侧边栏中添加对应的 `.paper-nav-item` 卡片，并在底部添加 `<script src="js/data_paper<X>.js"></script>` 引用；
    - 检查并更新 [reader_app.js](file:///d:/tj/Graduation%20Project/资料/js/reader_app.js#L333-L338) 中的 `getPaperPdfLink(paperId)` 函数，确保其返回 `资料/` 目录下真实的 PDF 文件名（如 `01-en-...pdf` ~ `05-en-...pdf`）。
+
+---
+
+## 四、 文献深度综述与引文真伪核验协议（Deep Research & Citation Verification）
+*(吸收自 `HKUSTDial/Supervisor-Skills/deep-research` 与 `ARS-Codex`)*
+
+在为毕业论文“国内外研究现状”检索补充新文献或整理对比综述时，严格执行以下**两步核验与 MECE 综合法则**：
+
+1. **引文两步真伪核验（零容忍编造引文）**：
+   - **Step 1 存在性核验**：通过检索核实完整论文标题、第一作者姓氏、发表年份与期刊/会议名称；凡检索无果、仅靠模型记忆拼凑的条目一律定级为 `UNVERIFIABLE`，**严禁写入论文或 `.bib` 题录库**。
+   - **Step 2 论点匹配度核验**：仅凭题目与摘要（L2/L3 证据）只能引用其研究方向与宏观结论，严禁凭空捏造其内部实验数值；只有本地 `资料/` 中已核实全文（L1 证据）的文献，方可引用其具体公式、参数与定量对比数据。
+2. **MECE 分类综述框架（不堆砌流水账）**：
+   - 严禁按“作者 A 做了 X；作者 B 做了 Y；作者 C 做了 Z”的机械罗列式写文献综述。
+   - 必须围绕本课题主线按 **MECE（相互独立、完全穷尽）流派分类法** 组织（例如：① 水下航行器六自由度机理建模与参数辨识方法；② 非线性与基于模型的鲁棒运动控制方法；③ 过驱动水下机器人冗余推力分配与饱和处理；④ 基于开源飞控架构的水下控制系统实现），并在每类末尾自然引出**现有研究与本实验室八推进器平台需求之间的切入点（Gap）**。
+
