@@ -34,12 +34,15 @@ sys.stdout.reconfigure(encoding="utf-8")
 BASE_DIR = r"D:\tj\Graduation Project"
 TEMPLATE_PATH = os.path.join(BASE_DIR, "模板", "2毕业设计(论文)开题报告.docx")
 OUT_DIR = os.path.join(BASE_DIR, "开题报告")
+ARCHIVE_DIR = os.path.join(OUT_DIR, "归档")
+DIFF_DIR = os.path.join(ARCHIVE_DIR, "修改对比版")
+os.makedirs(DIFF_DIR, exist_ok=True)
 
 OUT_DOCX = os.path.join(OUT_DIR, "开题报告-基于PX4的水下航行器模型控制方法研究.docx")
 OUT_DOC = os.path.join(OUT_DIR, "开题报告-基于PX4的水下航行器模型控制方法研究.doc")
 
-DIFF_DOCX = os.path.join(OUT_DIR, "开题报告-新旧版本修改对比版_逐段差异高亮.docx")
-DIFF_DOC = os.path.join(OUT_DIR, "开题报告-新旧版本修改对比版_逐段差异高亮.doc")
+DIFF_DOCX = os.path.join(DIFF_DIR, "开题报告-新旧版本修改对比版_逐段差异高亮.docx")
+DIFF_DOC = os.path.join(DIFF_DIR, "开题报告-新旧版本修改对比版_逐段差异高亮.doc")
 
 FIG0_PATH = os.path.join(OUT_DIR, "figures", "fig0_rov_coord_thrusters.png")
 FIG1_PATH = os.path.join(OUT_DIR, "figures", "fig1_technical_roadmap.png")
@@ -1192,17 +1195,22 @@ def convert_docx_to_doc_batch(pairs):
         print(f"[WARN] win32com 转换 .doc 异常: {e}")
 
 
-def build_document():
+def build_document(generate_doc=False, generate_diff=True):
     # 1. 构建正式提交纯净版 (.docx)
     build_single_docx(OUT_DOCX, highlight_diff=False)
-    # 2. 构建新旧修改对比高亮版 (.docx)
-    build_single_docx(DIFF_DOCX, highlight_diff=True)
-    # 3. 批量转换为 .doc
-    convert_docx_to_doc_batch([
-        (OUT_DOCX, OUT_DOC),
-        (DIFF_DOCX, DIFF_DOC),
-    ])
+    # 2. 构建新旧修改对比高亮版 (.docx, 输出至归档目录)
+    if generate_diff:
+        build_single_docx(DIFF_DOCX, highlight_diff=True)
+    # 3. 仅在明确指定时才使用 Word COM 批量转换为 .doc (除明确要求外，默认仅生成 .docx)
+    if generate_doc:
+        pairs = [(OUT_DOCX, OUT_DOC)]
+        if generate_diff:
+            pairs.append((DIFF_DOCX, DIFF_DOC))
+        convert_docx_to_doc_batch(pairs)
+    else:
+        print("[INFO] 默认模式：仅生成 .docx 文档。如需同步导出 .doc 请添加参数 --doc")
 
 
 if __name__ == "__main__":
-    build_document()
+    gen_doc = ("--doc" in sys.argv or "--all" in sys.argv)
+    build_document(generate_doc=gen_doc)

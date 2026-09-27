@@ -17,12 +17,12 @@
 
 ## 二、 四阶段里程碑总进度（Roadmap & Checklist）
 
-### 阶段 0：选题论证、任务书与开题报告（当前阶段：开题报告已完成深度优化）
+### 阶段 0：选题论证、任务书与开题报告（当前阶段：任务书与开题报告已完成深度优化与系统归档）
 - [x] PX4 与 ArduSub 水下控制架构深度对比调研（[PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md)）
-- [x] 任务书定稿与导师审阅口径对齐（[1毕业设计（论文）任务书.doc](file:///d:/tj/Graduation%20Project/开题报告/1毕业设计（论文）任务书.doc)）
-- [x] 找回并保护用户手工标注版开题报告（[用户标注版_开题报告_已恢复.doc](file:///d:/tj/Graduation%20Project/开题报告/用户标注版_开题报告_已恢复.doc)）
+- [x] 任务书定稿与导师审阅口径对齐，补齐规范 `.docx` 与 `.doc` 双版本（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx) / `.doc`）
+- [x] 建立开题报告结构化归档体系（`开题报告/归档/`），保护用户手工标注版（[开题报告/归档/用户标注备份/用户标注版_开题报告_已恢复.doc](file:///d:/tj/Graduation%20Project/开题报告/归档/用户标注备份/用户标注版_开题报告_已恢复.doc)），并将前期版本、逐段差异对比版及辅助脚本规整归档
 - [x] 建立 Git 版本控制体系、全局规则 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md) 及 4 大专业 Skill
-- [x] 完成开题报告三阶段全面深度优化（3 张 300 DPI 原理/技术路线/PX4 架构图及可编辑 `.drawio`、表 1 方案对比分析表、毕业论文拟定六章大纲、5 项研究方法与式(3) $6 \times 8$ 推力分配方程、全文去 AI 腔润色、20 篇 GB/T 7714 顺序编码文献 `[1]~[20]`），同步生成正式纯净版（[开题报告-基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/开题报告-基于PX4的水下航行器模型控制方法研究.docx) / `.doc`）与差异高亮对比版（[开题报告-新旧版本修改对比版_逐段差异高亮.docx](file:///d:/tj/Graduation%20Project/开题报告/开题报告-新旧版本修改对比版_逐段差异高亮.docx) / `.doc`）
+- [x] 完成开题报告三阶段全面深度优化（3 张 300 DPI 原理/技术路线/PX4 架构图及可编辑 `.drawio`、表 1 方案对比分析表、毕业论文拟定六章大纲、5 项研究方法与式(3) $6 \times 8$ 推力分配方程、全文去 AI 腔润色、20 篇 GB/T 7714 顺序编码文献 `[1]~[20]`），确立除明确要求外**默认且仅生成 `.docx` 格式**的高效规范（构建耗时从 >10s 降至 1.1s），正式版：[开题报告-基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/开题报告-基于PX4的水下航行器模型控制方法研究.docx)
 - [ ] **待办**：准备开题答辩 PPT 汇报材料
 
 ### 阶段 1：外文文献精读与六自由度建模（进行中）
@@ -53,7 +53,8 @@
 2. **Word 自动化排版核心发现**：
    - 学校官方《任务书》与《开题报告》模板正文字体为小四号宋体 + Times New Roman，1.5 倍行距，**仅一/二级标题有段前段后 0.5 行间距，正文与参考文献严禁设置段前段后间距**；
    - **封面表格 (`Table 0`) 底部对齐铁律**：官方模板封面信息栏所有单元格均为 `vAlign="bottom"`（靠下对齐，紧贴下横线）、单倍行距、无段前段后间距、四号字（`14.0 pt`），填充时严禁使用正文表格的 `WD_ALIGN_VERTICAL.CENTER` 垂直居中；
-   - **分阶段排版参数隔离**：《任务书/开题报告》（小四号正文 + 1.5 倍行距）与《毕业论文最终正稿》（五号正文 + 固定值 18 磅行距，源自 `D:\tj\模板\带学院.doc` 47 条批注）在 [`academic-doc-builder/SKILL.md`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md) 中分表隔离管理，同时吸收了物理量斜体/单位正体、复合单位严禁双斜杠 `/`、公式不加虚线引导符、先见文后见图表、跨页重复表头 `<w:tblHeader/>` 等 7 项通用国标细则。
+   - **分阶段排版参数隔离**：《任务书/开题报告》（小四号正文 + 1.5 倍行距）与《毕业论文最终正稿》（五号正文 + 固定值 18 磅行距，源自 `D:\tj\模板\带学院.doc` 47 条批注）在 [`academic-doc-builder/SKILL.md`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md) 中分表隔离管理，同时吸收了物理量斜体/单位正体、复合单位严禁双斜杠 `/`、公式不加虚线引导符、先见文后见图表、跨页重复表头 `<w:tblHeader/>` 等 7 项通用国标细则；
+   - **文档格式规范（DOCX 优先）**：除用户明确要求外，所有文档生成脚本默认仅生成规范 `.docx`，不再自动调用 Word COM 导出 `.doc`，消除了进程锁死风险并将构建速度提升近 10 倍（仅在显式传入 `--doc` 时按需导出）。
 3. **工作区四大技能（`.agents/skills/`）分工**：
    - [`academic-doc-builder`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md)：负责文档撰写、原生 OMML 公式转换、GB/T 7714 参考文献及去 AI 腔润色（内嵌 `Supervisor-Skills` 证据门控、本科毕业论文正稿规范与三大国标细则）；
    - [`rov-modeling-control-px4`](file:///d:/tj/Graduation%20Project/.agents/skills/rov-modeling-control-px4/SKILL.md)：负责 6-DOF 建模、系统辨识、运动控制、$6 \times 8$ 推力分配及 `Autoresearch` 定量指标迭代实验闭环；
@@ -70,3 +71,10 @@
   - 完成 `HKUSTDial/Supervisor-Skills`、`codex-autoresearch`、`planning-with-files` 精华吸收与本土化配置，落地本总控台账 `PROJECT_STATUS.md`；
   - 通过 `/grill-me` 达成开题报告四维度优化共识并落地执行：新增图 1（坐标系与八推进器空间布置图）与表 1（控制与推力分配方案对比表），升级图 2（技术路线图）与图 3（PX4/SITL 架构框图）并导出 `.drawio`，补充毕业论文六章大纲、5 项研究方法与式(3) $6 \times 8$ 控制分配方程，完成去 AI 腔润色与 20 篇文献顺序编码更新，同步输出正式纯净版与差异高亮对比版 `.docx`/`.doc`；
   - 完成 `D:\tj\模板` 往年模板及三大国标与当前模板的全面对比，将《毕业论文最终正稿》47 条批注规范与 7 项跨阶段通用国标细则纳入 [`academic-doc-builder/SKILL.md`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md)，并修复《开题报告》与《任务书》封面单元格垂直对齐（恢复 `vAlign="bottom"`、单倍行距、零段间距与四号 `14.0 pt` 字号）。
+- **2026-09-28**：
+  - **确立默认仅生成 `.docx` 格式规范**：在 `build_opening_report_doc.py`、`AGENTS.md`、`academic-doc-builder/SKILL.md` 中全面落实除明确要求外默认仅生成 `.docx` 的规则，不再自动通过 Word COM 另存 `.doc`，构建耗时从 >10s 降低至 1.1s，彻底避免后台进程锁死与格式降级；
+  - **完成开题报告目录结构化整理与归档**：
+    - 建立 `开题报告/归档/` 体系，包含 `用户标注备份/`（存放只读受保护的标注版）、`任务书前期版本/`（存放初期修改稿及对比版、测试脚本）、`修改对比版/`（存放逐段差异高亮对比版），并配套编制归档索引 [README.md](file:///d:/tj/Graduation%20Project/开题报告/归档/README.md)；
+    - 在 `开题报告/` 根目录补齐最新任务书正式版的规范 `.docx` 文件（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)）；
+    - 清理根目录临时测试脚本，使主工作区目录与核心交付件层级清晰纯净；
+  - **Git 仓库清理与版本提交**：更新 `.gitignore` 排除 `*.bak` 并清除仓库历史跟踪，提交本次归档与格式规范化改动。

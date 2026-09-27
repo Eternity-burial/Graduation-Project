@@ -45,10 +45,11 @@ description: >-
 4. **第三步：300 DPI 高清配图与可编辑 `.drawio` 架构图生成（如需更新配图）**
    - 使用 Python（Pillow / Matplotlib）脚本（参考 [generate_report_figures.py](file:///d:/tj/Graduation%20Project/开题报告/generate_report_figures.py)）生成 300 DPI 出版级白底高清 PNG 配图，严禁使用低分辨率截图；
    - 若需将论文参考图、控制框图或系统架构图重建为**可编辑的 `.drawio` 矢量源文件**，联动激活工作区技能 [drawio-reconstruction](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md)。
-5. **第四步：基于官方模板生成/更新 `.docx` 并同步转换 `.doc`（原生 OMML 公式注入）**
-   - 运行 Python 脚本（参考 [build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py)），挂载官方模板原生样式、通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 写入原生 OMML 数学公式与上标交叉引用，同时产出 `.docx` 与二进制 `.doc`（`FileFormat=0`）。
+5. **第四步：基于官方模板生成/更新 `.docx`（默认仅生成 `.docx`，原生 OMML 公式注入）**
+   - 运行 Python 脚本（参考 [build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py)），挂载官方模板原生样式、通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 写入原生 OMML 数学公式与上标交叉引用，产出规范 `.docx` 文档。
+   - **格式铁律（DOCX 优先）**：除用户明确要求外，所有毕设学术文档默认且仅生成 `.docx` 格式，不再自动调用 Word COM 另存为 `.doc`，以消除后台锁死、加快构建并防止排版降级。仅在用户明确要求或传入 `--doc` 时按需导出 `.doc`。
 6. **第五步：生成修改对比版（当用户需要向导师展示修改痕迹时）**
-   - 自动生成一份带有逐段差异高亮的对比文档（如 `*-新旧版本修改对比版_逐段差异高亮.doc` / `.docx`），而**正式提交版必须确保全篇清除所有高亮（`HighlightColorIndex = 0`）**。
+   - 自动生成带有逐段差异高亮的对比文档并存放于 `归档/修改对比版/`（如 `归档/修改对比版/*-新旧版本修改对比版_逐段差异高亮.docx`），而**正式提交版必须确保全篇清除所有高亮（`HighlightColorIndex = 0`）**。
 7. **第六步：Git 里程碑版本提交与 `PROJECT_STATUS.md` 同步**
    - 文档与脚本自检验证通过后，同步更新根目录 [PROJECT_STATUS.md](file:///d:/tj/Graduation%20Project/PROJECT_STATUS.md) 台账，并在终端执行 `git add` 与清晰规范的 Git Commit（如 `git commit -m "docs: 更新开题报告..."`），固化阶段成果。
 
