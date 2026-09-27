@@ -67,3 +67,32 @@
 ### Windows / PowerShell 与 Python 执行铁律
 1. **终端 UTF-8 编码保护**：在 PowerShell 中执行含中文路径或输出的命令时，开头务必加上 `[Console]::OutputEncoding = [System.Text.Encoding]::UTF8;`；在所有 Python 脚本头部必须声明 `# -*- coding: utf-8 -*-` 并调用 `sys.stdout.reconfigure(encoding="utf-8")`。
 2. **Word 进程锁检查**：在运行任何 `python-docx` 写入或 `win32com`（`Word.Application`）自动化脚本前，若遇到文件占用或 COM 异常，需先检查是否存在残留锁死进程（如 `~$*.doc` 临时文件或后台 `WINWORD.EXE`），并在 `try...finally` 块中确保 `word.Quit()` 被可靠调用。
+
+---
+
+## 5. Git 版本控制与数据安全红线（防覆盖、防丢失）
+
+项目已建立完整的 Git 本地版本控制仓库，Agent 与开发者必须严格执行以下版本纪律：
+
+1. **写前检查与防盲改铁律（Safety First）**：
+   - 在运行任何全量生成或改写 Word 文档（`.doc`/`.docx`）、Python 脚本或 C++ 代码前，必须先在终端执行 `git status --short` 检查当前工作区是否有未暂存的用户手工编辑；
+   - 若检测到目标文件存在用户修改，**严禁静默覆盖**，必须先提示用户或将其单独另存为快照（如 `*_用户修改备份.*`）；
+   - 所有自动化写操作必须保留 `.bak` 备份机制。
+2. **里程碑及时提交（Commit Early & Often）**：
+   - 每当完成一节论文撰写、通过一次重要仿真验证、排版完一个官方表格或完成重要重构后，必须主动执行有意义的 `git commit`（推荐使用 Conventional Commits 格式，如 `feat:`, `fix:`, `docs:`, `style:`）；
+   - 禁止长时间积累大量未提交改动。
+3. **环境与编码配置守则**：
+   - 仓库根目录严格维护 [.gitignore](file:///d:/tj/Graduation%20Project/.gitignore)，禁止将 Office 临时锁死文件（`~$*`、`*.wbk`、`*.asd`）、Python 编译缓存（`__pycache__/`）及 >50MB 的非关键压缩包提交入库；
+   - 保持 `git config core.quotepath false`，确保 Windows 终端下所有中文路径清晰可读；
+   - 保持 `git config core.autocrlf false`，防止多平台换行符意外变动引发大面积无意义 diff。
+
+---
+
+## 6. 项目全流程运行与协同总规范
+
+为确保毕业论文高质高效推进，日常开发与写作遵循以下统一闭环：
+
+1. **学术严谨性**：始终对标 [学长毕设全过程资料深度解析与演进避坑指南.md](file:///d:/tj/Graduation%20Project/参考/学长毕设全过程资料深度解析与演进避坑指南.md)，保持学术语言克制，留有算法比选余地；
+2. **公式规范**：所有 Word 公式必须通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 输出原生 OMML，严禁使用图片；
+3. **参考文献规范**：严格遵守 GB/T 7714-2015 顺序编码制，正文首次引用递增，同步维护 `references.bib` 与 `references.ris`。
+

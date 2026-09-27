@@ -30,20 +30,25 @@ description: >-
 
 ---
 
-## 二、 标准执行工作流（Markdown 草稿 + 题录库 + 双格式导出）
+## 二、 标准执行工作流（Git 前置检查 + Markdown 草稿 + 题录库 + 双格式导出 + Git 快照）
 
-切勿在未对齐内容前直接盲改二进制 Word 文件，必须按以下五步推进：
+切勿在未对齐内容前直接盲改二进制 Word 文件，必须严格按以下七步闭环推进：
 
-1. **第一步：Markdown 草稿对齐**
+1. **第零步：Git 状态前置检查（防覆盖、防丢失铁律）**
+   - 在运行任何构建或修改脚本前，必须先在终端执行 `git status --short`，检查目标 Word 文档或脚本是否有未暂存的用户手工编辑；
+   - 若检测到用户改动，**严禁静默覆盖**，必须先提示用户或将其单独另存为快照备份（如 `*_用户标注备份.*`）；写操作必须保留 `.bak` 备份机制。
+2. **第一步：Markdown 草稿对齐**
    - 先在对应的 Markdown 草稿文件（如 [开题报告_全文草稿.md](file:///d:/tj/Graduation%20Project/开题报告/开题报告_全文草稿.md)）中完成文本、公式、表格与技术路线图的编写或修订。
-2. **第二步：参考文献顺序校验与 `.bib` / `.ris` 题录库同步**
+3. **第二步：参考文献顺序校验与 `.bib` / `.ris` 题录库同步**
    - 按 GB/T 7714-2015 顺序编码制，严格依据文献在正文中**首次出现的先后顺序**编号 `[1] ~ [N]`，同步更新 [references.bib](file:///d:/tj/Graduation%20Project/开题报告/references.bib) 与 [references.ris](file:///d:/tj/Graduation%20Project/开题报告/references.ris)，支持一键导入本地 **Zotero**（`C:\Program Files\Zotero\zotero.exe`）或 **EndNote**。
-3. **第三步：300 DPI 高清配图生成（如需更新配图）**
+4. **第三步：300 DPI 高清配图生成（如需更新配图）**
    - 使用 Python（Pillow / Matplotlib）脚本（参考 [generate_report_figures.py](file:///d:/tj/Graduation%20Project/开题报告/generate_report_figures.py)）生成 300 DPI 出版级白底高清 PNG 配图，严禁使用低分辨率截图。
-4. **第四步：基于官方模板生成/更新 `.docx` 并同步转换 `.doc`**
-   - 运行 Python 脚本（参考 [build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py)），挂载官方模板原生样式、写入 OMML 数学公式与上标交叉引用，同时产出 `.docx` 与二进制 `.doc`（`FileFormat=0`）。
-5. **第五步：生成修改对比版（当用户需要向导师展示修改痕迹时）**
+5. **第四步：基于官方模板生成/更新 `.docx` 并同步转换 `.doc`（原生 OMML 公式注入）**
+   - 运行 Python 脚本（参考 [build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py)），挂载官方模板原生样式、通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 写入原生 OMML 数学公式与上标交叉引用，同时产出 `.docx` 与二进制 `.doc`（`FileFormat=0`）。
+6. **第五步：生成修改对比版（当用户需要向导师展示修改痕迹时）**
    - 自动生成一份带有逐段差异高亮的对比文档（如 `*-新旧版本修改对比版_逐段差异高亮.doc` / `.docx`），而**正式提交版必须确保全篇清除所有高亮（`HighlightColorIndex = 0`）**。
+7. **第六步：Git 里程碑版本提交**
+   - 文档与脚本自检验证通过后，立即在终端执行 `git add` 并提交清晰规范的 Git Commit（如 `git commit -m "docs: 更新开题报告..."`），固化阶段成果。
 
 ---
 
