@@ -1,5 +1,4 @@
 TY  - BOOK
-ID  - fossen2021
 AU  - Fossen, Thor I.
 TI  - Handbook of Marine Craft Hydrodynamics and Motion Control
 ET  - 2nd
@@ -10,12 +9,11 @@ DO  - 10.1002/9781119575016
 ER  - 
 
 TY  - JOUR
-ID  - caccia2000
 AU  - Caccia, Massimo
 AU  - Indiveri, Giovanni
 AU  - Veruggio, Gianmarco
 TI  - Modeling and identification of open-frame variable configuration unmanned underwater vehicles
-T2  - IEEE Journal of Oceanic Engineering
+JO  - IEEE Journal of Oceanic Engineering
 PY  - 2000
 VL  - 25
 IS  - 2
@@ -25,12 +23,11 @@ DO  - 10.1109/48.838986
 ER  - 
 
 TY  - JOUR
-ID  - ross2004
 AU  - Ross, Andrew
 AU  - Fossen, Thor I.
 AU  - Johansen, Tor A.
 TI  - Identification of underwater vehicle hydrodynamic coefficients using free decay tests
-T2  - IFAC Proceedings Volumes
+JO  - IFAC Proceedings Volumes
 PY  - 2004
 VL  - 37
 IS  - 10
@@ -40,12 +37,11 @@ DO  - 10.1016/S1474-6670(17)31759-7
 ER  - 
 
 TY  - JOUR
-ID  - avila2013
 AU  - Avila, Juan P. J.
 AU  - Donha, Décio C.
 AU  - Adamowski, Julio C.
 TI  - Experimental model identification of open-frame underwater vehicles
-T2  - Ocean Engineering
+JO  - Ocean Engineering
 PY  - 2013
 VL  - 60
 SP  - 81
@@ -54,12 +50,11 @@ DO  - 10.1016/j.oceaneng.2012.10.007
 ER  - 
 
 TY  - JOUR
-ID  - liu2002
 AU  - Liu, Jian-Cheng
 AU  - Liu, Xian-Min
 AU  - Xu, Yu-Ru
 TI  - Application of ML to system identification for underwater vehicle
-T2  - Journal of Marine Science and Application
+JO  - Journal of Marine Science and Application
 PY  - 2002
 VL  - 1
 IS  - 1
@@ -69,11 +64,10 @@ DO  - 10.1007/BF02921412
 ER  - 
 
 TY  - JOUR
-ID  - chin2012
 AU  - Chin, C.
 AU  - Lau, M.
 TI  - Modeling and testing of hydrodynamic damping model for a complex-shaped remotely-operated vehicle for control
-T2  - Journal of Marine Science and Application
+JO  - Journal of Marine Science and Application
 PY  - 2012
 VL  - 11
 IS  - 2
@@ -83,23 +77,20 @@ DO  - 10.1007/s11804-012-1117-2
 ER  - 
 
 TY  - JOUR
-ID  - gao2019
 AU  - 高婷
 AU  - 庞永杰
 AU  - 王亚星
 AU  - 申晓伟
 TI  - 水下航行器水动力系数计算方法
-T2  - 哈尔滨工程大学学报
+JO  - 哈尔滨工程大学学报
 PY  - 2019
 VL  - 40
 IS  - 1
 SP  - 174
 EP  - 180
-LA  - zh
 ER  - 
 
 TY  - JOUR
-ID  - vonbenzon2022
 AU  - von Benzon, Malte
 AU  - Sørensen, Frederik F.
 AU  - Uth, E.
@@ -107,7 +98,7 @@ AU  - Jouffroy, Jerome
 AU  - Liniger, Jesper
 AU  - Pedersen, Simon
 TI  - An Open-Source Benchmark Simulator: Control of a BlueROV2 Underwater Robot
-T2  - Journal of Marine Science and Engineering
+JO  - Journal of Marine Science and Engineering
 PY  - 2022
 VL  - 10
 IS  - 12
@@ -116,13 +107,12 @@ DO  - 10.3390/jmse10121898
 ER  - 
 
 TY  - JOUR
-ID  - fernandes2015
 AU  - Fernandes, Daniel A.
 AU  - Sørensen, Asgeir J.
 AU  - Pettersen, Kristin Y.
 AU  - Donha, Décio C.
 TI  - Output feedback motion control system for observation class ROVs based on a high-gain state observer: Theoretical and experimental results
-T2  - Control Engineering Practice
+JO  - Control Engineering Practice
 PY  - 2015
 VL  - 39
 SP  - 90
@@ -131,14 +121,13 @@ DO  - 10.1016/j.conengprac.2014.12.005
 ER  - 
 
 TY  - JOUR
-ID  - chu2020
 AU  - Chu, Zhenzhong
 AU  - Xiang, Xianbo
 AU  - Zhu, Daqi
 AU  - Luo, Chaomin
 AU  - Xie, Dong
 TI  - Adaptive trajectory tracking control for remotely operated vehicles considering thruster dynamics and saturation constraints
-T2  - ISA Transactions
+JO  - ISA Transactions
 PY  - 2020
 VL  - 100
 SP  - 28
@@ -146,8 +135,21 @@ EP  - 37
 DO  - 10.1016/j.isatra.2019.11.032
 ER  - 
 
+TY  - JOUR
+AU  - Smeur, Ewoud J. J.
+AU  - Chu, Qiping
+AU  - de Croon, Guido C. H. E.
+TI  - Adaptive incremental nonlinear dynamic inversion for attitude control of micro air vehicles
+JO  - Journal of Guidance, Control, and Dynamics
+PY  - 2016
+VL  - 39
+IS  - 3
+SP  - 450
+EP  - 461
+DO  - 10.2514/1.G001490
+ER  - 
+
 TY  - CONF
-ID  - slawik2024
 AU  - Slawik, Tilman
 AU  - Vyas, Shubham
 AU  - Christensen, Leif
@@ -162,12 +164,24 @@ EP  - 787
 DO  - 10.1109/IROS58592.2024.10801686
 ER  - 
 
+TY  - CONF
+AU  - Fossen, Thor I.
+AU  - Johansen, Tor A.
+TI  - A survey of control allocation methods for ships and underwater vehicles
+T2  - 2006 14th Mediterranean Conference on Control and Automation
+CY  - Ancona, Italy
+PB  - IEEE
+PY  - 2006
+SP  - 1
+EP  - 6
+DO  - 10.1109/MED.2006.328749
+ER  - 
+
 TY  - JOUR
-ID  - johansen2013
 AU  - Johansen, Tor A.
 AU  - Fossen, Thor I.
 TI  - Control allocation—A survey
-T2  - Automatica
+JO  - Automatica
 PY  - 2013
 VL  - 49
 IS  - 5
@@ -177,52 +191,45 @@ DO  - 10.1016/j.automatica.2013.01.035
 ER  - 
 
 TY  - JOUR
-ID  - wan2003
 AU  - 万磊
 AU  - 徐玉如
 AU  - 庞永杰
 TI  - 水下机器人推力器容错控制技术的研究
-T2  - 机器人
+JO  - 机器人
 PY  - 2003
 VL  - 25
 IS  - 6
 SP  - 510
 EP  - 514
-LA  - zh
 ER  - 
 
 TY  - JOUR
-ID  - cheng2022
 AU  - 程卫平
 AU  - 王猛
 AU  - 曾现敏
 TI  - 基于可行方向法的水下机器人推力分配
-T2  - 舰船科学技术
+JO  - 舰船科学技术
 PY  - 2022
 VL  - 44
 IS  - 13
 SP  - 102
 EP  - 106
-LA  - zh
 ER  - 
 
 TY  - JOUR
-ID  - sun2023
 AU  - 孙广威
 AU  - 苏玉玺
 AU  - 毛义
 TI  - 基于模糊逻辑的混合推进ROV多级推力分配策略
-T2  - 机器人
+JO  - 机器人
 PY  - 2023
 VL  - 45
 IS  - 4
 SP  - 472
 EP  - 482
-LA  - zh
 ER  - 
 
 TY  - CONF
-ID  - meier2015
 AU  - Meier, Lorenz
 AU  - Honegger, Dominik
 AU  - Pollefeys, Marc
@@ -237,7 +244,6 @@ DO  - 10.1109/ICRA.2015.7140074
 ER  - 
 
 TY  - CONF
-ID  - hackbarth2015
 AU  - Hackbarth, Axel
 AU  - Duecker, Daniel A.
 AU  - Kreuzer, Edwin
@@ -249,4 +255,20 @@ PY  - 2015
 SP  - 1096
 EP  - 1101
 DO  - 10.1109/IROS.2015.7353506
+ER  - 
+
+TY  - CONF
+AU  - Duecker, Daniel A.
+AU  - Bauschmann, Nathalie
+AU  - Hansen, Tim
+AU  - Kreuzer, Edwin
+AU  - Seifried, Robert
+TI  - HippoCampus X – A hydrobatic open-source micro AUV for confined environments
+T2  - 2020 IEEE/OES Autonomous Underwater Vehicles Symposium (AUV)
+CY  - St. John's, NL, Canada
+PB  - IEEE
+PY  - 2020
+SP  - 1
+EP  - 6
+DO  - 10.1109/AUV50043.2020.9267895
 ER  - 

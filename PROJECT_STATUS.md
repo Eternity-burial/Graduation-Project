@@ -17,13 +17,13 @@
 
 ## 二、 四阶段里程碑总进度（Roadmap & Checklist）
 
-### 阶段 0：选题论证、任务书与开题报告（当前阶段：收尾核对中）
+### 阶段 0：选题论证、任务书与开题报告（当前阶段：开题报告已完成深度优化）
 - [x] PX4 与 ArduSub 水下控制架构深度对比调研（[PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md)）
 - [x] 任务书定稿与导师审阅口径对齐（[1毕业设计（论文）任务书.doc](file:///d:/tj/Graduation%20Project/开题报告/1毕业设计（论文）任务书.doc)）
-- [x] 开题报告全文草稿、27 篇 GB/T 7714 参考文献（`.bib`/`.ris`）与 300 DPI 架构配图生成（[开题报告_全文草稿.md](file:///d:/tj/Graduation%20Project/开题报告/开题报告_全文草稿.md)）
 - [x] 找回并保护用户手工标注版开题报告（[用户标注版_开题报告_已恢复.doc](file:///d:/tj/Graduation%20Project/开题报告/用户标注版_开题报告_已恢复.doc)）
 - [x] 建立 Git 版本控制体系、全局规则 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md) 及 4 大专业 Skill
-- [ ] **待办**：结合用户标注版开题报告的具体批注，完成开题报告最终定稿及开题答辩 PPT 准备
+- [x] 完成开题报告三阶段全面深度优化（3 张 300 DPI 原理/技术路线/PX4 架构图及可编辑 `.drawio`、表 1 方案对比分析表、毕业论文拟定六章大纲、5 项研究方法与式(3) $6 \times 8$ 推力分配方程、全文去 AI 腔润色、20 篇 GB/T 7714 顺序编码文献 `[1]~[20]`），同步生成正式纯净版（[开题报告-基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/开题报告-基于PX4的水下航行器模型控制方法研究.docx) / `.doc`）与差异高亮对比版（[开题报告-新旧版本修改对比版_逐段差异高亮.docx](file:///d:/tj/Graduation%20Project/开题报告/开题报告-新旧版本修改对比版_逐段差异高亮.docx) / `.doc`）
+- [ ] **待办**：准备开题答辩 PPT 汇报材料
 
 ### 阶段 1：外文文献精读与六自由度建模（进行中）
 - [x] 精读并完成前 3 篇核心英文文献中文全译与双语精读平台（[资料/index.html](file:///d:/tj/Graduation%20Project/资料/index.html) `paper1` ~ `paper3`）
@@ -65,4 +65,5 @@
 - **2026-09-27**：
   - 完成 Git 仓库初始化与用户标注版开题报告恢复（[用户标注版_开题报告_已恢复.doc](file:///d:/tj/Graduation%20Project/开题报告/用户标注版_开题报告_已恢复.doc)）；
   - 完成 `LaTeX -> MathML -> OMML` 原生 Word 公式引擎 [`omml_converter.py`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 开发与测试；
-  - 完成 `HKUSTDial/Supervisor-Skills`、`codex-autoresearch`、`planning-with-files` 精华吸收与本土化配置，落地本总控台账 `PROJECT_STATUS.md`。
+  - 完成 `HKUSTDial/Supervisor-Skills`、`codex-autoresearch`、`planning-with-files` 精华吸收与本土化配置，落地本总控台账 `PROJECT_STATUS.md`；
+  - 通过 `/grill-me` 达成开题报告四维度优化共识并落地执行：新增图 1（坐标系与八推进器空间布置图）与表 1（控制与推力分配方案对比表），升级图 2（技术路线图）与图 3（PX4/SITL 架构框图）并导出 `.drawio`，补充毕业论文六章大纲、5 项研究方法与式(3) $6 \times 8$ 控制分配方程，完成去 AI 腔润色与 20 篇文献顺序编码更新，同步输出正式纯净版与差异高亮对比版 `.docx`/`.doc`。

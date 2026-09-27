@@ -1,0 +1,17 @@
+<mxfile host="Electron" modified="2026-09-27T22:45:00.000Z" agent="Antigravity" version="24.0.0">
+  <diagram id="px4_arch" name="PX4_SITL闭环仿真系统结构框图">
+    <mxGraphModel dx="1422" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="900" math="1" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="id_box" value="平台参数资料与相关数据支撑：系统辨识与模型验证模块&lt;br&gt;（明确激励输入与响应输出关系，辨识未知参数集 θ 并输出标称模型 M̂, Ĉ, D̂, ĝ）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFF2CC;strokeColor=#BF9000;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="340" y="90" width="580" height="120" as="geometry" /></mxCell>
+        <mxCell id="dist_box" value="代表性工况与外部扰动条件设置&lt;br&gt;（姿态、深度、航向等典型运动任务及外部水流扰动输入 τ_d）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FCE4D6;strokeColor=#C65911;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="1080" y="90" width="420" height="120" as="geometry" /></mxCell>
+        <mxCell id="ref_box" value="参考运动状态 (η_r, ν_r)&lt;br&gt;姿态 / 深度 / 航向参考指令" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2EFDA;strokeColor=#548235;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="60" y="340" width="200" height="160" as="geometry" /></mxCell>
+        <mxCell id="ctrl_box" value="水下航行器闭环运动控制模块&lt;br&gt;&lt;br&gt;标称模型特性补偿 F_model(M̂, Ĉ, D̂, ĝ)&lt;br&gt;+ 实时状态误差反馈 F_fb(e_η, e_ν)&lt;br&gt;计算期望广义力与力矩 τ_c ∈ R^6" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D9E1F2;strokeColor=#2F5597;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="360" y="340" width="320" height="160" as="geometry" /></mxCell>
+        <mxCell id="alloc_box" value="八推进器控制分配模块&lt;br&gt;&lt;br&gt;基于推进器位置 r_i 与方向 d_i&lt;br&gt;构建 6 × 8 控制分配矩阵 B&lt;br&gt;考虑推力范围 [T_min, T_max] 求解" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D9E1F2;strokeColor=#2F5597;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="780" y="340" width="310" height="160" as="geometry" /></mxCell>
+        <mxCell id="plant_box" value="水下航行器与推进器动力学模型&lt;br&gt;&lt;br&gt;单推进器特性模型 + 6-DOF 方程：&lt;br&gt;Mν̇ + C(ν)ν + D(ν)ν + g(η) = τ + τ_d&lt;br&gt;运动学转换：η̇ = J(η)ν" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDEDED;strokeColor=#595959;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="1190" y="340" width="320" height="160" as="geometry" /></mxCell>
+        <mxCell id="uorb_box" value="uORB 状态信息反馈与闭环系统性能分析模块&lt;br&gt;（实时发布/订阅位置与姿态 η、速度 ν；综合跟踪误差 e_η、动态响应与分配残差 e_τ = τ_c - BT 评价闭环性能）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E8EEF5;strokeColor=#4472C4;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="400" y="640" width="880" height="105" as="geometry" /></mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
