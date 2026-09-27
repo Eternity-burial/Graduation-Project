@@ -1,32 +1,23 @@
-<mxfile host="Electron" modified="2026-09-27T22:45:00.000Z" agent="Antigravity" version="24.0.0">
-  <diagram id="roadmap" name="课题总体研究技术路线图">
-    <mxGraphModel dx="1422" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1120" math="1" shadow="0">
+<mxfile host="Electron" modified="2026-09-28T00:00:00.000Z" agent="Antigravity Academic" version="21.0.0" type="device">
+  <diagram id="diagram_1" name="Page-1">
+    <mxGraphModel dx="1500" dy="800" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1500" pageHeight="800" math="1" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="h1" value="研究阶段" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#1F4E79;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="45" y="25" width="220" height="50" as="geometry" /></mxCell>
-        <mxCell id="h2" value="主要研究内容与技术实现路径" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#1F4E79;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="290" y="25" width="980" height="50" as="geometry" /></mxCell>
-        <mxCell id="h3" value="阶段预期成果" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1F4E79;strokeColor=#1F4E79;fontColor=#FFFFFF;fontSize=16;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="1295" y="25" width="240" height="50" as="geometry" /></mxCell>
-        <mxCell id="s1" value="第一阶段&lt;br&gt;平台梳理与动力学建模" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D9E1F2;strokeColor=#2F5597;fontColor=#1F3864;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="45" y="105" width="220" height="160" as="geometry" /></mxCell>
-        <mxCell id="s1_1" value="依托已有八推进器&lt;br&gt;水下航行器平台&lt;br&gt;梳理构型与参数资料" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4472C4;fontSize=13;" vertex="1" parent="1"><mxGeometry x="295" y="105" width="230" height="160" as="geometry" /></mxCell>
-        <mxCell id="s1_2" value="建立六自由度运动学与动力学模型&lt;br&gt;（考虑刚体惯性 M_RB、附加质量 M_A、科氏力 C(ν)、&lt;br&gt;水动力阻尼 D(ν) 与重浮力恢复项 g(η)）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F8;strokeColor=#2F5597;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="565" y="105" width="360" height="160" as="geometry" /></mxCell>
-        <mxCell id="s1_3" value="推进器特性建模&lt;br&gt;（建立单推进器特性模型与&lt;br&gt;空间安装几何关系 r_i, d_i）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4472C4;fontSize=13;" vertex="1" parent="1"><mxGeometry x="965" y="105" width="290" height="160" as="geometry" /></mxCell>
-        <mxCell id="s1_out" value="水下航行器 6-DOF&lt;br&gt;理论模型与推进器模型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2EFDA;strokeColor=#548235;fontColor=#274E13;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="1295" y="105" width="240" height="160" as="geometry" /></mxCell>
-        <mxCell id="s2" value="第二阶段&lt;br&gt;系统辨识与模型验证" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D9E1F2;strokeColor=#2F5597;fontColor=#1F3864;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="45" y="315" width="220" height="160" as="geometry" /></mxCell>
-        <mxCell id="s2_1" value="明确系统辨识&lt;br&gt;激励输入、响应输出&lt;br&gt;及所需相关数据" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4472C4;fontSize=13;" vertex="1" parent="1"><mxGeometry x="295" y="315" width="230" height="160" as="geometry" /></mxCell>
-        <mxCell id="s2_2" value="关键未知参数辨识与模型修正&lt;br&gt;（结合平台参数资料和相关数据开展系统辨识，&lt;br&gt;对未知水动力参数集 θ 进行估计与修正）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F8;strokeColor=#2F5597;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="565" y="315" width="360" height="160" as="geometry" /></mxCell>
-        <mxCell id="s2_3" value="模型基本验证与误差分析&lt;br&gt;（对比模型输出与代表性动态响应，&lt;br&gt;分析模型偏差及适用范围）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4472C4;fontSize=13;" vertex="1" parent="1"><mxGeometry x="965" y="315" width="290" height="160" as="geometry" /></mxCell>
-        <mxCell id="s2_out" value="经验证的标称动力学模型&lt;br&gt;(M̂, Ĉ, D̂, ĝ)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2EFDA;strokeColor=#548235;fontColor=#274E13;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="1295" y="315" width="240" height="160" as="geometry" /></mxCell>
-        <mxCell id="s3" value="第三阶段&lt;br&gt;运动控制与八推进器分配" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D9E1F2;strokeColor=#2F5597;fontColor=#1F3864;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="45" y="525" width="220" height="160" as="geometry" /></mxCell>
-        <mxCell id="s3_1" value="参考运动状态输入 η_r&lt;br&gt;（姿态、深度、航向等控制目标）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4472C4;fontSize=13;" vertex="1" parent="1"><mxGeometry x="295" y="525" width="230" height="160" as="geometry" /></mxCell>
-        <mxCell id="s3_2" value="基于模型与状态反馈的运动控制设计&lt;br&gt;（结合标称模型补偿 F_model 与状态反馈 F_fb，&lt;br&gt;计算期望广义控制力与力矩 τ_c ∈ R^6）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F8;strokeColor=#2F5597;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="565" y="525" width="360" height="160" as="geometry" /></mxCell>
-        <mxCell id="s3_3" value="八推进器控制分配设计&lt;br&gt;（建立 6×8 控制分配矩阵 B，&lt;br&gt;考虑推力范围 T_min ≤ T ≤ T_max）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4472C4;fontSize=13;" vertex="1" parent="1"><mxGeometry x="965" y="525" width="290" height="160" as="geometry" /></mxCell>
-        <mxCell id="s3_out" value="闭环运动控制方法与&lt;br&gt;八推进器控制分配模型" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2EFDA;strokeColor=#548235;fontColor=#274E13;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="1295" y="525" width="240" height="160" as="geometry" /></mxCell>
-        <mxCell id="s4" value="第四阶段&lt;br&gt;PX4/SITL闭环仿真与验证" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#D9E1F2;strokeColor=#2F5597;fontColor=#1F3864;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="45" y="735" width="220" height="160" as="geometry" /></mxCell>
-        <mxCell id="s4_1" value="基于PX4架构与uORB实现&lt;br&gt;模型、控制与分配闭环集成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4472C4;fontSize=13;" vertex="1" parent="1"><mxGeometry x="295" y="735" width="230" height="160" as="geometry" /></mxCell>
-        <mxCell id="s4_2" value="代表性运动与外部扰动工况仿真&lt;br&gt;（在PX4/SITL环境中开展姿态、深度、航向等&lt;br&gt;典型运动工况及适量外部扰动 τ_d 仿真验证）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#EDF2F8;strokeColor=#2F5597;fontSize=13;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="565" y="735" width="360" height="160" as="geometry" /></mxCell>
-        <mxCell id="s4_3" value="系统性能分析与论文总结&lt;br&gt;（结合跟踪误差 e_η、动态响应及&lt;br&gt;分配残差 e_τ = τ_c - BT 评价效果）" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4472C4;fontSize=13;" vertex="1" parent="1"><mxGeometry x="965" y="735" width="290" height="160" as="geometry" /></mxCell>
-        <mxCell id="s4_out" value="PX4/SITL闭环仿真系统&lt;br&gt;与毕业论文成果" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#E2EFDA;strokeColor=#548235;fontColor=#274E13;fontSize=14;fontStyle=1;" vertex="1" parent="1"><mxGeometry x="1295" y="735" width="240" height="160" as="geometry" /></mxCell>
+
+    <mxCell id="p1" value="阶段一：建模" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="60" y="80" width="300" height="500" as="geometry" />
+    </mxCell>
+    <mxCell id="p2" value="阶段二：辨识验证" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="400" y="80" width="300" height="500" as="geometry" />
+    </mxCell>
+    <mxCell id="p3" value="阶段三：控制与分配" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="740" y="80" width="300" height="500" as="geometry" />
+    </mxCell>
+    <mxCell id="p4" value="阶段四：PX4/SITL闭环" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=2;" vertex="1" parent="1">
+      <mxGeometry x="1080" y="80" width="300" height="500" as="geometry" />
+    </mxCell>
+    
       </root>
     </mxGraphModel>
   </diagram>
