@@ -1,3 +1,12 @@
+TY  - ELEC
+AU  - 工业和信息化部
+AU  - 教育部
+AU  - 科学技术部
+TI  - 关于印发《“机器人+”应用行动实施方案》的通知: 工信部联通装〔2023〕6号
+PY  - 2023
+UR  - http://www.gov.cn/zhengce/zhengceku/2023-01/19/content_5737976.htm
+ER  - 
+
 TY  - BOOK
 AU  - Fossen, Thor I.
 TI  - Handbook of Marine Craft Hydrodynamics and Motion Control
@@ -50,20 +59,6 @@ DO  - 10.1016/j.oceaneng.2012.10.007
 ER  - 
 
 TY  - JOUR
-AU  - Liu, Jian-Cheng
-AU  - Liu, Xian-Min
-AU  - Xu, Yu-Ru
-TI  - Application of ML to system identification for underwater vehicle
-JO  - Journal of Marine Science and Application
-PY  - 2002
-VL  - 1
-IS  - 1
-SP  - 21
-EP  - 25
-DO  - 10.1007/BF02921412
-ER  - 
-
-TY  - JOUR
 AU  - Chin, C.
 AU  - Lau, M.
 TI  - Modeling and testing of hydrodynamic damping model for a complex-shaped remotely-operated vehicle for control
@@ -80,7 +75,7 @@ TY  - JOUR
 AU  - 高婷
 AU  - 庞永杰
 AU  - 王亚星
-AU  - 申晓伟
+AU  - 曹建
 TI  - 水下航行器水动力系数计算方法
 JO  - 哈尔滨工程大学学报
 PY  - 2019
@@ -91,12 +86,9 @@ EP  - 180
 ER  - 
 
 TY  - JOUR
-AU  - von Benzon, Malte
-AU  - Sørensen, Frederik F.
+AU  - von Benzon, M.
+AU  - Sørensen, F. F.
 AU  - Uth, E.
-AU  - Jouffroy, Jerome
-AU  - Liniger, Jesper
-AU  - Pedersen, Simon
 TI  - An Open-Source Benchmark Simulator: Control of a BlueROV2 Underwater Robot
 JO  - Journal of Marine Science and Engineering
 PY  - 2022
@@ -123,9 +115,7 @@ ER  -
 TY  - JOUR
 AU  - Chu, Zhenzhong
 AU  - Xiang, Xianbo
-AU  - Zhu, Daqi
-AU  - Luo, Chaomin
-AU  - Xie, Dong
+AU  - Zhu, Daxiong
 TI  - Adaptive trajectory tracking control for remotely operated vehicles considering thruster dynamics and saturation constraints
 JO  - ISA Transactions
 PY  - 2020
@@ -135,25 +125,10 @@ EP  - 37
 DO  - 10.1016/j.isatra.2019.11.032
 ER  - 
 
-TY  - JOUR
-AU  - Smeur, Ewoud J. J.
-AU  - Chu, Qiping
-AU  - de Croon, Guido C. H. E.
-TI  - Adaptive incremental nonlinear dynamic inversion for attitude control of micro air vehicles
-JO  - Journal of Guidance, Control, and Dynamics
-PY  - 2016
-VL  - 39
-IS  - 3
-SP  - 450
-EP  - 461
-DO  - 10.2514/1.G001490
-ER  - 
-
 TY  - CONF
-AU  - Slawik, Tilman
-AU  - Vyas, Shubham
-AU  - Christensen, Leif
-AU  - Kirchner, Frank
+AU  - Slawik, T.
+AU  - Vyas, S.
+AU  - Christensen, L.
 TI  - Attitude Control of the Hydrobatic Intervention AUV Cuttlefish using Incremental Nonlinear Dynamic Inversion
 T2  - 2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
 CY  - Abu Dhabi, UAE
@@ -162,19 +137,6 @@ PY  - 2024
 SP  - 781
 EP  - 787
 DO  - 10.1109/IROS58592.2024.10801686
-ER  - 
-
-TY  - CONF
-AU  - Fossen, Thor I.
-AU  - Johansen, Tor A.
-TI  - A survey of control allocation methods for ships and underwater vehicles
-T2  - 2006 14th Mediterranean Conference on Control and Automation
-CY  - Ancona, Italy
-PB  - IEEE
-PY  - 2006
-SP  - 1
-EP  - 6
-DO  - 10.1109/MED.2006.328749
 ER  - 
 
 TY  - JOUR
@@ -190,17 +152,17 @@ EP  - 1103
 DO  - 10.1016/j.automatica.2013.01.035
 ER  - 
 
-TY  - JOUR
-AU  - 万磊
-AU  - 徐玉如
-AU  - 庞永杰
-TI  - 水下机器人推力器容错控制技术的研究
-JO  - 机器人
-PY  - 2003
-VL  - 25
-IS  - 6
-SP  - 510
-EP  - 514
+TY  - CONF
+AU  - Fossen, Thor I.
+AU  - Johansen, Tor A.
+TI  - A survey of control allocation methods for ships and underwater vehicles
+T2  - 2006 14th Mediterranean Conference on Control and Automation
+CY  - Ancona, Italy
+PB  - IEEE
+PY  - 2006
+SP  - 1
+EP  - 6
+DO  - 10.1109/MED.2006.328749
 ER  - 
 
 TY  - JOUR
@@ -235,7 +197,7 @@ AU  - Honegger, Dominik
 AU  - Pollefeys, Marc
 TI  - PX4: A node-based multithreaded open source robotics framework for deeply embedded platforms
 T2  - 2015 IEEE International Conference on Robotics and Automation (ICRA)
-CY  - Seattle, WA
+CY  - Seattle, WA, USA
 PB  - IEEE
 PY  - 2015
 SP  - 6235
@@ -244,25 +206,9 @@ DO  - 10.1109/ICRA.2015.7140074
 ER  - 
 
 TY  - CONF
-AU  - Hackbarth, Axel
-AU  - Duecker, Daniel A.
-AU  - Kreuzer, Edwin
-TI  - HippoCampus: A micro underwater vehicle for swarm applications
-T2  - 2015 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
-CY  - Hamburg, Germany
-PB  - IEEE
-PY  - 2015
-SP  - 1096
-EP  - 1101
-DO  - 10.1109/IROS.2015.7353506
-ER  - 
-
-TY  - CONF
-AU  - Duecker, Daniel A.
-AU  - Bauschmann, Nathalie
-AU  - Hansen, Tim
-AU  - Kreuzer, Edwin
-AU  - Seifried, Robert
+AU  - Duecker, D. A.
+AU  - Bauschmann, N.
+AU  - Hansen, T.
 TI  - HippoCampus X – A hydrobatic open-source micro AUV for confined environments
 T2  - 2020 IEEE/OES Autonomous Underwater Vehicles Symposium (AUV)
 CY  - St. John's, NL, Canada
