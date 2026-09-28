@@ -24,7 +24,7 @@ import shutil
 import docx
 from lxml import etree
 from docx.shared import Pt, Cm, RGBColor
-from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_COLOR_INDEX
+from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_COLOR_INDEX, WD_BREAK
 from docx.enum.table import WD_TABLE_ALIGNMENT, WD_ALIGN_VERTICAL
 from docx.oxml import OxmlElement
 from docx.oxml.ns import qn
@@ -552,7 +552,8 @@ def configure_pPr_xml(p, before_lines=None, after_lines=None, line_twips=360,
 
 
 def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=None,
-                            ref_index=None, highlight_diff=False, highlight_platform=False, force_hl=False):
+                            ref_index=None, highlight_diff=False, highlight_platform=False,
+                            force_hl=False, page_break_before=False):
     """
     在锚点段落 ref_p 前插入严格挂载官方模板样式的段落：
     - h1: 一级标题（Normal 样式，黑体四号 14pt，首行缩进 2 字符 560 dxa，段前 0.5 行、段后 0.5 行）
@@ -569,14 +570,21 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
         last_p = None
         for idx, part in enumerate(parts):
             pfx = bold_prefix if idx == 0 else None
+            pbb = page_break_before if idx == 0 else False
             last_p = insert_paragraph_before(
                 doc, ref_p, part, style_type=style_type, bold_prefix=pfx,
-                highlight_diff=highlight_diff, highlight_platform=highlight_platform, force_hl=force_hl
+                highlight_diff=highlight_diff, highlight_platform=highlight_platform,
+                force_hl=force_hl, page_break_before=pbb
             )
         return last_p
 
     new_p = ref_p.insert_paragraph_before("")
     do_hl = highlight_diff and force_hl
+
+    # 严格对齐原模板格式：正文第一节“一、毕业论文课题背景”前插入分页符，确保正文从第2页顶格起排，封面独立成页
+    if page_break_before or (style_type == "h1" and text.startswith("一、")):
+        r_br = new_p.add_run()
+        r_br.add_break(WD_BREAK.PAGE)
 
     if style_type == "h1":
         new_p.style = doc.styles["Normal"]
@@ -832,17 +840,18 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
     r_audit = p_audit.add_run("四、审核意见")
     set_run_font(r_audit, cn_font="黑体", en_font="Times New Roman", size_pt=14.0, bold=False)
 
-    def _add(text="", style_type="body", bold_prefix=None, ref_index=None, force_hl=False):
+    def _add(text="", style_type="body", bold_prefix=None, ref_index=None, force_hl=False, page_break_before=False):
         return insert_paragraph_before(
             doc, p_audit, text=text, style_type=style_type, bold_prefix=bold_prefix,
             ref_index=ref_index, highlight_diff=highlight_diff,
-            highlight_platform=highlight_platform, force_hl=force_hl
+            highlight_platform=highlight_platform, force_hl=force_hl,
+            page_break_before=page_break_before
         )
 
     # =========================================================================
     # 一、毕业论文课题背景
     # =========================================================================
-    _add("一、毕业论文课题背景", style_type="h1")
+    _add("一、毕业论文课题背景", style_type="h1", page_break_before=True)
 
     # 1. 课题来源及研究的目的和意义
     _add("{{hl}}1. {{/hl}}课题来源及研究的目的和意义", style_type="h2", force_hl=False)
