@@ -46,6 +46,8 @@ OUT_DOC = os.path.join(DOC_ARCHIVE_DIR, "开题报告-基于PX4的水下航行�
 DIFF_DOCX = os.path.join(OUT_DIR, "开题报告-新旧版本修改对比版_逐段差异高亮.docx")
 DIFF_DOC = os.path.join(DOC_ARCHIVE_DIR, "开题报告-新旧版本修改对比版_逐段差异高亮.doc")
 
+SENIOR_DOCX = os.path.join(OUT_DIR, "开题报告-实验室学长审阅确认版.docx")
+
 FIG1_LIT_PATH = os.path.join(OUT_DIR, "figures", "fig1_lit_control_architecture.png")
 FIG2_ROV_PATH = os.path.join(OUT_DIR, "figures", "fig0_rov_coord_thrusters.png")
 FIG3_ROADMAP_PATH = os.path.join(OUT_DIR, "figures", "fig1_technical_roadmap.png")
@@ -458,19 +460,22 @@ def add_superscript_citation(p, cite_str, highlight=False, track=True):
 
 def add_rich_text_to_paragraph(p, text, cn_font="宋体", en_font="Times New Roman",
                                size_pt=12.0, bold=False, highlight_diff=False,
+                               highlight_platform=False,
                                force_hl=False, parse_citations=True):
     """
     解析段落文本中的：
-    - 高亮起止标记 {{hl}} ... {{/hl}}
+    - 高亮起止标记 {{hl}} ... {{/hl}} (用于对比版)
+    - 平台重点标记 {{platform_hl}} ... {{/platform_hl}} (用于学长审阅版)
     - 行内公式标记 {{math:key}}
     - 文献角标 [1]、[1, 8]
-    分别渲染为原生 OMML 公式、可点击跳转的上标引用及可选对比高亮。
+    分别渲染为原生 OMML 公式、可点击跳转的上标引用及可选高亮。
     """
     token_pattern = re.compile(
-        r"(\{\{hl\}\}|\{\{/hl\}\}|\{\{math:[a-zA-Z0-9_]+\}\}|\[\d+(?:,\s*\d+)*\])"
+        r"(\{\{hl\}\}|\{\{/hl\}\}|\{\{platform_hl\}\}|\{\{/platform_hl\}\}|\{\{math:[a-zA-Z0-9_]+\}\}|\[\d+(?:,\s*\d+)*\])"
     )
     tokens = token_pattern.split(text)
     hl_active = force_hl
+    platform_hl_active = False
     for tok in tokens:
         if not tok:
             continue
@@ -478,15 +483,22 @@ def add_rich_text_to_paragraph(p, text, cn_font="宋体", en_font="Times New Rom
             hl_active = True
         elif tok == "{{/hl}}":
             hl_active = force_hl
+        elif tok == "{{platform_hl}}":
+            platform_hl_active = True
+        elif tok == "{{/platform_hl}}":
+            platform_hl_active = False
         elif tok.startswith("{{math:") and tok.endswith("}}"):
             math_key = tok[7:-2]
-            append_inline_omath(p, math_key, highlight=(highlight_diff and hl_active))
+            is_hl = (highlight_diff and hl_active) or (highlight_platform and platform_hl_active)
+            append_inline_omath(p, math_key, highlight=is_hl)
         elif parse_citations and re.fullmatch(r"\[\d+(?:,\s*\d+)*\]", tok):
+            # 文献引用仅在修改对比模式下按需高亮
             add_superscript_citation(p, tok, highlight=(highlight_diff and hl_active))
         else:
             r = p.add_run(tok)
+            is_hl = (highlight_diff and hl_active) or (highlight_platform and platform_hl_active)
             set_run_font(r, cn_font=cn_font, en_font=en_font, size_pt=size_pt,
-                         bold=bold, highlight=(highlight_diff and hl_active))
+                         bold=bold, highlight=is_hl)
 
 
 def configure_pPr_xml(p, before_lines=None, after_lines=None, line_twips=360,
@@ -540,7 +552,7 @@ def configure_pPr_xml(p, before_lines=None, after_lines=None, line_twips=360,
 
 
 def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=None,
-                            ref_index=None, highlight_diff=False, force_hl=False):
+                            ref_index=None, highlight_diff=False, highlight_platform=False, force_hl=False):
     """
     在锚点段落 ref_p 前插入严格挂载官方模板样式的段落：
     - h1: 一级标题（Normal 样式，黑体四号 14pt，首行缩进 2 字符 560 dxa，段前 0.5 行、段后 0.5 行）
@@ -559,7 +571,7 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
             pfx = bold_prefix if idx == 0 else None
             last_p = insert_paragraph_before(
                 doc, ref_p, part, style_type=style_type, bold_prefix=pfx,
-                highlight_diff=highlight_diff, force_hl=force_hl
+                highlight_diff=highlight_diff, highlight_platform=highlight_platform, force_hl=force_hl
             )
         return last_p
 
@@ -573,6 +585,7 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
         add_rich_text_to_paragraph(
             new_p, text, cn_font="黑体", en_font="Times New Roman",
             size_pt=14.0, bold=False, highlight_diff=highlight_diff,
+            highlight_platform=highlight_platform,
             force_hl=force_hl, parse_citations=False
         )
 
@@ -583,6 +596,7 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
         add_rich_text_to_paragraph(
             new_p, text, cn_font="黑体", en_font="Times New Roman",
             size_pt=12.0, bold=False, highlight_diff=highlight_diff,
+            highlight_platform=highlight_platform,
             force_hl=force_hl, parse_citations=False
         )
 
@@ -593,6 +607,7 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
         add_rich_text_to_paragraph(
             new_p, text, cn_font="黑体", en_font="Times New Roman",
             size_pt=12.0, bold=False, highlight_diff=highlight_diff,
+            highlight_platform=highlight_platform,
             force_hl=force_hl, parse_citations=False
         )
 
@@ -609,6 +624,7 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
         add_rich_text_to_paragraph(
             new_p, text, cn_font="宋体", en_font="Times New Roman",
             size_pt=10.5, bold=True, highlight_diff=highlight_diff,
+            highlight_platform=highlight_platform,
             force_hl=force_hl, parse_citations=False
         )
 
@@ -619,6 +635,7 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
         add_rich_text_to_paragraph(
             new_p, text, cn_font="宋体", en_font="Times New Roman",
             size_pt=10.5, bold=True, highlight_diff=highlight_diff,
+            highlight_platform=highlight_platform,
             force_hl=force_hl, parse_citations=False
         )
 
@@ -635,6 +652,7 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
         add_rich_text_to_paragraph(
             new_p, text, cn_font="宋体", en_font="Times New Roman",
             size_pt=12.0, bold=False, highlight_diff=highlight_diff,
+            highlight_platform=highlight_platform,
             force_hl=force_hl, parse_citations=False
         )
 
@@ -651,18 +669,20 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
             add_rich_text_to_paragraph(
                 new_p, bold_prefix, cn_font="宋体", en_font="Times New Roman",
                 size_pt=12.0, bold=True, highlight_diff=highlight_diff,
+                highlight_platform=highlight_platform,
                 force_hl=force_hl, parse_citations=False
             )
         add_rich_text_to_paragraph(
             new_p, text, cn_font="宋体", en_font="Times New Roman",
-            size_pt=12.0, bold=False, highlight_diff=highlight_diff, force_hl=force_hl
+            size_pt=12.0, bold=False, highlight_diff=highlight_diff,
+            highlight_platform=highlight_platform, force_hl=force_hl
         )
 
     return new_p
 
 
 def insert_image_before(doc, ref_p, img_path, caption_text, width_cm=15.2,
-                        highlight_diff=False, force_hl=False):
+                        highlight_diff=False, highlight_platform=False, force_hl=False):
     """在 ref_p 前插入居中高清图及五号加粗图题"""
     p_img = ref_p.insert_paragraph_before("")
     p_img.style = doc.styles["Normal"]
@@ -671,7 +691,7 @@ def insert_image_before(doc, ref_p, img_path, caption_text, width_cm=15.2,
     run_img = p_img.add_run()
     run_img.add_picture(img_path, width=Cm(width_cm))
     insert_paragraph_before(doc, ref_p, caption_text, style_type="caption",
-                            highlight_diff=highlight_diff, force_hl=force_hl)
+                            highlight_diff=highlight_diff, highlight_platform=highlight_platform, force_hl=force_hl)
 
 
 def set_table_borders(table):
@@ -734,8 +754,8 @@ def set_cover_cell_text(cell, text, cn_font="宋体", en_font="Times New Roman",
 
 def set_cell_text(cell, text, cn_font="宋体", en_font="Times New Roman", size_pt=14.0,
                   bold=False, align=WD_ALIGN_PARAGRAPH.CENTER,
-                  highlight_diff=False, force_hl=False):
-    """清空正文表格单元格并写入指定格式文本（支持 {{math:key}} 公式与 {{hl}} 高亮）"""
+                  highlight_diff=False, highlight_platform=False, force_hl=False):
+    """清空正文表格单元格并写入指定格式文本（支持 {{math:key}} 公式与 {{hl}}/{{platform_hl}} 高亮）"""
     cell.text = ""
     cell.vertical_alignment = WD_ALIGN_VERTICAL.CENTER
     p = cell.paragraphs[0]
@@ -747,15 +767,23 @@ def set_cell_text(cell, text, cn_font="宋体", en_font="Times New Roman", size_
     pf.first_line_indent = Pt(0)
     add_rich_text_to_paragraph(
         p, text, cn_font=cn_font, en_font=en_font, size_pt=size_pt,
-        bold=bold, highlight_diff=highlight_diff, force_hl=force_hl,
-        parse_citations=False
+        bold=bold, highlight_diff=highlight_diff, highlight_platform=highlight_platform,
+        force_hl=force_hl, parse_citations=False
     )
 
 
-def build_single_docx(out_docx_path, highlight_diff=False):
-    """构建单个开题报告 .docx 文件（highlight_diff=False 为纯净正式版，True 为修改对比高亮版）"""
+def build_single_docx(out_docx_path, highlight_mode="none"):
+    """
+    构建单个开题报告 .docx 文件
+    highlight_mode:
+      - 'none': 纯净正式版 (100% 无任何高亮)
+      - 'diff': 新旧版本修改对比高亮版 (高亮 {{hl}}...{{/hl}})
+      - 'platform': 实验室学长审阅确认版 (仅高亮 {{platform_hl}}...{{/platform_hl}} 涉及实验室已有平台/数据的内容)
+    """
+    highlight_diff = (highlight_mode == "diff")
+    highlight_platform = (highlight_mode == "platform")
     CITATION_TRACKER.clear()
-    if not highlight_diff and os.path.exists(out_docx_path):
+    if highlight_mode == "none" and os.path.exists(out_docx_path):
         shutil.copy2(out_docx_path, out_docx_path + ".bak")
 
     doc = docx.Document(TEMPLATE_PATH)
@@ -807,7 +835,8 @@ def build_single_docx(out_docx_path, highlight_diff=False):
     def _add(text="", style_type="body", bold_prefix=None, ref_index=None, force_hl=False):
         return insert_paragraph_before(
             doc, p_audit, text=text, style_type=style_type, bold_prefix=bold_prefix,
-            ref_index=ref_index, highlight_diff=highlight_diff, force_hl=force_hl
+            ref_index=ref_index, highlight_diff=highlight_diff,
+            highlight_platform=highlight_platform, force_hl=force_hl
         )
 
     # =========================================================================
@@ -821,22 +850,22 @@ def build_single_docx(out_docx_path, highlight_diff=False):
     _add("{{hl}}1.1 {{/hl}}课题来源", style_type="h3", force_hl=False)
     _add(
         "{{hl}}海洋是高质量发展的战略要地。党的二十大报告明确提出，要“发展海洋经济，保护海洋生态环境，加快建设海洋强国”。习近平总书记强调，“建设海洋强国是实现中华民族伟大复兴的重大战略任务”，“要向海洋要资源、要空间，发展海洋科技，核心技术要牢牢掌握在自己手中”。国家《“十四五”海洋经济发展规划》进一步明确，要“推动海洋高端装备制造实现突破，加快深远海无人潜水器（AUV/ROV）、水下智能机器人与海洋立体观测技术装备的自主化研发与工程应用”；工业和信息化部等十七部门联合印发的《“机器人+”应用行动实施方案》中，亦明确将“面向水下极端环境作业、海洋工程基础设施无损巡检与水下应急搜救的特种机器人”列为国家重点攻关与推广示范方向 [1]。{{/hl}}\n\n"
-        "{{hl}}在上述国家重大战略牵引与行业应用需求下，水下无人航行器在海底矿产与油气管网巡检、海上风电大直径基桩与跨海桥隧水下结构物无损检测、大型水利大坝安全评估，以及现代海洋牧场立体管护等领域发挥着关键支撑作用。在贴近被测复杂结构物或狭窄受限水域作业时，环境水流扰动与水下视线受阻对航行器的低速敏捷机动与自主悬停能力提出了较高要求，需要航行器能够在水流干扰环境下稳定可靠地完成空间定点悬停、姿态定角保持（抵抗横滚与俯仰倾角偏差）、定深控制（克服重浮力微小失配与垂向流扰）以及航向锁定（定航）等基本运动控制任务。{{/hl}}\n\n"
-        "{{hl}}在此背景下，{{/hl}}本课题来源于实验室在水下无人系统与智能海洋装备方向的科研实践与工程开发需求，直接依托实验室{{hl}}已完成构型设计的{{/hl}}八推进器开架式（Open-frame）水下航行器（Unmanned Underwater Vehicle / Remotely Operated Vehicle，UUV/ROV）实验平台{{hl}}方案及相关结构数据{{/hl}}开展研究。{{hl}}该平台{{/hl}}具备八推进器空间对称与矢量倾斜布置的硬件驱动能力，但在流体环境中实现{{hl}}稳定可靠的闭环运动控制{{/hl}}仍面临诸多瓶颈：缺乏系统化的水动力建模与参数辨识，使得控制器难以获取物理平台的真实动力学特性；运动控制与推力分配多采用人工试凑的经验PID参数，未能在六自由度耦合层面上充分释放八推进器过驱动配置的协调潜力；控制系统软件缺乏工业级模块化规范，难以直接面向工程部署开展高可信度的闭环验证。为此，本课题立足于实验室已有平台{{hl}}的方案与数据基础{{/hl}}，围绕“动力学建模、系统辨识、模型运动控制、八推进器控制分配及 PX4/SITL 闭环仿真验证”开展系统性研究，具有坚实的{{hl}}工程实践{{/hl}}背景与明确的技术升级需求。",
+        "{{hl}}在上述国家重大战略牵引与行业应用需求下，水下无人航行器在海底矿产与油气管网巡检、海上风电大直径基桩与跨海桥隧水下结构物无损检测、大型水利大坝安全评估，以及现代海洋牧场立体管护等领域发挥着关键支撑作用。在贴近被测复杂结构物或狭窄受限水域作业时，环境水流扰动与水下视线受阻对航行器的低速敏捷机动与自主悬停能力提出了较高要求，需要航行器能够在水流干扰环境下稳定可靠地完成空间定点悬停、姿态稳定、定深控制与定航控制等基本运动控制任务。{{/hl}}\n\n"
+        "{{hl}}在此背景下，{{/hl}}本课题来源于实验室在水下无人系统与智能海洋装备方向的科研实践与工程开发需求，{{platform_hl}}直接依托实验室已完成构型设计的八推进器开架式（Open-frame）水下航行器（Unmanned Underwater Vehicle / Remotely Operated Vehicle，UUV/ROV）实验平台方案及相关结构数据开展研究。{{/platform_hl}}{{platform_hl}}该平台具备八推进器空间对称与矢量倾斜布置的硬件驱动能力{{/platform_hl}}，但在流体环境中实现{{hl}}稳定可靠的闭环运动控制{{/hl}}仍面临诸多瓶颈：缺乏系统化的水动力建模与参数辨识，使得控制器难以获取物理平台的真实动力学特性；运动控制与推力分配多采用人工试凑的经验PID参数，未能在六自由度耦合层面上充分释放八推进器过驱动配置的协调潜力；控制系统软件缺乏工业级模块化规范，难以直接面向工程部署开展高可信度的闭环验证。为此，本课题{{platform_hl}}立足于实验室已有平台的方案与数据基础{{/platform_hl}}，围绕“动力学建模、系统辨识、模型运动控制、八推进器控制分配及 PX4/SITL 闭环仿真验证”开展系统性研究，具有坚实的{{hl}}工程实践{{/hl}}背景与明确的技术升级需求。",
         style_type="body", force_hl=False
     )
 
     _add("{{hl}}1.2 {{/hl}}研究目的", style_type="h3", force_hl=False)
     _add(
         "水下航行器在黏性流体介质中运动时，在物理机理上呈现出显著的六自由度（6-DOF）非线性耦合特性。一方面，在流体动力学层面，航行器的运动不仅取决于刚体自身质量惯性矩阵，还受到周围水体随体加速运动所产生的附加质量（Added Mass）效应的影响，附加质量的大小在低速和变加速工况下可与刚体自身质量相当；刚体与附加质量在旋转运动中伴随着科氏力与向心力耦合作用，流体黏性流动与开架式桁架、设备附体边缘产生的脱体涡流阻力则共同构成了包含线性与二次非线性项的水动力阻尼特性；此外，航行器重心（CG）与浮心（CB）的空间相对位置形成了各向异性的静恢复力与力矩。在上述多源流体物理效应的综合作用下，航行器各运动轴之间存在明显的动力学交叉耦合。\n\n"
-        "另一方面，在工程实现层面，由于开架式航行器结构件复杂、附体较多，常规的解析经验公式难以准确计算其全部水动力参数；加工装配公差、线缆悬垂拉拽张力、水密舱内部载荷装配位置偏差以及水体密度变化等物理因素，导致理论设计模型与物理平台的实际动态特性之间不可避免地存在参数偏差与未建模动态。此外，已有平台配备的八个推进器在空间呈水平面矢量倾斜与垂直面对称布置，构成了典型的过驱动冗余系统，运动控制器输出的六自由度期望广义力和力矩必须经过控制分配映射转化为各推进器的控制指令，且推进器在物理上受限于推力输出范围、正反转效率差异及推力死区等约束，容易在大幅机动时引发局部推进器饱和与力矩分配失真。\n\n"
-        "针对上述挑战，本课题的研究目的在于：依托已有八推进器水下航行器平台，建立六自由度动力学与推进器模型；结合已有平台参数资料和相关数据开展系统辨识与模型验证，明确系统辨识的输入输出关系，对关键未知量进行辨识修正并分析模型适用范围；在此基础上，结合经验证的航行器模型特性与状态反馈构建闭环运动控制系统，实现姿态、深度和航向等基本运动状态的闭环控制；依据八推进器空间布局建立控制分配矩阵，考虑基本推力输出范围生成推力指令；最终在PX4/SITL软件在环仿真环境中构建闭环系统，通过代表性运动工况与流扰条件开展闭环仿真验证与量化性能评价，形成“已有平台—建模与系统辨识—模型验证—运动控制—控制分配—PX4/SITL闭环验证”的完整研究闭环。",
+        "另一方面，在工程实现层面，由于开架式航行器结构件复杂、附体较多，常规的解析经验公式难以准确计算其全部水动力参数；加工装配公差、线缆悬垂拉拽张力、水密舱内部载荷装配位置偏差以及水体密度变化等物理因素，导致理论设计模型与物理平台的实际动态特性之间不可避免地存在参数偏差与未建模动态。此外，{{platform_hl}}已有平台配备的八个推进器在空间呈水平面矢量倾斜与垂直面对称布置，构成了典型的过驱动冗余系统{{/platform_hl}}，运动控制器输出的六自由度期望广义力和力矩必须经过控制分配映射转化为各推进器的控制指令，且推进器在物理上受限于推力输出范围、正反转效率差异及推力死区等约束，容易在大幅机动时引发局部推进器饱和与力矩分配失真。\n\n"
+        "针对上述挑战，本课题的研究目的在于：{{platform_hl}}依托已有八推进器水下航行器平台，建立六自由度动力学与推进器模型；结合已有平台参数资料和相关数据开展系统辨识与模型验证{{/platform_hl}}，明确系统辨识的输入输出关系，对关键未知量进行辨识修正并分析模型适用范围；在此基础上，结合经验证的航行器模型特性与状态反馈构建闭环运动控制系统，实现姿态、深度和航向等基本运动状态的闭环控制；{{platform_hl}}依据八推进器空间布局建立控制分配矩阵{{/platform_hl}}，考虑基本推力输出范围生成推力指令；最终在PX4/SITL软件在环仿真环境中构建闭环系统，通过代表性运动工况与流扰条件开展闭环仿真验证与量化性能评价，形成“已有平台—建模与系统辨识—模型验证—运动控制—控制分配—PX4/SITL闭环验证”的完整研究闭环。",
         style_type="body", force_hl=False
     )
 
     _add("{{hl}}1.3 {{/hl}}研究意义", style_type="h3", force_hl=False)
     _add(
-        "第一，在理论与方法层面，有助于深化模型支撑下的水下航行器运动控制全链路分析体系。传统的无模型经验控制难以在多轴耦合与强阻尼环境下保证理想的动态响应品质，而过于依赖单一解析机理模型的控制方法又常因水动力参数获取困难而难以在工程中有效落地。本课题坚持“机理建模与试验辨识相结合、模型信息与状态反馈相结合”的研究理念，通过机理推导理清六自由度方程的物理架构，借助系统辨识修正关键未知参数，获得满足控制设计精度要求的标称基准模型。在此基础上，将标称模型中的静回复力、主导阻尼与惯性耦合项引入控制前向通道进行主动补偿，同时依靠稳健的状态误差反馈抑制未建模残差与外部扰动，有助于理清动力学模型保真度、控制律补偿结构与闭环动态抗扰性能之间的内在关联；同时，针对八推进器过驱动构型建立规范的控制分配与约束分析方法，能够为冗余推进器在复杂受力工况下的推力协调分配提供理论依据。\n\n"
+        "第一，在理论与方法层面，有助于深化模型支撑下的水下航行器运动控制全链路分析体系。传统的无模型经验控制难以在多轴耦合与强阻尼环境下保证理想的动态响应性能，而过于依赖单一解析机理模型的控制方法又常因水动力参数获取困难而难以在工程中有效落地。本课题坚持“机理建模与试验辨识相结合、模型信息与状态反馈相结合”的研究理念，通过机理推导理清六自由度方程的物理架构，借助系统辨识修正关键未知参数，获得满足控制设计精度要求的标称基准模型。在此基础上，将标称模型中的静回复力、主导阻尼与惯性耦合项引入控制前向通道进行主动补偿，同时依靠稳健的状态误差反馈抑制未建模残差与外部扰动，有助于理清动力学模型保真度、控制律补偿结构与闭环动态抗扰性能之间的内在关联；同时，针对八推进器过驱动构型建立规范的控制分配与约束分析方法，能够为冗余推进器在复杂受力工况下的推力协调分配提供理论依据。\n\n"
         "第二，在工程应用与软件实践层面，旨在构建标准化、高可移植性的 PX4/SITL 水下飞控研发流程。传统水下机器人开发中普遍存在“在纯数学仿真环境中表现良好，但向机载嵌入式控制器移植时代码重构量大、软硬件接口脱节”的工程问题。PX4 作为广泛应用的开源无人系统控制软件框架，具有高度模块化的分层架构、实时多任务调度机制以及基于 uORB 的松耦合消息通信总线。本课题依托 PX4 软件架构开展模块化代码设计，在 SITL 仿真环境中直接集成 6-DOF 动力学模型、运动控制器与八推进器分配算法，不仅可以在安全、低成本、高可重复的条件下测试算法在典型运动工况和适量外部水流扰动条件下的闭环性能，还规范了状态估计、期望力矩输出及各推进器指令的标准数据接口。这为后续将算法部署至机载嵌入式硬件并开展实物测试提供了可靠的软件工程基础。",
         style_type="body", force_hl=False
     )
@@ -845,20 +874,20 @@ def build_single_docx(out_docx_path, highlight_diff=False):
     _add("{{hl}}2. {{/hl}}国内外在该方向的研究现状和发展趋势", style_type="h2", force_hl=False)
 
     _add(
-        "围绕本课题所涉及的水下航行器六自由度动力学机理建模与参数辨识、基于模型与状态反馈的运动控制方法、多推进器受约束控制分配以及基于开源飞控软件（PX4）的闭环仿真等四个核心技术环节，国内外学术界与工业界开展了系统的研究。",
+        "围绕本课题所涉及的水下航行器六自由度动力学机理建模与参数辨识、基于模型与状态反馈的运动控制方法、多推进器受约束控制分配以及基于开源飞控软件（PX4）的闭环仿真等四个核心技术环节，国内外学术界与工业界进行了深入研究并取得了丰富成果。",
         style_type="body", force_hl=False
     )
 
     _add("{{hl}}2.1 {{/hl}}水下航行器动力学建模与系统辨识研究现状", style_type="h3", force_hl=False)
     _add(
         "在动力学机理建模方面，水下航行器的运动学与动力学理论体系历经长期发展，已形成规范的标准框架。国际水池会议（ITTC）与国际海事组织（IMO）为海洋船舶与运载器的运动表述奠定了基础，挪威科技大学学者 Fossen 系统提出了海洋航行器六自由度非线性矢量建模理论体系{{hl}}[2]{{/hl}}。该体系将固定于地球的惯性坐标系（NED）与固连于航行器的附体坐标系（Body-fixed Frame）相结合，通过坐标变换矩阵统一描述位置、姿态欧拉角与六自由度线速度、角速度，并将作用于机体上的广义力矩严格解构为刚体惯性矩阵、水动力附加质量矩阵、刚体与附加质量科氏向心力矩阵、线性与非线性水动力阻尼矩阵以及重力与浮力恢复力矩矢量，成为当前水下航行器建模与控制研究所公认的数学物理基石。对于采用开架式（Open-frame）机械构型的 ROV 而言，其水动力特性与流线型鱼雷状 AUV 存在明显差异。开架式航行器通常挂载外部传感器探头、推进器短舱、照明灯组及耐压水密舱，表面形态不规则且内部水流可穿透框架结构流动。Caccia 等较早对开架式可变构型无人水下航行器的动力学建模与水动力参数辨识展开了系统研究，指出了开架式航行器附加质量与阻尼矩阵中非对角耦合项的影响，验证了基于机理模型结构结合试验数据辨识主导水动力参数的可行性{{hl}}[3]{{/hl}}。\n\n"
-        "由于开架式航行器的水动力系数难以仅凭理论解析精确计算，结合试验手段与运行数据开展系统辨识成为获取可用工程模型的重要途径。在传统水动力测试中，平面运动机构（PMM）水池拖曳试验精度高但设备成本高、周期长。为此，低成本、高效率的原位试验与动态响应辨识方法受到了研究者的广泛关注。Ross、Fossen 与 Johansen 提出了基于自由衰减试验（Free Decay Tests）辨识水下航行器水动力系数的方法，通过释放初始位移并记录单自由度衰减振荡曲线即可解算出主要惯性与阻尼参数，具有操作简便、物理直观的特点{{hl}}[4]{{/hl}}；Avila 等针对开架式水下航行器开展了系统化的实验水动力模型辨识研究，结合阶跃推力激励与频域响应分析对附加质量与流体阻尼特性进行了定量标定{{hl}}[5]{{/hl}}；Chin 与 Lau 针对复杂外形开架式 ROV 开展了水动力阻尼的数值建模与试验对比研究，分析了不同速度区间线性阻尼与二次非线性阻尼的主导权重{{hl}}[6]{{/hl}}。国内哈尔滨工程大学等团队在水动力参数数值计算与辨识领域亦取得了丰富成果，如高婷、庞永杰等针对水下航行器复杂构型水动力系数计算方法开展了系统研究，结合几何特征分析、数值仿真与试验修正建立了面向控制设计的实用化模型{{hl}}[7]{{/hl}}。{{hl}}近年来，von Benzon 等面向主流八推进器 BlueROV2 平台建立了开源物理仿真与动力学基准，提供了标准化的辨识对比基础[8]。{{/hl}}这表明“基于机理构建总体方程骨架 + 依托平台资料与相关数据辨识修正关键未知量 + 利用代表性动态响应进行适用范围验证”的方法，已成为兼顾模型物理可解释性与工程可用性的主流路径。",
+        "由于开架式航行器的水动力系数难以仅凭理论解析精确计算，结合试验手段与运行数据开展系统辨识成为获取可用工程模型的重要途径。在传统水动力测试中，平面运动机构（PMM）水池拖曳试验精度高但设备成本高、周期长。为此，低成本、高效率的原位试验与动态响应辨识方法受到了研究者的广泛关注。Ross、Fossen 与 Johansen 提出了基于自由衰减试验（Free Decay Tests）辨识水下航行器水动力系数的方法，通过释放初始位移并记录单自由度衰减振荡曲线即可解算出主要惯性与阻尼参数，具有操作简便、物理直观的特点{{hl}}[4]{{/hl}}；Avila 等针对开架式水下航行器开展了系统化的实验水动力模型辨识研究，结合阶跃推力激励与频域响应分析对附加质量与流体阻尼特性进行了定量标定{{hl}}[5]{{/hl}}；Chin 与 Lau 针对复杂外形开架式 ROV 开展了水动力阻尼的数值建模与试验对比研究，分析了不同速度区间线性阻尼与二次非线性阻尼的主导权重{{hl}}[6]{{/hl}}。国内哈尔滨工程大学等团队在水动力参数数值计算与辨识领域亦取得了丰富成果，如高婷、庞永杰等针对水下航行器复杂构型水动力系数计算方法开展了系统研究，结合几何特征分析、数值仿真与试验修正建立了面向控制设计的实用化模型{{hl}}[7]{{/hl}}。{{hl}}近年来，von Benzon 等面向主流八推进器 BlueROV2 平台建立了开源物理仿真与动力学基准，提供了标准化的辨识对比基础[8]。{{/hl}}这表明，基于机理推导构建模型结构骨架、依托试验数据辨识修正关键未知参数，并利用代表性动态响应验证模型有效性与适用范围的研究路径，已成为兼顾模型物理可解释性与工程可用性的主流方法。",
         style_type="body", force_hl=False
     )
 
     _add("{{hl}}2.2 {{/hl}}水下航行器运动控制方法研究现状", style_type="h3", force_hl=False)
     _add(
-        "水下航行器运动控制的核心任务在于驱动推进器系统产生协调推力与力矩，使航行器的空间位置、潜深以及横滚、俯仰、偏航姿态稳定准确地跟踪给定的参考运动指令，并在存在未建模动态与外部水流干扰时维持良好的瞬态与稳态品质。{{hl}}典型水下航行器六自由度模型控制与推力分配通用闭环结构如图 1 所示（基于 Fossen 经典海洋航行器控制理论架构 [2]）：{{/hl}}",
+        "水下航行器运动控制的核心任务在于驱动推进器系统产生协调推力与力矩，使航行器的空间位置、潜深以及横滚、俯仰、偏航姿态稳定准确地跟踪给定的参考运动指令，并在存在未建模动态与外部水流干扰时维持良好的瞬态与稳态性能。{{hl}}典型水下航行器六自由度模型控制与推力分配通用闭环结构如图 1 所示（基于 Fossen 经典海洋航行器控制理论架构 [2]）：{{/hl}}",
         style_type="body", force_hl=False
     )
 
@@ -870,9 +899,9 @@ def build_single_docx(out_docx_path, highlight_diff=False):
         )
 
     _add(
-        "在早期的工程实际与常规水下测试中，独立单回路 PID 或级联 PID 控制得到了广泛应用，其不依赖精确动力学模型，通过实时状态误差积分消除稳态偏差，在平稳水流环境下的定点悬停或低速巡航中具备易调易用的工程优势 {{hl}}[2]。在现代开架式水下航行器开源物理仿真基准中，文献 [8] 亦将其作为标准对比算法。{{/hl}}然而，开架式八推进器水下航行器本质上是一个非线性、多轴耦合的多输入多输出（MIMO）动力学系统：航行器在水平面做快速纵向机动时易诱发明显的俯仰和垂荡运动；侧向位移时亦伴随着横滚力矩干扰；重力与浮力的非线性恢复力矩随姿态倾角呈三角函数非线性变化。若完全忽略这些物理耦合，纯线性 PID 控制难以兼顾不同运动工况下的控制品质，容易在较大幅度机动时出现超调偏大或推进器输出抖振。\n\n"
+        "在早期的工程实际与常规水下测试中，独立单回路 PID 或级联 PID 控制得到了广泛应用，其不依赖精确动力学模型，通过实时状态误差积分消除稳态偏差，在平稳水流环境下的定点悬停或低速巡航中具备易调易用的工程优势 {{hl}}[2]。在现代开架式水下航行器开源物理仿真基准中，文献 [8] 亦将其作为标准对比算法。{{/hl}}然而，开架式八推进器水下航行器本质上是一个非线性、多轴耦合的多输入多输出（MIMO）动力学系统：航行器在水平面做快速纵向机动时易诱发明显的俯仰和垂荡运动；侧向位移时亦伴随着横滚力矩干扰；重力与浮力的非线性恢复力矩随姿态倾角呈三角函数非线性变化。若完全忽略这些物理耦合，纯线性 PID 控制难以兼顾不同运动工况下的控制性能，容易在较大幅度机动时出现超调偏大或推进器输出抖振。\n\n"
         "针对上述问题，结合动力学模型已知特性与实时状态反馈的现代控制方法成为水下航行器控制领域的研究重点。{{hl}}如图 1 所示，通用闭环控制系统主要由参考运动规划、运动控制器（包含模型前馈补偿与状态误差反馈两部分）、控制分配模块、推进器执行机构、航行器动力学模型以及状态估计模块组成。{{/hl}}Fernandes 等针对观察级 ROV 提出了一种基于高增益状态观测器的输出反馈运动控制系统，将航行器的标称动力学模型与状态重构相结合，仅依赖有限传感器输出即实现了深度、航向和水平面位置的稳定闭环控制，并通过理论分析与水池试验验证了有效性 [9]。Chu 等针对实际水下航行器普遍存在的推进器电机一阶动态延迟与推力幅值饱和问题，提出了一种融合动力学模型前馈补偿与自适应参数更新的轨迹跟踪控制方法，降低了水动力阻尼参数不确定性对跟踪精度的影响，并在推进器达到推力上限时保持了良好的闭环稳定性 [10]。\n\n"
-        "与此同时，围绕非线性系统解耦，基于反馈线性化与动态逆思想的控制方法也得到了深入探索。这类方法的核心思路在于利用动力学模型计算出抵消已知非线性项（如静水力恢复项、科氏力与主导阻尼项）所需的前馈控制力矩，将非线性耦合系统在标称意义上等效转化为解耦的线性通道，从而简化闭环状态反馈控制器的参数整定。此外，针对全状态精确机理模型难以完整获取的客观现实，学者们进一步探索了增量非线性动态逆（INDI）等局部增量控制方法。{{hl}}Slawik 等进一步将增量动态逆方法引入水下航行器（Cuttlefish AUV）的姿态控制中，结合标称水动力模型与传感器高频反馈在局部时间微元内补偿未建模动态与外扰，展现出良好的闭环抗扰能力 [11]。{{/hl}}\n\n"
+        "与此同时，围绕非线性系统解耦，基于反馈线性化与动态逆思想的控制方法也得到了深入探索。这类方法的核心思路在于利用动力学模型计算出抵消已知非线性项（如静水力恢复项、科氏力与主导阻尼项）所需的前馈控制力矩，将非线性耦合系统在标称意义上等效转化为解耦的线性通道，从而简化闭环状态反馈控制器的参数整定。此外，针对全状态精确机理模型难以完整获取的客观现实，学者们进一步探索了增量非线性动态逆（INDI）等局部增量控制方法。{{hl}}Slawik 等进一步将增量动态逆方法引入特种水下航行器的姿态控制中，结合标称水动力模型与传感器高频反馈在局部时间微元内补偿未建模动态与外扰，展现出良好的闭环抗扰能力 [11]。{{/hl}}\n\n"
         "综合国内外运动控制方法的发展演进可知，依托经验证的标称动力学模型，在控制回路中显式引入模型前馈或动态逆补偿以抵消主要已知的恢复力矩与主导流体效应，同时在反馈回路中融合实时状态误差开展稳健的状态反馈调节，能够在保证系统闭环稳定性的同时，为后续结合平台特性开展控制算法的横向比选与深入探索留出充分的方法比选空间与算法拓展余地。",
         style_type="body", force_hl=False
     )
@@ -881,7 +910,7 @@ def build_single_docx(out_docx_path, highlight_diff=False):
     _add(
         "对于配备八个推进器的全驱动开架式水下航行器而言，其独立的物理执行器通道数量（8 个推进器）大于空间六自由度广义力与力矩的数量（6 个控制维度），属于典型的过驱动（Over-actuated）冗余控制系统。上层运动控制器根据参考轨迹与当前状态误差计算出的是机体所需的合力与合力矩 {{math:tau_c_R6}}，而实际作用于水体的则是各推进器产生的轴向推力矢量 {{math:T_R8}}。如何将低维的期望广义力矩合理、低失真地解算并映射为高维的各推进器控制指令，即为控制分配（Control Allocation）所要解决的关键课题。\n\n"
         "{{hl}}Johansen 与 Fossen 在控制分配综述中系统总结了无约束广义逆、有界二次规划及再分配方法的理论体系[12]；Fossen 与 Johansen 针对船舶与水下航行器的推力分配问题开展了系统梳理，总结了海洋运载器过驱动控制分配的基本模型与求解框架[13]。{{/hl}}在无约束或弱约束条件下，基于几何映射矩阵的广义逆（伪逆）法由于具备解析形式、计算开销小，在工程中得到了广泛的基础应用；通过在伪逆中引入对角加权矩阵（加权伪逆法），能够根据推进器物理尺寸、功率或安装力臂灵活分配控制权重。\n\n"
-        "然而，实际物理推进器均存在明确的物理边界约束：推进器电机转速存在上限，导致正向推力与反向推力存在确定的幅值边界，且螺旋桨水动力特性决定了正转推力通常大于反转推力。若直接采用无约束伪逆求解，当某一个或多个推进器计算推力超出物理上限时，简单的截断饱和处理会导致实际产生的六维广义力和力矩方向发生偏转，即出现“力矩交叉耦合失真”，进而影响姿态闭环稳定性。为此，考虑推力输出范围约束的推力分配算法成为近年的研究重点。程卫平、王猛等针对水下机器人推力器物理输出上限，研究了基于可行方向法等处理推力边界约束的优化分配算法，抑制了推力饱和引起的力矩分配畸变{{hl}}[14]{{/hl}}；孙广威等针对矢量推进 ROV 提出了兼顾推力约束与分配效率的多级推力分配策略，在多推进器协调与能耗控制方面取得了良好效果{{hl}}[15]{{/hl}}。由此可见，根据已有八推进器平台的空间安装位置、推力矢量方向及力臂关系，准确建立反映平台真实几何构型的 {{math:6x8}} 控制分配矩阵，并在求解流程中合理考虑推进器基本推力输出范围约束，是连接上层闭环运动控制器与底层执行机构的核心纽带。",
+        "然而，实际物理推进器均存在明确的物理边界约束：推进器电机转速存在上限，导致正向推力与反向推力存在确定的幅值边界，且螺旋桨水动力特性决定了正转推力通常大于反转推力。若直接采用无约束伪逆求解，当某一个或多个推进器计算推力超出物理上限时，简单的截断饱和处理会导致实际产生的六维广义力和力矩方向发生偏转，即出现“力矩交叉耦合失真”，进而影响姿态闭环稳定性。为此，考虑推力输出范围约束的推力分配算法成为近年的研究重点。程卫平、王猛等针对水下机器人推力器物理输出上限，研究了基于可行方向法等处理推力边界约束的优化分配算法，抑制了推力饱和引起的力矩分配畸变{{hl}}[14]{{/hl}}；孙广威等针对矢量推进 ROV 提出了兼顾推力约束与分配效率的多级推力分配策略，在多推进器协调与能耗控制方面取得了良好效果{{hl}}[15]{{/hl}}。由此可见，{{platform_hl}}根据已有八推进器平台的空间安装位置、推力矢量方向及力臂关系，准确建立反映平台真实几何构型的 {{math:6x8}} 控制分配矩阵{{/platform_hl}}，并在求解流程中合理考虑推进器基本推力输出范围约束，是连接上层闭环运动控制器与底层执行机构的核心纽带。",
         style_type="body", force_hl=False
     )
 
@@ -930,8 +959,8 @@ def build_single_docx(out_docx_path, highlight_diff=False):
         (
             "本课题研究方案",
             "—",
-            "机理建模与数据辨识相结合获取标称模型 {{math:model_hats_paren}}，模型特性补偿与实时状态反馈相结合",
-            "建立八推进器 {{math:6x8}} 控制分配矩阵 {{math:B_mat}}，考虑基本推力输出范围约束 {{math:T_interval}}",
+            "{{platform_hl}}机理建模与数据辨识相结合获取标称模型 {{math:model_hats_paren}}，模型特性补偿与实时状态反馈相结合{{/platform_hl}}",
+            "{{platform_hl}}建立八推进器 {{math:6x8}} 控制分配矩阵 {{math:B_mat}}，考虑基本推力输出范围约束 {{math:T_interval}}{{/platform_hl}}",
             "基于 PX4 架构与 uORB 总线的 SITL 软件在环闭环仿真",
             "兼顾物理模型可解释性与状态反馈稳健性，保留具体控制算法横向比选空间，软件架构标准化"
         ),
@@ -954,12 +983,13 @@ def build_single_docx(out_docx_path, highlight_diff=False):
             set_cell_text(
                 cell, val, cn_font=cn_f, en_font="Times New Roman",
                 size_pt=9.5, bold=(is_header or (is_our_row and c_idx == 0)),
-                align=align, highlight_diff=highlight_diff, force_hl=False
+                align=align, highlight_diff=highlight_diff,
+                highlight_platform=highlight_platform, force_hl=False
             )
     p_audit._element.addprevious(tbl_cmp._tbl)
 
     _add(
-        "综合上述四个领域的研究现状与表 1 对比分析，可以提炼出当前水下无人航行器控制领域的发展趋势与对本课题的关键启示：一是系统研发呈现出机理建模、数据辨识、模型控制、推力分配与飞控闭环仿真全链路协同推进的发展趋势；二是在水下非线性不确定性与流扰背景下，盲目追求结构过于复杂的强自适应或过度拘泥于某一种先验假设严苛的单一算法，容易在实际水流工况下出现鲁棒性不足；稳健且具工程可行性的方法，是以经验证的标称模型为基石，结合系统状态反馈构建通用且弹性的控制律框架，为后续结合实际辨识结果展开方法比选留出充分的方法比选空间与算法拓展余地；三是依托成熟的开源自主系统飞控架构（如 PX4）及其 SITL 软件在环仿真机制，已成为连接理论算法设计与实物水下平台部署的关键工程纽带与验证平台。基于上述启示，本课题确立了以已有八推进器水下航行器为对象，系统推进六自由度动力学与推进器建模、基于相关数据的系统辨识与模型验证、基于模型和状态反馈的运动控制设计、八推进器控制分配以及基于 PX4/SITL 的闭环仿真验证研究，研究目标明确，技术路线清晰可行，具有扎实的学术支撑与良好的工程应用前景。",
+        "综合上述四个领域的研究现状与表 1 对比分析，可以提炼出当前水下无人航行器控制领域的发展趋势与对本课题的关键启示：一是系统研发呈现出机理建模、数据辨识、模型控制、推力分配与飞控闭环仿真全链路协同推进的发展趋势；二是在水下非线性不确定性与流扰背景下，盲目追求结构过于复杂的强自适应或过度拘泥于某一种先验假设严苛的单一算法，容易在实际水流工况下出现鲁棒性不足；稳健且具工程可行性的方法，是以经验证的标称模型为基石，结合系统状态反馈构建通用且弹性的控制律框架，为后续结合实际辨识结果展开方法比选留出充分的方法比选空间与算法拓展余地；三是依托成熟的开源自主系统飞控架构（如 PX4）及其 SITL 软件在环仿真机制，已成为连接理论算法设计与实物水下平台部署的关键工程纽带与验证平台。基于上述启示，本课题确立了{{platform_hl}}以已有八推进器水下航行器为对象，系统推进六自由度动力学与推进器建模、基于相关数据的系统辨识与模型验证、基于模型和状态反馈的运动控制设计、八推进器控制分配{{/platform_hl}}以及基于 PX4/SITL 的闭环仿真验证研究，研究目标明确，技术路线清晰可行，具有扎实的学术支撑与良好的工程应用前景。",
         style_type="body", force_hl=False
     )
 
@@ -973,34 +1003,34 @@ def build_single_docx(out_docx_path, highlight_diff=False):
 
     _add("{{hl}}1.1 {{/hl}}预期研究目标", style_type="h3", force_hl=False)
     _add(
-        "本课题依托已有八推进器水下航行器平台，建立能够反映航行器主要动态特性的六自由度动力学模型与推进器模型，结合平台参数资料和相关数据完成系统辨识与模型验证；在此基础上研究基于航行器模型和状态反馈的闭环运动控制方法及八推进器控制分配方案，并在PX4/SITL环境下构建完整闭环仿真系统，完成典型运动工况与适量外部扰动工况下的仿真验证与性能分析，形成“已有平台—建模与系统辨识—模型验证—运动控制—控制分配—PX4/SITL闭环验证”的完整研究闭环与论文写作主线。",
+        "本课题{{platform_hl}}依托已有八推进器水下航行器平台，建立能够反映航行器主要动态特性的六自由度动力学模型与推进器模型，结合平台参数资料和相关数据完成系统辨识与模型验证{{/platform_hl}}；在此基础上研究基于航行器模型和状态反馈的闭环运动控制方法及八推进器控制分配方案，并在PX4/SITL环境下构建完整闭环仿真系统，完成典型运动工况与适量外部扰动工况下的仿真验证与性能分析，形成“已有平台—建模与系统辨识—模型验证—运动控制—控制分配—PX4/SITL闭环验证”的完整研究闭环。",
         style_type="body", force_hl=False
     )
 
     _add("{{hl}}1.2 {{/hl}}研究内容要点", style_type="h3", force_hl=False)
     _add(
-        "围绕上述研究目标{{hl}}与后续毕业论文的核心章节脉络{{/hl}}，本课题应完成的主要研究内容与拟解决的关键问题包括以下四个方面：",
+        "围绕上述研究目标，本课题应完成的主要研究内容与拟解决的关键问题包括以下四个方面：",
         style_type="body", force_hl=False
     )
 
     _add(
-        "依托已有八推进器水下航行器平台，梳理其机械构型与推进器三维几何布局，建立六自由度运动学与非线性动力学模型，系统考虑刚体惯性、水动力附加质量、科氏向心力、线性和二次非线性水动力阻尼以及重浮力恢复力矩等主导物理效应；结合已有平台推进器电气与流体特性，建立单推进器控制输入到推力输出的静态映射与必要动态模型，为系统辨识、控制设计与仿真提供可靠的模型基础。",
-        style_type="body", bold_prefix="1） 水下航行器动力学与推进器建模{{hl}}（对应理论模型构建基础）{{/hl}}：", force_hl=False
+        "{{platform_hl}}依托已有八推进器水下航行器平台，梳理其机械构型与推进器三维几何布局{{/platform_hl}}，建立六自由度运动学与非线性动力学模型，系统考虑刚体惯性、水动力附加质量、科氏向心力、线性和二次非线性水动力阻尼以及重浮力恢复力矩等主导物理效应；{{platform_hl}}结合已有平台推进器电气与流体特性，建立单推进器控制输入到推力输出的静态映射与必要动态模型{{/platform_hl}}，为系统辨识、控制设计与仿真提供可靠的模型基础。",
+        style_type="body", bold_prefix="1） 水下航行器动力学与推进器建模：", force_hl=False
     )
 
     _add(
-        "在理论动力学模型基础上，分析各自由度动力学方程中未知参数的可辨识性，明确系统辨识的激励输入、状态响应输出及所需数据关系；结合已有平台参数资料和相关测试/仿真动态响应数据开展系统参数辨识，对水动力附加质量与阻尼等关键未知量进行估计与修正；通过代表性动态响应对比模型输出与测试数据，量化评估模型拟合误差与残差分布，明确标称模型的物理保真度与工程适用范围。",
-        style_type="body", bold_prefix="2） 系统辨识与模型验证分析{{hl}}（对应模型参数获取与精度核准）{{/hl}}：", force_hl=False
+        "在理论动力学模型基础上，分析各自由度动力学方程中未知参数的可辨识性，明确系统辨识的激励输入、状态响应输出及所需数据关系；{{platform_hl}}结合已有平台参数资料和相关测试/仿真动态响应数据开展系统参数辨识，对水动力附加质量与阻尼等关键未知量进行估计与修正{{/platform_hl}}；通过代表性动态响应对比模型输出与测试数据，量化评估模型拟合误差与残差分布，明确标称模型的物理保真度与工程适用范围。",
+        style_type="body", bold_prefix="2） 系统辨识与模型验证分析：", force_hl=False
     )
 
     _add(
-        "以经验证的航行器标称模型为基石，结合动力学已知特性补偿与实时状态反馈构建闭环运动控制律，输出机体期望的六自由度广义力和力矩，实现姿态、深度和航向等基本运动状态的闭环稳定跟踪，并考察模型不确定性与外部扰动对控制品质的影响；根据已有平台推进器空间安装位置与推力方向矢量构建 {{math:6x8}} 控制分配矩阵，系统考虑推进器物理输出范围约束生成各推进器推力指令，量化分析控制分配误差与推力饱和情况。",
-        style_type="body", bold_prefix="3） 模型运动控制与八推进器控制分配{{hl}}（对应控制算法与执行器解算）{{/hl}}：", force_hl=False
+        "以经验证的航行器标称模型为基石，结合动力学已知特性补偿与实时状态反馈构建闭环运动控制律，输出机体期望的六自由度广义力和力矩，实现姿态、深度和航向等基本运动状态的闭环稳定跟踪，并考察模型不确定性与外部扰动对控制性能的影响；{{platform_hl}}根据已有平台推进器空间安装位置与推力方向矢量构建 {{math:6x8}} 控制分配矩阵{{/platform_hl}}，系统考虑推进器物理输出范围约束生成各推进器推力指令，量化分析控制分配误差与推力饱和情况。",
+        style_type="body", bold_prefix="3） 模型运动控制与八推进器控制分配：", force_hl=False
     )
 
     _add(
         "在 PX4/SITL 仿真环境中构建由航行器动力学模型、运动控制模块和八推进器控制分配模块组成的闭环仿真系统，依托 uORB 异步微消息总线完成位姿状态、期望力矩与推进器控制指令的高频实时交互；设置空间定点悬停、定深控制、航向锁定及复杂三维运动轨迹等典型工况，并施加外部水流干扰，综合位置/姿态跟踪误差、动态响应指标及控制分配残差开展系统性定量性能评估。",
-        style_type="body", bold_prefix="4） PX4/SITL 闭环仿真与系统验证{{hl}}（对应软件在环集成与多工况评价）{{/hl}}：", force_hl=False
+        style_type="body", bold_prefix="4） PX4/SITL 闭环仿真与系统验证：", force_hl=False
     )
 
     # 2. 研究方案
@@ -1018,7 +1048,7 @@ def build_single_docx(out_docx_path, highlight_diff=False):
     )
     _add("eq1_6dof", style_type="formula")
     _add(
-        "式中，{{math:J_eta}} 为坐标转换矩阵；{{math:M_sum}} 为刚体惯性与附加质量矩阵；{{math:C_nu}} 为科氏力与向心力矩阵；{{math:D_nu}} 为包含线性与二次非线性项的水动力阻尼矩阵；{{math:g_eta}} 为重力与浮力恢复力矩矢量；{{math:tau}} 为推进器产生的广义控制力与力矩矢量；{{math:tau_d}} 为外部扰动项。同时，结合已有平台推进器参数资料，建立单推进器控制输入到推力输出的静态映射与必要动态模型。",
+        "式中，{{math:J_eta}} 为坐标转换矩阵；{{math:M_sum}} 为刚体惯性与附加质量矩阵；{{math:C_nu}} 为科氏力与向心力矩阵；{{math:D_nu}} 为包含线性与二次非线性项的水动力阻尼矩阵；{{math:g_eta}} 为重力与浮力恢复力矩矢量；{{math:tau}} 为推进器产生的广义控制力与力矩矢量；{{math:tau_d}} 为外部扰动项。同时，{{platform_hl}}结合已有平台推进器参数资料，建立单推进器控制输入到推力输出的静态映射与必要动态模型。{{/platform_hl}}",
         style_type="body", force_hl=False
     )
 
@@ -1030,7 +1060,7 @@ def build_single_docx(out_docx_path, highlight_diff=False):
         )
 
     _add(
-        "结合已有八推进器平台的几何结构与质量参数确定先验已知量，梳理出主导各自由度动态响应的关键未知水动力参数集 {{math:theta_vec}}。根据动力学方程构造激励输入（推进器推力或广义控制力）与状态输出（线速度、角速度、姿态、深度等动态响应）之间的参数化辨识关系，利用平台参数资料及相关测试/仿真响应数据对未知参数 {{math:theta_vec}} 进行参数估计与修正。随后，通过代表性动态响应对比模型输出与相关数据，定量评估模型偏差并明确模型适用范围，获得经验证的标称模型 {{math:model_hats_paren}}。",
+        "{{platform_hl}}结合已有八推进器平台的几何结构与质量参数确定先验已知量，梳理出主导各自由度动态响应的关键未知水动力参数集 {{math:theta_vec}}。{{/platform_hl}}根据动力学方程构造激励输入（推进器推力或广义控制力）与状态输出（线速度、角速度、姿态、深度等动态响应）之间的参数化辨识关系，{{platform_hl}}利用平台参数资料及相关测试/仿真响应数据对未知参数 {{math:theta_vec}} 进行参数估计与修正。{{/platform_hl}}随后，通过代表性动态响应对比模型输出与相关数据，定量评估模型偏差并明确模型适用范围，获得经验证的标称模型 {{math:model_hats_paren}}。",
         style_type="body", bold_prefix="2） 系统辨识与模型验证方法：", force_hl=False
     )
 
@@ -1045,7 +1075,7 @@ def build_single_docx(out_docx_path, highlight_diff=False):
     )
 
     _add(
-        "{{hl}}如图 2(b) 所示{{/hl}}，已有平台包含水平面 4 台矢量倾斜推进器（{{math:T1_T4}}）与垂直面 4 台垂向对称推进器（{{math:T5_T8}}）。根据第 {{math:i_idx}} 个推进器（{{math:i_1_8}}）在附体系下的安装位置矢量 {{math:r_i_R3}} 与推力方向单位矢量 {{math:d_i_R3}}，构造 {{math:6x8}} 控制分配矩阵 {{math:B_def}}，并在推进器基本推力输出范围约束下求解各推进器推力指令 {{math:T_vec_R8}}：",
+        "{{platform_hl}}如图 2(b) 所示，已有平台包含水平面 4 台矢量倾斜推进器（{{math:T1_T4}}）与垂直面 4 台垂向对称推进器（{{math:T5_T8}}）。根据第 {{math:i_idx}} 个推进器（{{math:i_1_8}}）在附体系下的安装位置矢量 {{math:r_i_R3}} 与推力方向单位矢量 {{math:d_i_R3}}，构造 {{math:6x8}} 控制分配矩阵 {{math:B_def}}{{/platform_hl}}，并在推进器基本推力输出范围约束下求解各推进器推力指令 {{math:T_vec_R8}}：",
         style_type="body", bold_prefix="4） 八推进器控制分配方法：", force_hl=False
     )
     _add("eq3_alloc", style_type="formula")
@@ -1085,7 +1115,7 @@ def build_single_docx(out_docx_path, highlight_diff=False):
         style_type="body", bold_prefix="1） 理论与方法可行性：", force_hl=False
     )
     _add(
-        "本课题直接依托实验室已有八推进器水下航行器平台开展研究，平台几何构型、质量惯性属性、推进器安装布置及相关参数数据具备良好基础，能够为动力学建模、系统辨识、模型验证及八推进器控制分配矩阵建立提供可靠的数据支撑。",
+        "{{platform_hl}}本课题直接依托实验室已有八推进器水下航行器平台开展研究，平台几何构型、质量惯性属性、推进器安装布置及相关参数数据具备良好基础，能够为动力学建模、系统辨识、模型验证及八推进器控制分配矩阵建立提供可靠的数据支撑。{{/platform_hl}}",
         style_type="body", bold_prefix="2） 平台与数据基础可行性：", force_hl=False
     )
     _add(
@@ -1230,17 +1260,23 @@ def archive_previous_diff(description=""):
     return archived_path
 
 
-def build_document(generate_doc=False, generate_diff=True, archive_old_diff=True, diff_desc=""):
-    # 0. 若指定在生成新对比版前先归档现存的上一版对比版
-    if archive_old_diff:
+def build_document(generate_doc=False, generate_diff=False, generate_senior=True, archive_old_diff=False, diff_desc=""):
+    # 0. 若明确指定生成新修改对比版且需归档
+    if generate_diff and archive_old_diff:
         archive_previous_diff(diff_desc)
 
-    # 1. 构建正式提交纯净版 (.docx)
-    build_single_docx(OUT_DOCX, highlight_diff=False)
-    # 2. 构建新旧修改对比高亮版 (.docx, 位于 开题报告 根目录作为当前活跃对比版)
+    # 1. 构建正式提交纯净版 (.docx) —— 100% 无任何高亮
+    build_single_docx(OUT_DOCX, highlight_mode="none")
+
+    # 2. 构建实验室学长审阅确认版 (.docx) —— 仅将涉及实验室已有平台/数据的内容标黄
+    if generate_senior:
+        build_single_docx(SENIOR_DOCX, highlight_mode="platform")
+
+    # 3. 仅在明确指定时才构建修改对比高亮版 (避免意外覆盖用户手动标注版)
     if generate_diff:
-        build_single_docx(DIFF_DOCX, highlight_diff=True)
-    # 3. 仅在明确指定时才使用 Word COM 批量转换为 .doc 并输出至归档/历史DOC版本/
+        build_single_docx(DIFF_DOCX, highlight_mode="diff")
+
+    # 4. 仅在明确指定时才使用 Word COM 批量转换为 .doc 并输出至归档/历史DOC版本/
     if generate_doc:
         pairs = [(OUT_DOCX, OUT_DOC)]
         if generate_diff:
@@ -1252,5 +1288,7 @@ def build_document(generate_doc=False, generate_diff=True, archive_old_diff=True
 
 if __name__ == "__main__":
     gen_doc = ("--doc" in sys.argv or "--all" in sys.argv)
-    archive_old = ("--no-archive-old-diff" not in sys.argv)
-    build_document(generate_doc=gen_doc, archive_old_diff=archive_old)
+    gen_diff = ("--diff" in sys.argv or "--all" in sys.argv)
+    gen_senior = ("--no-senior" not in sys.argv)
+    archive_old = ("--archive-old-diff" in sys.argv)
+    build_document(generate_doc=gen_doc, generate_diff=gen_diff, generate_senior=gen_senior, archive_old_diff=archive_old)
