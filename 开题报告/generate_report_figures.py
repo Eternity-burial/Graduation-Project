@@ -1,16 +1,13 @@
 # -*- coding: utf-8 -*-
 """
 生成《基于PX4的水下航行器模型控制方法研究》开题报告出版级高清学术配图 (300 DPI PNG + 可编辑 .drawio)
-彻底贯彻国际顶刊（IEEE/IFAC/Elsevier 及 Fossen 经典教材）学术制图规范：
-- 纯黑白 / 极浅灰阶（Grayscale Line Art）工程制图风格，坚决剔除任何花哨 AI 配色
-- 严格遵循 Fossen 6-DOF 海洋航行器符号规范与标准右手坐标系
-- 原生富文本数学排版（上下标、粗斜体、顶标点号/帽号，零乱码方框，零标注重叠）
 
-包含全套 4 幅学术配图：
-1. fig1_lit_control_architecture.png (.drawio): 图 1  典型水下航行器六自由度模型控制与推力分配通用闭环结构框图
-2. fig0_rov_coord_thrusters.png      (.drawio): 图 2  八推进器水下航行器坐标系定义与推力矢量空间布置示意图
-3. fig1_technical_roadmap.png        (.drawio): 图 3  课题总体研究技术路线图
-4. fig2_px4_rov_architecture.png     (.drawio): 图 4  基于PX4/SITL的水下航行器闭环仿真系统结构框图
+严格执行极简学术制图规范（Minimalist Academic Diagram Standard）：
+1. 严禁在图片内部绘制顶部总图题/副标题（图题统一由 Word 正文下方五号宋体段落承载）；
+2. 严禁在图片内部塞入表格、大段文字说明或 Bullet Points 列表；
+3. 单节点字数严格控制在 5~15 字词组，连线仅标注核心数学符号或 uORB 话题名；
+4. 画布尺寸设为 1600~1850 px，正文字号 20~24 px（缩放到 Word 15cm 宽后对应 9~10.5pt，清晰易读）；
+5. 黑白灰主调 + 极低饱和度学术蓝点缀（#F4F7FA / #1F4E79），正交折线连线，留白充足，零文字压线。
 """
 
 import os
@@ -27,7 +24,7 @@ os.makedirs(OUT_DIR, exist_ok=True)
 
 
 def get_font(size, bold=False):
-    size = max(10, int(round(size)))
+    size = max(12, int(round(size)))
     font_candidates = (
         ["C:/Windows/Fonts/msyhbd.ttc", "C:/Windows/Fonts/simhei.ttf", "C:/Windows/Fonts/msyh.ttc"]
         if bold else
@@ -70,7 +67,7 @@ def measure_rich_line(draw, tokens, font_size, bold=False):
         bb = draw.textbbox((0, 0), txt, font=f)
         w = bb[2] - bb[0]
         total_w += w + (1 if kind in ("sub", "sup") else 0)
-    return total_w, int(font_size * 1.32)
+    return total_w, int(font_size * 1.38)
 
 
 def draw_rich_line(draw, x, y, tokens, font_size, fill="#000000", bold=False):
@@ -95,7 +92,7 @@ def draw_rich_line(draw, x, y, tokens, font_size, fill="#000000", bold=False):
             w = bb[2] - bb[0]
             draw.text((cur_x, y), txt, font=f_main, fill=fill)
             cx = cur_x + w / 2
-            hy = y + bb[1] - 7
+            hy = y + bb[1] - 6
             hw = max(5, int(font_size * 0.22))
             hh = max(4, int(font_size * 0.18))
             draw.line([(cx - hw, hy + hh), (cx, hy), (cx + hw, hy + hh)], fill=fill, width=2)
@@ -112,15 +109,19 @@ def draw_rich_line(draw, x, y, tokens, font_size, fill="#000000", bold=False):
     return cur_x
 
 
-def draw_rich_text(draw, box, text, font_size, fill="#000000", bold=False, align="center"):
+def draw_rich_text(draw, box, text, font_size, fill="#000000", bold=False, align="center", first_line_bold=False):
     bx, by, bw, bh = box
     lines = text.split("\n")
     parsed_lines = [parse_rich_line(ln) for ln in lines]
-    line_metrics = [measure_rich_line(draw, toks, font_size, bold=bold) for toks in parsed_lines]
-    line_h = max(m[1] for m in line_metrics) if line_metrics else int(font_size * 1.32)
+    line_metrics = [
+        measure_rich_line(draw, toks, font_size, bold=(bold or (first_line_bold and i == 0)))
+        for i, toks in enumerate(parsed_lines)
+    ]
+    line_h = max(m[1] for m in line_metrics) if line_metrics else int(font_size * 1.38)
     total_h = len(parsed_lines) * line_h
     start_y = by + (bh - total_h) / 2
     for idx, tokens in enumerate(parsed_lines):
+        is_b = bold or (first_line_bold and idx == 0)
         lw, _ = line_metrics[idx]
         if align == "center":
             lx = bx + (bw - lw) / 2
@@ -129,10 +130,10 @@ def draw_rich_text(draw, box, text, font_size, fill="#000000", bold=False, align
         else:
             lx = bx + 12
         ly = start_y + idx * line_h
-        draw_rich_line(draw, lx, ly, tokens, font_size, fill=fill, bold=bold)
+        draw_rich_line(draw, lx, ly, tokens, font_size, fill=fill, bold=is_b)
 
 
-def draw_arrow(draw, p1, p2, fill="#000000", width=2, arrow_len=11, arrow_w=6):
+def draw_arrow(draw, p1, p2, fill="#000000", width=3, arrow_len=14, arrow_w=7):
     draw.line([p1, p2], fill=fill, width=width)
     dx = p2[0] - p1[0]
     dy = p2[1] - p1[1]
@@ -150,552 +151,518 @@ def draw_arrow(draw, p1, p2, fill="#000000", width=2, arrow_len=11, arrow_w=6):
     draw.polygon([p2, p_left, p_right], fill=fill)
 
 
-def draw_academic_box(draw, box, text, font_size=20, fill="#FFFFFF", border="#000000",
-                      text_fill="#000000", bold=False, width=2, radius=4, align="center"):
+def draw_dashed_line(draw, p1, p2, dash_len=10, gap_len=6, fill="#666666", width=2):
+    sx, sy = p1
+    ex, ey = p2
+    dist = math.hypot(ex - sx, ey - sy)
+    if dist < 1e-4:
+        return
+    ux, uy = (ex - sx) / dist, (ey - sy) / dist
+    pos = 0
+    while pos < dist:
+        end_pos = min(pos + dash_len, dist)
+        draw.line([(sx + ux * pos, sy + uy * pos), (sx + ux * end_pos, sy + uy * end_pos)],
+                  fill=fill, width=width)
+        pos += dash_len + gap_len
+
+
+def draw_dashed_rect(draw, box, dash_len=12, gap_len=8, outline="#555555", width=2, fill=None):
+    x1, y1, x2, y2 = box
+    if fill:
+        draw.rectangle([x1, y1, x2, y2], fill=fill, outline=None)
+    edges = [((x1, y1), (x2, y1)), ((x2, y1), (x2, y2)), ((x2, y2), (x1, y2)), ((x1, y2), (x1, y1))]
+    for p1, p2 in edges:
+        draw_dashed_line(draw, p1, p2, dash_len=dash_len, gap_len=gap_len, fill=outline, width=width)
+
+
+def draw_sum_node(draw, cx, cy, r=22, signs=None):
+    """绘制控制框图标准求和节点 ⊕"""
+    draw.ellipse([cx - r, cy - r, cx + r, cy + r], fill="#FFFFFF", outline="#000000", width=2)
+    draw.line([cx - r + 6, cy, cx + r - 6, cy], fill="#000000", width=2)
+    draw.line([cx, cy - r + 6, cx, cy + r - 6], fill="#000000", width=2)
+    if signs:
+        for pos, s in signs.items():
+            f = get_font(20, bold=True)
+            if pos == "left":
+                draw.text((cx - r - 20, cy - 28), s, font=f, fill="#000000")
+            elif pos == "bottom":
+                draw.text((cx + 8, cy + r + 1), s, font=f, fill="#000000")
+            elif pos == "top":
+                draw.text((cx + 8, cy - r - 26), s, font=f, fill="#000000")
+
+
+def draw_node_box(draw, box, text, font_size=22, fill="#FFFFFF", border="#000000",
+                  text_fill="#000000", bold=False, first_line_bold=True, width=2, radius=6):
     bx, by, bw, bh = box
     draw.rounded_rectangle([bx, by, bx + bw, by + bh], radius=radius, fill=fill, outline=border, width=width)
-    draw_rich_text(draw, box, text, font_size=font_size, fill=text_fill, bold=bold, align=align)
-
-
-def export_drawio_xml(filename, cells_xml, width=1800, height=1000):
-    xml = f"""<mxfile host="Electron" modified="2026-09-28T00:00:00.000Z" agent="Antigravity Academic" version="21.0.0" type="device">
-  <diagram id="diagram_1" name="Page-1">
-    <mxGraphModel dx="{width}" dy="{height}" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="{width}" pageHeight="{height}" math="1" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-{cells_xml}
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>"""
-    fp = os.path.join(OUT_DIR, filename)
-    with open(fp, "w", encoding="utf-8") as f:
-        f.write(xml)
-    print(f"[OK] 已导出可编辑矢量图: {fp}")
+    draw_rich_text(draw, box, text, font_size=font_size, fill=text_fill, bold=bold,
+                   align="center", first_line_bold=first_line_bold)
 
 
 # ==============================================================================
-# 1. 图 1：典型水下航行器六自由度模型控制与推力分配通用闭环结构框图
+# 1. 图 1：水下航行器六自由度模型控制与推力分配通用闭环框图
 # ==============================================================================
 
 def generate_fig1_lit_control_architecture():
-    w, h = 2400, 1100
+    w, h = 1860, 560
     img = Image.new("RGB", (w, h), "#FFFFFF")
     draw = ImageDraw.Draw(img)
 
-    draw_rich_line(draw, 50, 40, parse_rich_line("图 1  典型水下航行器六自由度模型控制与推力分配通用闭环结构框图"),
-                   30, fill="#000000", bold=True)
-    draw_rich_line(draw, 50, 85, parse_rich_line("基于海洋航行器经典控制理论架构（Fossen Handbook [1] & Johansen & Fossen [14]）"),
-                   20, fill="#444444", bold=False)
+    # 闭环运动控制器虚线背景框 (向右留出充足走廊避免文字贴边)
+    draw_dashed_rect(draw, (315, 40, 760, 380), outline="#1F4E79", width=2, fill="#F4F7FA")
+    draw_rich_text(draw, (315, 48, 445, 34), "闭环运动控制器 (模型补偿 + 状态反馈)", font_size=21, fill="#1F4E79", bold=True)
 
-    # 1. 参考指令生成
-    draw.rounded_rectangle([60, 150, 360, 490], radius=6, fill="#FAFAFA", outline="#000000", width=2)
-    draw_rich_line(draw, 80, 170, parse_rich_line("参考运动规划与指令"), 22, fill="#000000", bold=True)
-    draw_academic_box(draw, (90, 230, 240, 90), "参考位姿轨迹\n{dot:η}{sub:r}(t), η{sub:r}(t)", font_size=21, fill="#FFFFFF", border="#000000", bold=True)
-    draw_academic_box(draw, (90, 360, 240, 90), "参考速度与加速度\n{dot:ν}{sub:r}(t), ν{sub:r}(t)", font_size=21, fill="#FFFFFF", border="#000000", bold=True)
+    # 核心节点坐标 (主前向通道中心线 y_mid = 230)
+    y_mid = 230
+    cx_sum1 = 190
+    draw_sum_node(draw, cx_sum1, y_mid, r=22, signs={"left": "+", "bottom": "−"})
 
-    # 误差比较点 (Summing junction 1)
-    cx1, cy1 = 440, 375
-    draw.ellipse([cx1 - 20, cy1 - 20, cx1 + 20, cy1 + 20], fill="#FFFFFF", outline="#000000", width=2)
-    draw.line([cx1 - 13, cy1, cx1 + 13, cy1], fill="#000000", width=2)
-    draw.line([cx1, cy1 - 13, cx1, cy1 + 13], fill="#000000", width=2)
-    draw.text((cx1 - 28, cy1 - 32), "+", font=get_font(20, bold=True), fill="#000000")
-    draw.text((cx1 - 8, cy1 + 20), "−", font=get_font(22, bold=True), fill="#000000")
+    # 参考输入箭头 (左侧直接进入求和节点1)
+    draw_arrow(draw, (30, y_mid), (cx_sum1 - 22, y_mid), width=3)
+    draw_rich_text(draw, (25, y_mid - 64, 140, 54), "参考运动指令\nη{sub:r}, ν{sub:r}", font_size=21, bold=True)
 
-    # 2. 运动控制模块
-    draw.rounded_rectangle([520, 150, 1020, 600], radius=8, fill="#F9F9F9", outline="#000000", width=2)
-    draw_rich_line(draw, 545, 170, parse_rich_line("运动控制器 (Motion Controller)"), 24, fill="#000000", bold=True)
+    # 控制器内上下并联支路
+    box_ff = (350, 96, 305, 92)    # 上支路: 模型补偿
+    box_fb = (350, 256, 305, 92)   # 下支路: 状态误差反馈
+    draw_node_box(draw, box_ff, "动力学模型补偿项\nF{sub:model}({hat:M}, {hat:C}, {hat:D}, {hat:g})",
+                  font_size=21, fill="#FFFFFF", border="#1F4E79", width=2)
+    draw_node_box(draw, box_fb, "状态误差反馈项\nF{sub:fb}(e{sub:η}, e{sub:ν})",
+                  font_size=21, fill="#FFFFFF", border="#000000", width=2)
 
-    draw_academic_box(draw, (550, 220, 440, 140),
-                      "基于标称模型的动力学前馈补偿项\nF{sub:model}(·) = {hat:M}{dot:ν}{sub:r} + {hat:C}(ν)ν + {hat:D}(ν)ν + {hat:g}(η)\n(包含刚体/附加质量惯性耦合、水动力阻尼与静水力恢复)",
-                      font_size=18, fill="#FFFFFF", border="#000000", bold=False)
+    # 求和节点1 -> 状态误差反馈项 (折线设在 x=285，使 e_η, e_ν 居中于 212..295 之间，绝不碰虚线框)
+    draw.line([(cx_sum1 + 22, y_mid), (285, y_mid)], fill="#000000", width=3)
+    draw.line([(285, y_mid), (285, 302)], fill="#000000", width=3)
+    draw_arrow(draw, (285, 302), (350, 302), width=3)
+    draw_rich_text(draw, (212, y_mid - 42, 72, 34), "e{sub:η}, e{sub:ν}", font_size=20, bold=True)
 
-    draw_academic_box(draw, (550, 390, 440, 120),
-                      "闭环状态误差反馈调节项\nF{sub:fb}(·) = K{sub:p} e{sub:η} + K{sub:d} e{sub:ν} + K{sub:i} ∫ e{sub:η} dt\n(误差跟踪收敛与抗未知低频外扰)",
-                      font_size=19, fill="#FFFFFF", border="#000000", bold=False)
+    # 参考信号分支 -> 模型补偿项
+    draw.line([(125, y_mid), (125, 142)], fill="#000000", width=2)
+    draw_arrow(draw, (125, 142), (350, 142), width=2)
 
-    # 控制器内部求和点 (放置在两项右侧中心，信号直接向右输出)
-    cx_ctrl, cy_ctrl = 1045, 370
-    draw.ellipse([cx_ctrl - 16, cy_ctrl - 16, cx_ctrl + 16, cy_ctrl + 16], fill="#FFFFFF", outline="#000000", width=2)
-    draw.line([cx_ctrl - 11, cy_ctrl, cx_ctrl + 11, cy_ctrl], fill="#000000", width=2)
-    draw.line([cx_ctrl, cy_ctrl - 11, cx_ctrl, cy_ctrl + 11], fill="#000000", width=2)
-    draw.text((cx_ctrl + 6, cy_ctrl - 34), "+", font=get_font(18, bold=True), fill="#000000")
-    draw.text((cx_ctrl + 6, cy_ctrl + 16), "+", font=get_font(18, bold=True), fill="#000000")
+    # 控制器内部合成节点 ⊕2
+    cx_sum2 = 710
+    draw_sum_node(draw, cx_sum2, y_mid, r=20, signs={"top": "+", "bottom": "+"})
+    draw.line([(655, 142), (cx_sum2, 142)], fill="#000000", width=3)
+    draw_arrow(draw, (cx_sum2, 142), (cx_sum2, y_mid - 20), width=3)
+    draw.line([(655, 302), (cx_sum2, 302)], fill="#000000", width=3)
+    draw_arrow(draw, (cx_sum2, 302), (cx_sum2, y_mid + 20), width=3)
 
-    # 3. 控制分配模块
-    draw.rounded_rectangle([1120, 150, 1500, 600], radius=8, fill="#F9F9F9", outline="#000000", width=2)
-    draw_rich_line(draw, 1145, 170, parse_rich_line("八推进器控制分配 (Control Allocation)"), 23, fill="#000000", bold=True)
-    draw_academic_box(draw, (1140, 220, 340, 130),
-                      "6×8 推力几何配置矩阵\nB = [b{sub:1}, b{sub:2}, …, b{sub:8}] ∈ R{sup:6×8}\nb{sub:i} = [d{sub:i}{sup:T}, (r{sub:i} × d{sub:i}){sup:T}]{sup:T}\n(水平4矢量 + 垂直4对称布局)",
-                      font_size=18, fill="#FFFFFF", border="#000000")
-    draw_academic_box(draw, (1140, 380, 340, 130),
-                      "推力幅值物理边界约束求解\nT{sub:min} ≤ T ≤ T{sub:max}\n加权伪逆 / 有界优化分配\ne{sub:τ} = τ{sub:c} − BT",
-                      font_size=18, fill="#FFFFFF", border="#000000")
+    # 控制分配模块 (加宽至 315 px，两侧留白充裕)
+    box_alloc = (880, 174, 315, 112)
+    draw_arrow(draw, (cx_sum2 + 20, y_mid), (880, y_mid), width=3)
+    draw_rich_text(draw, (765, y_mid - 64, 110, 56), "期望广义力\nτ{sub:c} ∈ R{sup:6}", font_size=20, bold=True)
+    draw_node_box(draw, box_alloc, "过驱动控制分配\nB ∈ R{sup:6×8},  T{sub:min} ≤ T ≤ T{sub:max}",
+                  font_size=20, fill="#F4F7FA", border="#1F4E79", width=2)
 
-    # 4. 推进器执行机构
-    draw.rounded_rectangle([1550, 220, 1840, 520], radius=8, fill="#F9F9F9", outline="#000000", width=2)
-    draw_rich_line(draw, 1575, 240, parse_rich_line("推进器执行机构"), 23, fill="#000000", bold=True)
-    draw_academic_box(draw, (1570, 290, 250, 90), "电机电调与螺旋桨动态\nT{sub:i}(s) = 1/(1 + τ{sub:m}s) T{sub:c,i}\n推力正反转非对称", font_size=18, fill="#FFFFFF", border="#000000")
-    draw_academic_box(draw, (1570, 400, 250, 90), "实际推力输出矢量\nT = [T{sub:1}, …, T{sub:8}]{sup:T} ∈ R{sup:8}", font_size=19, fill="#FFFFFF", border="#000000", bold=True)
+    # 推进器与6-DOF动力学受控对象
+    cx_sum3 = 1315
+    draw_arrow(draw, (1195, y_mid), (cx_sum3 - 20, y_mid), width=3)
+    draw_rich_text(draw, (1198, y_mid - 64, 98, 56), "推力指令\nT ∈ R{sup:8}", font_size=20, bold=True)
+    draw_sum_node(draw, cx_sum3, y_mid, r=20, signs={"left": "+", "top": "+"})
 
-    # 5. 水下航行器六自由度被控对象 (ROV Plant)
-    draw.rounded_rectangle([1900, 150, 2340, 600], radius=8, fill="#F5F5F5", outline="#000000", width=3)
-    draw_rich_line(draw, 1925, 175, parse_rich_line("水下航行器动力学与运动学模型"), 23, fill="#000000", bold=True)
-    draw_academic_box(draw, (1920, 220, 400, 170),
-                      "六自由度非线性动力学方程\nM{dot:ν} + C(ν)ν + D(ν)ν + g(η) = τ + τ{sub:d}\nM = M{sub:RB} + M{sub:A}\nC(ν) = C{sub:RB}(ν) + C{sub:A}(ν)\nD(ν) = D{sub:lin} + D{sub:quad}(ν)",
-                      font_size=18, fill="#FFFFFF", border="#000000")
-    draw_academic_box(draw, (1920, 410, 400, 100),
-                      "六自由度运动学坐标变换方程\n{dot:η} = J(η)ν\nη = [x, y, z, ϕ, θ, ψ]{sup:T}",
-                      font_size=18, fill="#FFFFFF", border="#000000")
-    draw_academic_box(draw, (1920, 525, 400, 55),
-                      "合力与力矩产生: τ = B T", font_size=19, fill="#FFFFFF", border="#000000", bold=True)
+    # 外部水流扰动输入
+    draw_arrow(draw, (cx_sum3, 100), (cx_sum3, y_mid - 20), width=3)
+    draw_rich_text(draw, (cx_sum3 - 100, 42, 200, 50), "外部水流扰动 τ{sub:d}", font_size=21, bold=True)
 
-    # 外部流扰输入 (修正坐标: box width 300, height 70)
-    draw.rounded_rectangle([1980, 40, 2260, 110], radius=4, fill="#FFFFFF", outline="#000000", width=2)
-    draw_rich_text(draw, (1980, 40, 280, 70), "环境扰动力与力矩\nτ{sub:d} (复杂水流、波浪扰动)", font_size=18, fill="#000000", bold=True)
-    draw_arrow(draw, (2120, 110), (2120, 150), fill="#000000", width=2)
+    # 航行器动力学框 (加宽至 355 px，方程两侧留白 > 22 px)
+    box_plant = (1370, 172, 355, 116)
+    draw_arrow(draw, (cx_sum3 + 20, y_mid), (1370, y_mid), width=3)
+    draw_node_box(draw, box_plant, "推进器与 6-DOF 动力学\nM{dot:ν} + C(ν)ν + D(ν)ν + g(η) = τ + τ{sub:d}",
+                  font_size=19, fill="#FFFFFF", border="#000000", width=2)
 
-    # 6. 反馈测量与状态估计
-    draw.rounded_rectangle([700, 750, 1700, 980], radius=8, fill="#F9F9F9", outline="#000000", width=2)
-    draw_rich_line(draw, 730, 770, parse_rich_line("导航传感与全状态估计模块 (Navigation & State Estimation / EKF)"), 23, fill="#000000", bold=True)
-    draw_academic_box(draw, (730, 820, 430, 130), "机载传感单元采集\nIMU (加速度计、角速度陀螺仪)\n电子罗盘 (偏航航向角)、深度计 (水压)\nDVL / 声学定位 (流速与相对底速)", font_size=18, fill="#FFFFFF", border="#000000")
-    draw_academic_box(draw, (1200, 820, 460, 130), "扩展卡尔曼滤波与状态重构 (EKF2)\n位姿估计: {hat:η} = [{hat:x}, {hat:y}, {hat:z}, {hat:ϕ}, {hat:θ}, {hat:ψ}]{sup:T}\n速度估计: {hat:ν} = [{hat:u}, {hat:v}, {hat:w}, {hat:p}, {hat:q}, {hat:r}]{sup:T}", font_size=18, fill="#FFFFFF", border="#000000", bold=True)
+    # 系统输出箭头
+    draw_arrow(draw, (1725, y_mid), (1835, y_mid), width=3)
+    draw_rich_text(draw, (1735, y_mid - 64, 95, 56), "运动状态\nη, ν", font_size=21, bold=True)
 
-    # 信号连接线
-    draw_arrow(draw, (330, 275), (440, 275), fill="#000000", width=2)
-    draw_arrow(draw, (440, 275), (440, 355), fill="#000000", width=2)
-    draw_rich_text(draw, (350, 240, 80, 30), "η{sub:r}", font_size=20, fill="#000000", bold=True)
+    # 下方反馈通道：导航传感与状态估计 (加宽至 510 px，文字居中留白充裕)
+    y_fb = 465
+    box_est = (760, y_fb - 45, 510, 90)
+    draw_node_box(draw, box_est, "机载导航传感与状态估计 (IMU / 深度计 / EKF)",
+                  font_size=21, fill="#FAFAFA", border="#000000", width=2, first_line_bold=True)
 
-    draw_arrow(draw, (460, 375), (550, 440), fill="#000000", width=2)
-    draw_rich_text(draw, (460, 335, 90, 30), "e{sub:η}, e{sub:ν}", font_size=19, fill="#000000", bold=True)
+    # 右侧向下反馈支路
+    fb_tap_x = 1765
+    draw.ellipse([fb_tap_x - 5, y_mid - 5, fb_tap_x + 5, y_mid + 5], fill="#000000")
+    draw.line([(fb_tap_x, y_mid), (fb_tap_x, y_fb)], fill="#000000", width=3)
+    draw_arrow(draw, (fb_tap_x, y_fb), (1270, y_fb), width=3)
 
-    draw.line([(330, 405), (490, 405)], fill="#000000", width=2)
-    draw.line([(490, 405), (490, 270)], fill="#000000", width=2)
-    draw_arrow(draw, (490, 270), (550, 270), fill="#000000", width=2)
-    draw_rich_text(draw, (485, 235, 100, 30), "{dot:ν}{sub:r}, ν{sub:r}", font_size=19, fill="#000000", bold=True)
-
-    # 模型补偿项与反馈项汇聚到求和点
-    draw.line([(990, 290), (cx_ctrl, 290)], fill="#000000", width=2)
-    draw_arrow(draw, (cx_ctrl, 290), (cx_ctrl, cy_ctrl - 16), fill="#000000", width=2)
-
-    draw.line([(990, 450), (cx_ctrl, 450)], fill="#000000", width=2)
-    draw_arrow(draw, (cx_ctrl, 450), (cx_ctrl, cy_ctrl + 16), fill="#000000", width=2)
-
-    # 期望力矩直接平直输出到控制分配模块
-    draw_arrow(draw, (cx_ctrl + 16, cy_ctrl), (1120, cy_ctrl), fill="#000000", width=3)
-    draw_rich_text(draw, (cx_ctrl + 20, cy_ctrl - 36, 120, 32), "τ{sub:c} ∈ R{sup:6}", font_size=20, fill="#000000", bold=True)
-
-    draw_arrow(draw, (1500, 370), (1550, 370), fill="#000000", width=2)
-    draw_rich_text(draw, (1485, 335, 80, 32), "T{sub:cmd}", font_size=20, fill="#000000", bold=True)
-
-    draw_arrow(draw, (1840, 370), (1900, 370), fill="#000000", width=2)
-    draw_rich_text(draw, (1835, 335, 75, 32), "T ∈ R{sup:8}", font_size=20, fill="#000000", bold=True)
-
-    draw.line([(2120, 600), (2120, 890)], fill="#000000", width=2)
-    draw_arrow(draw, (2120, 890), (1700, 890), fill="#000000", width=2)
-    draw_rich_text(draw, (2130, 720, 160, 40), "真实运动状态\nη(t), ν(t)", font_size=20, fill="#000000", bold=True)
-
-    draw.line([(700, 890), (440, 890)], fill="#000000", width=2)
-    draw_arrow(draw, (440, 890), (440, 395), fill="#000000", width=2)
-    draw_rich_text(draw, (350, 650, 120, 50), "状态反馈\n{hat:η}, {hat:ν}", font_size=20, fill="#000000", bold=True)
-
-    draw.line([(510, 890), (510, 320)], fill="#000000", width=2)
-    draw_arrow(draw, (510, 320), (550, 320), fill="#000000", width=2)
+    # 状态估计向左回传至求和节点1
+    draw.line([(760, y_fb), (cx_sum1, y_fb)], fill="#000000", width=3)
+    draw_arrow(draw, (cx_sum1, y_fb), (cx_sum1, y_mid + 22), width=3)
+    draw_rich_text(draw, (420, y_fb - 44, 260, 38), "状态反馈估计 {hat:η}, {hat:ν}", font_size=21, bold=True)
 
     fp_png = os.path.join(OUT_DIR, "fig1_lit_control_architecture.png")
     img.save(fp_png, dpi=(300, 300))
-    print(f"[OK] 已生成文献控制框架黑白图 (300 DPI): {fp_png}")
+    print(f"[OK] 已生成图1 (通用闭环框图, 300 DPI): {fp_png}")
 
 
 # ==============================================================================
-# 2. 图 2：八推进器水下航行器坐标系定义与推力矢量空间布置示意图
+# 2. 图 2：八推进器水下航行器坐标系定义与推力矢量空间布置示意图 (纯净双子图)
 # ==============================================================================
 
 def generate_fig0_rov_coord_thrusters():
-    w, h = 2400, 1150
+    w, h = 1840, 740
     img = Image.new("RGB", (w, h), "#FFFFFF")
     draw = ImageDraw.Draw(img)
 
-    draw_rich_line(draw, 50, 35, parse_rich_line("图 2  八推进器水下航行器坐标系定义与推力矢量空间布置示意图"),
-                   30, fill="#000000", bold=True)
+    # ---------------- 左子图 (a): 惯性系 {n} 与附体系 {b} ----------------
+    ox_a, oy_a, w_a, h_a = 25, 20, 870, 700
+    draw.rounded_rectangle([ox_a, oy_a, ox_a + w_a, oy_a + h_a], radius=6, fill="#FFFFFF", outline="#000000", width=2)
+    draw_rich_text(draw, (ox_a + 20, oy_a + 18, w_a - 40, 38),
+                   "(a) 北东地惯性系 {n} 与附体系 {b} 六自由度定义", font_size=23, bold=True)
 
-    # (a) 左图
-    ox_a, oy_a = 50, 95
-    w_a, h_a = 1120, 1010
-    draw.rectangle([ox_a, oy_a, ox_a + w_a, oy_a + h_a], fill="#FFFFFF", outline="#000000", width=2)
-    draw_rich_line(draw, ox_a + 25, oy_a + 25, parse_rich_line("(a) 北东地惯性系 {n} 与附体系 {b} 及六自由度定义"),
-                   24, fill="#000000", bold=True)
-
-    # 惯性系 {n}
-    on_x, on_y = ox_a + 130, oy_a + 130
+    # 惯性系 {n} (左上角独立清爽区域)
+    on_x, on_y = ox_a + 135, oy_a + 150
     draw.ellipse([on_x - 5, on_y - 5, on_x + 5, on_y + 5], fill="#000000")
-    draw_rich_text(draw, (on_x - 110, on_y - 35, 100, 30), "{n}: O{sub:n}", font_size=22, fill="#000000", bold=True)
-    draw_arrow(draw, (on_x, on_y), (on_x + 130, on_y - 40), fill="#000000", width=2)
-    draw_rich_text(draw, (on_x + 135, on_y - 65, 140, 30), "x{sub:n} (北 North)", font_size=19, fill="#000000", bold=True)
-    draw_arrow(draw, (on_x, on_y), (on_x + 130, on_y + 40), fill="#000000", width=2)
-    draw_rich_text(draw, (on_x + 135, on_y + 35, 140, 30), "y{sub:n} (东 East)", font_size=19, fill="#000000", bold=True)
-    draw_arrow(draw, (on_x, on_y), (on_x, on_y + 130), fill="#000000", width=2)
-    draw_rich_text(draw, (on_x - 30, on_y + 135, 140, 30), "z{sub:n} (地 Down)", font_size=19, fill="#000000", bold=True)
+    draw_rich_text(draw, (on_x - 105, on_y - 38, 100, 34), "{n}: O{sub:n}", font_size=22, bold=True)
+    draw_arrow(draw, (on_x, on_y), (on_x + 135, on_y - 38), width=3)
+    draw_rich_text(draw, (on_x + 142, on_y - 56, 145, 34), "x{sub:n} (北 N)", font_size=20, bold=True, align="left")
+    draw_arrow(draw, (on_x, on_y), (on_x + 130, on_y + 42), width=3)
+    draw_rich_text(draw, (on_x + 138, on_y + 26, 145, 34), "y{sub:n} (东 E)", font_size=20, bold=True, align="left")
+    draw_arrow(draw, (on_x, on_y), (on_x, on_y + 130), width=3)
+    draw_rich_text(draw, (on_x - 55, on_y + 136, 150, 34), "z{sub:n} (地 D)", font_size=20, bold=True)
 
-    # 附体系与机身 (略微上移至 cy_b = oy_a + 360，避免碰撞下表)
-    cx_b, cy_b = ox_a + 570, oy_a + 360
-    L, W, H = 210, 150, 100
+    # 附体系 {b} 与 ROV 立体几何线框
+    cx_b, cy_b = ox_a + 455, oy_a + 395
+    L, W, H = 175, 115, 80
 
-    p_fff = (cx_b + L, cy_b - 25)
-    p_frf = (cx_b + 45, cy_b + W)
-    p_flf = (cx_b - 45, cy_b - W)
-    p_bbf = (cx_b - L, cy_b + 25)
+    p_fff = (cx_b + L, cy_b - 22)
+    p_frf = (cx_b + 38, cy_b + W)
+    p_flf = (cx_b - 38, cy_b - W)
+    p_bbf = (cx_b - L, cy_b + 22)
 
     p_fft = (p_fff[0], p_fff[1] - H)
     p_frt = (p_frf[0], p_frf[1] - H)
     p_flt = (p_flf[0], p_flf[1] - H)
     p_bbt = (p_bbf[0], p_bbf[1] - H)
 
-    draw.line([p_bbf, p_flf], fill="#888888", width=1)
-    draw.line([p_bbf, p_bbt], fill="#888888", width=1)
-    draw.line([p_flf, p_flt], fill="#888888", width=1)
+    # 背面虚化棱线
+    draw.line([p_bbf, p_flf], fill="#BBBBBB", width=2)
+    draw.line([p_bbf, p_bbt], fill="#BBBBBB", width=2)
+    draw.line([p_flf, p_flt], fill="#BBBBBB", width=2)
 
-    draw.polygon([p_fft, p_frt, p_bbt, p_flt], fill="#FAFAFA", outline="#000000")
-    draw.line([p_fft, p_frt], fill="#000000", width=2)
-    draw.line([p_frt, p_bbt], fill="#000000", width=2)
-    draw.line([p_bbt, p_flt], fill="#000000", width=2)
-    draw.line([p_flt, p_fft], fill="#000000", width=2)
+    # 顶面浅蓝灰填充与前景实线
+    draw.polygon([p_fft, p_frt, p_bbt, p_flt], fill="#F4F7FA", outline="#1F4E79")
+    for p1, p2 in [(p_fft, p_frt), (p_frt, p_bbt), (p_bbt, p_flt), (p_flt, p_fft),
+                   (p_fft, p_fff), (p_frt, p_frf), (p_fff, p_frf), (p_frf, p_bbf)]:
+        draw.line([p1, p2], fill="#1F4E79", width=2)
 
-    draw.line([p_fft, p_fff], fill="#000000", width=2)
-    draw.line([p_frt, p_frf], fill="#000000", width=2)
-    draw.line([p_fff, p_frf], fill="#000000", width=2)
-    draw.line([p_frf, p_bbf], fill="#000000", width=2)
+    # 惯性系到附体系的广义位置矢量 η 虚线箭头 (标签置于虚线上方空白区，不压任何棱线)
+    draw_dashed_line(draw, (on_x + 12, on_y + 12), (cx_b - 14, cy_b - 10), dash_len=10, gap_len=6, fill="#555555", width=2)
+    draw_arrow(draw, (cx_b - 42, cy_b - 31), (cx_b - 10, cy_b - 7), fill="#555555", width=2)
+    draw_rich_text(draw, (ox_a + 185, oy_a + 265, 135, 34), "位姿矢量 η", font_size=20, fill="#333333", bold=True)
 
-    draw.rounded_rectangle([cx_b - 110, cy_b - 95, cx_b + 110, cy_b - 35], radius=15, fill="#EFEFEF", outline="#000000", width=2)
-    draw_rich_text(draw, (cx_b - 110, cy_b - 90, 220, 45), "主耐压电子水密舱", font_size=18, fill="#000000", bold=True)
-
+    # 质心原点 Ob (标注在原点正上方顶面空白处，完全不碰边框线)
     draw.ellipse([cx_b - 6, cy_b - 6, cx_b + 6, cy_b + 6], fill="#000000")
-    draw_rich_text(draw, (cx_b - 110, cy_b - 15, 100, 30), "{b}: O{sub:b}", font_size=23, fill="#000000", bold=True)
+    draw_rich_text(draw, (cx_b - 45, cy_b - 56, 110, 34), "{b}: O{sub:b}", font_size=22, bold=True)
 
-    # 附体系三轴
-    draw_arrow(draw, (cx_b, cy_b), (cx_b + 280, cy_b - 45), fill="#000000", width=3, arrow_len=14, arrow_w=8)
-    draw_rich_text(draw, (cx_b + 285, cy_b - 80, 260, 40), "x{sub:b} (前向 Surge, 速度 u, 力 X)\n横滚角 ϕ, 角速度 p", font_size=18, fill="#000000", bold=True)
+    # 附体系三轴与速度/角速度标注 (全部位于线框外侧空白区，零重叠)
+    # xb 轴 (前向)
+    xb_end = (cx_b + 255, cy_b - 38)
+    draw_arrow(draw, (cx_b, cy_b), xb_end, fill="#000000", width=3, arrow_len=15, arrow_w=8)
+    draw_rich_text(draw, (cx_b + 185, cy_b - 115, 215, 62),
+                   "x{sub:b} (前向)\n纵荡 u, 横滚 p", font_size=20, bold=True)
 
-    draw_arrow(draw, (cx_b, cy_b), (cx_b + 70, cy_b + 210), fill="#000000", width=3, arrow_len=14, arrow_w=8)
-    draw_rich_text(draw, (cx_b + 75, cy_b + 215, 260, 40), "y{sub:b} (右舷 Sway, 速度 v, 力 Y)\n俯仰角 θ, 角速度 q", font_size=18, fill="#000000", bold=True)
+    # yb 轴 (右舷)
+    yb_end = (cx_b + 65, cy_b + 205)
+    draw_arrow(draw, (cx_b, cy_b), yb_end, fill="#000000", width=3, arrow_len=15, arrow_w=8)
+    draw_rich_text(draw, (cx_b + 82, cy_b + 170, 215, 62),
+                   "y{sub:b} (右舷)\n横荡 v, 俯仰 q", font_size=20, bold=True, align="left")
 
-    draw_arrow(draw, (cx_b, cy_b), (cx_b, cy_b + 240), fill="#000000", width=3, arrow_len=14, arrow_w=8)
-    draw_rich_text(draw, (cx_b - 280, cy_b + 225, 270, 40), "z{sub:b} (下向 Heave, 速度 w, 力 Z)\n偏航角 ψ, 角速度 r", font_size=18, fill="#000000", bold=True)
+    # zb 轴 (下向)
+    zb_end = (cx_b, cy_b + 225)
+    draw_arrow(draw, (cx_b, cy_b), zb_end, fill="#000000", width=3, arrow_len=15, arrow_w=8)
+    draw_rich_text(draw, (cx_b - 235, cy_b + 175, 220, 62),
+                   "z{sub:b} (下向)\n垂荡 w, 偏航 r", font_size=20, bold=True, align="right")
 
-    draw.arc([cx_b + 120, cy_b - 50, cx_b + 160, cy_b - 10], start=30, end=270, fill="#000000", width=2)
-    draw.arc([cx_b + 30, cy_b + 80, cx_b + 70, cy_b + 120], start=30, end=270, fill="#000000", width=2)
-    draw.arc([cx_b - 30, cy_b + 120, cx_b + 10, cy_b + 160], start=30, end=270, fill="#000000", width=2)
+    # ---------------- 右子图 (b): 八推进器空间布置俯视图 ----------------
+    ox_b, oy_b, w_b, h_b = 930, 20, 885, 700
+    draw.rounded_rectangle([ox_b, oy_b, ox_b + w_b, oy_b + h_b], radius=6, fill="#FFFFFF", outline="#000000", width=2)
+    draw_rich_text(draw, (ox_b + 20, oy_b + 18, w_b - 40, 38),
+                   "(b) 八推进器空间对称与矢量布置俯视图 (6×8 构型)", font_size=23, bold=True)
 
-    # 底部严格对应表
-    table_y = oy_a + 695
-    draw.line([ox_a + 20, table_y, ox_a + w_a - 20, table_y], fill="#000000", width=2)
-    headers = ["自由度 (DOF)", "线/角位置 (η)", "线/角速度 (ν)", "力和力矩 (τ)"]
-    xs = [ox_a + 35, ox_a + 295, ox_a + 565, ox_a + 835]
-    for idx, h_txt in enumerate(headers):
-        draw_rich_text(draw, (xs[idx], table_y + 8, 220, 30), h_txt, font_size=19, fill="#000000", bold=True, align="left")
-    draw.line([ox_a + 20, table_y + 42, ox_a + w_a - 20, table_y + 42], fill="#000000", width=1)
+    # 标准俯视图：机头朝上 (+xb 前向)，右舷朝右 (+yb 右舷)
+    tc_x, tc_y = ox_b + 435, oy_b + 355
+    f_w, f_h = 360, 360
+    draw.rounded_rectangle([tc_x - f_w / 2, tc_y - f_h / 2, tc_x + f_w / 2, tc_y + f_h / 2],
+                           radius=12, fill="#FAFAFA", outline="#000000", width=3)
 
-    rows = [
-        ("1. 纵荡 (Surge, 沿 x{sub:b})", "x (前向位移)", "u (前向线速度)", "X (纵向推进力 F{sub:x})"),
-        ("2. 横荡 (Sway, 沿 y{sub:b})", "y (侧向位移)", "v (横向线速度)", "Y (横向推进力 F{sub:y})"),
-        ("3. 垂荡 (Heave, 沿 z{sub:b})", "z (下向位移/深度)", "w (垂向线速度)", "Z (垂向推进力 F{sub:z})"),
-        ("4. 横滚 (Roll, 绕 x{sub:b})", "ϕ (横滚角)", "p (横滚角速度)", "K (横滚力矩 M{sub:x})"),
-        ("5. 俯仰 (Pitch, 绕 y{sub:b})", "θ (俯仰角)", "q (俯仰角速度)", "M (俯仰力矩 M{sub:y})"),
-        ("6. 偏航 (Yaw, 绕 z{sub:b})", "ψ (航向角)", "r (偏航角速度)", "N (偏航力矩 M{sub:z})"),
-    ]
-    for r_idx, row in enumerate(rows):
-        ry = table_y + 48 + r_idx * 35
-        for c_idx, val in enumerate(row):
-            draw_rich_text(draw, (xs[c_idx], ry, 250, 30), val, font_size=17, fill="#000000", align="left")
-    draw.line([ox_a + 20, table_y + 48 + len(rows) * 35 + 5, ox_a + w_a - 20, table_y + 48 + len(rows) * 35 + 5], fill="#000000", width=2)
-
-    # (b) 右图
-    ox_b, oy_b = 1220, 95
-    w_b, h_b = 1130, 1010
-    draw.rectangle([ox_b, oy_b, ox_b + w_b, oy_b + h_b], fill="#FFFFFF", outline="#000000", width=2)
-    draw_rich_line(draw, ox_b + 25, oy_b + 25, parse_rich_line("(b) 水平4矢量倾斜 + 垂直4对称推进器空间布置 (Top View / 3D)"),
-                   24, fill="#000000", bold=True)
-
-    tc_x, tc_y = ox_b + 550, oy_b + 340
-    f_w, f_h = 420, 320
-    draw.rectangle([tc_x - f_w / 2, tc_y - f_h / 2, tc_x + f_w / 2, tc_y + f_h / 2],
-                   fill="#FAFAFA", outline="#000000", width=3)
-
+    # 质心 Ob 与附体系坐标轴
     draw.ellipse([tc_x - 6, tc_y - 6, tc_x + 6, tc_y + 6], fill="#000000")
-    draw_rich_text(draw, (tc_x + 12, tc_y - 28, 80, 25), "O{sub:b}", font_size=21, fill="#000000", bold=True)
-    draw_arrow(draw, (tc_x, tc_y), (tc_x + 150, tc_y), fill="#000000", width=2)
-    draw_rich_text(draw, (tc_x + 155, tc_y - 15, 95, 25), "x{sub:b} (前)", font_size=19, fill="#000000", bold=True)
-    draw_arrow(draw, (tc_x, tc_y), (tc_x, tc_y + 130), fill="#000000", width=2)
-    draw_rich_text(draw, (tc_x - 10, tc_y + 135, 80, 25), "y{sub:b} (右)", font_size=19, fill="#000000", bold=True)
+    draw_rich_text(draw, (tc_x - 62, tc_y + 8, 55, 30), "O{sub:b}", font_size=21, bold=True)
+    # +xb 向上走出机架上沿
+    draw_arrow(draw, (tc_x, tc_y), (tc_x, tc_y - 250), fill="#1F4E79", width=3)
+    draw_rich_text(draw, (tc_x + 12, tc_y - 265, 130, 34), "+x{sub:b} (机头前)", font_size=20, fill="#1F4E79", bold=True, align="left")
+    # +yb 向右走出机架右沿
+    draw_arrow(draw, (tc_x, tc_y), (tc_x + 250, tc_y), fill="#1F4E79", width=3)
+    draw_rich_text(draw, (tc_x + 256, tc_y - 18, 125, 34), "+y{sub:b} (右舷)", font_size=20, fill="#1F4E79", bold=True, align="left")
 
-    t_coords = [
-        ("T{sub:1}", tc_x + 220, tc_y - 170, 45),
-        ("T{sub:2}", tc_x - 220, tc_y - 170, 135),
-        ("T{sub:3}", tc_x - 220, tc_y + 170, 225),
-        ("T{sub:4}", tc_x + 220, tc_y + 170, 315),
+    # 四个角：水平面矢量倾斜推进器 T1(右前), T2(左前), T3(左后), T4(右后)
+    horiz_thrusters = [
+        ("T{sub:1}", tc_x + 180, tc_y - 180, -45),
+        ("T{sub:2}", tc_x - 180, tc_y - 180, -135),
+        ("T{sub:3}", tc_x - 180, tc_y + 180, 135),
+        ("T{sub:4}", tc_x + 180, tc_y + 180, 45),
     ]
-
-    for name, px, py, deg in t_coords:
+    for name, px, py, deg in horiz_thrusters:
+        # 力臂虚线 r_i
+        draw_dashed_line(draw, (tc_x, tc_y), (px, py), dash_len=8, gap_len=6, fill="#888888", width=2)
+        # 推进器导流罩圆圈
+        r_t = 28
+        draw.ellipse([px - r_t, py - r_t, px + r_t, py + r_t], fill="#DCE6F2", outline="#1F4E79", width=3)
+        draw_rich_text(draw, (px - 28, py - 18, 56, 36), name, font_size=20, fill="#000000", bold=True)
+        # 推力方向单位矢量箭头 d_i
         rad = math.radians(deg)
-        draw.ellipse([px - 22, py - 22, px + 22, py + 22], fill="#EAEAEA", outline="#000000", width=2)
-        draw_rich_text(draw, (px - 25, py - 13, 50, 25), name, font_size=19, fill="#000000", bold=True)
-        arr_dx = int(65 * math.cos(rad))
-        arr_dy = int(65 * math.sin(rad))
-        draw_arrow(draw, (px, py), (px + arr_dx, py + arr_dy), fill="#000000", width=3, arrow_len=13, arrow_w=7)
-        draw.line([(tc_x, tc_y), (px, py)], fill="#888888", width=1)
+        ax = px + int(72 * math.cos(rad))
+        ay = py + int(72 * math.sin(rad))
+        draw_arrow(draw, (px + int(r_t * math.cos(rad)), py + int(r_t * math.sin(rad))),
+                   (ax, ay), fill="#000000", width=3, arrow_len=14, arrow_w=7)
 
-    draw_rich_text(draw, (tc_x + 230, tc_y - 120, 120, 25), "α = 45°", font_size=18, fill="#000000", bold=True)
-    draw.arc([tc_x + 190, tc_y - 180, tc_x + 250, tc_y - 120], start=0, end=45, fill="#000000", width=1)
-
-    # 4台垂直推进器 (避免使用渲染为□的特殊箭头字符，用 (垂向 ±zb) 代替)
-    vt_coords = [
-        ("T{sub:5}", tc_x + 130, tc_y - 75),
-        ("T{sub:6}", tc_x - 130, tc_y - 75),
-        ("T{sub:7}", tc_x - 130, tc_y + 75),
-        ("T{sub:8}", tc_x + 130, tc_y + 75),
+    # 内部对称：垂直面垂向推进器 T5~T8 (放置在 x = ±120, y = ±62，完全避开 45° 对角力臂线!)
+    vert_thrusters = [
+        ("T{sub:5}", tc_x + 120, tc_y - 62),
+        ("T{sub:6}", tc_x - 120, tc_y - 62),
+        ("T{sub:7}", tc_x - 120, tc_y + 62),
+        ("T{sub:8}", tc_x + 120, tc_y + 62),
     ]
-    for name, px, py in vt_coords:
-        draw.ellipse([px - 20, py - 20, px + 20, py + 20], fill="#FFFFFF", outline="#000000", width=2)
-        draw.ellipse([px - 13, py - 13, px + 13, py + 13], fill="#E0E0E0", outline="#000000", width=1)
-        draw_rich_text(draw, (px - 20, py - 12, 40, 25), name, font_size=17, fill="#000000", bold=True)
-        draw_rich_text(draw, (px + 24, py - 12, 110, 25), "(垂向 ±z{sub:b})", font_size=15, fill="#000000")
+    for name, px, py in vert_thrusters:
+        draw.ellipse([px - 27, py - 27, px + 27, py + 27], fill="#FFFFFF", outline="#000000", width=2)
+        draw.ellipse([px - 20, py - 20, px + 20, py + 20], fill="#F2F2F2", outline="#000000", width=1)
+        draw_rich_text(draw, (px - 27, py - 18, 54, 36), name, font_size=19, fill="#000000", bold=True)
 
-    # 说明小框
-    box_math_y = oy_b + 580
-    draw.rounded_rectangle([ox_b + 35, box_math_y, ox_b + w_b - 35, oy_b + h_b - 25], radius=6, fill="#F9F9F9", outline="#000000", width=2)
-    draw_rich_line(draw, ox_b + 55, box_math_y + 18, parse_rich_line("八推进器 6×8 控制分配与空间力臂映射原理 (Control Allocation Mapping)"), 21, fill="#000000", bold=True)
+    # 在 T1 对角线上方清晰标注力臂矢量 r_1、方向 d_1 与倾角 α = 45°
+    draw_rich_text(draw, (tc_x + 52, tc_y - 122, 65, 32), "r{sub:1}", font_size=21, fill="#1F4E79", bold=True)
+    draw_rich_text(draw, (tc_x + 235, tc_y - 260, 60, 32), "d{sub:1}", font_size=21, fill="#000000", bold=True)
+    draw_rich_text(draw, (tc_x + 245, tc_y - 195, 110, 32), "α = 45°", font_size=20, fill="#1F4E79", bold=True, align="left")
 
-    math_lines = [
-        "1. 单推进器推力与力矩矢量: b{sub:i} = [d{sub:i}{sup:T}, (r{sub:i} × d{sub:i}){sup:T}]{sup:T} ∈ R{sup:6} (i = 1, …, 8)",
-        "   - r{sub:i} ∈ R{sup:3} 为第 i 个推进器在附体系 {b} 中的空间安装位置矢量 (力臂)",
-        "   - d{sub:i} ∈ R{sup:3} 为第 i 个推进器产生的推力方向单位矢量",
-        "2. 八推进器推力分配矩阵方程: τ{sub:c} = B T = [b{sub:1}, b{sub:2}, …, b{sub:8}] [T{sub:1}, T{sub:2}, …, T{sub:8}]{sup:T}",
-        "   - 水平 4 推进器 (T{sub:1} ~ T{sub:4}): 呈 45° 矢量布置，协同产生纵荡力 X、横荡力 Y 及偏航力矩 N",
-        "   - 垂直 4 推进器 (T{sub:5} ~ T{sub:8}): 呈矩形对称垂直布置，协同产生垂荡力 Z、横滚力矩 K 及俯仰力矩 M",
-        "3. 实际执行器幅值物理约束: T{sub:min} ≤ T{sub:i} ≤ T{sub:max} (正转最大推力 / 反转最大推力边界)",
-    ]
-    for m_idx, ml in enumerate(math_lines):
-        draw_rich_line(draw, ox_b + 55, box_math_y + 55 + m_idx * 46, parse_rich_line(ml), 18, fill="#000000")
+    # 底部简洁图例栏 (左右留白充裕)
+    leg_y = oy_b + 622
+    draw.rounded_rectangle([ox_b + 30, leg_y, ox_b + w_b - 30, leg_y + 56],
+                           radius=6, fill="#F4F7FA", outline="#1F4E79", width=1)
+    draw.ellipse([ox_b + 55, leg_y + 14, ox_b + 83, leg_y + 42], fill="#DCE6F2", outline="#1F4E79", width=2)
+    draw_rich_text(draw, (ox_b + 92, leg_y + 10, 320, 36),
+                   "T{sub:1}~T{sub:4}: 水平45°矢量推进器", font_size=19, bold=True, align="left")
+    draw.ellipse([ox_b + 435, leg_y + 14, ox_b + 463, leg_y + 42], fill="#FFFFFF", outline="#000000", width=2)
+    draw.ellipse([ox_b + 441, leg_y + 20, ox_b + 457, leg_y + 36], fill="#F2F2F2", outline="#000000", width=1)
+    draw_rich_text(draw, (ox_b + 472, leg_y + 10, 360, 36),
+                   "T{sub:5}~T{sub:8}: 垂直对称推进器 (沿 ±z{sub:b})", font_size=19, bold=True, align="left")
 
     fp_png = os.path.join(OUT_DIR, "fig0_rov_coord_thrusters.png")
     img.save(fp_png, dpi=(300, 300))
-    print(f"[OK] 已生成图2坐标与推进器布置黑白图 (300 DPI): {fp_png}")
+    print(f"[OK] 已生成图2 (坐标系与推进器布置纯净图, 300 DPI): {fp_png}")
 
 
 # ==============================================================================
-# 3. 图 3：课题总体研究技术路线图
+# 3. 图 3：课题总体研究技术路线图 (纵向四阶段分层极简框图，对标学长V5升级版)
 # ==============================================================================
 
 def generate_fig1_technical_roadmap():
-    w, h = 2400, 1350
+    w, h = 1600, 980
     img = Image.new("RGB", (w, h), "#FFFFFF")
     draw = ImageDraw.Draw(img)
 
-    draw_rich_line(draw, 50, 35, parse_rich_line("图 3  课题总体研究技术路线图"), 30, fill="#000000", bold=True)
-    draw_rich_line(draw, 50, 80, parse_rich_line("“已有实验平台 → 机理建模与系统辨识 → 模型运动控制与控制分配 → PX4/SITL闭环验证”四阶段全链路闭环"), 20, fill="#444444")
-
-    col_w = 540
-    spacing = 40
-    start_x = 60
-    start_y = 130
-    box_h = 1170
-
-    phases = [
-        ("阶段一：实验平台梳理与六自由度动力学建模", [
-            ("已有八推进器开架式物理平台", "实验室已有开架式ROV机械构型方案\n空间几何尺寸、质量与重心/浮心属性\n8推进器空间三维布置与矢量倾斜角度"),
-            ("北东地惯性系与附体系定义", "定义惯性坐标系 {n} 与附体坐标系 {b}\n6-DOF 广义位置矢量 η 与线/角速度矢量 ν\n建立运动学欧拉角坐标变换矩阵 J(η)"),
-            ("非线性流体动力学机理建模", "刚体惯性矩阵 M{sub:RB} 与水动力附加质量 M{sub:A}\n刚体/附加质量科氏向心力矩阵 C(ν)\n线性与非线性水动力阻尼矩阵 D(ν)\n重浮力恢复力与力矩矢量 g(η)"),
-            ("推进器特性与静态映射建模", "单推进器推力-转速静态映射特性\n推力正反向非对称与死区特性分析\n为控制分配矩阵建立提供物理基础"),
-        ]),
-        ("阶段二：系统辨识与模型验证分析", [
-            ("先验物理参数提取与辨识量梳理", "基于物理平台设计资料确定几何/惯性先验\n梳理出主导动态响应的关键未知水动力参数集 θ\n分析各自由度方程的参数解耦与可辨识性"),
-            ("辨识激励输入设计与动态响应采样", "设计推进器阶跃推力与多频正弦扫频激励\n记录纵荡、横荡、垂荡与姿态角速度响应输出\n明确系统辨识的明确输入输出数据映射链路"),
-            ("水动力阻尼与附加质量参数估计", "构建最小二乘或优化回归目标函数\n辨识得到标称模型参数: {hat:M}, {hat:C}, {hat:D}, {hat:g}\n修正非线性阻尼项与附加质量主导项"),
-            ("代表性动态响应对比与模型验证", "代表性阶跃响应与典型运动轨迹拟合对比\n量化分析模型输出与真实数据之间的残差指标\n评估标称动力学模型的保真度与适用范围边界"),
-        ]),
-        ("阶段三：模型运动控制与八推进器控制分配", [
-            ("闭环运动控制系统总体架构设计", "基于经验证的航行器标称动力学模型\n引入期望位置/姿态 η{sub:r} 与参考速度 ν{sub:r}\n定义状态跟踪误差 e{sub:η} 与速度误差 e{sub:ν}"),
-            ("融合模型补偿与状态反馈的控制律", "前馈补偿项 F{sub:model}(·): 抵消静水力与阻尼耦合\n反馈调节项 F{sub:fb}(·): 状态误差自适应消除残差\n输出期望空间六维广义力和力矩 τ{sub:c} ∈ R{sup:6}\n(预留模型前馈、反馈线性化与增量动态逆比选)"),
-            ("八推进器 6×8 控制分配矩阵构建", "根据8推进器位置 r{sub:i} 与矢量方向 d{sub:i}\n建立各推进器推力与机体合力矩映射矩阵 B ∈ R{sup:6×8}\n(水平4矢量倾斜 + 垂直4对称布局)"),
-            ("推力范围物理约束与分配误差分析", "系统考虑推进器推力上下限 [T{sub:min}, T{sub:max}]\n研究基于有界二次规划/截断伪逆的分配算法\n量化分析分配残差 e{sub:τ} = τ{sub:c} − BT 及推力饱和"),
-        ]),
-        ("阶段四：PX4/SITL闭环仿真与系统性能验证", [
-            ("PX4 软件在环 (SITL) 架构搭建", "基于 PX4 Autopilot 模块化开源飞控架构\n配置水下航行器参数混控与执行器映射\n依托 NuttX / POSIX 环境运行原生控制算法"),
-            ("uORB 微消息异步发布/订阅总线集成", "发布 vehicle_attitude / trajectory_setpoint 消息\n订阅 sensor_combined / vehicle_odometry 状态\n传输 vehicle_thrust / torque 及 actuator_motors 消息"),
-            ("典型运动工况闭环仿真验证", "定深控制 (垂向克服重浮力失配与流扰)\n定向航向保持 (偏航高精度锁定)\n空间定点悬停与三维复杂轨迹跟踪仿真"),
-            ("外部扰动测试与控制品质综合评价", "注入定常洋流、湍流等水下环境扰动 τ{sub:d}\n考察动态响应超调量、调节时间与稳态跟踪误差\n对比不同控制律与推力分配策略的鲁棒抗扰性能"),
-        ]),
+    stages = [
+        (
+            "第一阶段：平台梳理与六自由度机理建模",
+            "第一、二章",
+            [
+                "八推进器平台构型梳理\n(几何尺寸与质量特性)",
+                "NED与FRD坐标系建立\n(运动学变换矩阵 J(η))",
+                "6-DOF非线性动力学建模\n(M, C(ν), D(ν), g(η) 与推进器)",
+            ],
+        ),
+        (
+            "第二阶段：水动力系统辨识与模型验证",
+            "第三章",
+            [
+                "辨识激励与数据采集\n(阶跃与多频动态响应)",
+                "关键水动力参数估计\n(附加质量 M{sub:A} 与阻尼 D)",
+                "标称模型验证与残差分析\n({hat:M}, {hat:C}, {hat:D}, {hat:g} 适用边界)",
+            ],
+        ),
+        (
+            "第三阶段：闭环运动控制与八推进器推力分配",
+            "第四章",
+            [
+                "模型补偿+状态反馈控制\n(PID / FBL / INDI 比选)",
+                "八推进器 6×8 分配矩阵\n(B = [b{sub:1}, …, b{sub:8}] ∈ R{sup:6×8})",
+                "推力物理边界约束分配\n(T{sub:min} ≤ T ≤ T{sub:max} 与残差 e{sub:τ})",
+            ],
+        ),
+        (
+            "第四阶段：PX4/SITL 闭环仿真与性能评价",
+            "第五、六章",
+            [
+                "PX4/SITL 软件在环集成\n(uORB 异步微消息闭环)",
+                "典型运动工况闭环测试\n(定深、定向与三维轨迹)",
+                "外部流扰测试与综合评价\n(跟踪误差 e{sub:η} 与分配误差 e{sub:τ})",
+            ],
+        ),
     ]
 
-    for c_idx, (p_title, sub_boxes) in enumerate(phases):
-        col_x = start_x + c_idx * (col_w + spacing)
-        draw.rounded_rectangle([col_x, start_y, col_x + col_w, start_y + box_h], radius=6, fill="#FFFFFF", outline="#000000", width=2)
-        draw.rounded_rectangle([col_x, start_y, col_x + col_w, start_y + 65], radius=6, fill="#EFEFEF", outline="#000000", width=2)
-        draw_rich_text(draw, (col_x + 10, start_y + 12, col_w - 20, 45), p_title, font_size=20, fill="#000000", bold=True)
+    margin_x = 45
+    stage_w = w - 2 * margin_x
+    stage_h = 190
+    gap_y = 48
+    start_y = 25
 
-        sub_y = start_y + 85
-        sub_h = 245
-        for s_idx, (s_title, s_desc) in enumerate(sub_boxes):
-            cur_y = sub_y + s_idx * (sub_h + 20)
-            draw_academic_box(draw, (col_x + 20, cur_y, col_w - 40, sub_h), "", fill="#FFFFFF", border="#000000", width=1, radius=4)
-            draw.rectangle([col_x + 21, cur_y + 1, col_x + col_w - 21, cur_y + 45], fill="#F8F8F8")
-            draw.line([col_x + 20, cur_y + 45, col_x + col_w - 20, cur_y + 45], fill="#000000", width=1)
-            draw_rich_text(draw, (col_x + 30, cur_y + 10, col_w - 60, 30), f"{c_idx+1}.{s_idx+1} {s_title}", font_size=19, fill="#000000", bold=True, align="left")
-            draw_rich_text(draw, (col_x + 30, cur_y + 55, col_w - 60, sub_h - 65), s_desc, font_size=16, fill="#000000", align="left")
+    for s_idx, (s_title, ch_tag, nodes) in enumerate(stages):
+        sy = start_y + s_idx * (stage_h + gap_y)
 
-            if s_idx < len(sub_boxes) - 1:
-                ay = cur_y + sub_h
-                draw_arrow(draw, (col_x + col_w / 2, ay), (col_x + col_w / 2, ay + 20), fill="#000000", width=2, arrow_len=8, arrow_w=5)
+        # 阶段外框
+        draw.rounded_rectangle([margin_x, sy, margin_x + stage_w, sy + stage_h],
+                               radius=8, fill="#F8FAFC", outline="#1F4E79", width=2)
+        # 顶部阶段标题条
+        draw.rounded_rectangle([margin_x, sy, margin_x + stage_w, sy + 46],
+                               radius=8, fill="#E8EEF5", outline="#1F4E79", width=2)
+        draw_rich_text(draw, (margin_x + 20, sy + 5, 800, 36), s_title,
+                       font_size=23, fill="#1F4E79", bold=True, align="left")
+        draw_rich_text(draw, (margin_x + stage_w - 260, sy + 5, 240, 36), f"对应论文：{ch_tag}",
+                       font_size=21, fill="#333333", bold=True, align="right")
 
-        if c_idx < len(phases) - 1:
-            next_col_x = col_x + col_w + spacing
-            mid_arrow_y = start_y + box_h / 2
-            draw_arrow(draw, (col_x + col_w, mid_arrow_y), (next_col_x, mid_arrow_y), fill="#000000", width=4, arrow_len=16, arrow_w=9)
+        # 内部 3 个横向短语节点
+        node_w = 415
+        node_h = 105
+        node_gap = 65
+        total_nodes_w = 3 * node_w + 2 * node_gap
+        nx_start = margin_x + (stage_w - total_nodes_w) // 2
+        ny = sy + 64
+
+        for n_idx, n_text in enumerate(nodes):
+            nx = nx_start + n_idx * (node_w + node_gap)
+            draw_node_box(draw, (nx, ny, node_w, node_h), n_text,
+                          font_size=22, fill="#FFFFFF", border="#000000", width=2, radius=6)
+            if n_idx < 2:
+                ax1 = nx + node_w
+                ax2 = nx + node_w + node_gap
+                ay = ny + node_h // 2
+                draw_arrow(draw, (ax1, ay), (ax2, ay), fill="#1F4E79", width=3, arrow_len=14, arrow_w=7)
+
+        # 阶段间向下大箭头
+        if s_idx < len(stages) - 1:
+            mid_x = w // 2
+            ay1 = sy + stage_h
+            ay2 = ay1 + gap_y
+            draw_arrow(draw, (mid_x, ay1), (mid_x, ay2), fill="#000000", width=4, arrow_len=16, arrow_w=9)
 
     fp_png = os.path.join(OUT_DIR, "fig1_technical_roadmap.png")
     img.save(fp_png, dpi=(300, 300))
-    print(f"[OK] 已生成技术路线图黑白版 (300 DPI): {fp_png}")
+    print(f"[OK] 已生成图3 (纵向四阶段技术路线图, 300 DPI): {fp_png}")
 
 
 # ==============================================================================
-# 4. 图 4：基于PX4/SITL的水下航行器闭环仿真系统结构框图
+# 4. 图 4：基于PX4/SITL的水下航行器闭环仿真系统结构框图 (标准闭环框图+双层分区)
 # ==============================================================================
 
 def generate_fig2_px4_rov_architecture():
-    w, h = 2400, 1200
+    w, h = 1860, 760
     img = Image.new("RGB", (w, h), "#FFFFFF")
     draw = ImageDraw.Draw(img)
 
-    draw_rich_line(draw, 50, 35, parse_rich_line("图 4  基于PX4/SITL的水下航行器闭环仿真系统结构框图"), 30, fill="#000000", bold=True)
-    draw_rich_line(draw, 50, 80, parse_rich_line("PX4 Autopilot 开源固件架构与 uORB 异步微消息总线闭环仿真链路"), 20, fill="#444444")
+    # 上半区：PX4 Autopilot 飞控软件层 (uORB 异步消息总线)
+    draw_dashed_rect(draw, (35, 25, 1825, 335), outline="#1F4E79", width=2, fill="#F4F7FA")
+    draw_rich_text(draw, (55, 35, 900, 36),
+                   "PX4 Autopilot 飞控软件层 (C++ 原生模块 / uORB 异步发布-订阅总线)",
+                   font_size=22, fill="#1F4E79", bold=True, align="left")
 
-    # 上半部分：PX4 自动驾驶仪飞控固件
-    draw.rounded_rectangle([60, 130, 2340, 520], radius=8, fill="#FAFAFA", outline="#000000", width=3)
-    draw_rich_line(draw, 90, 155, parse_rich_line("PX4 Autopilot 控制系统固件架构 (原生 C++ 模块 / NuttX & POSIX 运行时)"), 24, fill="#000000", bold=True)
+    # 下半区：SITL 水下六自由度物理仿真环境 (标题置于底部左侧或中间，彻底避开左侧垂直反馈线!)
+    draw_dashed_rect(draw, (35, 415, 1825, 735), outline="#333333", width=2, fill="#FAFAFA")
+    draw_rich_text(draw, (55, 685, 950, 36),
+                   "SITL 软件在环水下物理仿真层 (6-DOF 水动力模型与虚拟传感闭环)",
+                   font_size=22, fill="#222222", bold=True, align="left")
 
-    m_w = 510
-    m_h = 280
-    m_xs = [90, 660, 1230, 1800]
-    m_y = 205
+    # ---------------- 上半区前向控制链路 (y_top = 195) ----------------
+    y_top = 195
+    # 1. 期望轨迹给定模块
+    box_nav = (60, y_top - 55, 260, 110)
+    draw_node_box(draw, box_nav, "参考运动指令生成\n(Navigator / 航点与轨迹)",
+                  font_size=21, fill="#FFFFFF", border="#000000", width=2)
 
-    draw_academic_box(draw, (m_xs[0], m_y, m_w, m_h),
-                      "自主任务与期望轨迹规划模块\n(Navigator / Mission Planner)\n\n"
-                      "- 接收地面站 QGroundControl 航点指令\n"
-                      "- 生成三维平滑参考位姿轨迹: η{sub:r}(t)\n"
-                      "- 输出期望参考线速度与角速度: ν{sub:r}(t)\n"
-                      "- 定深、定向悬停及自动返航模式切换",
-                      font_size=18, fill="#FFFFFF", border="#000000", align="left")
+    # 求和节点 ⊕1 (x = 530，与左侧模块留出 210 px 宽裕走廊)
+    cx_err = 530
+    draw_sum_node(draw, cx_err, y_top, r=22, signs={"left": "+", "bottom": "−"})
+    draw_arrow(draw, (320, y_top), (cx_err - 22, y_top), width=3)
+    draw_rich_text(draw, (325, y_top - 66, 175, 58), "η{sub:r}, ν{sub:r}\n(trajectory_setpoint)", font_size=18, bold=True)
 
-    draw_academic_box(draw, (m_xs[1], m_y, m_w, m_h),
-                      "水下航行器闭环运动控制模块\n(UUV Motion Controller)\n\n"
-                      "- 基于标称模型动力学前馈补偿 F{sub:model}(·)\n"
-                      "- 姿态、深度与航向状态误差鲁棒反馈 F{sub:fb}(·)\n"
-                      "- 输出期望三维控制力与力矩矢量:\n"
-                      "  τ{sub:c} = [F{sub:x}, F{sub:y}, F{sub:z}, M{sub:x}, M{sub:y}, M{sub:z}]{sup:T} ∈ R{sup:6}",
-                      font_size=18, fill="#FFFFFF", border="#000000", align="left")
+    # 2. UUV 闭环运动控制模块
+    box_ctrl = (690, y_top - 58, 380, 116)
+    draw_arrow(draw, (cx_err + 22, y_top), (690, y_top), width=3)
+    draw_rich_text(draw, (560, y_top - 48, 120, 40), "误差 e{sub:η}, e{sub:ν}", font_size=20, bold=True)
+    draw_node_box(draw, box_ctrl, "UUV 闭环运动控制模块\nF{sub:model}({hat:η},{hat:ν}) + F{sub:fb}(e{sub:η},e{sub:ν})",
+                  font_size=21, fill="#FFFFFF", border="#1F4E79", width=3)
 
-    draw_academic_box(draw, (m_xs[2], m_y, m_w, m_h),
-                      "八推进器受约束控制分配模块\n(8-Thruster Control Allocator)\n\n"
-                      "- 载入物理平台 6×8 推力几何配置矩阵 B\n"
-                      "- 推进器物理幅值边界约束求解: T{sub:min} ≤ T ≤ T{sub:max}\n"
-                      "- 输出8通道标准化推力指令: T = [T{sub:1}, …, T{sub:8}]{sup:T}\n"
-                      "- 实时计算并记录分配残差: e{sub:τ} = τ{sub:c} − BT",
-                      font_size=18, fill="#FFFFFF", border="#000000", align="left")
+    # 3. 八推进器控制分配模块
+    box_alloc = (1320, y_top - 58, 420, 116)
+    draw_arrow(draw, (1070, y_top), (1320, y_top), width=3)
+    draw_rich_text(draw, (1080, y_top - 66, 230, 58), "期望广义力 τ{sub:c} ∈ R{sup:6}\n(vehicle_thrust/torque)", font_size=18, bold=True)
+    draw_node_box(draw, box_alloc, "八推进器 6×8 控制分配模块\nB ∈ R{sup:6×8},  T{sub:min} ≤ T ≤ T{sub:max}",
+                  font_size=21, fill="#FFFFFF", border="#1F4E79", width=3)
 
-    draw_academic_box(draw, (m_xs[3], m_y, m_w, m_h),
-                      "扩展卡尔曼滤波全状态估计模块\n(EKF2 State Estimator)\n\n"
-                      "- 多源传感器高频异步数据融合\n"
-                      "- 滤波重构航行器全状态估计值:\n"
-                      "  位姿: {hat:η} = [{hat:x}, {hat:y}, {hat:z}, {hat:ϕ}, {hat:θ}, {hat:ψ}]{sup:T}\n"
-                      "  速度: {hat:ν} = [{hat:u}, {hat:v}, {hat:w}, {hat:p}, {hat:q}, {hat:r}]{sup:T}\n"
-                      "- 实时传感器故障检测与方差评估",
-                      font_size=18, fill="#FFFFFF", border="#000000", align="left")
+    # ---------------- 下半区物理仿真与状态反馈链路 (y_bot = 565) ----------------
+    y_bot = 565
 
-    # 中间部分：uORB 实时异步总线
-    uorb_y = 570
-    uorb_h = 95
-    draw.rectangle([60, uorb_y, 2340, uorb_y + uorb_h], fill="#F0F0F0", outline="#000000", width=2)
-    draw_rich_line(draw, 90, uorb_y + 15, parse_rich_line("uORB (Micro Object Request Broker) 实时微消息通信总线 (微秒级发布/订阅机制)"), 22, fill="#000000", bold=True)
+    # 4. 右下：八推进器执行机构水动力模型
+    box_thr = (1320, y_bot - 58, 420, 116)
+    draw_node_box(draw, box_thr, "八推进器执行机构模型\n电机动态与推力映射 τ = BT",
+                  font_size=21, fill="#FFFFFF", border="#000000", width=2)
 
-    topics = [
-        "trajectory_setpoint\n(参考位姿/速度)",
-        "vehicle_attitude / status\n(机体当前位姿与状态)",
-        "vehicle_torque / thrust_setpoint\n(期望广义力和力矩 τ{sub:c})",
-        "actuator_motors\n(8通道推进器输出指令 T)",
-        "sensor_combined / odometry\n(传感器数据与状态反馈)"
-    ]
-    t_xs = [90, 540, 990, 1440, 1890]
-    for idx, t_txt in enumerate(topics):
-        draw_academic_box(draw, (t_xs[idx], uorb_y + 45, 410, 42), t_txt, font_size=15, fill="#FFFFFF", border="#000000", bold=True)
+    # 跨层下发通道：控制分配 -> 推进器模型 (沿右侧 x = 1530 垂直向下)
+    x_down = 1530
+    draw_arrow(draw, (x_down, y_top + 58), (x_down, y_bot - 58), fill="#1F4E79", width=3)
+    draw_rich_text(draw, (x_down + 14, 344, 270, 62),
+                   "8通道推力指令 T ∈ R{sup:8}\n(uORB: actuator_motors)", font_size=18, fill="#1F4E79", bold=True, align="left")
 
-    # 下半部分：SITL 软件在环物理仿真环境
-    draw.rounded_rectangle([60, 710, 2340, 1140], radius=8, fill="#FAFAFA", outline="#000000", width=3)
-    draw_rich_line(draw, 90, 735, parse_rich_line("SITL 软件在环物理仿真环境 (Simulation-In-The-Loop / 外部物理引擎与日志黑匣子)"), 24, fill="#000000", bold=True)
+    # 扰动叠加节点 ⊕2 (位于推进器模型左侧 cx_dist = 1195)
+    cx_dist = 1195
+    draw_sum_node(draw, cx_dist, y_bot, r=20, signs={"top": "+"})
+    draw_arrow(draw, (1320, y_bot), (cx_dist + 20, y_bot), width=3)
+    draw_rich_text(draw, (1225, y_bot - 45, 85, 36), "τ ∈ R{sup:6}", font_size=20, bold=True)
 
-    s_xs = [90, 660, 1230, 1800]
-    s_y = 785
-    s_h = 320
+    # 外部流扰注入箭头
+    draw_arrow(draw, (cx_dist, 468), (cx_dist, y_bot - 20), width=3)
+    draw_rich_text(draw, (cx_dist - 105, 428, 210, 34), "外部水流扰动 τ{sub:d}", font_size=20, bold=True)
 
-    draw_academic_box(draw, (s_xs[0], s_y, m_w, s_h),
-                      "SITL 通信桥接与锁步调度中间件\n(Lockstep Simulator Bridge)\n\n"
-                      "- TCP / UDP / MAVLink 双向实时通信接口\n"
-                      "- 物理时间与飞控时钟高保真严格锁步同步\n"
-                      "- 支持毫秒级断点调试与多倍速非实时仿真\n"
-                      "- 接收各推进器指令并下发物理仿真机",
-                      font_size=18, fill="#FFFFFF", border="#000000", align="left")
+    # 5. 中下：水下航行器 6-DOF 非线性动力学模型
+    box_plant = (690, y_bot - 58, 380, 116)
+    draw_arrow(draw, (cx_dist - 20, y_bot), (1070, y_bot), width=3)
+    draw_node_box(draw, box_plant, "水下航行器 6-DOF 动力学模型\nM{dot:ν}+C(ν)ν+D(ν)ν+g(η) = τ+τ{sub:d}",
+                  font_size=20, fill="#FFFFFF", border="#000000", width=2)
 
-    draw_academic_box(draw, (s_xs[1], s_y, m_w, s_h),
-                      "水下八推进器水动力执行机构模型\n(Thruster & Propeller Model)\n\n"
-                      "- 8通道推进器直流无刷电机一阶动态响应\n"
-                      "- 螺旋桨转速-推力二次非线性映射特性\n"
-                      "- 正反转推力非对称系数与死区模拟\n"
-                      "- 输出机体所受真实合推力与力矩矢量 τ = BT",
-                      font_size=18, fill="#FFFFFF", border="#000000", align="left")
+    # 6. 左下：虚拟传感器与 EKF2 状态估计 (以 x = cx_err = 530 为中心右侧或顶部中心对齐!)
+    # 设 box_ekf = (165, y_bot - 58, 365, 116)，其顶部向上输出点设在 x = 347，正交折向 cx_err = 530，或者直接让 box_ekf 居中于 cx_err!
+    # 更清爽的对称布局：让 box_ekf 位于 (160, y_bot - 58, 360, 116)，真实状态箭头在 690 -> 520 (长 170 px)，
+    # 反馈线从 box_ekf 顶边中心 (x = 340) 向上到 y = 375，再向右到 x = 530 向上进入 ⊕1！
+    box_ekf = (150, y_bot - 58, 360, 116)
+    draw_arrow(draw, (690, y_bot), (510, y_bot), width=3)
+    draw_rich_text(draw, (530, y_bot - 58, 140, 52), "真实状态\nη(t), ν(t)", font_size=20, bold=True)
+    draw_node_box(draw, box_ekf, "虚拟传感器与 EKF2 状态估计\nIMU / 深度计 / DVL 数据融合",
+                  font_size=20, fill="#FFFFFF", border="#000000", width=2)
 
-    draw_academic_box(draw, (s_xs[2], s_y, m_w, s_h),
-                      "水下航行器六自由度流体动力学环境\n(6-DOF Underwater Vehicle Plant)\n\n"
-                      "- 刚体惯性 M{sub:RB} 与水动力附加质量 M{sub:A}\n"
-                      "- 科氏力与向心力耦合作用 C(ν)\n"
-                      "- 线性与二次非线性水动力黏性阻尼 D(ν)\n"
-                      "- 重心/浮心恢复力矩 g(η) 及外部流扰 τ{sub:d}",
-                      font_size=18, fill="#FFFFFF", border="#000000", align="left")
+    # 跨层反馈回传通道：从 box_ekf 顶部 (330, 507) 垂直向上至 y = 295，再向右至 cx_err = 530 向上进 ⊕1，同时向右至 880 向上进控制器！
+    x_fb_up = 330
+    y_fb_turn = 295
+    draw.line([(x_fb_up, y_bot - 58), (x_fb_up, y_fb_turn)], fill="#1F4E79", width=3)
+    draw.line([(x_fb_up, y_fb_turn), (880, y_fb_turn)], fill="#1F4E79", width=3)
+    draw.ellipse([cx_err - 5, y_fb_turn - 5, cx_err + 5, y_fb_turn + 5], fill="#1F4E79")
+    draw_arrow(draw, (cx_err, y_fb_turn), (cx_err, y_top + 22), fill="#1F4E79", width=3)
+    draw_arrow(draw, (880, y_fb_turn), (880, y_top + 58), fill="#1F4E79", width=3)
 
-    draw_academic_box(draw, (s_xs[3], s_y, m_w, s_h),
-                      "虚拟传感仪表与全工况日志记录\n(Virtual Sensors & ULog Logger)\n\n"
-                      "- IMU 加速度计/陀螺仪高频白噪声与零偏模拟\n"
-                      "- 虚拟深度水压传感器与 DVL 测速噪声\n"
-                      "- 高频 ULog 黑匣子记录全闭环试验数据\n"
-                      "- MATLAB / Python 离线指标评估与消融分析",
-                      font_size=18, fill="#FFFFFF", border="#000000", align="left")
-
-    # 飞控与仿真间的垂直双向交互箭头 (彻底修复坐标)
-    draw_arrow(draw, (m_xs[0] + m_w / 2, m_y + m_h), (m_xs[0] + m_w / 2, uorb_y), fill="#000000", width=2)
-    draw_arrow(draw, (m_xs[1] + m_w / 2, m_y + m_h), (m_xs[1] + m_w / 2, uorb_y), fill="#000000", width=2)
-    draw_arrow(draw, (m_xs[2] + m_w / 2, m_y + m_h), (m_xs[2] + m_w / 2, uorb_y), fill="#000000", width=2)
-    # EKF2 从 uORB 订阅传感器数据 (向上箭头)
-    draw_arrow(draw, (m_xs[3] + m_w / 2, uorb_y), (m_xs[3] + m_w / 2, m_y + m_h), fill="#000000", width=2)
-
-    # uORB 向下传递给 SITL Bridge
-    draw_arrow(draw, (s_xs[0] + m_w / 2, uorb_y + uorb_h), (s_xs[0] + m_w / 2, s_y), fill="#000000", width=2)
-    draw_arrow(draw, (s_xs[0] + m_w, s_y + s_h / 2), (s_xs[1], s_y + s_h / 2), fill="#000000", width=2)
-    draw_arrow(draw, (s_xs[1] + m_w, s_y + s_h / 2), (s_xs[2], s_y + s_h / 2), fill="#000000", width=2)
-    draw_arrow(draw, (s_xs[2] + m_w, s_y + s_h / 2), (s_xs[3], s_y + s_h / 2), fill="#000000", width=2)
-    # Virtual Sensors 向上发布给 uORB (向上箭头)
-    draw_arrow(draw, (s_xs[3] + m_w / 2, s_y), (s_xs[3] + m_w / 2, uorb_y + uorb_h), fill="#000000", width=2)
+    draw_rich_text(draw, (x_fb_up + 14, 344, 290, 62),
+                   "全状态反馈 {hat:η}, {hat:ν}\n(vehicle_odometry / attitude)",
+                   font_size=18, fill="#1F4E79", bold=True, align="left")
 
     fp_png = os.path.join(OUT_DIR, "fig2_px4_rov_architecture.png")
     img.save(fp_png, dpi=(300, 300))
-    print(f"[OK] 已生成PX4架构图黑白版 (300 DPI): {fp_png}")
+    print(f"[OK] 已生成图4 (PX4/SITL闭环结构框图, 300 DPI): {fp_png}")
 
 
 def build_all_figures():
-    print("=== 开始生成开题报告全套出版级纯黑白学术配图 (300 DPI) ===")
+    print("=== 开始生成开题报告全套极简出版级学术配图 (300 DPI) ===")
     generate_fig1_lit_control_architecture()
     generate_fig0_rov_coord_thrusters()
     generate_fig1_technical_roadmap()
     generate_fig2_px4_rov_architecture()
-    print("=== 全套 4 幅纯黑白高清配图及 .drawio 导出完毕 ===")
+    print("=== 全套 4 幅高清配图生成完毕 ===")
 
 
 if __name__ == "__main__":

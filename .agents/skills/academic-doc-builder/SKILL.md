@@ -187,3 +187,6 @@ description: >-
    - 公式已渲染为原生 `<m:oMath>` / `<m:oMathPara>` 节点；
    - 课题名称、学院、姓名、学号、进度表 12 个阶段时间节点与最新任务书完全一致；
    - 正式版文档所有段落的 `HighlightColorIndex == 0`（无残留高亮）。
+3. **配图极简规范与强制视觉自检**：
+   - 生成或更新任何报告/论文配图（见 [`generate_report_figures.py`](file:///d:/tj/Graduation%20Project/开题报告/generate_report_figures.py) 与 [`supervisor_writing_and_figure_guide.md`](./references/supervisor_writing_and_figure_guide.md) 第 4.2 节）时，严禁在图内顶部画大标题、严禁在框图内塞入表格或多行列表，画布宽度控制在 `1600~1860 px`、字号 `18~23 px`（确保缩印至 Word `15.2 cm` 后字号 $\ge 8.5\text{ pt}$），且**必须调用 `view_file` 亲自检查生成的 PNG 图片确认零文字/线条重叠**后方可嵌入文档。
+

@@ -55,13 +55,34 @@
 
 ## 4. 科研图表设计范式（Scientific Plotting & Architecture Diagrams）
 
-1. **分类选择绘图工具**：
-   - **系统架构图、控制框图、PX4/uORB 消息流图**：
-     - 若需直接嵌入 Word 的高清出版级图片，使用 Python (`matplotlib` / `graphviz`) 导出 300 DPI PNG + 矢量 PDF；
-     - 若需将参考论文图、草图或已有框图转换为**可双击编辑的 `.drawio` 矢量源文件**，激活工作区技能 [`drawio-reconstruction`](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md)。
-   - **6-DOF 仿真响应曲线、辨识拟合曲线、推进器推力分配柱状/时序图**：
-     - 统一使用 `matplotlib` 编写可复现脚本，字号放大后实际显示不小于 8pt~9pt，中文使用宋体/微软雅黑，英文与数字使用 Times New Roman。
-2. **视觉编码与无障碍规范（Dual Encoding）**：
-   - **双重编码**：区分不同控制算法（如 PID vs. FBL vs. INDI）或不同自由度曲线时，严禁仅靠颜色区分；必须同时使用**颜色 + 线型（实线 `-`、虚线 `--`、点划线 `-.`、点线 `:`）**，确保黑白打印依然清晰可辨。
-   - **克制用色**：单张对比图的曲线数量不超过 4~5 条；本文核心方法采用高对比度主色（如深蓝 `#0072B2` 或朱红 `#D55E00` 实线加粗），参考轨迹用黑色虚线 `k--`，基线对比方法用低饱和度冷灰或浅色调。
-   - **杜绝视觉垃圾（No Chartjunk）**：严禁使用 3D 柱状图、阴影特效、渐变背景或过粗的网格线（网格线统一用 `alpha=0.25, linestyle='--'`）。
+### 4.1 分类选择绘图工具
+- **系统架构图、控制框图、技术路线图、PX4/uORB 消息流图**：
+  - 使用 Python (`PIL` / `matplotlib`) 导出 300 DPI PNG（见 [`generate_report_figures.py`](file:///d:/tj/Graduation%20Project/开题报告/generate_report_figures.py)）；
+  - 若需将参考论文图、草图或已有框图转换为**可双击编辑的 `.drawio` 矢量源文件**，激活工作区技能 [`drawio-reconstruction`](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md)。
+- **6-DOF 仿真响应曲线、辨识拟合曲线、推进器推力分配柱状/时序图**：
+  - 统一使用 `matplotlib` 编写可复现脚本，字号缩放到 Word 后实际显示不小于 8.5pt~10pt，中文使用宋体/微软雅黑，英文与数字使用 Times New Roman。
+
+### 4.2 极简学术框图与技术路线图铁律（Minimalist Academic Diagram Rules）
+针对开题报告与毕业论文中的系统框图、技术路线图、几何示意图，必须严格执行以下 6 条**防拥挤、防伪学术风**铁律（对标 22 级优秀毕设 V5 终稿与 IEEE/IFAC 顶刊规范）：
+1. **严禁图内自带顶部大标题/副标题**：
+   - 图名必须且仅能出现在 Word 图片下方的独立图题段落中（如 `图 3  课题总体研究技术路线图`），严禁在 PNG 画布顶部再画一行“图 X ……”或副标题横幅。
+2. **严禁在框图内塞入表格、大段正文或项目符号列表（No Tables or Prose in Diagrams）**：
+   - 图只负责表达**拓扑连接关系、信号流向与阶段递进层次**；
+   - 严禁在图内嵌入 6-DOF 对照表、大段推导公式块或多行 `•` 列表；详细解释与公式推导一律移入 Word 正文段落。
+3. **节点字数上限与信号标注极简化**：
+   - 每个方框节点严格限制为 **1~2 行（5~15 个字）**：第一行写模块/环节名称（粗体），第二行写 1 个核心短语或核心算子符号（如 $\boldsymbol{B} \in \mathbb{R}^{6\times 8},\ \boldsymbol{T}_{\min}\le\boldsymbol{T}\le\boldsymbol{T}_{\max}$）；
+   - 箭头连线上仅标注**核心数学符号**（如 $\boldsymbol{\eta}_r, \boldsymbol{\nu}_r$、$\boldsymbol{\tau}_c \in \mathbb{R}^6$、$\boldsymbol{T} \in \mathbb{R}^8$）或 **uORB 话题名**，不写长句。
+4. **Word 物理缩印字号硬约束（Canvas-to-Word Font Scaling）**：
+   - Word 正文版心宽度通常为 `15.2 cm`（约 `6.0 inch`）。在生成 PNG 时，**严禁使用超过 `1900 px` 的超大画布配小字号**；
+   - 标准画布宽度应控制在 **`1600 px ~ 1860 px`**，节点主标题字号设为 **`21 px ~ 23 px`**，副标题/公式字号设为 **`18 px ~ 20 px`**，确保缩印到 Word `15.2 cm` 宽后，图中最小文字依然达到 **8.5 pt ~ 10.5 pt（约等于五号字）**，清晰易读。
+5. **克制配色与正交走线通道**：
+   - 框图以**黑白灰**为基底（纯白底 `#FFFFFF`、深黑框线 `#1E293B`），仅用**低饱和度学术深蓝**（边框 `#1F4E79`、浅蓝灰底 `#F4F7FA`）突出核心控制器、控制分配或关键阶段；
+   - 所有跨层反馈线与扰动注入线必须沿**独立留白通道正交折线（Orthogonal Routing）**走线，严禁斜穿任何文字、公式或方框边界。
+6. **强制视觉自检门禁（Mandatory Visual Collision Check）**：
+   - 每次运行脚本生成或修改 PNG 配图后，Agent **必须调用 `view_file` 亲自审阅渲染出的 PNG 图像**，逐一检查是否存在文字重叠、箭头穿字、角标挤压或留白失衡，确认 100% 无视觉瑕疵后方可嵌入 Word。
+
+### 4.3 仿真数据曲线视觉编码规范（Dual Encoding）
+- **双重编码**：区分不同控制算法（如 PID vs. FBL vs. INDI）或不同自由度曲线时，严禁仅靠颜色区分；必须同时使用**颜色 + 线型（实线 `-`、虚线 `--`、点划线 `-.`、点线 `:`）**，确保黑白打印依然清晰可辨。
+- **克制用色**：单张对比图的曲线数量不超过 4~5 条；本文核心方法采用高对比度主色（如深蓝 `#0072B2` 或朱红 `#D55E00` 实线加粗），参考轨迹用黑色虚线 `k--`，基线对比方法用低饱和度冷灰或浅色调。
+- **杜绝视觉垃圾（No Chartjunk）**：严禁使用 3D 柱状图、阴影特效、渐变背景或过粗的网格线（网格线统一用 `alpha=0.25, linestyle='--'`）。
+
