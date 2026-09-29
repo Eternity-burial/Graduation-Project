@@ -10,6 +10,7 @@
 *.tar.gz
 *.7z
 Springer Handbook of Robotics.pdf
+SwiftROV/
 
 # Python 缓存与虚拟环境
 __pycache__/
