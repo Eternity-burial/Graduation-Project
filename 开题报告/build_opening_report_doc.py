@@ -109,19 +109,19 @@ def _m_col_vec2(row1_xml, row2_xml):
     )
 
 
-# 预定义行内与独立 OMML 公式字典
+# 预定义行内与独立 OMML 公式字典（不添加多余手动空格，由 Word Cambria Math 自动控制算子间距）
 INLINE_MATH_XML = {
     "tau_c_R6": (
         _m_sub(_m_run("τ", "bi"), _m_run("c", "i"))
-        + _m_run(" ∈ ", "p")
+        + _m_run("∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("6", "p"))
     ),
     "T_R8": (
         _m_run("T", "bi")
-        + _m_run(" ∈ ", "p")
+        + _m_run("∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("8", "p"))
     ),
-    "6x8": _m_run("6 × 8", "p"),
+    "6x8": _m_run("6×8", "p"),
     "n_coord": (
         _m_run("{", "p") + _m_run("n", "i") + _m_run("}(", "p")
         + _m_sub(_m_run("O", "i"), _m_run("n", "i")) + _m_run("-", "p")
@@ -140,53 +140,53 @@ INLINE_MATH_XML = {
     ),
     "eta_def_R6": (
         _m_run("η", "bi")
-        + _m_run(" = [", "p")
-        + _m_run("x", "i") + _m_run(", ", "p")
-        + _m_run("y", "i") + _m_run(", ", "p")
-        + _m_run("z", "i") + _m_run(", ", "p")
-        + _m_run("ϕ", "i") + _m_run(", ", "p")
-        + _m_run("θ", "i") + _m_run(", ", "p")
+        + _m_run("=[", "p")
+        + _m_run("x", "i") + _m_run(",", "p")
+        + _m_run("y", "i") + _m_run(",", "p")
+        + _m_run("z", "i") + _m_run(",", "p")
+        + _m_run("ϕ", "i") + _m_run(",", "p")
+        + _m_run("θ", "i") + _m_run(",", "p")
         + _m_run("ψ", "i")
         + _m_sup(_m_run("]", "p"), _m_run("T", "p"))
-        + _m_run(" ∈ ", "p")
+        + _m_run("∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("6", "p"))
     ),
     "nu_def_R6": (
         _m_run("ν", "bi")
-        + _m_run(" = [", "p")
-        + _m_run("u", "i") + _m_run(", ", "p")
-        + _m_run("v", "i") + _m_run(", ", "p")
-        + _m_run("w", "i") + _m_run(", ", "p")
-        + _m_run("p", "i") + _m_run(", ", "p")
-        + _m_run("q", "i") + _m_run(", ", "p")
+        + _m_run("=[", "p")
+        + _m_run("u", "i") + _m_run(",", "p")
+        + _m_run("v", "i") + _m_run(",", "p")
+        + _m_run("w", "i") + _m_run(",", "p")
+        + _m_run("p", "i") + _m_run(",", "p")
+        + _m_run("q", "i") + _m_run(",", "p")
         + _m_run("r", "i")
         + _m_sup(_m_run("]", "p"), _m_run("T", "p"))
-        + _m_run(" ∈ ", "p")
+        + _m_run("∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("6", "p"))
     ),
     "J_eta_R6x6": (
-        _m_run("J", "bi") + _m_run("(", "p") + _m_run("η", "bi") + _m_run(") ∈ ", "p")
+        _m_run("J", "bi") + _m_run("(", "p") + _m_run("η", "bi") + _m_run(")∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("6×6", "p"))
     ),
     "M_sum": (
         _m_run("M", "bi")
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_sub(_m_run("M", "bi"), _m_run("RB", "p"))
-        + _m_run(" + ", "p")
+        + _m_run("+", "p")
         + _m_sub(_m_run("M", "bi"), _m_run("A", "p"))
     ),
     "M_RB": _m_sub(_m_run("M", "bi"), _m_run("RB", "p")),
     "M_A": _m_sub(_m_run("M", "bi"), _m_run("A", "p")),
     "M_mat": _m_run("M", "bi"),
     "C_sum": (
-        _m_run("C", "bi") + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(") = ", "p")
-        + _m_sub(_m_run("C", "bi"), _m_run("RB", "p")) + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(") + ", "p")
+        _m_run("C", "bi") + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(")=", "p")
+        + _m_sub(_m_run("C", "bi"), _m_run("RB", "p")) + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(")+", "p")
         + _m_sub(_m_run("C", "bi"), _m_run("A", "p")) + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(")", "p")
     ),
     "C_RB_nu": _m_sub(_m_run("C", "bi"), _m_run("RB", "p")) + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(")", "p"),
     "D_sum": (
-        _m_run("D", "bi") + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(") = ", "p")
-        + _m_sub(_m_run("D", "bi"), _m_run("lin", "p")) + _m_run(" + ", "p")
+        _m_run("D", "bi") + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(")=", "p")
+        + _m_sub(_m_run("D", "bi"), _m_run("lin", "p")) + _m_run("+", "p")
         + _m_sub(_m_run("D", "bi"), _m_run("quad", "p")) + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(")", "p")
     ),
     "D_lin": _m_sub(_m_run("D", "bi"), _m_run("lin", "p")),
@@ -194,30 +194,30 @@ INLINE_MATH_XML = {
     "D_nu_vec": _m_run("D", "bi") + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(")", "p") + _m_run("ν", "bi"),
     "g_eta": _m_run("g", "bi") + _m_run("(", "p") + _m_run("η", "bi") + _m_run(")", "p"),
     "g_eta_R6": (
-        _m_run("g", "bi") + _m_run("(", "p") + _m_run("η", "bi") + _m_run(") ∈ ", "p")
+        _m_run("g", "bi") + _m_run("(", "p") + _m_run("η", "bi") + _m_run(")∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("6", "p"))
     ),
-    "tau_R6": _m_run("τ", "bi") + _m_run(" ∈ ", "p") + _m_sup(_m_run("ℝ", "p"), _m_run("6", "p")),
+    "tau_R6": _m_run("τ", "bi") + _m_run("∈", "p") + _m_sup(_m_run("ℝ", "p"), _m_run("6", "p")),
     "tau_d": _m_sub(_m_run("τ", "bi"), _m_run("d", "i")),
     "tau_d_R6": (
-        _m_sub(_m_run("τ", "bi"), _m_run("d", "i")) + _m_run(" ∈ ", "p")
+        _m_sub(_m_run("τ", "bi"), _m_run("d", "i")) + _m_run("∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("6", "p"))
     ),
     "T_i": _m_sub(_m_run("T", "i"), _m_run("i", "i")),
     "M_A_diag": (
         _m_sub(_m_run("M", "bi"), _m_run("A", "p"))
-        + _m_run(" = −diag(", "p")
-        + _m_sub(_m_run("X", "i"), _m_acc(_m_run("u", "i"), "&#x0307;")) + _m_run(", ", "p")
-        + _m_sub(_m_run("Y", "i"), _m_acc(_m_run("v", "i"), "&#x0307;")) + _m_run(", ", "p")
-        + _m_sub(_m_run("Z", "i"), _m_acc(_m_run("w", "i"), "&#x0307;")) + _m_run(", ", "p")
-        + _m_sub(_m_run("K", "i"), _m_acc(_m_run("p", "i"), "&#x0307;")) + _m_run(", ", "p")
-        + _m_sub(_m_run("M", "i"), _m_acc(_m_run("q", "i"), "&#x0307;")) + _m_run(", ", "p")
+        + _m_run("=−diag(", "p")
+        + _m_sub(_m_run("X", "i"), _m_acc(_m_run("u", "i"), "&#x0307;")) + _m_run(",", "p")
+        + _m_sub(_m_run("Y", "i"), _m_acc(_m_run("v", "i"), "&#x0307;")) + _m_run(",", "p")
+        + _m_sub(_m_run("Z", "i"), _m_acc(_m_run("w", "i"), "&#x0307;")) + _m_run(",", "p")
+        + _m_sub(_m_run("K", "i"), _m_acc(_m_run("p", "i"), "&#x0307;")) + _m_run(",", "p")
+        + _m_sub(_m_run("M", "i"), _m_acc(_m_run("q", "i"), "&#x0307;")) + _m_run(",", "p")
         + _m_sub(_m_run("N", "i"), _m_acc(_m_run("r", "i"), "&#x0307;"))
         + _m_run(")", "p")
     ),
     "X_u_dot_N_r_dot": (
         _m_sub(_m_run("X", "i"), _m_acc(_m_run("u", "i"), "&#x0307;"))
-        + _m_run(" ~ ", "p")
+        + _m_run("~", "p")
         + _m_sub(_m_run("N", "i"), _m_acc(_m_run("r", "i"), "&#x0307;"))
     ),
     "eta_r": _m_sub(_m_run("η", "bi"), _m_run("r", "i")),
@@ -226,81 +226,81 @@ INLINE_MATH_XML = {
     "e_nu": _m_sub(_m_run("e", "bi"), _m_run("ν", "i")),
     "e_eta_def": (
         _m_sub(_m_run("e", "bi"), _m_run("η", "i"))
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_sub(_m_run("η", "bi"), _m_run("r", "i"))
-        + _m_run(" − ", "p")
+        + _m_run("−", "p")
         + _m_run("η", "bi")
     ),
     "e_nu_def": (
         _m_sub(_m_run("e", "bi"), _m_run("ν", "i"))
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_sub(_m_run("ν", "bi"), _m_run("r", "i"))
-        + _m_run(" − ", "p")
+        + _m_run("−", "p")
         + _m_run("ν", "bi")
     ),
     "tau_c": _m_sub(_m_run("τ", "bi"), _m_run("c", "i")),
     "tau_c_def": (
         _m_sub(_m_run("τ", "bi"), _m_run("c", "i"))
-        + _m_run(" = [", "p")
-        + _m_sub(_m_run("F", "i"), _m_run("x", "i")) + _m_run(", ", "p")
-        + _m_sub(_m_run("F", "i"), _m_run("y", "i")) + _m_run(", ", "p")
-        + _m_sub(_m_run("F", "i"), _m_run("z", "i")) + _m_run(", ", "p")
-        + _m_sub(_m_run("M", "i"), _m_run("x", "i")) + _m_run(", ", "p")
-        + _m_sub(_m_run("M", "i"), _m_run("y", "i")) + _m_run(", ", "p")
+        + _m_run("=[", "p")
+        + _m_sub(_m_run("F", "i"), _m_run("x", "i")) + _m_run(",", "p")
+        + _m_sub(_m_run("F", "i"), _m_run("y", "i")) + _m_run(",", "p")
+        + _m_sub(_m_run("F", "i"), _m_run("z", "i")) + _m_run(",", "p")
+        + _m_sub(_m_run("M", "i"), _m_run("x", "i")) + _m_run(",", "p")
+        + _m_sub(_m_run("M", "i"), _m_run("y", "i")) + _m_run(",", "p")
         + _m_sub(_m_run("M", "i"), _m_run("z", "i"))
         + _m_sup(_m_run("]", "p"), _m_run("T", "p"))
-        + _m_run(" ∈ ", "p")
+        + _m_run("∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("6", "p"))
     ),
     "tau_fb": _m_sub(_m_run("τ", "bi"), _m_run("fb", "p")),
     "tau_comp": _m_sub(_m_run("τ", "bi"), _m_run("comp", "p")),
     "tau_c_sum": (
         _m_sub(_m_run("τ", "bi"), _m_run("c", "i"))
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_sub(_m_run("τ", "bi"), _m_run("fb", "p"))
-        + _m_run(" + ", "p")
+        + _m_run("+", "p")
         + _m_sub(_m_run("τ", "bi"), _m_run("comp", "p"))
     ),
     "tau_comp_zero": (
         _m_sub(_m_run("τ", "bi"), _m_run("comp", "p"))
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_run("0", "bi")
     ),
-    "phi_theta": _m_run("(", "p") + _m_run("ϕ", "i") + _m_run(", ", "p") + _m_run("θ", "i") + _m_run(")", "p"),
+    "phi_theta": _m_run("(", "p") + _m_run("ϕ", "i") + _m_run(",", "p") + _m_run("θ", "i") + _m_run(")", "p"),
     "z_var": _m_run("z", "i"),
     "psi_var": _m_run("ψ", "i"),
     "pm_45_deg": _m_run("±45°", "p"),
-    "T1_T4": _m_sub(_m_run("T", "i"), _m_run("1", "p")) + _m_run(" ~ ", "p") + _m_sub(_m_run("T", "i"), _m_run("4", "p")),
-    "T5_T8": _m_sub(_m_run("T", "i"), _m_run("5", "p")) + _m_run(" ~ ", "p") + _m_sub(_m_run("T", "i"), _m_run("8", "p")),
+    "T1_T4": _m_sub(_m_run("T", "i"), _m_run("1", "p")) + _m_run("~", "p") + _m_sub(_m_run("T", "i"), _m_run("4", "p")),
+    "T5_T8": _m_sub(_m_run("T", "i"), _m_run("5", "p")) + _m_run("~", "p") + _m_sub(_m_run("T", "i"), _m_run("8", "p")),
     "i_idx": _m_run("i", "i"),
-    "i_1_8": _m_run("i", "i") + _m_run(" = 1, …, 8", "p"),
+    "i_1_8": _m_run("i", "i") + _m_run("=1,…,8", "p"),
     "r_i": _m_sub(_m_run("r", "bi"), _m_run("i", "i")),
     "d_i": _m_sub(_m_run("d", "bi"), _m_run("i", "i")),
     "r_i_R3": (
         _m_sub(_m_run("r", "bi"), _m_run("i", "i"))
-        + _m_run(" ∈ ", "p")
+        + _m_run("∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("3", "p"))
     ),
     "d_i_R3": (
         _m_sub(_m_run("d", "bi"), _m_run("i", "i"))
-        + _m_run(" ∈ ", "p")
+        + _m_run("∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("3", "p"))
     ),
     "B_mat": _m_run("B", "bi"),
     "B_def": (
         _m_run("B", "bi")
-        + _m_run(" = [", "p")
+        + _m_run("=[", "p")
         + _m_sub(_m_run("b", "bi"), _m_run("1", "p"))
-        + _m_run(", ", "p")
+        + _m_run(",", "p")
         + _m_sub(_m_run("b", "bi"), _m_run("2", "p"))
-        + _m_run(", …, ", "p")
+        + _m_run(",…,", "p")
         + _m_sub(_m_run("b", "bi"), _m_run("8", "p"))
-        + _m_run("] ∈ ", "p")
+        + _m_run("]∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("6×8", "p"))
     ),
     "B_pinv_def": (
         _m_sup(_m_run("B", "bi"), _m_run("†", "p"))
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_sup(_m_run("B", "bi"), _m_run("T", "p"))
         + _m_run("(", "p")
         + _m_run("B", "bi")
@@ -309,7 +309,7 @@ INLINE_MATH_XML = {
     ),
     "T0_def": (
         _m_sub(_m_run("T", "bi"), _m_run("0", "p"))
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_sup(_m_run("B", "bi"), _m_run("†", "p"))
         + _m_sub(_m_run("τ", "bi"), _m_run("c", "i"))
     ),
@@ -317,50 +317,50 @@ INLINE_MATH_XML = {
     "clip_T0": (
         _m_run("clip(", "p")
         + _m_sub(_m_run("T", "bi"), _m_run("0", "p"))
-        + _m_run(", ", "p")
+        + _m_run(",", "p")
         + _m_sub(_m_run("T", "bi"), _m_run("min", "p"))
-        + _m_run(", ", "p")
+        + _m_run(",", "p")
         + _m_sub(_m_run("T", "bi"), _m_run("max", "p"))
         + _m_run(")", "p")
     ),
     "T_bounds": (
         _m_sub(_m_run("T", "bi"), _m_run("min", "p"))
-        + _m_run(" ≤ ", "p")
+        + _m_run("≤", "p")
         + _m_run("T", "bi")
-        + _m_run(" ≤ ", "p")
+        + _m_run("≤", "p")
         + _m_sub(_m_run("T", "bi"), _m_run("max", "p"))
     ),
     "T_interval": (
         _m_run("[", "p")
         + _m_sub(_m_run("T", "bi"), _m_run("min", "p"))
-        + _m_run(", ", "p")
+        + _m_run(",", "p")
         + _m_sub(_m_run("T", "bi"), _m_run("max", "p"))
         + _m_run("]", "p")
     ),
     "T_vec_def": (
         _m_run("T", "bi")
-        + _m_run(" = [", "p")
+        + _m_run("=[", "p")
         + _m_sub(_m_run("T", "i"), _m_run("1", "p"))
-        + _m_run(", …, ", "p")
+        + _m_run(",…,", "p")
         + _m_sub(_m_run("T", "i"), _m_run("8", "p"))
         + _m_sup(_m_run("]", "p"), _m_run("T", "p"))
     ),
     "T_vec_R8": (
         _m_run("T", "bi")
-        + _m_run(" = [", "p")
+        + _m_run("=[", "p")
         + _m_sub(_m_run("T", "i"), _m_run("1", "p"))
-        + _m_run(", …, ", "p")
+        + _m_run(",…,", "p")
         + _m_sub(_m_run("T", "i"), _m_run("8", "p"))
         + _m_sup(_m_run("]", "p"), _m_run("T", "p"))
-        + _m_run(" ∈ ", "p")
+        + _m_run("∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("8", "p"))
     ),
     "e_tau": _m_sub(_m_run("e", "bi"), _m_run("τ", "i")),
     "e_tau_def": (
         _m_sub(_m_run("e", "bi"), _m_run("τ", "i"))
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_sub(_m_run("τ", "bi"), _m_run("c", "i"))
-        + _m_run(" − ", "p")
+        + _m_run("−", "p")
         + _m_run("B", "bi")
         + _m_run("T", "bi")
     ),
@@ -369,54 +369,50 @@ INLINE_MATH_XML = {
 DISPLAY_MATH_XML = {
     "eq1_6dof": (
         _m_acc(_m_run("η", "bi"), "&#x0307;")
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_run("J", "bi") + _m_run("(", "p") + _m_run("η", "bi") + _m_run(")", "p")
         + _m_run("ν", "bi")
-        + _m_run(" ,    ", "p")
+        + _m_run(",  ", "p")
         + _m_run("M", "bi") + _m_acc(_m_run("ν", "bi"), "&#x0307;")
-        + _m_run(" + ", "p")
+        + _m_run("+", "p")
         + _m_run("C", "bi") + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(")", "p") + _m_run("ν", "bi")
-        + _m_run(" + ", "p")
+        + _m_run("+", "p")
         + _m_run("D", "bi") + _m_run("(", "p") + _m_run("ν", "bi") + _m_run(")", "p") + _m_run("ν", "bi")
-        + _m_run(" + ", "p")
+        + _m_run("+", "p")
         + _m_run("g", "bi") + _m_run("(", "p") + _m_run("η", "bi") + _m_run(")", "p")
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_run("τ", "bi")
-        + _m_run(" + ", "p")
+        + _m_run("+", "p")
         + _m_sub(_m_run("τ", "bi"), _m_run("d", "i"))
-        + _m_run("      (1)", "p")
     ),
     "eq2_alloc": (
         _m_run("τ", "bi")
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_run("B", "bi")
         + _m_run("T", "bi")
-        + _m_run(" ,    ", "p")
+        + _m_run(",  ", "p")
         + _m_sub(_m_run("b", "bi"), _m_run("i", "i"))
-        + _m_run(" = ", "p")
+        + _m_run("=", "p")
         + _m_col_vec2(
             _m_sub(_m_run("d", "bi"), _m_run("i", "i")),
             _m_sub(_m_run("r", "bi"), _m_run("i", "i"))
-            + _m_run(" × ", "p")
+            + _m_run("×", "p")
             + _m_sub(_m_run("d", "bi"), _m_run("i", "i")),
         )
-        + _m_run(" ∈ ", "p")
+        + _m_run("∈", "p")
         + _m_sup(_m_run("ℝ", "p"), _m_run("6", "p"))
-        + _m_run(" ,    ", "p")
+        + _m_run(",  ", "p")
         + _m_sub(_m_run("T", "bi"), _m_run("min", "p"))
-        + _m_run(" ≤ ", "p")
+        + _m_run("≤", "p")
         + _m_run("T", "bi")
-        + _m_run(" ≤ ", "p")
+        + _m_run("≤", "p")
         + _m_sub(_m_run("T", "bi"), _m_run("max", "p"))
-        + _m_run(" ,    ", "p")
-        + _m_sub(_m_run("e", "bi"), _m_run("τ", "i"))
-        + _m_run(" = ", "p")
-        + _m_sub(_m_run("τ", "bi"), _m_run("c", "i"))
-        + _m_run(" − ", "p")
-        + _m_run("B", "bi")
-        + _m_run("T", "bi")
-        + _m_run("      (2)", "p")
     ),
+}
+
+DISPLAY_MATH_NUM = {
+    "eq1_6dof": "(1)",
+    "eq2_alloc": "(2)",
 }
 
 
@@ -435,14 +431,43 @@ def append_inline_omath(p, math_key, highlight=False):
 
 
 def append_display_omath(p, eq_key, highlight=False):
-    """在居中段落 p 中追加独立行原生 <m:oMathPara><m:oMath> 公式节点"""
-    inner_xml = _apply_omml_highlight(DISPLAY_MATH_XML[eq_key], highlight=highlight)
-    omath_para_str = (
-        f'<m:oMathPara xmlns:m="{M_NS}" xmlns:w="{W_NS}">'
-        f"<m:oMath>{inner_xml}</m:oMath>"
-        f"</m:oMathPara>"
+    """
+    在公式段落 p 中通过居中制表位(4156 dxa)与右对齐制表位(8313 dxa)
+    实现独立公式居中、公式编号 (1)/(2) 严格置于行末最右端
+    """
+    pPr = p._element.get_or_add_pPr()
+    old_tabs = pPr.find(qn("w:tabs"))
+    if old_tabs is not None:
+        pPr.remove(old_tabs)
+    tabs_el = etree.fromstring(
+        f'<w:tabs xmlns:w="{W_NS}">'
+        f'<w:tab w:val="center" w:pos="4156"/>'
+        f'<w:tab w:val="right" w:pos="8313"/>'
+        f'</w:tabs>'
     )
-    p._element.append(etree.fromstring(omath_para_str))
+    pPr.append(tabs_el)
+
+    # 第一个 Tab：跳至版心正中 (4156 dxa)
+    r_tab1 = OxmlElement("w:r")
+    r_tab1.append(OxmlElement("w:tab"))
+    p._element.append(r_tab1)
+
+    # 居中公式主体
+    inner_xml = _apply_omml_highlight(DISPLAY_MATH_XML[eq_key], highlight=highlight)
+    omath_str = f'<m:oMath xmlns:m="{M_NS}" xmlns:w="{W_NS}">{inner_xml}</m:oMath>'
+    p._element.append(etree.fromstring(omath_str))
+
+    # 第二个 Tab：跳至行末最右端 (8313 dxa)
+    r_tab2 = OxmlElement("w:r")
+    r_tab2.append(OxmlElement("w:tab"))
+    p._element.append(r_tab2)
+
+    # 行末右对齐公式编号 (1) / (2)
+    eq_num = DISPLAY_MATH_NUM.get(eq_key, "")
+    if eq_num:
+        r_num = p.add_run(eq_num)
+        set_run_font(r_num, cn_font="宋体", en_font="Times New Roman",
+                     size_pt=12.0, bold=False, highlight=highlight)
 
 
 # ==============================================================================
@@ -626,13 +651,13 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
                             force_hl=False, page_break_before=False):
     """
     在锚点段落 ref_p 前插入严格挂载官方模板样式的段落：
-    - h1: 一级标题（Normal 样式，黑体四号 14pt，首行缩进 2 字符 560 dxa，段前 0.5 行、段后 0.5 行）
+    - h1: 一级标题（Normal 样式，黑体四号 14pt，顶格无缩进，段前 0.5 行、段后 0.5 行）
     - h2: 二级标题（条 样式 a6，黑体小四号 12pt，顶格无缩进，序号与题名空一格，段前 0.5 行、段后 0.5 行）
-    - h3: 三级标题（正文格式 样式 a7，黑体小四号 12pt，首行缩进 2 字符 480 dxa，无段前段后间距）
+    - h3: 三级标题（条 样式 a6，黑体小四号 12pt，顶格无缩进，序号与题名空一格，无段前段后间距）
     - body: 正文段落（正文格式 样式 a7，宋体/TNR 小四号 12pt，首行缩进 2 字符 480 dxa，无段前段后间距）
-    - formula: 独立公式段落（正文格式 样式 a7，居中无缩进，OMML 公式对象）
-    - caption: 图题（Normal 样式，五号加粗，居中，段后 0.5 行）
-    - table_caption: 表题（Normal 样式，五号加粗，居中，段前 0.5 行、无段后间距）
+    - formula: 独立公式段落（条 样式 a6，左对齐无缩进，居中制表位 4156 dxa 放 OMML 公式 + 右对齐制表位 8313 dxa 放行末公式编号）
+    - caption: 图题（Normal 样式，五号 10.5pt 不加粗，居中，段后 0.5 行）
+    - table_caption: 表题（Normal 样式，五号 10.5pt 不加粗，居中，段前 0.5 行、无段后间距）
     - ref: 参考文献条目（参考文献 样式 a9，宋体/TNR 小四号 12pt，悬挂缩进 0.74cm = 420 dxa，无段前段后间距，带原生书签）
     """
     if style_type == "body" and "\n\n" in text:
@@ -659,7 +684,7 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
     if style_type == "h1":
         new_p.style = doc.styles["Normal"]
         configure_pPr_xml(new_p, before_lines=0.5, after_lines=0.5, line_twips=360,
-                          first_line_twips=560, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
+                          first_line_twips=None, first_line_chars=None, align=WD_ALIGN_PARAGRAPH.LEFT)
         add_rich_text_to_paragraph(
             new_p, text, cn_font="黑体", en_font="Times New Roman",
             size_pt=14.0, bold=False, highlight_diff=highlight_diff,
@@ -679,9 +704,9 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
         )
 
     elif style_type == "h3":
-        new_p.style = doc.styles["正文格式"]
+        new_p.style = doc.styles["条"]
         configure_pPr_xml(new_p, before_lines=None, after_lines=None, line_twips=360,
-                          first_line_twips=480, first_line_chars=2.0, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
+                          first_line_twips=None, first_line_chars=None, align=WD_ALIGN_PARAGRAPH.LEFT)
         add_rich_text_to_paragraph(
             new_p, text, cn_font="黑体", en_font="Times New Roman",
             size_pt=12.0, bold=False, highlight_diff=highlight_diff,
@@ -690,9 +715,9 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
         )
 
     elif style_type == "formula":
-        new_p.style = doc.styles["正文格式"]
+        new_p.style = doc.styles["条"]
         configure_pPr_xml(new_p, before_lines=None, after_lines=None, line_twips=360,
-                          first_line_twips=None, first_line_chars=None, align=WD_ALIGN_PARAGRAPH.CENTER)
+                          first_line_twips=None, first_line_chars=None, align=WD_ALIGN_PARAGRAPH.LEFT)
         append_display_omath(new_p, text, highlight=do_hl)
 
     elif style_type == "caption":
@@ -701,7 +726,7 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
                           first_line_twips=None, first_line_chars=None, align=WD_ALIGN_PARAGRAPH.CENTER)
         add_rich_text_to_paragraph(
             new_p, text, cn_font="宋体", en_font="Times New Roman",
-            size_pt=10.5, bold=True, highlight_diff=highlight_diff,
+            size_pt=10.5, bold=False, highlight_diff=highlight_diff,
             highlight_platform=highlight_platform,
             force_hl=force_hl, parse_citations=False
         )
@@ -712,7 +737,7 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
                           first_line_twips=None, first_line_chars=None, align=WD_ALIGN_PARAGRAPH.CENTER)
         add_rich_text_to_paragraph(
             new_p, text, cn_font="宋体", en_font="Times New Roman",
-            size_pt=10.5, bold=True, highlight_diff=highlight_diff,
+            size_pt=10.5, bold=False, highlight_diff=highlight_diff,
             highlight_platform=highlight_platform,
             force_hl=force_hl, parse_citations=False
         )
@@ -761,7 +786,7 @@ def insert_paragraph_before(doc, ref_p, text="", style_type="body", bold_prefix=
 
 def insert_image_before(doc, ref_p, img_path, caption_text, width_cm=15.2,
                         highlight_diff=False, highlight_platform=False, force_hl=False):
-    """在 ref_p 前插入居中高清图及五号加粗图题"""
+    """在 ref_p 前插入居中高清图及五号不加粗图题"""
     p_img = ref_p.insert_paragraph_before("")
     p_img.style = doc.styles["Normal"]
     configure_pPr_xml(p_img, before_lines=0.5, after_lines=None, line_twips=240,
@@ -902,11 +927,11 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
     for p in to_delete:
         p._element.getparent().remove(p._element)
 
-    # 确保“四、审核意见”保持原模板一级标题样式（黑体四号、首行缩进2字符 560 dxa、段前段后0.5行）
+    # 确保“四、审核意见”与全篇一级标题一致（黑体四号、顶格无缩进、段前段后0.5行）
     p_audit.text = ""
     p_audit.style = doc.styles["Normal"]
     configure_pPr_xml(p_audit, before_lines=0.5, after_lines=0.5, line_twips=360,
-                      first_line_twips=560, align=WD_ALIGN_PARAGRAPH.JUSTIFY)
+                      first_line_twips=None, first_line_chars=None, align=WD_ALIGN_PARAGRAPH.LEFT)
     r_audit = p_audit.add_run("四、审核意见")
     set_run_font(r_audit, cn_font="黑体", en_font="Times New Roman", size_pt=14.0, bold=False)
 
@@ -928,22 +953,22 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
 
     _add("{{hl}}1.1 {{/hl}}课题来源", style_type="h3", force_hl=False)
     _add(
-        "{{hl}}随着国家海洋强国战略的深入推进与现代海洋工程装备体系的持续完善，水下机器人在海洋资源勘探、水下基础设施运维及水域环境监测中的战略地位日益凸显。国家相关产业发展规划明确将水下探测、监测、作业及深海资源开发等水下机器人列为特种机器人重点研制方向；工业和信息化部、教育部、公安部等十七部门联合印发的《“机器人+”应用行动实施方案》（工信部联通装〔2022〕187号）进一步将安全应急和极限环境列为十大重点应用领域之一，明确提出要“推动空间、水下、深地等极限环境场景应用” [1]。{{/hl}}\n\n"
+        "{{hl}}随着国家海洋强国战略的深入推进与现代海洋工程装备体系的持续完善，水下机器人在海洋资源勘探、水下基础设施运维及水域环境监测中的战略地位日益凸显。国家相关产业发展规划明确将水下探测、监测、作业及深海资源开发等水下机器人列为特种机器人重点研制方向；工业和信息化部、教育部、公安部等十七部门联合印发的《“机器人+”应用行动实施方案》（工信部联通装〔2022〕187号）进一步将安全应急和极限环境列为十大重点应用领域之一，明确提出要“推动空间、水下、深地等极限环境场景应用”[1]。{{/hl}}\n\n"
         "{{hl}}在上述国家产业政策牵引与行业应用需求驱动下，水下航行器被广泛应用于海底油气管网巡检、海上风电大直径基桩与跨海桥隧水下结构物无损检测、大型水利水电大坝安全排查，以及现代海洋牧场立体监测等作业场景。在贴近被测复杂水下结构物或狭窄受限水域开展近距离观测与精细作业时，非定常水流扰动与水下视线受阻对航行器的低速机动与位姿保持能力提出了严格要求，亟需航行器能够在水流干扰环境下稳定可靠地完成空间定点悬停、姿态稳定、定深控制与定航控制等基本运动控制任务。{{/hl}}\n\n"
-        "{{hl}}在此背景下，{{/hl}}本课题来源于实验室在水下无人系统与智能海洋装备方向的科研实践与工程开发需求，{{platform_hl}}直接依托实验室{{hl}}已有的八推进器便携式水下航行器（Remotely Operated Vehicle，ROV）实验平台方案及相关结构数据开展研究（平台实物如图 1 所示）。该平台采用双圆筒耐压舱与碳纤维板紧凑集成的结构形式，具备水平面 4 台矢量倾斜与垂直面 4 台垂向对称布置的八推进器驱动能力{{/hl}}{{/platform_hl}}，但在流体环境中实现{{hl}}稳定可靠的闭环运动控制{{/hl}}仍面临诸多瓶颈：缺乏系统化的水动力建模与参数辨识，使得控制器难以获取物理平台的真实动力学特性；{{hl}}运动控制多依赖人工试凑的经验 PID 参数，且推力分配缺乏对推进器输出饱和边界的协调处理，未能在六自由度耦合层面上充分释放八推进器过驱动构型的控制潜力{{/hl}}；控制系统软件缺乏工业级模块化规范，难以直接面向工程部署开展高可信度的闭环验证。为此，本课题{{platform_hl}}立足于实验室已有平台的方案与数据基础{{/platform_hl}}，围绕“动力学建模、系统辨识、模型运动控制、八推进器控制分配及 PX4/SITL 闭环仿真验证”开展系统性研究，具有坚实的{{hl}}工程实践{{/hl}}背景与明确的技术升级需求。",
+        "{{hl}}在此背景下，{{/hl}}本课题来源于实验室在水下无人系统与智能海洋装备方向的科研实践与工程开发需求，{{platform_hl}}直接依托实验室{{hl}}已有的八推进器便携式水下航行器（Remotely Operated Vehicle，ROV）实验平台方案及相关结构数据开展研究（平台实物如图1所示）。该平台采用双圆筒耐压舱与碳纤维板紧凑集成的结构形式，具备水平面4台矢量倾斜与垂直面4台垂向对称布置的八推进器驱动能力{{/hl}}{{/platform_hl}}，但在流体环境中实现{{hl}}稳定可靠的闭环运动控制{{/hl}}仍面临诸多瓶颈：缺乏系统化的水动力建模与参数辨识，使得控制器难以获取物理平台的真实动力学特性；{{hl}}运动控制多依赖人工试凑的经验 PID 参数，且推力分配缺乏对推进器输出饱和边界的协调处理，未能在六自由度耦合层面上充分释放八推进器过驱动构型的控制潜力{{/hl}}；控制系统软件缺乏工业级模块化规范，难以直接面向工程部署开展高可信度的闭环验证。为此，本课题{{platform_hl}}立足于实验室已有平台的方案与数据基础{{/platform_hl}}，围绕“动力学建模、系统辨识、模型运动控制、八推进器控制分配及 PX4/SITL 闭环仿真验证”开展系统性研究，具有坚实的{{hl}}工程实践{{/hl}}背景与明确的技术升级需求。",
         style_type="body", force_hl=False
     )
 
     if os.path.exists(FIG1_ROV_PHOTO_PATH):
         insert_image_before(
             doc, p_audit, FIG1_ROV_PHOTO_PATH,
-            "{{platform_hl}}{{hl}}图 1  实验室八推进器便携式水下航行器实验平台实物图{{/hl}}{{/platform_hl}}",
+            "{{platform_hl}}{{hl}}图1 实验室八推进器便携式水下航行器实验平台实物图{{/hl}}{{/platform_hl}}",
             width_cm=15.2, highlight_diff=highlight_diff, highlight_platform=highlight_platform, force_hl=False
         )
 
     _add("{{hl}}1.2 {{/hl}}研究目的", style_type="h3", force_hl=False)
     _add(
-        "{{hl}}水下航行器在黏性流场中运动时具有显著的附加质量、水动力阻尼与重浮力恢复力矩等六自由度非线性耦合特性，且由常规欠驱动构型向八推进器过驱动构型拓展后，亟需同步解决多自由度耦合状态下的稳定闭环运动控制与受推力物理边界约束的多推进器协调控制分配两大核心问题。为此，本课题的研究目的在于：{{/hl}}{{platform_hl}}依托{{hl}}实验室{{/hl}}已有八推进器{{hl}}便携式{{/hl}}水下航行器平台，建立六自由度动力学与推进器模型；结合已有平台参数资料和相关{{hl}}动态响应{{/hl}}数据开展系统辨识与模型验证{{/platform_hl}}，明确系统辨识的输入输出关系，对关键未知{{hl}}水动力参数{{/hl}}进行{{hl}}估计{{/hl}}修正并分析模型适用范围；在此基础上，结合经验证的航行器模型特性{{hl}}补偿{{/hl}}与{{hl}}实时{{/hl}}状态反馈构建闭环运动控制系统，实现姿态、深度和航向等基本运动状态的{{hl}}稳定{{/hl}}闭环控制；{{platform_hl}}依据八推进器空间布局建立控制分配矩阵{{/platform_hl}}，考虑基本推力输出范围生成{{hl}}各推进器{{/hl}}推力指令；最终在PX4/SITL软件在环仿真环境中构建闭环系统，通过{{hl}}典型{{/hl}}运动工况与{{hl}}适量{{/hl}}流扰条件开展闭环仿真验证与量化性能评价，{{hl}}形成涵盖动力学建模与参数辨识、闭环运动控制、八推进器控制分配及 PX4/SITL 仿真验证的完整研究闭环{{/hl}}。",
+        "{{hl}}水下航行器在黏性流场中运动时具有显著的附加质量、水动力阻尼与重浮力恢复力矩等六自由度非线性耦合特性，且由常规欠驱动构型向八推进器过驱动构型拓展后，亟需同步解决多自由度耦合状态下的稳定闭环运动控制与受推力物理边界约束的多推进器协调控制分配两大核心问题。为此，本课题的研究目的在于：{{/hl}}{{platform_hl}}依托{{hl}}实验室{{/hl}}已有八推进器{{hl}}便携式{{/hl}}水下航行器平台，建立六自由度动力学与推进器模型；结合已有平台参数资料和相关{{hl}}动态响应{{/hl}}数据开展系统辨识与模型验证{{/platform_hl}}，明确系统辨识的输入输出关系，对关键未知{{hl}}水动力参数{{/hl}}进行{{hl}}估计{{/hl}}修正并分析模型适用范围；在此基础上，结合经验证的航行器模型特性{{hl}}补偿{{/hl}}与{{hl}}实时{{/hl}}状态反馈构建闭环运动控制系统，实现姿态、深度和航向等基本运动状态的{{hl}}稳定{{/hl}}闭环控制；{{platform_hl}}依据八推进器空间布局建立控制分配矩阵{{/platform_hl}}，考虑基本推力输出范围生成{{hl}}各推进器{{/hl}}推力指令；最终在 PX4/SITL 软件在环仿真环境中构建闭环系统，通过{{hl}}典型{{/hl}}运动工况与{{hl}}适量{{/hl}}流扰条件开展闭环仿真验证与量化性能评价，{{hl}}形成涵盖动力学建模与参数辨识、闭环运动控制、八推进器控制分配及 PX4/SITL 仿真验证的完整研究闭环{{/hl}}。",
         style_type="body", force_hl=False
     )
 
@@ -963,36 +988,36 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
 
     _add("{{hl}}2.1 {{/hl}}水下航行器动力学建模与系统辨识研究现状", style_type="h3", force_hl=False)
     _add(
-        "在动力学机理建模方面，水下航行器的运动学与动力学理论体系历经长期发展，已形成规范的标准框架。国际水池会议（ITTC）与国际海事组织（IMO）为海洋船舶与运载器的运动表述奠定了基础，挪威科技大学学者 Fossen 系统提出了海洋航行器六自由度非线性矢量建模理论体系{{hl}}[2]{{/hl}}。该体系将{{hl}}惯性坐标系与固连于航行器的附体坐标系{{/hl}}相结合，通过坐标变换矩阵统一描述位置、姿态{{hl}}角{{/hl}}与六自由度线速度、角速度，并将作用于机体上的广义力矩解构为刚体惯性矩阵、水动力附加质量矩阵、刚体与附加质量科氏向心力矩阵、线性与非线性水动力阻尼矩阵以及重力与浮力恢复力矩矢量，成为当前水下航行器建模与控制研究所公认的方程基础。{{hl}}对于搭载耐压水密舱、外部传感器探头及多推进器组件的非流线型多附体水下航行器（ROV）而言，其水动力特性与流线型回转体 AUV 存在明显差异。{{/hl}}Caccia 等较早对{{hl}}可变构型无人水下航行器{{/hl}}的动力学建模与水动力参数辨识展开了系统研究，{{hl}}指出了在标准六自由度方程结构下根据低速对称特性简化水动力矩阵并结合试验数据辨识主导水动力参数的可行性[3]。{{/hl}}\n\n"
-        "{{hl}}由于非流线型多附体航行器的水动力系数难以仅凭理论经验公式精确估算，而传统平面运动机构（PMM）大型水池拖曳试验设备成本高、周期长，因此在套用标准六自由度机理方程结构的基础上，利用平台几何质量先验参数确定刚体项、结合低成本原位动态响应数据拟合未知水动力系数，成为获取可用工程动力学模型的主流途径。{{/hl}}Ross、Fossen 与 Johansen 提出了基于自由衰减试验（Free Decay Tests）辨识水下航行器水动力系数的方法，通过释放初始位移并记录单自由度衰减振荡曲线即可解算出主要惯性与阻尼参数{{hl}}[4]{{/hl}}；Avila 等针对{{hl}}复杂构型{{/hl}}水下航行器开展了实验水动力模型辨识研究，结合阶跃推力激励与频域响应分析对附加质量与流体阻尼特性进行了定量标定{{hl}}[5]{{/hl}}；Chin 与 Lau 针对{{hl}}复杂外形 ROV{{/hl}} 开展了水动力阻尼建模与试验对比，分析了不同速度区间线性阻尼与二次非线性阻尼的主导权重{{hl}}[6]{{/hl}}。国内哈尔滨工程大学高婷、庞永杰等针对复杂构型水下航行器水动力系数计算方法开展了系统研究，结合几何特征分析与试验修正建立了面向控制设计的实用化模型{{hl}}[7]{{/hl}}。{{hl}}近年来，von Benzon 等面向主流八推进器 BlueROV2 平台建立了开源物理仿真与动力学基准，提供了标准化的模型参数与对比基础[8]。这表明，直接采用经典六自由度动力学方程结构、对水动力矩阵做合理工程简化，并结合特征激励响应数据通过参数拟合辨识未知水动力系数，是构建水下航行器实用化动力学模型的成熟路径。{{/hl}}",
+        "在动力学机理建模方面，水下航行器的运动学与动力学理论体系历经长期发展，已形成规范的标准框架。国际水池会议（ITTC）与国际海事组织（IMO）为海洋船舶与运载器的运动表述奠定了基础，挪威科技大学学者 Fossen{{hl}}[2]{{/hl}}系统提出了海洋航行器六自由度非线性矢量建模理论体系。该体系将{{hl}}惯性坐标系与固连于航行器的附体坐标系{{/hl}}相结合，通过坐标变换矩阵统一描述位置、姿态{{hl}}角{{/hl}}与六自由度线速度、角速度，并将作用于机体上的广义力矩解构为刚体惯性矩阵、水动力附加质量矩阵、刚体与附加质量科氏向心力矩阵、线性与非线性水动力阻尼矩阵以及重力与浮力恢复力矩矢量，成为当前水下航行器建模与控制研究所公认的方程基础。{{hl}}对于搭载耐压水密舱、外部传感器探头及多推进器组件的非流线型多附体水下航行器（ROV）而言，其水动力特性与流线型回转体 AUV 存在明显差异。{{/hl}}Caccia 等{{hl}}[3]{{/hl}}较早对{{hl}}可变构型无人水下航行器{{/hl}}的动力学建模与水动力参数辨识展开了系统研究，{{hl}}指出了在标准六自由度方程结构下根据低速对称特性简化水动力矩阵并结合试验数据辨识主导水动力参数的可行性。{{/hl}}\n\n"
+        "{{hl}}由于非流线型多附体航行器的水动力系数难以仅凭理论经验公式精确估算，而传统平面运动机构（PMM）大型水池拖曳试验设备成本高、周期长，因此在套用标准六自由度机理方程结构的基础上，利用平台几何质量先验参数确定刚体项、结合低成本原位动态响应数据拟合未知水动力系数，成为获取可用工程动力学模型的主流途径。{{/hl}}Ross、Fossen 与 Johansen{{hl}}[4]{{/hl}}提出了基于自由衰减试验（Free Decay Tests）辨识水下航行器水动力系数的方法，通过释放初始位移并记录单自由度衰减振荡曲线即可解算出主要惯性与阻尼参数；Avila 等{{hl}}[5]{{/hl}}针对{{hl}}复杂构型{{/hl}}水下航行器开展了实验水动力模型辨识研究，结合阶跃推力激励与频域响应分析对附加质量与流体阻尼特性进行了定量标定；Chin 与 Lau{{hl}}[6]{{/hl}}针对{{hl}}复杂外形 ROV{{/hl}} 开展了水动力阻尼建模与试验对比，分析了不同速度区间线性阻尼与二次非线性阻尼的主导权重。国内哈尔滨工程大学高婷、庞永杰等{{hl}}[7]{{/hl}}针对复杂构型水下航行器水动力系数计算方法开展了系统研究，结合几何特征分析与试验修正建立了面向控制设计的实用化模型。{{hl}}近年来，von Benzon 等[8]面向主流八推进器 BlueROV2 平台建立了开源物理仿真与动力学基准，提供了标准化的模型参数与对比基础。这表明，直接采用经典六自由度动力学方程结构、对水动力矩阵做合理工程简化，并结合特征激励响应数据通过参数拟合辨识未知水动力系数，是构建水下航行器实用化动力学模型的成熟路径。{{/hl}}",
         style_type="body", force_hl=False
     )
 
     _add("{{hl}}2.2 {{/hl}}水下航行器运动控制方法研究现状", style_type="h3", force_hl=False)
     _add(
-        "水下航行器运动控制的核心任务在于驱动推进器系统产生协调推力与力矩，使航行器的空间位置、潜深以及横滚、俯仰、偏航姿态稳定准确地跟踪给定的参考运动指令，并在存在未建模动态与外部水流干扰时维持良好的瞬态与稳态性能。{{hl}}在常规工程实践与开源水下飞控中，不依赖动力学模型的独立单回路 PID 或串级 PID 控制应用最为广泛，其在平稳水流环境下的定点悬停或低速巡航中具备结构简单、易于初调的优势 [2, 8]。然而，八推进器便携式水下航行器本质上是一个多自由度耦合的非线性系统：航行器在水平面做纵向或侧向机动时易诱发俯仰、垂荡或横滚耦合运动，且重力与浮力的恢复力矩随姿态倾角呈三角函数非线性变化。完全忽略航行器动力学特性的纯无模型 PID 控制，在较大幅度机动与外部水流扰动下容易出现响应滞后、超调偏大或多通道相互拉扯干扰，难以兼顾动态跟踪精度与抗扰稳定性。{{/hl}}\n\n"
-        "{{hl}}针对传统无模型 PID 控制的上述局限，将辨识得到的航行器动力学模型引入控制器设计、与实时状态误差反馈相结合，成为提升水下航行器闭环控制性能的重要途径。围绕如何有效利用动力学模型信息，国内外学者发展了多种代表性方法：{{/hl}}Fernandes 等针对观察级 ROV 提出了一种{{hl}}结合航行器动力学模型与高增益状态观测器的输出反馈运动控制系统，有效提升了深度、航向和水平面位置的闭环控制性能{{/hl}} [9]；Chu 等针对{{hl}}水下航行器水动力阻尼不确定性与推力受限问题{{/hl}}，提出了一种融合动力学模型前馈补偿与参数更新的轨迹跟踪控制方法，{{hl}}改善了耦合机动下的跟踪精度{{/hl}} [10]；{{hl}}围绕非线性解耦与抗扰，基于反馈线性化、动态逆以及增量非线性动态逆（INDI）的控制方法也受到广泛关注，例如 Slawik 等将增量动态逆方法引入水下航行器姿态控制中，利用机体惯性与控制效能模型配合高频状态反馈在局部时间微元内抵消未建模水动力阻尼与外部流扰，展现出良好的抗扰能力 [11]。{{/hl}}\n\n"
+        "水下航行器运动控制的核心任务在于驱动推进器系统产生协调推力与力矩，使航行器的空间位置、潜深以及横滚、俯仰、偏航姿态稳定准确地跟踪给定的参考运动指令，并在存在未建模动态与外部水流干扰时维持良好的瞬态与稳态性能。{{hl}}在常规工程实践与开源水下飞控中，不依赖动力学模型的独立单回路 PID 或串级 PID 控制应用最为广泛，其在平稳水流环境下的定点悬停或低速巡航中具备结构简单、易于初调的优势[2, 8]。然而，八推进器便携式水下航行器本质上是一个多自由度耦合的非线性系统：航行器在水平面做纵向或侧向机动时易诱发俯仰、垂荡或横滚耦合运动，且重力与浮力的恢复力矩随姿态倾角呈三角函数非线性变化。完全忽略航行器动力学特性的纯无模型 PID 控制，在较大幅度机动与外部水流扰动下容易出现响应滞后、超调偏大或多通道相互拉扯干扰，难以兼顾动态跟踪精度与抗扰稳定性。{{/hl}}\n\n"
+        "{{hl}}针对传统无模型 PID 控制的上述局限，将辨识得到的航行器动力学模型引入控制器设计、与实时状态误差反馈相结合，成为提升水下航行器闭环控制性能的重要途径。围绕如何有效利用动力学模型信息，国内外学者发展了多种代表性方法：{{/hl}}Fernandes 等[9]针对观测级 ROV 提出了一种{{hl}}结合航行器动力学模型与高增益状态观测器的输出反馈运动控制系统，有效提升了深度、航向和水平面位置的闭环控制性能{{/hl}}；Chu 等[10]针对{{hl}}水下航行器水动力阻尼不确定性与推力受限问题{{/hl}}，提出了一种融合动力学模型前馈补偿与参数更新的轨迹跟踪控制方法，{{hl}}改善了耦合机动下的跟踪精度{{/hl}}；{{hl}}围绕非线性解耦与抗扰，基于反馈线性化、动态逆以及增量非线性动态逆（INDI）的控制方法也受到广泛关注，例如 Slawik 等[11]将增量动态逆方法引入水下航行器姿态控制中，利用机体惯性与控制效能模型配合高频状态反馈在局部时间微元内抵消未建模水动力阻尼与外部流扰，展现出良好的抗扰能力。{{/hl}}\n\n"
         "{{hl}}综合国内外研究进展可知，相较于完全忽略物理特性的传统无模型 PID 控制，利用辨识验证后的航行器动力学模型对重浮力恢复力矩、主导水动力阻尼或惯性动态进行补偿，并结合实时状态误差反馈构建闭环控制器，能够有效改善多自由度耦合与流扰环境下的控制性能，也为本课题根据实机辨识模型特性比选合适的模型控制律（如模型前馈补偿、反馈线性化或增量动态逆等）提供了扎实的理论方法支撑。{{/hl}}",
         style_type="body", force_hl=False
     )
 
     _add("{{hl}}2.3 {{/hl}}多推进器控制分配研究现状", style_type="h3", force_hl=False)
     _add(
-        "对于配备八个推进器的{{hl}}便携式{{/hl}}水下航行器而言，其独立的物理执行器数量（8 个推进器）大于空间六自由度广义力与力矩的数量（6 个控制维度），属于典型的过驱动（Over-actuated）冗余控制系统。上层运动控制器计算出的是机体所需的六维期望广义力与力矩 {{math:tau_c_R6}}，而实际作用于水体的是各推进器产生的推力矢量 {{math:T_R8}}。如何根据推进器空间安装布局将期望广义力矩准确、低失真地映射为各推进器推力指令，即为控制分配（Control Allocation）的核心任务。\n\n"
-        "{{hl}}Johansen 与 Fossen 在控制分配综述中系统总结了过驱动系统无约束广义逆、加权伪逆、有界优化及再分配等典型推力分配方法的理论框架 [12]。在基础工程应用中，常采用固定比例混控表或无约束伪逆法直接求解推力指令；当某一推进器计算推力超出物理输出上下限时，常规做法通常直接进行硬截断（Clipping）。然而，由于八推进器空间布置存在多自由度力臂耦合，简单的超限硬截断会破坏原本各推进器之间的推力配比，导致合成的六维广义力和力矩方向发生偏转（即产生较大的控制分配残差与姿态耦合失真）。为此，考虑推进器基本推力输出范围约束的控制分配策略受到广泛重视：{{/hl}}程卫平、王猛等针对水下机器人推力器物理输出上限，研究了基于可行方向法等处理推力边界约束的分配算法，{{hl}}有效减小了推力饱和引起的力矩畸变 [13]{{/hl}}；孙广威等针对矢量推进 ROV 提出了兼顾推力约束与分配效率的多级推力分配策略，{{hl}}提升了多推进器协调能力 [14]。由此可见，{{/hl}}{{platform_hl}}依据平台八推进器真实几何构型建立准确的 {{math:6x8}} 控制分配矩阵{{/platform_hl}}{{hl}}，并在分配求解中引入推力输出范围约束处理策略以克服直接硬截断失真，是保障闭环控制系统稳定运行的关键环节。{{/hl}}",
+        "对于配备八个推进器的{{hl}}便携式{{/hl}}水下航行器而言，其独立的物理执行器数量（8个推进器）大于空间六自由度广义力与力矩的数量（6个控制维度），属于典型的过驱动（Over-actuated）冗余控制系统。上层运动控制器计算出的是机体所需的六维期望广义力与力矩{{math:tau_c_R6}}，而实际作用于水体的是各推进器产生的推力矢量{{math:T_R8}}。如何根据推进器空间安装布局将期望广义力矩准确、低失真地映射为各推进器推力指令，即为控制分配（Control Allocation）的核心任务。\n\n"
+        "{{hl}}Johansen 与 Fossen[12]在控制分配综述中系统总结了过驱动系统无约束广义逆、加权伪逆、有界优化及再分配等典型推力分配方法的理论框架。在基础工程应用中，常采用固定比例混控表或无约束伪逆法直接求解推力指令；当某一推进器计算推力超出物理输出上下限时，常规做法通常直接进行硬截断（Clipping）。然而，由于八推进器空间布置存在多自由度力臂耦合，简单的超限硬截断会破坏原本各推进器之间的推力配比，导致合成的六维广义力和力矩方向发生偏转（即产生较大的控制分配残差与姿态耦合失真）。为此，考虑推进器基本推力输出范围约束的控制分配策略受到广泛重视：{{/hl}}程卫平、王猛等{{hl}}[13]{{/hl}}针对水下机器人推力器物理输出上限，研究了基于可行方向法等处理推力边界约束的分配算法，{{hl}}有效减小了推力饱和引起的力矩畸变{{/hl}}；孙广威等{{hl}}[14]{{/hl}}针对矢量推进 ROV 提出了兼顾推力约束与分配效率的多级推力分配策略，{{hl}}提升了多推进器协调能力。由此可见，{{/hl}}{{platform_hl}}依据平台八推进器真实几何构型建立准确的{{math:6x8}}控制分配矩阵{{/platform_hl}}{{hl}}，并在分配求解中引入推力输出范围约束处理策略以克服直接硬截断失真，是保障闭环控制系统稳定运行的关键环节。{{/hl}}",
         style_type="body", force_hl=False
     )
 
     _add("{{hl}}2.4 {{/hl}}基于开源软件架构（PX4）的水下航行器闭环仿真研究现状", style_type="h3", force_hl=False)
     _add(
         "在现代机器人与无人系统的研发流程中，控制算法的模块化软件实现与闭环仿真验证平台至关重要。传统的控制算法验证多基于纯离线数学脚本（如纯 MATLAB 或 Python 数值积分），虽然便于验证控制律的数学收敛性，但脱离了嵌入式实时操作系统（RTOS）的多任务并发调度、模块间异步通信以及离散采样周期等工程约束，导致算法向实验平台机载硬件迁移时面临较大的代码重构工作量。\n\n"
-        "苏黎世联邦理工学院（ETH Zurich）Meier 等主导研发的 PX4 Autopilot 是当前无人系统领域广泛应用的开源嵌入式控制软件框架之一{{hl}}[15]{{/hl}}。PX4 采用“算法模块层与系统中间件层”解耦的架构设计，通过基于共享内存的微对象请求代理（uORB）异步发布/订阅总线实现状态估计、运动控制与控制分配模块之间的标准化数据交互；同时原生支持软件在环（SITL）闭环编译运行与 ULog 全状态日志记录。近年来，国内外研究团队开始将 PX4 架构拓展至水下无人航行器领域，{{hl}}如 Duecker 等依托基于 PX4 的软件在环仿真与水池实验完成了 HippoCampus X 水下平台的三维机动控制验证，证实了基于 PX4/SITL 构建水下航行器闭环仿真与验证体系的工程合理性[16]。{{/hl}}",
+        "苏黎世联邦理工学院（ETH Zurich）Meier 等{{hl}}[15]{{/hl}}主导研发的 PX4 Autopilot 是当前无人系统领域广泛应用的开源嵌入式控制软件框架之一。PX4 采用“算法模块层与系统中间件层”解耦的架构设计，通过基于共享内存的微对象请求代理（uORB）异步发布/订阅总线实现状态估计、运动控制与控制分配模块之间的标准化数据交互；同时原生支持软件在环（SITL）闭环编译运行与 ULog 全状态日志记录。近年来，国内外研究团队开始将 PX4 架构拓展至水下无人航行器领域，{{hl}}如 Duecker 等[16]依托基于 PX4 的软件在环仿真与水池实验完成了 HippoCampus X 水下平台的三维机动控制验证，证实了基于 PX4/SITL 构建水下航行器闭环仿真与验证体系的工程合理性。{{/hl}}",
         style_type="body", force_hl=False
     )
 
     _add("{{hl}}2.5 {{/hl}}发展趋势与对本课题的启示", style_type="h3", force_hl=False)
     _add(
-        "{{hl}}综合上述四个方向的研究现状与发展趋势，可以归纳出对本课题研究方案设计的关键启示：一是针对复杂多附体构型水下航行器理论估算误差大、大型水池试验成本高的问题，直接采用经典六自由度动力学方程框架，利用三维结构模型确定刚体惯性与重浮力先验参数，对附加质量与水动力阻尼矩阵做对角化简化，并结合阶跃或自由衰减等特征响应数据通过最小二乘拟合辨识未知参数，能够以较低成本获取满足控制器设计与仿真需求的实用化模型；二是针对传统无模型 PID 控制在多轴耦合与流扰下易超调、常规无约束伪逆直接硬截断在推力超限时易引起合成力矩方向失真的局限，在运动控制层引入辨识模型的动态特性补偿并与状态反馈相结合（保留具体模型控制律的横向比选空间），在控制分配层建立准确的 {{math:6x8}} 控制分配矩阵并引入推力输出范围约束处理策略，能够有效提升闭环跟踪性能与多推进器协调能力；三是克服纯离线数学脚本脱离嵌入式软件架构的局限，将辨识后的航行器动力学模型、运动控制模块与八推进器控制分配模块统一集成至 PX4/SITL 软件在环仿真环境中，通过 uORB 异步消息总线开展多工况闭环验证，能够有效弥合理论算法设计与工程软件实现之间的差距。{{/hl}}",
+        "{{hl}}综合上述四个方向的研究现状与发展趋势，可以归纳出对本课题研究方案设计的关键启示：一是针对复杂多附体构型水下航行器理论估算误差大、大型水池试验成本高的问题，直接采用经典六自由度动力学方程框架，利用三维结构模型确定刚体惯性与重浮力先验参数，对附加质量与水动力阻尼矩阵做对角化简化，并结合阶跃或自由衰减等特征响应数据通过最小二乘拟合辨识未知参数，能够以较低成本获取满足控制器设计与仿真需求的实用化模型；二是针对传统无模型 PID 控制在多轴耦合与流扰下易超调、常规无约束伪逆直接硬截断在推力超限时易引起合成力矩方向失真的局限，在运动控制层引入辨识模型的动态特性补偿并与状态反馈相结合（保留具体模型控制律的横向比选空间），在控制分配层建立准确的{{math:6x8}}控制分配矩阵并引入推力输出范围约束处理策略，能够有效提升闭环跟踪性能与多推进器协调能力；三是克服纯离线数学脚本脱离嵌入式软件架构的局限，将辨识后的航行器动力学模型、运动控制模块与八推进器控制分配模块统一集成至 PX4/SITL 软件在环仿真环境中，通过 uORB 异步消息总线开展多工况闭环验证，能够有效弥合理论算法设计与工程软件实现之间的差距。{{/hl}}",
         style_type="body", force_hl=False
     )
 
@@ -1006,7 +1031,7 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
 
     _add("{{hl}}1.1 {{/hl}}预期研究目标", style_type="h3", force_hl=False)
     _add(
-        "{{hl}}本课题{{/hl}}{{platform_hl}}{{hl}}围绕实验室已有八推进器便携式水下航行器平台{{/hl}}{{/platform_hl}}{{hl}}，预期达成以下四项研究目标：一是构建并验证能够反映航行器主导动态特性的六自由度动力学模型，并确定单推进器静态推力映射关系；二是设计结合辨识模型动态特性补偿与实时状态误差反馈的闭环运动控制方法，提升多自由度耦合与流扰条件下的跟踪性能；三是{{/hl}}{{platform_hl}}{{hl}}建立基于平台真实推进器空间布局的 {{math:6x8}} 控制分配矩阵{{/hl}}{{/platform_hl}}{{hl}}及推力边界约束处理策略，抑制推力饱和引起的合成力矩失真；四是在 PX4/SITL 软件在环环境中完成上述模块的闭环集成，并获取典型运动与外部扰动工况下的量化验证结果。{{/hl}}",
+        "{{hl}}本课题{{/hl}}{{platform_hl}}{{hl}}围绕实验室已有八推进器便携式水下航行器平台{{/hl}}{{/platform_hl}}{{hl}}，预期达成以下四项研究目标：一是构建并验证能够反映航行器主导动态特性的六自由度动力学模型，并确定单推进器静态推力映射关系；二是设计结合辨识模型动态特性补偿与实时状态误差反馈的闭环运动控制方法，提升多自由度耦合与流扰条件下的跟踪性能；三是{{/hl}}{{platform_hl}}{{hl}}建立基于平台真实推进器空间布局的{{math:6x8}}控制分配矩阵{{/hl}}{{/platform_hl}}{{hl}}及推力边界约束处理策略，抑制推力饱和引起的合成力矩失真；四是在 PX4/SITL 软件在环环境中完成上述模块的闭环集成，并获取典型运动与外部扰动工况下的量化验证结果。{{/hl}}",
         style_type="body", force_hl=False
     )
 
@@ -1027,7 +1052,7 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
     )
 
     _add(
-        "{{platform_hl}}{{hl}}根据平台八推进器空间安装位置与推力方向建立 {{math:6x8}} 控制分配矩阵{{/hl}}{{/platform_hl}}{{hl}}，考虑推进器基本推力输出范围引入推力边界约束处理策略，将期望广义力和力矩转换为各推进器推力指令。通过与无约束直接硬截断基准对比，结合控制分配误差和推进器饱和情况评价分配效果。{{/hl}}",
+        "{{platform_hl}}{{hl}}根据平台八推进器空间安装位置与推力方向建立{{math:6x8}}控制分配矩阵{{/hl}}{{/platform_hl}}{{hl}}，考虑推进器基本推力输出范围引入推力边界约束处理策略，将期望广义力和力矩转换为各推进器推力指令。通过与无约束直接硬截断基准对比，结合控制分配误差和推进器饱和情况评价分配效果。{{/hl}}",
         style_type="body", bold_prefix="3） 八推进器控制分配：", force_hl=False
     )
 
@@ -1046,46 +1071,46 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
     )
 
     _add(
-        "{{hl}}建立惯性坐标系{{/hl}} {{math:n_coord}} 与附体坐标系 {{math:b_coord}}，记航行器广义位置与姿态角矢量为 {{math:eta_def_R6}}，附体系线速度与角速度矢量为 {{math:nu_def_R6}}。{{hl}}采用标准六自由度运动学与动力学微分方程描述航行器运动：{{/hl}}",
+        "{{hl}}建立惯性坐标系{{/hl}}{{math:n_coord}}与附体坐标系{{math:b_coord}}，记航行器广义位置与姿态角矢量为{{math:eta_def_R6}}，附体系线速度与角速度矢量为{{math:nu_def_R6}}。{{hl}}采用标准六自由度运动学与动力学微分方程描述航行器运动：{{/hl}}",
         style_type="body", bold_prefix="1） 水下航行器动力学建模与系统辨识方法：", force_hl=False
     )
     _add("eq1_6dof", style_type="formula")
     _add(
-        "式中，{{math:J_eta_R6x6}} 为附体系到惯性系的坐标转换矩阵；{{math:M_sum}} 为刚体惯性与附加质量矩阵之和；{{math:C_sum}} 为科氏力与向心力矩阵；{{math:D_sum}} 为线性与二次非线性水动力阻尼矩阵；{{math:g_eta_R6}} 为重力与浮力恢复力及力矩矢量；{{math:tau_R6}} 为推进器作用于机体的广义控制力与力矩；{{math:tau_d_R6}} 为外部水流扰动项。\n\n"
-        "{{platform_hl}}{{hl}}在参数获取与辨识上，首先由图 1 所示平台的三维装配模型直接提取整机质量、转动惯量张量及重浮心相对坐标，计算刚体惯性矩阵 {{math:M_RB}}、刚体科氏力矩阵 {{math:C_RB_nu}} 与恢复力矩项 {{math:g_eta}}；依据单推进器推力测试数据，通过多项式拟合建立控制输入到静态推力输出 {{math:T_i}} 的映射函数，并确定正向与反向推力上下界 {{math:T_interval}}。其次，考虑便携式水下航行器低速作业特点与机体近似对称性，忽略次要的非对角交叉水动力耦合项，将附加质量矩阵 {{math:M_A_diag}}（其中 {{math:X_u_dot_N_r_dot}} 为各自由度附加质量水动力导数）以及线性、二次阻尼矩阵 {{math:D_lin}}、{{math:D_quad_nu}} 简化为对角阵。在各自由度阶跃推力或自由衰减特征激励下，将式 (1) 整理为关于未知对角水动力系数的参数化辨识方程，利用输入推力与速度/姿态响应序列，通过最小二乘法或非线性最小二乘曲线拟合求解未知参数，并将辨识参数代回式 (1) 对比模型预测曲线与实测/基准响应数据之间的偏差，验证模型有效性。{{/hl}}{{/platform_hl}}",
+        "式中，{{math:J_eta_R6x6}}为附体系到惯性系的坐标转换矩阵；{{math:M_sum}}为刚体惯性与附加质量矩阵之和；{{math:C_sum}}为科氏力与向心力矩阵；{{math:D_sum}}为线性与二次非线性水动力阻尼矩阵；{{math:g_eta_R6}}为重力与浮力恢复力及力矩矢量；{{math:tau_R6}}为推进器作用于机体的广义控制力与力矩；{{math:tau_d_R6}}为外部水流扰动项。\n\n"
+        "{{platform_hl}}{{hl}}在参数获取与辨识上，首先由图1所示平台的三维装配模型直接提取整机质量、转动惯量张量及重浮心相对坐标，计算刚体惯性矩阵{{math:M_RB}}、刚体科氏力矩阵{{math:C_RB_nu}}与恢复力矩项{{math:g_eta}}；依据单推进器推力测试数据，通过多项式拟合建立控制输入到静态推力输出{{math:T_i}}的映射函数，并确定正向与反向推力上下界{{math:T_interval}}。其次，考虑便携式水下航行器低速作业特点与机体近似对称性，忽略次要的非对角交叉水动力耦合项，将附加质量矩阵{{math:M_A_diag}}（其中{{math:X_u_dot_N_r_dot}}为各自由度附加质量水动力导数）以及线性、二次阻尼矩阵{{math:D_lin}}、{{math:D_quad_nu}}简化为对角阵。在各自由度阶跃推力或自由衰减特征激励下，将式(1)整理为关于未知对角水动力系数的参数化辨识方程，利用输入推力与速度/姿态响应序列，通过最小二乘法或非线性最小二乘曲线拟合求解未知参数，并将辨识参数代回式(1)对比模型预测曲线与实测/基准响应数据之间的偏差，验证模型有效性。{{/hl}}{{/platform_hl}}",
         style_type="body", force_hl=False
     )
 
     _add(
-        "{{hl}}设参考位置与姿态指令为 {{math:eta_r}}、参考速度为 {{math:nu_r}}，定义位置/姿态误差 {{math:e_eta_def}} 与速度误差 {{math:e_nu_def}}。控制器输出的六维期望广义控制力与力矩 {{math:tau_c_def}} 由闭环状态反馈项 {{math:tau_fb}} 与动力学模型补偿项 {{math:tau_comp}} 叠加构成（即 {{math:tau_c_sum}}）。其中，闭环状态误差反馈项 {{math:tau_fb}} 针对水平位置/速度、潜深 {{math:z_var}}、横滚与俯仰姿态角 {{math:phi_theta}} 及航向角 {{math:psi_var}} 等控制通道，采用基于位置/姿态误差 {{math:e_eta}} 与速度/角速度误差 {{math:e_nu}} 的串级或比例-积分-微分（PID）反馈结构，保障基础闭环稳定性并消除稳态误差；动力学模型特性补偿项 {{math:tau_comp}} 结合模块一辨识得到的航行器动力学模型，在控制律中引入恢复力矩项 {{math:g_eta}} 与主导水动力阻尼项 {{math:D_nu_vec}} 的前馈补偿，或结合惯性矩阵 {{math:M_mat}} 与状态导数信息构造反馈线性化、增量动态逆（INDI）等动态逆补偿律，用于主动抵消已知非线性水动力负载与多轴耦合影响。当取 {{math:tau_comp_zero}} 时，控制器即为传统无模型 PID 控制；研究过程中结合辨识模型特性确定具体的模型补偿控制律，并统一以无模型 PID 控制作为对比基准，量化评估模型补偿对降低机动超调与加快响应速度的作用。{{/hl}}",
+        "{{hl}}设参考位置与姿态指令为{{math:eta_r}}、参考速度为{{math:nu_r}}，定义位置/姿态误差{{math:e_eta_def}}与速度误差{{math:e_nu_def}}。控制器输出的六维期望广义控制力与力矩{{math:tau_c_def}}由闭环状态反馈项{{math:tau_fb}}与动力学模型补偿项{{math:tau_comp}}叠加构成（即{{math:tau_c_sum}}）。其中，闭环状态误差反馈项{{math:tau_fb}}针对水平位置/速度、潜深{{math:z_var}}、横滚与俯仰姿态角{{math:phi_theta}}及航向角{{math:psi_var}}等控制通道，采用基于位置/姿态误差{{math:e_eta}}与速度/角速度误差{{math:e_nu}}的串级或比例-积分-微分（PID）反馈结构，保障基础闭环稳定性并消除稳态误差；动力学模型特性补偿项{{math:tau_comp}}结合模块一辨识得到的航行器动力学模型，在控制律中引入恢复力矩项{{math:g_eta}}与主导水动力阻尼项{{math:D_nu_vec}}的前馈补偿，或结合惯性矩阵{{math:M_mat}}与状态导数信息构造反馈线性化、增量动态逆（INDI）等动态逆补偿律，用于主动抵消已知非线性水动力负载与多轴耦合影响。当取{{math:tau_comp_zero}}时，控制器即为传统无模型 PID 控制；研究过程中结合辨识模型特性确定具体的模型补偿控制律，并统一以无模型 PID 控制作为对比基准，量化评估模型补偿对降低机动超调与加快响应速度的作用。{{/hl}}",
         style_type="body", bold_prefix="2） 基于模型与状态反馈的闭环运动控制方法：", force_hl=False
     )
 
     _add(
-        "{{platform_hl}}{{hl}}结合图 1(b) 所示的推进器空间排布，将水平面四角呈 {{math:pm_45_deg}} 矢量倾斜对称安装的 4 台推进器记为 {{math:T1_T4}}（主控纵荡、横荡与偏航），将垂直面两侧垂向对称安装的 4 台推进器记为 {{math:T5_T8}}（主控垂荡、横滚与俯仰）。{{/hl}}设第 {{math:i_idx}} 台推进器（{{math:i_1_8}}）在附体系下的安装位置矢量为 {{math:r_i_R3}}、单位推力方向矢量为 {{math:d_i_R3}}，构造 {{math:6x8}} 控制分配矩阵 {{math:B_def}}{{/platform_hl}}，并在推力边界约束下求解推进器推力指令矢量 {{math:T_vec_R8}}：",
+        "{{platform_hl}}{{hl}}结合图1(b)所示的推进器空间排布，将水平面四角呈{{math:pm_45_deg}}矢量倾斜对称安装的4台推进器记为{{math:T1_T4}}（主控纵荡、横荡与偏航），将垂直面两侧垂向对称安装的4台推进器记为{{math:T5_T8}}（主控垂荡、横滚与俯仰）。{{/hl}}设第{{math:i_idx}}台推进器（{{math:i_1_8}}）在附体系下的安装位置矢量为{{math:r_i_R3}}、单位推力方向矢量为{{math:d_i_R3}}，构造{{math:6x8}}控制分配矩阵{{math:B_def}}{{/platform_hl}}，并在推力边界约束下求解推进器推力指令矢量{{math:T_vec_R8}}：",
         style_type="body", bold_prefix="3） 八推进器控制分配方法：", force_hl=False
     )
     _add("eq2_alloc", style_type="formula")
     _add(
-        "{{hl}}具体求解时，先由 Moore-Penrose 伪逆或加权伪逆 {{math:B_pinv_def}} 计算最小二乘范数基准解 {{math:T0_def}}。当期望广义力/力矩较大导致 {{math:T0}} 中存在超出 {{math:T_interval}} 的通道时，引入推力边界约束处理策略（如保方向比例缩放、饱和通道固定后的冗余自由度再分配或有界二次规划求解），避免直接硬截断（{{math:clip_T0}}）引起的合成力矩方向偏转；通过与无约束伪逆直接硬截断方案对比，分析控制分配残差 {{math:e_tau}} 与推进器饱和情况，最后经单推进器静态逆映射转换为执行器控制指令。{{/hl}}",
+        "{{hl}}具体求解时，先由 Moore-Penrose 伪逆或加权伪逆{{math:B_pinv_def}}计算最小二乘范数基准解{{math:T0_def}}。当期望广义力/力矩较大导致{{math:T0}}中存在超出{{math:T_interval}}的通道时，引入推力边界约束处理策略（如保方向比例缩放、饱和通道固定后的冗余自由度再分配或有界二次规划求解），避免直接硬截断（{{math:clip_T0}}）引起的合成力矩方向偏转；通过与无约束伪逆直接硬截断方案对比，分析控制分配残差{{math:e_tau_def}}与推进器饱和情况，最后经单推进器静态逆映射转换为执行器控制指令。{{/hl}}",
         style_type="body", force_hl=False
     )
 
     _add(
-        "{{hl}}依托 PX4 模块化软件架构与 uORB 异步发布-订阅消息总线，在 SITL 环境中集成水下航行器六自由度动力学仿真模块（订阅推进器指令并按式 (1) 实时数值积分发布位姿与速度 uORB 消息）、运动控制模块（订阅参考指令与状态反馈消息，计算并发布期望广义力/力矩 {{math:tau_c}}）以及八推进器控制分配模块（订阅 {{math:tau_c}}，按式 (2) 解算并发布 8 通道推进器推力指令）。设置空间定点悬停、姿态阶跃稳定、定深跟踪、定航转向以及叠加外部水流扰动 {{math:tau_d}} 等仿真工况，通过 ULog 日志记录全状态响应数据，对比评估不同控制与分配方案的位置/姿态跟踪误差 {{math:e_eta}}、超调量、调节时间及控制分配残差 {{math:e_tau}}。{{/hl}}",
+        "{{hl}}依托 PX4 模块化软件架构与 uORB 异步发布-订阅消息总线，在 SITL 环境中集成水下航行器六自由度动力学仿真模块（订阅推进器指令并按式(1)实时数值积分发布位姿与速度 uORB 消息）、运动控制模块（订阅参考指令与状态反馈消息，计算并发布期望广义力/力矩{{math:tau_c}}）以及八推进器控制分配模块（订阅{{math:tau_c}}，按式(2)解算并发布8通道推进器推力指令）。设置空间定点悬停、姿态阶跃稳定、定深跟踪、定航转向以及叠加外部水流扰动{{math:tau_d}}等仿真工况，通过 ULog 日志记录全状态响应数据，对比评估不同控制与分配方案的位置/姿态跟踪误差{{math:e_eta}}、超调量、调节时间及控制分配残差{{math:e_tau}}。{{/hl}}",
         style_type="body", bold_prefix="4） PX4/SITL 闭环仿真验证方法：", force_hl=False
     )
 
     # 2.2 技术路线图
     _add("{{hl}}2.2 技术路线图{{/hl}}", style_type="h3", force_hl=False)
     _add(
-        "{{hl}}本课题围绕上述四个核心模块展开研究，总体技术路线如图 2 所示。{{/hl}}",
+        "{{hl}}本课题围绕上述四个核心模块展开研究，总体技术路线如图2所示。{{/hl}}",
         style_type="body", force_hl=False
     )
 
     if os.path.exists(FIG2_ROADMAP_PATH):
         insert_image_before(
-            doc, p_audit, FIG2_ROADMAP_PATH, "{{hl}}图 2  课题总体研究技术路线图{{/hl}}",
+            doc, p_audit, FIG2_ROADMAP_PATH, "{{hl}}图2 课题总体研究技术路线图{{/hl}}",
             width_cm=15.2, highlight_diff=highlight_diff, force_hl=False
         )
 
@@ -1093,7 +1118,7 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
     _add("{{hl}}2.3 {{/hl}}可行性分析", style_type="h3", force_hl=False)
     _add("本课题研究方案的可行性主要体现在以下三个方面：", style_type="body", force_hl=False)
     _add(
-        "水下航行器六自由度动力学建模（Fossen模型框架）、系统参数辨识、基于模型与状态反馈的运动控制以及多推进器控制分配矩阵求解均具有成熟完备的理论体系。各研究模块之间物理接口清晰（以运动状态、期望广义力/力矩、各推进器推力指令依次传递），理论方案合理可行。",
+        "水下航行器六自由度动力学建模（Fossen 模型框架）、系统参数辨识、基于模型与状态反馈的运动控制以及多推进器控制分配矩阵求解均具有成熟完备的理论体系。各研究模块之间物理接口清晰（以运动状态、期望广义力/力矩、各推进器推力指令依次传递），理论方案合理可行。",
         style_type="body", bold_prefix="1） 理论与方法可行性：", force_hl=False
     )
     _add(
@@ -1101,20 +1126,20 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
         style_type="body", bold_prefix="2） 平台与数据基础可行性：", force_hl=False
     )
     _add(
-        "PX4开源软件框架提供了完善的SITL软件在环仿真环境、标准化的uORB模块间通信机制以及ULog数据记录工具。前期已完成PX4架构与控制链路调研及基础仿真环境测试，具备在规定时间内完成模块集成与多工况仿真验证的软硬件条件。",
+        "PX4 开源软件框架提供了完善的 SITL 软件在环仿真环境、标准化的 uORB 模块间通信机制以及 ULog 数据记录工具。前期已完成 PX4 架构与控制链路调研及基础仿真环境测试，具备在规定时间内完成模块集成与多工况仿真验证的软硬件条件。",
         style_type="body", bold_prefix="3） 软件与仿真环境可行性：", force_hl=False
     )
 
     # 3. 工作进度安排
     _add("{{hl}}3. {{/hl}}工作进度安排", style_type="h2", force_hl=False)
     _add(
-        "根据学校毕业论文总体进程与任务书要求，本课题各阶段工作进度安排如{{hl}}表 1{{/hl}} 所示：",
+        "根据学校毕业论文总体进程与任务书要求，本课题各阶段工作进度安排如{{hl}}表1{{/hl}}所示：",
         style_type="body", force_hl=False
     )
 
-    _add("{{hl}}表 1{{/hl}}  毕业论文工作进度安排", style_type="table_caption", force_hl=False)
+    _add("{{hl}}表1{{/hl}} 毕业论文工作进度安排", style_type="table_caption", force_hl=False)
     sched_data = [
-        ("序 号", "论文各阶段名称", "时间安排（教学周）"),
+        ("序号", "论文各阶段名称", "时间安排（教学周）"),
         ("1", "课题申报、审核", "2026.7.13~2026.7.24\n（第20~21周）"),
         ("2", "学生选课、选题", "2026.8.4~2026.8.7\n（第23周）"),
         ("3", "下达任务书及任务书审核", "2026.8.17~2026.8.21\n（第25周）"),
