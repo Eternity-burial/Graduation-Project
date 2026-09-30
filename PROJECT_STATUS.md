@@ -177,5 +177,9 @@
     3. **图表题注格式统一（批注 9）**：`图1`、`图2`、`表1` 题注统一设为五号（`10.5pt`）宋体+Times New Roman、**不加粗**（`bold=False`）、居中，题注号与标题间保留 1 个半角空格；
     4. **公式居中与编号行尾右对齐（批注 8）**：式(1)、式(2) 段落采用居中制表位（`pos="4156"` dxa）+ 右对齐制表位（`pos="8313"` dxa），实现公式主体居中、编号 `(1)` 与 `(2)` 严格居右至行尾；将式(2)精简为单行 $\boldsymbol{\tau}=\boldsymbol{B}\boldsymbol{T}, \ \boldsymbol{b}_i=[\boldsymbol{d}_i; \boldsymbol{r}_i\times\boldsymbol{d}_i]\in\mathbb{R}^6, \ \boldsymbol{T}_{\min}\le\boldsymbol{T}\le\boldsymbol{T}_{\max}$，并将残差定义 $\boldsymbol{e}_{\tau}=\boldsymbol{\tau}_c-\boldsymbol{B}\boldsymbol{T}$ 移入紧随其后的正文中；
     5. **空格清理与作者引文前置（批注 2、3、5、6、7）**：去除全篇中文与纯数字（`图1`、`图1(b)`、`图2`、`表1`、`式(1)`、`式(2)`、`4台`、`8个`、`6个`、`8通道`）及行内公式两侧的多余半角空格，去除 OMML `<m:t>` 运算符两侧多余空格；将正文作者述及型引文 `[2]~[16]` 全部紧随作者名后（如 `Fossen[2]`、`Caccia 等[3]` 等）；同步更新 [开题报告_全文草稿.md](file:///d:/tj/Graduation%20Project/开题报告/开题报告_全文草稿.md) 与 [build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py) 并重新生成全部 `.docx` 文档。
+  - **重构 [build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py) 为 100% 原位继承学校官方模板版本**：
+    1. **移除 `remove_protection(doc)`**：100% 保留官方模板 [2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 中的 `<w:documentProtection w:edit="readOnly" w:formatting="1" w:enforcement="0"/>` 及全部 25 对 `<w:permStart>` / `<w:permEnd>` 灰色可编辑区域标记（顺序与 ID 与原模板 100% 一致）；
+    2. **保留封面大标题与四个原生一级标题节点**：保留封面原生大标题（`paraId="1907C676"`）与四个原生一级标题段落（`paraId="7C055745"`、`6385DA06"`、`41E5FE5D"`、`2CA8248D"`），仅在 `一、...`、`二、...`、`三、...` 标题内部的 `permStart..permEnd` 可编辑框内将“毕业设计（论文）”原位替换为“毕业论文”，保留原模板一级标题自带的首行缩进 2 字符（`firstLine="560"`）与硬分页符；
+    3. **三大正文模块严格嵌入模板原生可编辑容器**：将第一部分（课题背景）、第二部分（方案介绍及表1）和第三部分（参考文献 `[1]~[16]`）分别填入原模板对应的三个 `<w:permStart> ... <w:permEnd>` 容器（`id="1319923814"`、`1741359920`、`61024898`）内部，重新生成正式版、学长审阅版与修改对比版 `.docx`。
 
 

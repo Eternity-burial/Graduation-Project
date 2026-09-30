@@ -815,15 +815,23 @@ def set_table_borders(table):
         el.set(qn("w:color"), "000000")
 
 
-def remove_protection(doc):
-    """移除模板中的 permStart/permEnd 及 documentProtection，使生成的文档可自由编辑与插入插件"""
-    body = doc.element.body
-    for tag in ("w:permStart", "w:permEnd"):
-        for el in body.findall(".//" + qn(tag)):
-            el.getparent().remove(el)
-    settings = doc.settings.element
-    for dp in settings.findall(".//" + qn("w:documentProtection")):
-        dp.getparent().remove(dp)
+def attach_perm_start(p, perm_id):
+    """在段落 <w:pPr> 之后原位挂载模板的 <w:permStart w:id="..." w:edGrp="everyone"/> 权限起点"""
+    ps = OxmlElement("w:permStart")
+    ps.set(qn("w:id"), str(perm_id))
+    ps.set(qn("w:edGrp"), "everyone")
+    pPr = p._element.find(qn("w:pPr"))
+    if pPr is not None:
+        pPr.addnext(ps)
+    else:
+        p._element.insert(0, ps)
+
+
+def update_native_h1_type(p_h1, doc_type="毕业论文"):
+    """在原模板一级标题的 permStart..permEnd 可编辑区域内，将‘毕业设计（论文）’原位替换为‘毕业论文’，100% 保留原段落节点、缩进与权限标记"""
+    for t_el in p_h1._element.findall(".//" + qn("w:t")):
+        if t_el.text and "毕业设计（论文）" in t_el.text:
+            t_el.text = t_el.text.replace("毕业设计（论文）", doc_type)
 
 
 def set_repeat_table_header(row):
@@ -841,18 +849,14 @@ def set_row_cant_split(row):
 
 
 def set_cover_cell_text(cell, text, cn_font="宋体", en_font="Times New Roman", size_pt=14.0):
-    """填充封面信息表单元格：严格保持原模板 vAlign='bottom'（靠底贴线对齐）、无段间距、单倍行距与四号字"""
-    cell.text = ""
-    cell.vertical_alignment = WD_ALIGN_VERTICAL.BOTTOM
+    """原位填充封面信息表可编辑单元格：保留单元格原生 <w:tcPr> (vAlign='bottom') 与 <w:p> 节点，仅清空占位 <w:r> 并居中写入四号字"""
     p = cell.paragraphs[0]
+    for r_el in list(p._p.findall(qn("w:r"))):
+        p._p.remove(r_el)
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    pPr = p._p.get_or_add_pPr()
-    for tag in ("w:spacing", "w:ind"):
-        old = pPr.find(qn(tag))
-        if old is not None:
-            pPr.remove(old)
-    r = p.add_run(text)
-    set_run_font(r, cn_font=cn_font, en_font=en_font, size_pt=size_pt, bold=False)
+    if text:
+        r = p.add_run(text)
+        set_run_font(r, cn_font=cn_font, en_font=en_font, size_pt=size_pt, bold=False)
 
 
 def set_cell_text(cell, text, cn_font="宋体", en_font="Times New Roman", size_pt=14.0,
@@ -877,11 +881,10 @@ def set_cell_text(cell, text, cn_font="宋体", en_font="Times New Roman", size_
 
 def build_single_docx(out_docx_path, highlight_mode="none"):
     """
-    构建单个开题报告 .docx 文件
-    highlight_mode:
-      - 'none': 纯净正式版 (100% 无任何高亮)
-      - 'diff': 新旧版本修改对比高亮版 (高亮 {{hl}}...{{/hl}})
-      - 'platform': 实验室学长审阅确认版 (仅高亮 {{platform_hl}}...{{/platform_hl}} 涉及实验室已有平台/数据的内容)
+    基于官方模板《2毕业设计(论文)开题报告.docx》原位继承构建开题报告 .docx 文件：
+    - 100% 保留模板原有的 25 对 <w:permStart>/<w:permEnd> 可编辑区域与 <w:documentProtection>
+    - 100% 保留封面原生大标题与四个原生一级标题段落节点（仅在 permStart 内将“毕业设计（论文）”替换为“毕业论文”）
+    - 第一、二、三部分内容严格填充在模板原有的三个可编辑区域容器（1319923814、1741359920、61024898）内部
     """
     highlight_diff = (highlight_mode == "diff")
     highlight_platform = (highlight_mode == "platform")
@@ -890,18 +893,8 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
         shutil.copy2(out_docx_path, out_docx_path + ".bak")
 
     doc = docx.Document(TEMPLATE_PATH)
-    remove_protection(doc)
 
-    # 1. 更新封面大标题：统一为“毕业论文开题报告”
-    for p in doc.paragraphs:
-        if "毕业设计(论文)开题报告" in p.text:
-            p.text = ""
-            p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-            r = p.add_run("毕业论文开题报告")
-            set_run_font(r, cn_font="黑体", en_font="Times New Roman", size_pt=36.0, bold=False)
-            break
-
-    # 2. 填充封面信息表 (Table 0)：使用 set_cover_cell_text 保持底部对齐与原模板一致
+    # 1. 原位填充封面信息表 (Table 0) 可编辑单元格，保留左侧列所有 permStart/permEnd 及底部对齐属性
     t_info = doc.tables[0]
     set_cover_cell_text(t_info.cell(0, 1), "基于PX4的水下航行器模型控制方法研究", size_pt=14.0)
     set_cover_cell_text(t_info.cell(1, 1), "", size_pt=14.0)
@@ -910,46 +903,66 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
     set_cover_cell_text(t_info.cell(4, 1), "张卫恒", size_pt=14.0)
     set_cover_cell_text(t_info.cell(4, 3), "2352407", size_pt=14.0)
 
-    # 3. 清理模板中原有的章节占位段落（从“一、毕业设计（论文）课题背景”到“四、审核意见”之前）
-    p_audit = None
-    to_delete = []
-    collecting = False
+    # 2. 定位模板原生的四个一级标题段落，原位更新可编辑框内的“毕业设计（论文）”为“毕业论文”
+    p_h1_1 = p_h1_2 = p_h1_3 = p_audit = None
     for p in doc.paragraphs:
         txt = p.text.strip()
         if txt.startswith("一、毕业设计（论文）课题背景"):
-            collecting = True
-        if txt.startswith("四、审核意见"):
+            p_h1_1 = p
+        elif txt.startswith("二、毕业设计（论文）方案介绍"):
+            p_h1_2 = p
+        elif txt.startswith("三、毕业设计（论文）的主要参考文献"):
+            p_h1_3 = p
+        elif txt.startswith("四、审核意见"):
             p_audit = p
+
+    update_native_h1_type(p_h1_1, "毕业论文")
+    update_native_h1_type(p_h1_2, "毕业论文")
+    update_native_h1_type(p_h1_3, "毕业论文")
+
+    # 3. 定位模板三大正文可编辑区域的 <w:permEnd> 边界节点，并仅清理三个可编辑区域内部的占位段落
+    body = doc.element.body
+    perm_ends = {
+        el.get(qn("w:id")): el
+        for el in body.findall(qn("w:permEnd"))
+    }
+    perm_end_1 = perm_ends["1319923814"]
+    perm_end_2 = perm_ends["1741359920"]
+    perm_end_3 = perm_ends["61024898"]
+
+    native_h1_els = {p_h1_1._element, p_h1_2._element, p_h1_3._element, p_audit._element}
+    collecting = False
+    to_delete = []
+    for p in doc.paragraphs:
+        if p._element is p_h1_1._element:
+            collecting = True
+            continue
+        if p._element is p_audit._element:
             break
-        if collecting:
+        if collecting and (p._element not in native_h1_els):
             to_delete.append(p)
 
     for p in to_delete:
         p._element.getparent().remove(p._element)
 
-    # 确保“四、审核意见”与全篇一级标题一致（黑体四号、顶格无缩进、段前段后0.5行）
-    p_audit.text = ""
-    p_audit.style = doc.styles["Normal"]
-    configure_pPr_xml(p_audit, before_lines=0.5, after_lines=0.5, line_twips=360,
-                      first_line_twips=None, first_line_chars=None, align=WD_ALIGN_PARAGRAPH.LEFT)
-    r_audit = p_audit.add_run("四、审核意见")
-    set_run_font(r_audit, cn_font="黑体", en_font="Times New Roman", size_pt=14.0, bold=False)
+    current_anchor = p_h1_2
 
     def _add(text="", style_type="body", bold_prefix=None, ref_index=None, force_hl=False, page_break_before=False):
         return insert_paragraph_before(
-            doc, p_audit, text=text, style_type=style_type, bold_prefix=bold_prefix,
+            doc, current_anchor, text=text, style_type=style_type, bold_prefix=bold_prefix,
             ref_index=ref_index, highlight_diff=highlight_diff,
             highlight_platform=highlight_platform, force_hl=force_hl,
             page_break_before=page_break_before
         )
 
     # =========================================================================
-    # 一、毕业论文课题背景
+    # 一、毕业论文课题背景（保留原生 p_h1_1，内容填入可编辑区域 id=1319923814）
     # =========================================================================
-    _add("一、毕业论文课题背景", style_type="h1", page_break_before=True)
+    current_anchor = p_h1_2
 
     # 1. 课题来源及研究的目的和意义
-    _add("{{hl}}1. {{/hl}}课题来源及研究的目的和意义", style_type="h2", force_hl=False)
+    sec1_first_p = _add("{{hl}}1. {{/hl}}课题来源及研究的目的和意义", style_type="h2", force_hl=False)
+    attach_perm_start(sec1_first_p, "1319923814")
 
     _add("{{hl}}1.1 {{/hl}}课题来源", style_type="h3", force_hl=False)
     _add(
@@ -961,7 +974,7 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
 
     if os.path.exists(FIG1_ROV_PHOTO_PATH):
         insert_image_before(
-            doc, p_audit, FIG1_ROV_PHOTO_PATH,
+            doc, current_anchor, FIG1_ROV_PHOTO_PATH,
             "{{platform_hl}}{{hl}}图1 实验室八推进器便携式水下航行器实验平台实物图{{/hl}}{{/platform_hl}}",
             width_cm=15.2, highlight_diff=highlight_diff, highlight_platform=highlight_platform, force_hl=False
         )
@@ -1021,13 +1034,16 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
         style_type="body", force_hl=False
     )
 
+    p_h1_2._element.addprevious(perm_end_1)
+
     # =========================================================================
-    # 二、毕业论文方案介绍
+    # 二、毕业论文方案介绍（保留原生 p_h1_2，内容填入可编辑区域 id=1741359920）
     # =========================================================================
-    _add("二、毕业论文方案介绍", style_type="h1")
+    current_anchor = p_h1_3
 
     # 1. 主要研究内容
-    _add("{{hl}}1. {{/hl}}主要研究内容", style_type="h2", force_hl=False)
+    sec2_first_p = _add("{{hl}}1. {{/hl}}主要研究内容", style_type="h2", force_hl=False)
+    attach_perm_start(sec2_first_p, "1741359920")
 
     _add("{{hl}}1.1 {{/hl}}预期研究目标", style_type="h3", force_hl=False)
     _add(
@@ -1110,7 +1126,7 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
 
     if os.path.exists(FIG2_ROADMAP_PATH):
         insert_image_before(
-            doc, p_audit, FIG2_ROADMAP_PATH, "{{hl}}图2 课题总体研究技术路线图{{/hl}}",
+            doc, current_anchor, FIG2_ROADMAP_PATH, "{{hl}}图2 课题总体研究技术路线图{{/hl}}",
             width_cm=15.2, highlight_diff=highlight_diff, force_hl=False
         )
 
@@ -1173,12 +1189,13 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
                 size_pt=10.5, bold=is_header, align=align,
                 highlight_diff=highlight_diff, force_hl=False
             )
-    p_audit._element.addprevious(tbl_sched._tbl)
+    current_anchor._element.addprevious(tbl_sched._tbl)
+    p_h1_3._element.addprevious(perm_end_2)
 
     # =========================================================================
-    # 三、毕业论文的主要参考文献 (严格遵循正文首次出现顺序 [1]~[16], 悬挂缩进 0.74cm = 420 dxa, 无段前段后间距)
+    # 三、毕业论文的主要参考文献（保留原生 p_h1_3，内容填入可编辑区域 id=61024898）
     # =========================================================================
-    _add("三、毕业论文的主要参考文献", style_type="h1")
+    current_anchor = p_audit
 
     refs = [
         ("[1] 工业和信息化部, 教育部, 公安部, 等. 关于印发《“机器人+”应用行动实施方案》的通知: 工信部联通装〔2022〕187号[EB/OL]. (2023-01-18) [2026-09-28]. http://www.gov.cn/zhengce/zhengceku/2023-01/19/content_5737976.htm.", True),
@@ -1200,7 +1217,10 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
     ]
 
     for idx, (r_txt, is_hl) in enumerate(refs, start=1):
-        _add(r_txt, style_type="ref", ref_index=idx, force_hl=is_hl)
+        p_ref = _add(r_txt, style_type="ref", ref_index=idx, force_hl=is_hl)
+        if idx == 1:
+            attach_perm_start(p_ref, "61024898")
+    p_audit._element.addprevious(perm_end_3)
 
     # 校验正文首次出现文献顺序是否严格为 [1, 2, ..., 16]
     expected_order = list(range(1, len(refs) + 1))
