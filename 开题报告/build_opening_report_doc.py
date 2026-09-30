@@ -979,14 +979,14 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
     _add("{{hl}}2.3 {{/hl}}多推进器控制分配研究现状", style_type="h3", force_hl=False)
     _add(
         "对于配备八个推进器的{{hl}}便携式{{/hl}}水下航行器而言，其独立的物理执行器数量（8 个推进器）大于空间六自由度广义力与力矩的数量（6 个控制维度），属于典型的过驱动（Over-actuated）冗余控制系统。上层运动控制器计算出的是机体所需的六维期望广义力与力矩 {{math:tau_c_R6}}，而实际作用于水体的是各推进器产生的推力矢量 {{math:T_R8}}。如何根据推进器空间安装布局将期望广义力矩准确、低失真地映射为各推进器推力指令，即为控制分配（Control Allocation）的核心任务。\n\n"
-        "{{hl}}Johansen 与 Fossen 系统总结了过驱动系统控制分配的数学规划与优化理论框架 [12]，并进一步针对船舶与水下航行器梳理了无约束广义逆、加权伪逆及有界再分配等典型推力分配方法 [13]。在基础工程应用中，常采用固定比例混控表或无约束伪逆法直接求解推力指令；当某一推进器计算推力超出物理输出上下限时，常规做法通常直接进行硬截断（Clipping）。然而，由于八推进器空间布置存在多自由度力臂耦合，简单的超限硬截断会破坏原本各推进器之间的推力配比，导致合成的六维广义力和力矩方向发生偏转（即产生较大的控制分配残差与姿态耦合失真）。为此，考虑推进器基本推力输出范围约束的控制分配策略受到广泛重视：{{/hl}}程卫平、王猛等针对水下机器人推力器物理输出上限，研究了基于可行方向法等处理推力边界约束的分配算法，{{hl}}有效减小了推力饱和引起的力矩畸变 [14]{{/hl}}；孙广威等针对矢量推进 ROV 提出了兼顾推力约束与分配效率的多级推力分配策略，{{hl}}提升了多推进器协调能力 [15]。由此可见，{{/hl}}{{platform_hl}}依据平台八推进器真实几何构型建立准确的 {{math:6x8}} 控制分配矩阵{{/platform_hl}}{{hl}}，并在分配求解中引入推力输出范围约束处理策略以克服直接硬截断失真，是保障闭环控制系统稳定运行的关键环节。{{/hl}}",
+        "{{hl}}Johansen 与 Fossen 在控制分配综述中系统总结了过驱动系统无约束广义逆、加权伪逆、有界优化及再分配等典型推力分配方法的理论框架 [12]。在基础工程应用中，常采用固定比例混控表或无约束伪逆法直接求解推力指令；当某一推进器计算推力超出物理输出上下限时，常规做法通常直接进行硬截断（Clipping）。然而，由于八推进器空间布置存在多自由度力臂耦合，简单的超限硬截断会破坏原本各推进器之间的推力配比，导致合成的六维广义力和力矩方向发生偏转（即产生较大的控制分配残差与姿态耦合失真）。为此，考虑推进器基本推力输出范围约束的控制分配策略受到广泛重视：{{/hl}}程卫平、王猛等针对水下机器人推力器物理输出上限，研究了基于可行方向法等处理推力边界约束的分配算法，{{hl}}有效减小了推力饱和引起的力矩畸变 [13]{{/hl}}；孙广威等针对矢量推进 ROV 提出了兼顾推力约束与分配效率的多级推力分配策略，{{hl}}提升了多推进器协调能力 [14]。由此可见，{{/hl}}{{platform_hl}}依据平台八推进器真实几何构型建立准确的 {{math:6x8}} 控制分配矩阵{{/platform_hl}}{{hl}}，并在分配求解中引入推力输出范围约束处理策略以克服直接硬截断失真，是保障闭环控制系统稳定运行的关键环节。{{/hl}}",
         style_type="body", force_hl=False
     )
 
     _add("{{hl}}2.4 {{/hl}}基于开源软件架构（PX4）的水下航行器闭环仿真研究现状", style_type="h3", force_hl=False)
     _add(
         "在现代机器人与无人系统的研发流程中，控制算法的模块化软件实现与闭环仿真验证平台至关重要。传统的控制算法验证多基于纯离线数学脚本（如纯 MATLAB 或 Python 数值积分），虽然便于验证控制律的数学收敛性，但脱离了嵌入式实时操作系统（RTOS）的多任务并发调度、模块间异步通信以及离散采样周期等工程约束，导致算法向实验平台机载硬件迁移时面临较大的代码重构工作量。\n\n"
-        "苏黎世联邦理工学院（ETH Zurich）Meier 等主导研发的 PX4 Autopilot 是当前无人系统领域广泛应用的开源嵌入式控制软件框架之一{{hl}}[16]{{/hl}}。PX4 采用“算法模块层与系统中间件层”解耦的架构设计，通过基于共享内存的微对象请求代理（uORB）异步发布/订阅总线实现状态估计、运动控制与控制分配模块之间的标准化数据交互；同时原生支持软件在环（SITL）闭环编译运行与 ULog 全状态日志记录。近年来，国内外研究团队开始将 PX4 架构拓展至水下无人航行器领域，{{hl}}如 Duecker 等依托基于 PX4 的软件在环仿真与水池实验完成了 HippoCampus X 水下平台的三维机动控制验证，证实了基于 PX4/SITL 构建水下航行器闭环仿真与验证体系的工程合理性[17]。{{/hl}}",
+        "苏黎世联邦理工学院（ETH Zurich）Meier 等主导研发的 PX4 Autopilot 是当前无人系统领域广泛应用的开源嵌入式控制软件框架之一{{hl}}[15]{{/hl}}。PX4 采用“算法模块层与系统中间件层”解耦的架构设计，通过基于共享内存的微对象请求代理（uORB）异步发布/订阅总线实现状态估计、运动控制与控制分配模块之间的标准化数据交互；同时原生支持软件在环（SITL）闭环编译运行与 ULog 全状态日志记录。近年来，国内外研究团队开始将 PX4 架构拓展至水下无人航行器领域，{{hl}}如 Duecker 等依托基于 PX4 的软件在环仿真与水池实验完成了 HippoCampus X 水下平台的三维机动控制验证，证实了基于 PX4/SITL 构建水下航行器闭环仿真与验证体系的工程合理性[16]。{{/hl}}",
         style_type="body", force_hl=False
     )
 
@@ -1006,7 +1006,7 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
 
     _add("{{hl}}1.1 {{/hl}}预期研究目标", style_type="h3", force_hl=False)
     _add(
-        "{{hl}}本课题{{/hl}}{{platform_hl}}{{hl}}围绕实验室已有八推进器便携式水下航行器平台{{/hl}}{{/platform_hl}}{{hl}}，预期达成以下四项研究目标：一是构建并验证能够反映航行器主导动态特性的六自由度水动力模型与单推进器静态推力模型；二是设计结合辨识模型动态特性补偿与实时状态误差反馈的闭环运动控制方法，提升多自由度耦合与流扰条件下的跟踪性能；三是{{/hl}}{{platform_hl}}{{hl}}建立基于平台真实推进器空间布局的 {{math:6x8}} 控制分配矩阵{{/hl}}{{/platform_hl}}{{hl}}及推力边界约束处理策略，抑制推力饱和引起的合成力矩失真；四是在 PX4/SITL 软件在环环境中完成上述模块的闭环集成，并获取典型运动与外部扰动工况下的量化验证结果。{{/hl}}",
+        "{{hl}}本课题{{/hl}}{{platform_hl}}{{hl}}围绕实验室已有八推进器便携式水下航行器平台{{/hl}}{{/platform_hl}}{{hl}}，预期达成以下四项研究目标：一是构建并验证能够反映航行器主导动态特性的六自由度动力学模型，并确定单推进器静态推力映射关系；二是设计结合辨识模型动态特性补偿与实时状态误差反馈的闭环运动控制方法，提升多自由度耦合与流扰条件下的跟踪性能；三是{{/hl}}{{platform_hl}}{{hl}}建立基于平台真实推进器空间布局的 {{math:6x8}} 控制分配矩阵{{/hl}}{{/platform_hl}}{{hl}}及推力边界约束处理策略，抑制推力饱和引起的合成力矩失真；四是在 PX4/SITL 软件在环环境中完成上述模块的闭环集成，并获取典型运动与外部扰动工况下的量化验证结果。{{/hl}}",
         style_type="body", force_hl=False
     )
 
@@ -1057,7 +1057,7 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
     )
 
     _add(
-        "{{hl}}设参考位置与姿态指令为 {{math:eta_r}}、参考速度为 {{math:nu_r}}，定义位置/姿态误差 {{math:e_eta_def}} 与速度误差 {{math:e_nu_def}}。控制器输出的六维期望广义控制力与力矩 {{math:tau_c_def}} 由闭环状态反馈项 {{math:tau_fb}} 与动力学模型补偿项 {{math:tau_comp}} 叠加构成（即 {{math:tau_c_sum}}）。其中，闭环状态误差反馈项 {{math:tau_fb}} 针对水平位置/速度、潜深 {{math:z_var}}、横滚与俯仰姿态角 {{math:phi_theta}} 及航向角 {{math:psi_var}} 等控制通道，采用基于位置/姿态误差 {{math:e_eta}} 与速度/角速度误差 {{math:e_nu}} 的串级或比例-积分-微分（PID）反馈结构，保障基础闭环稳定性并消除稳态误差；动力学模型特性补偿项 {{math:tau_comp}} 结合模块一辨识得到的航行器动力学模型，在控制律中引入恢复力矩项 {{math:g_eta}} 与主导水动力阻尼项 {{math:D_nu_vec}} 的前馈补偿，或结合惯性矩阵 {{math:M_mat}} 与状态导数信息构造反馈线性化、增量动态逆（INDI）等动态逆补偿律，用于主动抵消已知非线性水动力负载与多轴耦合影响。当取 {{math:tau_comp_zero}} 时，控制器即为传统无模型 PID 控制；研究过程中可根据辨识模型特性比选具体的模型补偿控制形式，并统一以无模型 PID 控制作为对比基准，量化评估模型补偿对降低机动超调与加快响应速度的作用。{{/hl}}",
+        "{{hl}}设参考位置与姿态指令为 {{math:eta_r}}、参考速度为 {{math:nu_r}}，定义位置/姿态误差 {{math:e_eta_def}} 与速度误差 {{math:e_nu_def}}。控制器输出的六维期望广义控制力与力矩 {{math:tau_c_def}} 由闭环状态反馈项 {{math:tau_fb}} 与动力学模型补偿项 {{math:tau_comp}} 叠加构成（即 {{math:tau_c_sum}}）。其中，闭环状态误差反馈项 {{math:tau_fb}} 针对水平位置/速度、潜深 {{math:z_var}}、横滚与俯仰姿态角 {{math:phi_theta}} 及航向角 {{math:psi_var}} 等控制通道，采用基于位置/姿态误差 {{math:e_eta}} 与速度/角速度误差 {{math:e_nu}} 的串级或比例-积分-微分（PID）反馈结构，保障基础闭环稳定性并消除稳态误差；动力学模型特性补偿项 {{math:tau_comp}} 结合模块一辨识得到的航行器动力学模型，在控制律中引入恢复力矩项 {{math:g_eta}} 与主导水动力阻尼项 {{math:D_nu_vec}} 的前馈补偿，或结合惯性矩阵 {{math:M_mat}} 与状态导数信息构造反馈线性化、增量动态逆（INDI）等动态逆补偿律，用于主动抵消已知非线性水动力负载与多轴耦合影响。当取 {{math:tau_comp_zero}} 时，控制器即为传统无模型 PID 控制；研究过程中结合辨识模型特性确定具体的模型补偿控制律，并统一以无模型 PID 控制作为对比基准，量化评估模型补偿对降低机动超调与加快响应速度的作用。{{/hl}}",
         style_type="body", bold_prefix="2） 基于模型与状态反馈的闭环运动控制方法：", force_hl=False
     )
 
@@ -1151,7 +1151,7 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
     p_audit._element.addprevious(tbl_sched._tbl)
 
     # =========================================================================
-    # 三、毕业论文的主要参考文献 (严格遵循正文首次出现顺序 [1]~[17], 悬挂缩进 0.74cm = 420 dxa, 无段前段后间距)
+    # 三、毕业论文的主要参考文献 (严格遵循正文首次出现顺序 [1]~[16], 悬挂缩进 0.74cm = 420 dxa, 无段前段后间距)
     # =========================================================================
     _add("三、毕业论文的主要参考文献", style_type="h1")
 
@@ -1168,17 +1168,16 @@ def build_single_docx(out_docx_path, highlight_mode="none"):
         ("[10] Chu Z, Xiang X, Zhu D, et al. Adaptive trajectory tracking control for remotely operated vehicles considering thruster dynamics and saturation constraints[J]. ISA Transactions, 2020, 100: 28-37. DOI: 10.1016/j.isatra.2019.11.032.", False),
         ("{{hl}}[11]{{/hl}} Slawik T, Vyas S, Christensen L, et al. Attitude Control of the Hydrobatic Intervention AUV Cuttlefish using Incremental Nonlinear Dynamic Inversion[C]//2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). Abu Dhabi, UAE: IEEE, 2024: 781-787. DOI: 10.1109/IROS58592.2024.10801686.", False),
         ("[12] Johansen T A, Fossen T I. Control allocation—A survey[J]. Automatica, 2013, 49(5): 1087-1103. DOI: 10.1016/j.automatica.2013.01.035.", True),
-        ("[13] Fossen T I, Johansen T A. A survey of control allocation methods for ships and underwater vehicles[C]//2006 14th Mediterranean Conference on Control and Automation. Ancona, Italy: IEEE, 2006: 1-6. DOI: 10.1109/MED.2006.328749.", True),
-        ("{{hl}}[14]{{/hl}} 程卫平, 王猛, 曾现敏, 等. 基于可行方向法的水下机器人推力分配[J]. 舰船科学技术, 2022, 44(13): 102-106.", False),
-        ("{{hl}}[15]{{/hl}} 孙广威, 苏玉玺, 毛义, 等. 基于模糊逻辑的混合推进ROV多级推力分配策略[J]. 机器人, 2023, 45(4): 472-482.", False),
-        ("{{hl}}[16]{{/hl}} Meier L, Honegger D, Pollefeys M. PX4: A node-based multithreaded open source robotics framework for deeply embedded platforms[C]//2015 IEEE International Conference on Robotics and Automation (ICRA). Seattle, WA: IEEE, 2015: 6235-6240. DOI: 10.1109/ICRA.2015.7140074.", False),
-        ("{{hl}}[17]{{/hl}} Duecker D A, Bauschmann N, Hansen T, et al. HippoCampus X – A hydrobatic open-source micro AUV for confined environments[C]//2020 IEEE/OES Autonomous Underwater Vehicles Symposium (AUV). St. John's, NL, Canada: IEEE, 2020: 1-6. DOI: 10.1109/AUV50043.2020.9267895.", False),
+        ("{{hl}}[13]{{/hl}} 程卫平, 王猛, 曾现敏, 等. 基于可行方向法的水下机器人推力分配[J]. 舰船科学技术, 2022, 44(13): 102-106.", False),
+        ("{{hl}}[14]{{/hl}} 孙广威, 苏玉玺, 毛义, 等. 基于模糊逻辑的混合推进ROV多级推力分配策略[J]. 机器人, 2023, 45(4): 472-482.", False),
+        ("{{hl}}[15]{{/hl}} Meier L, Honegger D, Pollefeys M. PX4: A node-based multithreaded open source robotics framework for deeply embedded platforms[C]//2015 IEEE International Conference on Robotics and Automation (ICRA). Seattle, WA: IEEE, 2015: 6235-6240. DOI: 10.1109/ICRA.2015.7140074.", False),
+        ("{{hl}}[16]{{/hl}} Duecker D A, Bauschmann N, Hansen T, et al. HippoCampus X – A hydrobatic open-source micro AUV for confined environments[C]//2020 IEEE/OES Autonomous Underwater Vehicles Symposium (AUV). St. John's, NL, Canada: IEEE, 2020: 1-6. DOI: 10.1109/AUV50043.2020.9267895.", False),
     ]
 
     for idx, (r_txt, is_hl) in enumerate(refs, start=1):
         _add(r_txt, style_type="ref", ref_index=idx, force_hl=is_hl)
 
-    # 校验正文首次出现文献顺序是否严格为 [1, 2, ..., 17]
+    # 校验正文首次出现文献顺序是否严格为 [1, 2, ..., 16]
     expected_order = list(range(1, len(refs) + 1))
     assert CITATION_TRACKER == expected_order, (
         f"GB/T 7714-2015 顺序编码校验失败！正文首次出现顺序为 {CITATION_TRACKER}，应为 {expected_order}"
