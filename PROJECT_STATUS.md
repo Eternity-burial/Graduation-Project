@@ -153,7 +153,7 @@
     3. **吸收开源顶级学术 Skill 机制（`nature-proposal-writer` / `researchwrite`）完成配置沉淀**：建立 [opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md) 章节契约与证据库体系；
     4. **【全面执行方案 A：旧版开题物理移出与工作区彻底清洗】**：
        - 为彻底杜绝后续新对话或任何 Agent 扫描到旧版开题草稿导致“借尸还魂”，已将 2026/09/30 之前的所有旧版文件（全部 Markdown 草稿、代码 `build_opening_report_doc.py` / `generate_report_figures.py`、旧版 `.docx` 及历史归档目录 `归档/`）**全量物理移出至项目外部：`D:\tj\Graduation_Project_旧版开题作废备份_20260930\`**；
-       - 当前项目工作区内 [开题报告/](file:///d:/tj/Graduation%20Project/开题报告/) 根目录彻底净化，仅保留已定稿通过的任务书正式版（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)）、配图素材与参考文献源文件；
-       - **【新对话绝对指令】**：后续任何新窗口推进开题报告时，一律严格基于学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx)，按照 `opening_report_contracts_and_evidence.md` 章节契约从零逐段起草，严禁恢复或参考旧版草稿！
+       - 当前项目工作区内 [开题报告/](file:///d:/tj/Graduation%20Project/开题报告/) 根目录彻底净化，仅保留前期参考任务书工作底稿（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)，仅作参考，可随时联动修订）、配图素材与参考文献源文件；
+       - **【新对话绝对指令】**：后续任何新窗口推进开题报告时，一律严格基于学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx)，按照 `opening_report_contracts_and_evidence.md` 章节契约从零逐段起草，严禁恢复或参考旧版草稿！任务书绝非僵化基准，核心任务仍在深入考量中，后续与开题报告保持双向联动修订！
 
 
