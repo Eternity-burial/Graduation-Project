@@ -43,14 +43,14 @@ description: >-
 2. **第一步：两阶段学术推导与 Markdown 草稿契约对齐**
    - 严格遵循**“文献先行 ➔ 范文对标 ➔ 契约先行 ➔ 具体起草”**的四步递进工作法；
    - 动笔前必须调阅 [opening_report_contracts_and_evidence.md](./references/opening_report_contracts_and_evidence.md)，严格核对该小节的章节契约（Purpose、Inputs、Allowed Claims、Forbidden Claims、Validation Criteria），严守立项逻辑红线（绝不把已有平台作为研究意义）；
-   - 先在对应的 Markdown 草稿文件（如 [开题报告_全文草稿.md](file:///d:/tj/Graduation%20Project/开题报告/开题报告_全文草稿.md)）中完成文本、公式、表格与技术路线图的编写或修订。
+   - 逐段起草正文时，每写完一段必须对照章节契约进行质量门禁核对，确保论述逻辑严密、证据链完整。
 3. **第二步：参考文献顺序校验与 `.bib` / `.ris` 题录库同步**
    - 按 GB/T 7714-2015 顺序编码制，严格依据文献在正文中**首次出现的先后顺序**编号 `[1] ~ [N]`，同步更新 [references.bib](file:///d:/tj/Graduation%20Project/开题报告/references.bib) 与 [references.ris](file:///d:/tj/Graduation%20Project/开题报告/references.ris)，支持一键导入本地 **Zotero**（`C:\Program Files\Zotero\zotero.exe`）或 **EndNote**。
-4. **第三步：300 DPI 高清配图与可编辑 `.drawio` 架构图生成（如需更新配图）**
-   - 使用 Python（Pillow / Matplotlib）脚本（参考 [generate_report_figures.py](file:///d:/tj/Graduation%20Project/开题报告/generate_report_figures.py)）生成 300 DPI 出版级白底高清 PNG 配图，严禁使用低分辨率截图；
+4. **第三步：300 DPI 高清配图与可编辑 `.drawio` 架构图生成（如需配图）**
+   - 使用 Python（Pillow / Matplotlib）生成 300 DPI 出版级白底高清 PNG 配图，严禁使用低分辨率截图；
    - 若需将论文参考图、控制框图或系统架构图重建为**可编辑的 `.drawio` 矢量源文件**，联动激活工作区技能 [drawio-reconstruction](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md)。
 5. **第四步：基于官方模板生成/更新 `.docx`（默认仅生成 `.docx`，原生 OMML 公式注入）**
-   - 运行 Python 脚本（参考 [build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py)），挂载官方模板原生样式、通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 写入原生 OMML 数学公式与上标交叉引用，产出规范 `.docx` 文档。
+   - 严格基于学校官方空白模板 [2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx)，挂载原生样式、通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 写入原生 OMML 数学公式与上标交叉引用，产出规范 `.docx` 文档。
 6. **第五步：生成修改对比版与版本归档（当需要向导师展示修改痕迹时）**
    - 当前最新轮次的逐段差异高亮对比版直接保存在工作区根目录（如 `*-新旧版本修改对比版_逐段差异高亮.docx`），与正式纯净版并存供导师直接审阅查验；
    - **历次对比版归档铁律**：后续每一轮修改并生成新对比版前，上一轮旧对比版打上时间戳快照移入 `归档/历次修改对比版/`（支持脚本 `--archive-old-diff` 自动快照），并在 `归档/README.md` 台账中记录修改说明，绝不静默覆盖；
