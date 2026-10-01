@@ -27,7 +27,9 @@ description: >-
    - 控制分配部分表述为“根据八推进器安装位置、推力方向及力臂关系建立控制分配矩阵，考虑推进器基本推力输出范围，分析控制分配误差及各推进器输出情况”，不随意承诺难以验证的复杂硬件约束（如推力变化率动态约束等）。
 3. **行文规范、去 AI 腔与证据门控（Supervisor-Skills 融合规范）**：
    - 杜绝口语化、空洞套话与大模型浮夸词（如“卓越、颠覆性、完美解决、赋能”，以及破折号 `——` 连接分句），数学符号与 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md) 中的 Fossen 6-DOF 符号体系 100% 保持一致。
-   - **撰写或润色任何正文段落与设计配图前，必须阅读并执行**：[supervisor_writing_and_figure_guide.md](./references/supervisor_writing_and_figure_guide.md)（包含 L0~L4 证据门控防幻觉纪律、中英文去 AI 腔禁用词表、审稿人逻辑自查清单及双重编码科研作图规范）。
+   - **撰写或润色任何正文段落与设计配图前，必须阅读并执行**：
+     * [supervisor_writing_and_figure_guide.md](./references/supervisor_writing_and_figure_guide.md)（包含 L0~L4 证据门控防幻觉纪律、中英文去 AI 腔禁用词表、审稿人逻辑自查清单及双重编码科研作图规范）；
+     * [opening_report_contracts_and_evidence.md](./references/opening_report_contracts_and_evidence.md)（包含开题报告事实准则库、主张-证据映射表、禁用主张清单与全篇各节**章节契约卡片 Section Contracts**）。
 
 ---
 
@@ -38,7 +40,9 @@ description: >-
 1. **第零步：Git 状态前置检查（防覆盖、防丢失铁律）**
    - 在运行任何构建或修改脚本前，必须先在终端执行 `git status --short`，检查目标 Word 文档或脚本是否有未暂存的用户手工编辑；
    - 若检测到用户改动，**严禁静默覆盖**，必须先提示用户或将其单独另存为快照备份（如 `*_用户标注备份.*`）；写操作必须保留 `.bak` 备份机制。
-2. **第一步：Markdown 草稿对齐**
+2. **第一步：两阶段学术推导与 Markdown 草稿契约对齐**
+   - 严格遵循**“文献先行 ➔ 范文对标 ➔ 契约先行 ➔ 具体起草”**的四步递进工作法；
+   - 动笔前必须调阅 [opening_report_contracts_and_evidence.md](./references/opening_report_contracts_and_evidence.md)，严格核对该小节的章节契约（Purpose、Inputs、Allowed Claims、Forbidden Claims、Validation Criteria），严守立项逻辑红线（绝不把已有平台作为研究意义）；
    - 先在对应的 Markdown 草稿文件（如 [开题报告_全文草稿.md](file:///d:/tj/Graduation%20Project/开题报告/开题报告_全文草稿.md)）中完成文本、公式、表格与技术路线图的编写或修订。
 3. **第二步：参考文献顺序校验与 `.bib` / `.ris` 题录库同步**
    - 按 GB/T 7714-2015 顺序编码制，严格依据文献在正文中**首次出现的先后顺序**编号 `[1] ~ [N]`，同步更新 [references.bib](file:///d:/tj/Graduation%20Project/开题报告/references.bib) 与 [references.ris](file:///d:/tj/Graduation%20Project/开题报告/references.ris)，支持一键导入本地 **Zotero**（`C:\Program Files\Zotero\zotero.exe`）或 **EndNote**。

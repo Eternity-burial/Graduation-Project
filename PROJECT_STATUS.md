@@ -192,6 +192,10 @@
     3. **立项逻辑与研究意义红线确立（已持久化至 AGENTS.md）**：
        - 课题研究意义必须完全立足于“该类装备在特定恶劣场景下面临的共性科学难题与行业瓶颈”（如水动力强非线性扰动补偿、推力饱和引发的合成力矩畸变翻滚等）；
        - 实验室已有样机（SwiftROV）仅作为后文方案验证的物理实验载体，严禁在背景与意义中将“为已有平台搭建控制系统/基座”作为立项原因或研究意义；
-    4. **【未决决策 (Open Decision)】**：**最终的研究意义尚未最终明确**，当前围绕近岸水下结构物巡检与近水体立体监测场景中的理论价值与工程实用价值仍在深入对齐讨论中，暂不武断定论。
+    4. **【未决决策 (Open Decision)】**：**最终的研究意义尚未最终明确**，当前围绕近岸水下结构物巡检与近水体立体监测场景中的理论价值与工程实用价值仍在深入对齐讨论中，暂不武断定论；
+    5. **吸收开源顶级学术 Skill 机制（`nature-proposal-writer` / `researchwrite`）完成配置沉淀**：
+       - 在 [opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md) 中固化了事实准则库（FACT-01~09）、主张-证据映射表、禁用主张清单（FC-01~05）、未决主张清单（UC-01）以及全篇各节的**章节契约卡片（Section Contracts）**；
+       - 更新了 [academic-doc-builder/SKILL.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md)，确立后续对话起草任何章节前必须调阅章节契约进行逐段质量门禁验收；
+       - **【新对话交接指引】**：开启新对话后，无需重复背景，直接调阅 `opening_report_contracts_and_evidence.md`，重点解决 UC-01（研究意义定夺），随后严格基于官方模板 [2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 按照【契约 1.1-P1】至【契约 1.1-P3】逐段推进正文起草！
 
 
