@@ -18,15 +18,18 @@
 
 1. **构型定性铁律（严禁再写“开架式”）**：
    - 实验室机器人为双圆柱耐压舱、碳纤维夹板紧凑集成的便携式水下航行器（SwiftROV），**严禁出现“开架式 (Open-frame)”**表述。
-2. **坐标系与机器人学接轨规范**：
+2. **立项逻辑与研究意义铁律（严禁大作业/做项目思维）**：
+   - 毕业论文的研究意义必须立足于**“该类装备在特定恶劣场景下面临的客观物理矛盾与行业共性瓶颈”**（如深水非线性流扰、推力饱和力矩畸变等）。
+   - 实验室已有样机（SwiftROV）仅作为后文方案验证的**物理实验载体**，**严禁在背景与意义中将“为实验室已有平台提供控制系统/基座”作为立项原因或核心研究意义**。
+3. **坐标系与机器人学接轨规范**：
    - 机器人学顶层（ROS / ROS2 REP-103）通用 **ENU（惯性系）/ FLU（附体系）**；
    - 海洋工程理论（Fossen）与 PX4 底层飞控原生使用 **NED（惯性系）/ FRD（附体系）**；
    - 两者仅为一个确定的坐标轴镜像变换（$x_{\text{FLU}} = x_{\text{FRD}}, y_{\text{FLU}} = -y_{\text{FRD}}, z_{\text{FLU}} = -z_{\text{FRD}}$），在文档中以 1~2 句话轻巧交代清楚来源与转换即可，不长篇大论或与机器人学常识冲突。
-3. **推进器建模边界控制**：
+4. **推进器建模边界控制**：
    - 推进器部分聚焦于“静态推力-PWM映射曲线与基本输出界限 $[\boldsymbol{T}_{\min}, \boldsymbol{T}_{\max}]$”，不展开过深的电机动态电磁与叶素流体动力学方程，重点落在 $6 \times 8$ 控制分配矩阵与推力分配残差分析上。
-4. **稳健务实、留有方法比选余地**：
+5. **稳健务实、留有方法比选余地**：
    - 运动控制统一表述为“基于航行器模型和状态反馈的闭环运动控制”，支持纯 PID、模型前馈补偿（FBL）等横向对比，严禁过早写死狭窄算法。
-3. **术语统一规范**：
+6. **术语统一规范**：
    - 毕业设计类型统一为：**毕业论文**（非“毕业设计”）。
    - 核心术语统一：六自由度（6-DOF）、北东地惯性坐标系（NED）、附体坐标系（Body-fixed Frame / FRD）、附加质量（Added Mass）、水动力阻尼（Hydrodynamic Damping）、恢复力与力矩（Restoring Forces and Moments）、广义控制力与力矩（Generalized Control Forces and Moments）、控制分配（Control Allocation）、软件在环仿真（SITL）。
 
@@ -102,11 +105,17 @@
    - 根目录维护单文件总控台账 [PROJECT_STATUS.md](file:///d:/tj/Graduation%20Project/PROJECT_STATUS.md)（含四阶段里程碑进度、当前待办、关键决策发现与交接记录）；
    - **新窗口必读**：开启新对话推进项目任务时，优先查阅 `PROJECT_STATUS.md` 恢复上下文；
    - **里程碑必更**：每完成一节论文修改、一次系统辨识/控制仿真实验或重要配置升级，必须在执行 `git commit` 前同步更新 `PROJECT_STATUS.md`。
-2. **学术严谨性、去 AI 腔与证据门控**：
+2. **学术文档两阶段推导推进规范（先定边界，再定细节）**：
+   - 撰写学术章节时，必须遵守以下四步递进工作法，严禁在未理清边界时盲目堆砌具体内容：
+     1. **文献与证据先行**：必须先检索中英文权威文献，以扎实的物理与工程证据驱动论述，不凭空捏造；
+     2. **对比优秀范文**：深入剖析本组已获导师认可的标杆开题（如郑祺耀优秀开题范式），吸收其段落结构与论证范式；
+     3. **先界定元规则（性质边界）**：明确该部分“是写什么性质的内容，坚决不是写什么（准入与禁区）”；
+     4. **再推导具体细节**：在元规则框架锁定后，再深入讨论并确认具体场景、具体方法与具体参数。
+3. **学术严谨性、去 AI 腔与证据门控**：
    - 始终对标 [学长毕设全过程资料深度解析与演进避坑指南.md](file:///d:/tj/Graduation%20Project/参考/学长毕设全过程资料深度解析与演进避坑指南.md) 与 [supervisor_writing_and_figure_guide.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/supervisor_writing_and_figure_guide.md)，保持学术语言克制、禁用破折号连接分句与浮夸词汇，严守 L0~L4 证据门控纪律（严禁编造实验数据与未核实引文）；
-3. **公式与图表规范**：
+4. **公式与图表规范**：
    - 所有 Word 公式必须通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 输出原生 OMML，严禁使用图片；
    - 仿真曲线采用颜色+线型双重编码（300 DPI），可编辑矢量框图可通过 [drawio-reconstruction](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md) 重建为 `.drawio` 文件；
-4. **参考文献规范**：严格遵守 GB/T 7714-2015 顺序编码制，正文首次引用递增，同步维护 `references.bib` 与 `references.ris`。
+5. **参考文献规范**：严格遵守 GB/T 7714-2015 顺序编码制，正文首次引用递增，同步维护 `references.bib` 与 `references.ris`。
 
 

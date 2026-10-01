@@ -1,0 +1,1119 @@
+<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns="http://www.w3.org/TR/REC-html40"><head><meta http-equiv=Content-Type  content="text/html; charset=gb2312" ><meta name=ProgId  content=Word.Document ><meta name=Generator  content="Microsoft Word 14" ><meta name=Originator  content="Microsoft Word 14" ><link rel=File-List  href="本科毕设2 (1).files/filelist.xml" ><title></title><!--[if gte mso 9]><xml><o:DocumentProperties><o:Author>Zhangwh</o:Author><o:LastAuthor>张卫恒</o:LastAuthor><o:Revision>1</o:Revision><o:Pages>3</o:Pages><o:Characters>5928</o:Characters><o:Lines>1</o:Lines><o:Paragraphs>1</o:Paragraphs></o:DocumentProperties><o:CustomDocumentProperties><o:KSOTemplateDocerSaveRecord dt:dt="string" >eyJoZGlkIjoiODQ2ZDc5NWZlNjc1N2YxMjNkYmZlOWYyNzcyODc0ZDgiLCJ1c2VySWQiOiIxNjEyNDcyMTYzIn0=</o:KSOTemplateDocerSaveRecord><o:KSOProductBuildVer dt:dt="string" >2052-12.1.0.28043</o:KSOProductBuildVer><o:ICV dt:dt="string" >3FBCEBFF90C64EB78D3350066EFFFBFB_12</o:ICV></o:CustomDocumentProperties></xml><![endif]--><!--[if gte mso 9]><xml><o:OfficeDocumentSettings></o:OfficeDocumentSettings></xml><![endif]--><!--[if gte mso 9]><xml><w:WordDocument><w:BrowserLevel>MicrosoftInternetExplorer4</w:BrowserLevel><w:DisplayHorizontalDrawingGridEvery>0</w:DisplayHorizontalDrawingGridEvery><w:DisplayVerticalDrawingGridEvery>2</w:DisplayVerticalDrawingGridEvery><w:DocumentKind>DocumentNotSpecified</w:DocumentKind><w:DrawingGridVerticalSpacing>7.8 磅</w:DrawingGridVerticalSpacing><w:View>Web</w:View><w:Compatibility><w:UseFELayout/></w:Compatibility><w:Zoom>0</w:Zoom></w:WordDocument></xml><![endif]--><!--[if gte mso 9]><xml><w:LatentStyles DefLockedState="false"  DefUnhideWhenUsed="true"  DefSemiHidden="true"  DefQFormat="false"  DefPriority="99"  LatentStyleCount="260" >
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  QFormat="true"  Name="Normal" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  QFormat="true"  Name="heading 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  QFormat="true"  Name="heading 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  QFormat="true"  Name="heading 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  QFormat="true"  Name="heading 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  QFormat="true"  Name="heading 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  QFormat="true"  Name="heading 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  QFormat="true"  Name="heading 7" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  QFormat="true"  Name="heading 8" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  QFormat="true"  Name="heading 9" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="index 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="index 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="index 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="index 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="index 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="index 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="index 7" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="index 8" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="index 9" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="toc 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="toc 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="toc 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="toc 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="toc 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="toc 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="toc 7" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="toc 8" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="toc 9" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Normal Indent" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="footnote text" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="annotation text" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="header" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="footer" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="index heading" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  QFormat="true"  Name="caption" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="table of figures" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="envelope address" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="envelope return" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="footnote reference" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="annotation reference" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="line number" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="page number" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="endnote reference" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="endnote text" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="table of authorities" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="macro" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="toa heading" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Bullet" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Number" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Bullet 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Bullet 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Bullet 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Bullet 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Number 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Number 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Number 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Number 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  QFormat="true"  Name="Title" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Closing" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Signature" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  UnhideWhenUsed="false"  Name="Default Paragraph Font" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Body Text" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Body Text Indent" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Continue" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Continue 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Continue 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Continue 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="List Continue 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Message Header" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  QFormat="true"  Name="Subtitle" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Salutation" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Date" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Body Text First Indent" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Body Text First Indent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Note Heading" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Body Text 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Body Text 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Body Text Indent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Body Text Indent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Block Text" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Hyperlink" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="FollowedHyperlink" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  QFormat="true"  Name="Strong" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  QFormat="true"  Name="Emphasis" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Document Map" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Plain Text" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="E-mail Signature" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Normal (Web)" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="HTML Acronym" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="HTML Address" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="HTML Cite" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="HTML Code" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="HTML Definition" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="HTML Keyboard" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="HTML Preformatted" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="HTML Sample" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="HTML Typewriter" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="HTML Variable" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  UnhideWhenUsed="false"  Name="Normal Table" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="annotation subject" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="99"  SemiHidden="false"  Name="No List" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="99"  SemiHidden="false"  Name="1 / a / i" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="99"  SemiHidden="false"  Name="1 / 1.1 / 1.1.1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="99"  SemiHidden="false"  Name="Article / Section" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Simple 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Simple 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Simple 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Classic 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Classic 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Classic 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Classic 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Colorful 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Colorful 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Colorful 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Columns 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Columns 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Columns 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Columns 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Columns 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Grid 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Grid 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Grid 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Grid 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Grid 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Grid 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Grid 7" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Grid 8" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table List 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table List 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table List 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table List 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table List 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table List 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table List 7" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table List 8" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table 3D effects 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table 3D effects 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table 3D effects 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Contemporary" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Elegant" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Professional" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Subtle 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Subtle 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Web 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Web 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Web 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Balloon Text" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Grid" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="0"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Table Theme" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="99"  SemiHidden="false"  Name="Placeholder Text" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="99"  SemiHidden="false"  Name="No Spacing" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="60"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Shading" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="61"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light List" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="62"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Grid" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="63"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="64"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="65"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="66"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="67"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="68"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="69"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="70"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Dark List" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="71"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Shading" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="72"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful List" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="73"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Grid" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="60"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Shading Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="61"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light List Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="62"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Grid Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="63"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 1 Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="64"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 2 Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="65"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 1 Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="99"  SemiHidden="false"  Name="List Paragraph" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="99"  SemiHidden="false"  Name="Quote" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="99"  SemiHidden="false"  Name="Intense Quote" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="66"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 2 Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="67"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 1 Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="68"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 2 Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="69"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 3 Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="70"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Dark List Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="71"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Shading Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="72"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful List Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="73"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Grid Accent 1" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="60"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Shading Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="61"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light List Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="62"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Grid Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="63"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 1 Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="64"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 2 Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="65"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 1 Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="66"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 2 Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="67"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 1 Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="68"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 2 Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="69"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 3 Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="70"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Dark List Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="71"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Shading Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="72"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful List Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="73"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Grid Accent 2" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="60"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Shading Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="61"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light List Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="62"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Grid Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="63"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 1 Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="64"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 2 Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="65"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 1 Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="66"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 2 Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="67"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 1 Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="68"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 2 Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="69"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 3 Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="70"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Dark List Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="71"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Shading Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="72"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful List Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="73"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Grid Accent 3" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="60"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Shading Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="61"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light List Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="62"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Grid Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="63"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 1 Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="64"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 2 Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="65"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 1 Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="66"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 2 Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="67"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 1 Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="68"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 2 Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="69"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 3 Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="70"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Dark List Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="71"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Shading Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="72"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful List Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="73"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Grid Accent 4" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="60"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Shading Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="61"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light List Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="62"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Grid Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="63"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 1 Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="64"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 2 Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="65"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 1 Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="66"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 2 Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="67"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 1 Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="68"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 2 Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="69"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 3 Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="70"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Dark List Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="71"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Shading Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="72"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful List Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="73"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Grid Accent 5" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="60"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Shading Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="61"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light List Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="62"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Light Grid Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="63"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 1 Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="64"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Shading 2 Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="65"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 1 Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="66"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium List 2 Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="67"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 1 Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="68"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 2 Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="69"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Medium Grid 3 Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="70"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Dark List Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="71"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Shading Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="72"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful List Accent 6" ></w:LsdException>
+<w:LsdException Locked="false"  Priority="73"  SemiHidden="false"  UnhideWhenUsed="false"  Name="Colorful Grid Accent 6" ></w:LsdException>
+</w:LatentStyles></xml><![endif]--><style>
+@font-face{
+font-family:"Times New Roman";
+}
+
+@font-face{
+font-family:"宋体";
+}
+
+@font-face{
+font-family:"Wingdings";
+}
+
+@font-face{
+font-family:"Symbol";
+}
+
+@font-face{
+font-family:"Courier New";
+}
+
+@font-face{
+font-family:"Wingdings";
+}
+
+@font-face{
+font-family:"sans-serif";
+}
+
+@list l0:level1{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0B7;
+mso-level-tab-stop:36.0000pt;
+mso-level-number-position:left;
+margin-left:36.0000pt;text-indent:-18.0000pt;tab-stops:blank 36.0000pt ;font-family:Symbol;font-size:10.0000pt;}
+
+@list l0:level2{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\6F;
+mso-level-tab-stop:72.0000pt;
+mso-level-number-position:left;
+margin-left:72.0000pt;text-indent:-18.0000pt;tab-stops:blank 72.0000pt ;font-family:'Courier New';font-size:10.0000pt;}
+
+@list l0:level3{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:108.0000pt;
+mso-level-number-position:left;
+margin-left:108.0000pt;text-indent:-18.0000pt;tab-stops:blank 108.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l0:level4{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:144.0000pt;
+mso-level-number-position:left;
+margin-left:144.0000pt;text-indent:-18.0000pt;tab-stops:blank 144.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l0:level5{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:180.0000pt;
+mso-level-number-position:left;
+margin-left:180.0000pt;text-indent:-18.0000pt;tab-stops:blank 180.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l0:level6{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:216.0000pt;
+mso-level-number-position:left;
+margin-left:216.0000pt;text-indent:-18.0000pt;tab-stops:blank 216.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l0:level7{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:252.0000pt;
+mso-level-number-position:left;
+margin-left:252.0000pt;text-indent:-18.0000pt;tab-stops:blank 252.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l0:level8{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:288.0000pt;
+mso-level-number-position:left;
+margin-left:288.0000pt;text-indent:-18.0000pt;tab-stops:blank 288.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l0:level9{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:324.0000pt;
+mso-level-number-position:left;
+margin-left:324.0000pt;text-indent:-18.0000pt;tab-stops:blank 324.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l1:level1{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0B7;
+mso-level-tab-stop:36.0000pt;
+mso-level-number-position:left;
+margin-left:36.0000pt;text-indent:-18.0000pt;tab-stops:blank 36.0000pt ;font-family:Symbol;font-size:10.0000pt;}
+
+@list l1:level2{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\6F;
+mso-level-tab-stop:72.0000pt;
+mso-level-number-position:left;
+margin-left:72.0000pt;text-indent:-18.0000pt;tab-stops:blank 72.0000pt ;font-family:'Courier New';font-size:10.0000pt;}
+
+@list l1:level3{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:108.0000pt;
+mso-level-number-position:left;
+margin-left:108.0000pt;text-indent:-18.0000pt;tab-stops:blank 108.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l1:level4{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:144.0000pt;
+mso-level-number-position:left;
+margin-left:144.0000pt;text-indent:-18.0000pt;tab-stops:blank 144.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l1:level5{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:180.0000pt;
+mso-level-number-position:left;
+margin-left:180.0000pt;text-indent:-18.0000pt;tab-stops:blank 180.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l1:level6{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:216.0000pt;
+mso-level-number-position:left;
+margin-left:216.0000pt;text-indent:-18.0000pt;tab-stops:blank 216.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l1:level7{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:252.0000pt;
+mso-level-number-position:left;
+margin-left:252.0000pt;text-indent:-18.0000pt;tab-stops:blank 252.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l1:level8{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:288.0000pt;
+mso-level-number-position:left;
+margin-left:288.0000pt;text-indent:-18.0000pt;tab-stops:blank 288.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+@list l1:level9{
+mso-level-number-format:bullet;
+mso-level-suffix:tab;
+mso-level-text:\F0A7;
+mso-level-tab-stop:324.0000pt;
+mso-level-number-position:left;
+margin-left:324.0000pt;text-indent:-18.0000pt;tab-stops:blank 324.0000pt ;font-family:Wingdings;font-size:10.0000pt;}
+
+p.MsoNormal{
+mso-style-name:正文;
+mso-style-parent:"";
+margin:0pt;
+margin-bottom:.0001pt;
+text-align:left;
+font-family:宋体;
+font-size:12.0000pt;
+}
+
+h1{
+mso-style-name:"标题 1";
+mso-style-next:正文;
+margin-top:5.0000pt;
+margin-bottom:5.0000pt;
+mso-margin-top-alt:auto;
+mso-margin-bottom-alt:auto;
+text-align:left;
+font-family:宋体;
+font-weight:bold;
+font-size:24.0000pt;
+mso-font-kerning:22.0000pt;
+}
+
+h2{
+mso-style-name:"标题 2";
+mso-style-noshow:yes;
+mso-style-next:正文;
+margin-top:5.0000pt;
+margin-bottom:5.0000pt;
+mso-margin-top-alt:auto;
+mso-margin-bottom-alt:auto;
+text-align:left;
+font-family:宋体;
+font-weight:bold;
+font-size:18.0000pt;
+}
+
+h3{
+mso-style-name:"标题 3";
+mso-style-noshow:yes;
+mso-style-next:正文;
+margin-top:5.0000pt;
+margin-bottom:5.0000pt;
+mso-margin-top-alt:auto;
+mso-margin-bottom-alt:auto;
+text-align:left;
+font-family:宋体;
+font-weight:bold;
+font-size:13.5000pt;
+}
+
+h4{
+mso-style-name:"标题 4";
+mso-style-noshow:yes;
+mso-style-next:正文;
+margin-top:5.0000pt;
+margin-bottom:5.0000pt;
+mso-margin-top-alt:auto;
+mso-margin-bottom-alt:auto;
+text-align:left;
+font-family:宋体;
+font-weight:bold;
+font-size:12.0000pt;
+}
+
+h5{
+mso-style-name:"标题 5";
+mso-style-noshow:yes;
+mso-style-next:正文;
+margin-top:5.0000pt;
+margin-bottom:5.0000pt;
+mso-margin-top-alt:auto;
+mso-margin-bottom-alt:auto;
+text-align:left;
+font-family:宋体;
+font-weight:bold;
+font-size:10.0000pt;
+}
+
+h6{
+mso-style-name:"标题 6";
+mso-style-noshow:yes;
+mso-style-next:正文;
+margin-top:5.0000pt;
+margin-bottom:5.0000pt;
+mso-margin-top-alt:auto;
+mso-margin-bottom-alt:auto;
+text-align:left;
+font-family:宋体;
+font-weight:bold;
+font-size:7.5000pt;
+}
+
+span.10{
+font-family:'Times New Roman';
+}
+
+span.15{
+font-family:'Times New Roman';
+mso-ansi-font-weight:bold;
+}
+
+p.16{
+mso-style-name:table-scroll-wrapper;
+margin-top:5.2500pt;
+margin-right:0.0000pt;
+margin-bottom:5.2500pt;
+margin-left:0.0000pt;
+text-align:left;
+font-family:宋体;
+font-size:12.0000pt;
+}
+
+p.17{
+mso-style-name:doc-title;
+margin-bottom:10.5000pt;
+text-align:left;
+font-family:宋体;
+font-weight:bold;
+font-size:12.0000pt;
+}
+
+p.pre{
+mso-style-name:"HTML 预设格式";
+margin:0pt;
+margin-bottom:.0001pt;
+tab-stops:left blank 45.8000pt left blank 91.6000pt left blank 137.4000pt left blank 183.2000pt left blank 229.0000pt left blank 274.8000pt left blank 320.6000pt left blank 366.4000pt left blank 412.2000pt left blank 458.0000pt left blank 503.8000pt left blank 549.6000pt left blank 595.4000pt left blank 641.2000pt left blank 687.0000pt left blank 732.8000pt ;
+text-align:left;
+font-family:宋体;
+font-size:12.0000pt;
+}
+
+p.p{
+mso-style-name:"普通\(网站\)";
+margin-top:5.0000pt;
+margin-right:0.0000pt;
+margin-bottom:5.0000pt;
+margin-left:0.0000pt;
+mso-margin-top-alt:auto;
+mso-margin-bottom-alt:auto;
+text-align:left;
+font-family:宋体;
+font-size:12.0000pt;
+}
+
+p.20{
+mso-style-name:doc-summary;
+margin:0pt;
+margin-bottom:.0001pt;
+text-align:left;
+font-family:宋体;
+font-size:12.0000pt;
+}
+
+span.msoIns{
+mso-style-type:export-only;
+mso-style-name:"";
+text-decoration:underline;
+text-underline:single;
+color:blue;
+}
+
+span.msoDel{
+mso-style-type:export-only;
+mso-style-name:"";
+text-decoration:line-through;
+color:red;
+}
+
+table.MsoNormalTable{
+mso-style-name:普通表格;
+mso-style-parent:"";
+mso-style-noshow:yes;
+mso-tstyle-rowband-size:0;
+mso-tstyle-colband-size:0;
+mso-padding-alt:0.0000pt 5.4000pt 0.0000pt 5.4000pt;
+mso-para-margin:0pt;
+mso-para-margin-bottom:.0001pt;
+mso-pagination:widow-orphan;
+font-family:'Times New Roman';
+font-size:10.0000pt;
+mso-ansi-language:#0400;
+mso-fareast-language:#0400;
+mso-bidi-language:#0400;
+}
+@page{mso-page-border-surround-header:no;
+	mso-page-border-surround-footer:no;}@page Section0{
+size:595.3000pt 841.9500pt;
+mso-header-margin:42.5500pt;
+mso-footer-margin:49.6000pt;
+}
+div.Section0{page:Section0;}</style></head><body style="tab-interval:21pt;" ><!--StartFragment--><div class="Section0" ><p class=MsoNormal  style="margin-bottom:10.5000pt;mso-pagination:widow-orphan;text-align:left;
+mso-line-height-alt:12pt;" ><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-weight:bold;font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >本科毕设</font>2</span></b><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-weight:bold;font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><br></span></b><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-weight:bold;font-size:12.0000pt;mso-font-kerning:0.0000pt;" >9/30 13:59 | 00:25:04</span></b><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-weight:bold;font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></b></p><p class=p  style="margin-right:36.0000pt;margin-left:36.0000pt;mso-pagination:widow-orphan;
+mso-line-height-alt:12pt;" ><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="宋体" >会议时间：</font>2026/09/30 13:59 - 2026/09/30 14:25</span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><br></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="宋体" >参会人员：讲话人</font> 1, <font face="宋体" >讲话人 </font><font face="Times New Roman" >2</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><h1 style="mso-pagination:widow-orphan;mso-line-height-alt:12pt;" ><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:24.0000pt;mso-font-kerning:22.0000pt;" ><font face="宋体" >会议议程与关键信息</font></span></b><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:24.0000pt;mso-font-kerning:22.0000pt;" ><o:p></o:p></span></b></h1><h2 style="mso-pagination:widow-orphan;mso-line-height-alt:12pt;" ><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:18.0000pt;mso-font-kerning:0.0000pt;" ><font face="宋体" >议程概述：</font></span></b><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:18.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></b></h2><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >开题报告整体结构与写法问题分析</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >研究背景、目的、意义的三段式写法指导</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >研究内容、研究方法、研究目标的概念区分与逻辑关系梳理</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >运动控制与控制分配的关系辨析</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >闭环仿真、系统架构、发展趋势等内容的取舍建议</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >参考文献数量要求</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" >AI<font face="sans-serif" >使用规范与学术诚信要求</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >时间规划与考研、毕设并行安排</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><h2 style="margin-left:36.0000pt;mso-pagination:widow-orphan;mso-line-height-alt:12pt;" ><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:18.0000pt;mso-font-kerning:0.0000pt;" ><font face="宋体" >核心内容：</font></span></b><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:18.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></b></h2><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:宋体;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;mso-ansi-font-weight:bold;
+font-size:10.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><b style="mso-bidi-font-weight:normal" ><span class="15"  style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+mso-ansi-font-weight:bold;" ><font face="sans-serif" >开题报告整体评价与定位</font></span></b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo1;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出学生开题报告写得过于具体，研究方法部分不应写得如此详细，研究方法指的是用什么理论，比如动力学建模可以用拉格朗日方法，参数辨识可以用最小二乘法，强一点的话可以用机器学习或深度学习的参数识别，基于什么神经网络参数识别，控制方法可以用多模态的反馈控制，或者</font>PID<font face="sans-serif" >这种简单的执行控制，要讲出使用的方法论，不需要讲那么多理论的东西，那是正文里面真正做的时候才需要写的。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo1;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师强调开题报告要理解其含义，开题报告的作用有四点：第一，题目开的有价值；第二，要研究的内容是什么；第三，做这个事情的方法是什么；第四，创新性在哪里。开题就是说明做成这个东西可以有一定的价值，研究内容不是课本上已有的常态化东西，是值得研究的，研究方法也就是技术路线，想做想研究的事儿能做成，不能的话花几个月就白做了，最后考核创新点体现价值和意义。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo1;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出学生开题报告最大的写法问题在于没有讲清楚研究目的，学生现在的思路是</font><font face="Times New Roman" >“</font><font face="sans-serif" >八推进器我已经做完了，我就是要做它的控制</font><font face="Times New Roman" >”</font><font face="sans-serif" >，这样全程加的话就太小，这是大作业，相当于老师出道题</font><font face="Times New Roman" >“</font><font face="sans-serif" >我有个八推进的水上航行器，你给我做下那个控制</font><font face="Times New Roman" >”</font><font face="sans-serif" >，这是大作业，是留作业题，而做毕设读研究生是倒过来的，因为它有意义，然后才做这个事情，因为场景里有这些难点，在做的时候才要着重这些点去做。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo1;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师以去年杨家轩等副队长做毕设为例，指出</font><font face="Times New Roman" >“</font><font face="sans-serif" >做了一个东西然后讲做的东西是啥</font><font face="Times New Roman" >”</font><font face="sans-serif" >是做项目、做功能项目的方式，是错的思路，做毕设读研究生应该是因为有意义才做，因为场景里有难点才着重这些点去做。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;mso-ansi-font-weight:bold;
+font-size:10.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><b style="mso-bidi-font-weight:normal" ><span class="15"  style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+mso-ansi-font-weight:bold;" ><font face="sans-serif" >研究背景、目的、意义的三段式写法</font></span></b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo2;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出研究背景意义一般用三段式结构最好，第一段写大的环境的政策，大的背景或者国家政策导向，要么说水下机器人有什么用途，国家哪些政策支持，要么说现在的机器人一般都是替代人，无人一般都是繁琐的、很重量的或者危险的，一般要用人来干，第一个扣的大帽子扣的是国家政策扶持是最好的，这样能显示出来做这个东西很有必要。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo2;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >第二段写引出来研究对象之后，在现在的背景之下，水下航行器有哪些问题，主要从场景出发，比如水下航行器特别强调八推进器，老师从自己表面理解八推进器和六推进器和四推进器有什么差别，如果只是动力上的叠加那好像没有什么差别，要是这样的话推</font>16<font face="sans-serif" >推进器好像这么叠加上去没有什么太大的说法，还有一种就是场景也很重要，比如水里面有动态的急流，水流急流或者水的流量是变流的，要么就是给的阻力很大，要么就是水里面有湍流，扰动非常大。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo2;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师举例说明第二段写法：第一段说水下航行器很有用来进行勘测，水下勘探，比如现在搞深海的探测，要么是星表的，要么是深海的深海探测，加上政策扶持，水下航行器现在很重要，紧接着说在水下里面、深水里面或者海洋环境里面，水流的湍急的影响作用，水的乱流会让它的运动不稳定，如何保持稳定性很重要，第二段应该说的是类似这种事情，或者大的急流过来了之后推进器数量不够，需要很多推进器来推动，那多推进器会带来什么问题，比如同步问题，比如在大的推进器里面要维持自己姿态的平衡，涉及到力和力矩，每个推进器不能说一样的参数就能一样的转动，因为是通过外界的力的平衡，有可能水流的时候一边力大一边力小，两边的推进器就不能是相同的，甚至可能单个也要维持这样的单独控制才可以，还得把这个话引出来。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo2;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >第三段写基于以上的问题，本课题要做什么，引出来研究内容。老师强调现在手里面实验室有没有这个东西，不应该作为验证，甚至放在这儿都有点过了，除非把它放在前面，在研究背景这块儿的时候放已有的水下航行器，一般来讲都是放已有的水下航行器，现在国家要求有这么多种，但是他们都有这个通病，这是第二段要写的内容，第三段基于这个通病来做什么。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo2;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出学生单段写的问题，上午跟另外两个学生过的时候也是一样的，学生已经开始露包袱了，相当于被刨活，自己刨自己的活，比如</font><font face="Times New Roman" >“</font><font face="sans-serif" >在环境下进行姿态的控制方式</font><font face="Times New Roman" >”</font><font face="sans-serif" >是后面要说的内容，相当于把这些话说在了后面，因为现在是姿态不稳定，受了这些稳定的影响，我要在这个情况下进行控制，这是前面要讲的，那我怎么做这个事儿，我需要对他的姿态进行控制，我需要对他的动力进行分配，这是研究内容，方法是什么，怎么来实现动力的分配，可能有分配原则、分配策略，怎么样能够保证推力是恒定的、稳定的，那是控制算法，所以前面把这些活儿都跑出来之后，导致研究内容的时候也开始写公式了。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo2;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师用侦探小说比喻这个问题：前面已经把这个东西过早地暴露了，就像看侦探小说上来就告诉你凶手是谁，后面又没有去讲侦探的过程，还让大家去猜凶手是谁，已经没得猜了，已经都露出来了。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;mso-ansi-font-weight:bold;
+font-size:10.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><b style="mso-bidi-font-weight:normal" ><span class="15"  style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+mso-ansi-font-weight:bold;" ><font face="sans-serif" >研究内容、研究方法、研究目标的概念区分</font></span></b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo3;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出研究目标主要说的是干什么，研究内容是怎么做，研究目标是你实现的结果，研究内容是怎么干，研究方法是怎么干，这几个要搞清楚。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo3;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出研究内容应该跟前面的前沿综述那块儿是一样的，现在写的动力学建模、参数辨识、控制算法、分配就是研究内容，因为要研究这三个，所以要去研究一下现在大家是怎么做的，两者有呼应关系，等到研究方法，到底是怎么来建动力学模型的，那才是要写的文字的部分。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo3;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出学生研究内容这块儿还算是靠谱，动力学建模和辨识对不对，这个有的话其实就想想去搞科研，跟你几个推进器啥的，不跟你像做机器人是一样的，这些东西是要照顾整个的东西的，不能针对着你做出来的这个玩意儿围绕着它来讲，所以这个还算是过得去。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo3;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出学生开题报告中过于细的内容不需要上公式或上式，搞得好像都快做完了一样，比如参数预测的时候最小二乘法，参数辨识就这么些，最简单的最小二乘法，复杂点的做交叉神经网络去预测，这些东西属于研究方法的问题。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo3;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出闭环控制可以用基于模型的、基于理论模型的常规的典型的运动学的控制，也可以搞点深度学习、强化学习的东西来做这个也可以，都是可以的，套路主要是讲到这儿。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo3;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出学生写的水动力阻尼、强弱控制这玩意儿，中期考核的时候可以讲，现在刚开题还没开始干呢，说这个东西也说不通。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;mso-ansi-font-weight:bold;
+font-size:10.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><b style="mso-bidi-font-weight:normal" ><span class="15"  style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+mso-ansi-font-weight:bold;" ><font face="sans-serif" >运动控制与控制分配的关系辨析</font></span></b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo4;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出学生要多看看论文，确认多推进器的控制分配是不是有这个说法，老师理解运动控制和控制分配的关系是：运动控制就是从一个点到一个点，怎么去实现它的一个位置，比如到那个位置需要多大的力矩，然后就能过去；控制分配就是需要这么多力矩，然后这八个推进器由谁去谁提供多少。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo4;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出控制分配更偏底层控制，运动控制得到的结果就是每一个飞行器需要多大的力，运动控制比如有个误差，从这块儿到这块儿，是运动跟踪的方式，得出来的其实就是每一个飞行器需要多大的力，然后控制分配讲的是如何让推进器按照这个力给我输出出来分配的好。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo4;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师用小车举例说明：一个先规划好要走什么样的路径，然后后面所有路径跟踪控制算法沿着路径走，这是当时战队里面去的那些机器人就这么回事，这两个得搞清楚到底是什么个关系，谁在前谁在后，因为每个模块都有输入输出结果，上面的控制算法输出了什么东西到这里面来，还是他把分配好的结果告诉你，就用控制算法来做这个，要搞清楚。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;mso-ansi-font-weight:bold;
+font-size:10.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><b style="mso-bidi-font-weight:normal" ><span class="15"  style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+mso-ansi-font-weight:bold;" ><font face="sans-serif" >闭环仿真、系统架构、发展趋势等内容的取舍</font></span></b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo5;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出闭环仿真这个东西一般不写，因为没啥意义，用了什么仿真环境，用了什么东西，后面还有一个内容去的架构，什么</font>PS<font face="sans-serif" >系统什么架构，又没有推出这个硬件都是人家的，能推出什么新的架构，其实也就是搭了用了这个控制器围绕着控制做个系统而已，如果用</font><font face="Times New Roman" >stm32</font><font face="sans-serif" >的单片机，自己搭个小嵌入系统不也一样吗，但这个东西属于工作量的事儿，不属于那个事儿，这部分其实没什么可讲的，属于用的技术方法或者其中的某个技术模块，没有什么太大的创新点或者是主要目标，甚至换一个别的东西别的控制器也能干这个事儿，除非针对本身的架构有不同的点，那就属于到芯片层级上了，就不会做这个事儿。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo5;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出发展趋势是当研究的这几个内容，每一个内容讲讲完现状之后，后面要总结一个现在大家是怎么研究的，有哪些点没解决的，然后评判一下，评判出来的结果就是后面要做的事儿，因为他们没干这个事儿，所以我要这么干。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo5;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出学生写的芯片的什么仿真方法这些东西，其实到最后应该是什么，就是仿真的方案或者实验的方案，比如基于</font>matlab<font face="sans-serif" >或者</font><font face="Times New Roman" >local</font><font face="sans-serif" >之类的，先做个动力学仿真来进行初步验证，然后后面用实验室已有的开发好的样机，在</font><font face="Times New Roman" >PS</font><font face="sans-serif" >的平台上面去，把它部署上面去，然后来做实验，看看结果，比如做一些高流速的或者是动态的，然后什么运动控制以及什么动力分配的这个实验，来看一下是否满足可行性的要求就得了，就说的是我要打算干什么事儿，至于干成什么样子，还没开始呢。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;mso-ansi-font-weight:bold;
+font-size:10.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><b style="mso-bidi-font-weight:normal" ><span class="15"  style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+mso-ansi-font-weight:bold;" ><font face="sans-serif" >技术路线图与</font>AI<font face="sans-serif" >使用规范</font></span></b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo6;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出技术路线图以后写开题报告的时候，伟豪都不用看，估计都是一样的，肯定都用</font>AI<font face="sans-serif" >了，用</font><font face="Times New Roman" >AI</font><font face="sans-serif" >之后告诉你们去用</font><font face="Times New Roman" >AI</font><font face="sans-serif" >，现在这个东西也没有办法约束你们去，但是就一个要求，保持你们自己的思考能力，别用</font><font face="Times New Roman" >AI</font><font face="sans-serif" >生成的东西无脑扔在这里，读得出来，一下就能读出来。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo6;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出</font>AI<font face="sans-serif" >没有什么能力，</font><font face="Times New Roman" >AI</font><font face="sans-serif" >没有逻辑能力，就是这四个研究内容之间彼此的连接点，还有他们的方法，这个事儿没有，拿东西凑出来的和一个自己经过脑子写的完全不一样，包括一个最明显的特点，你讲不讲的明白，今天截止到今天为止，伟豪还没听过所有人都说不清楚自己写的这个玩意儿，要是自己一笔一笔敲出来的，怎么可能说不出来，都不流利，甚至都忘了这三个内容关系是什么，要用的方法是什么，都说不出来，这是最明显的</font><font face="Times New Roman" >AI</font><font face="sans-serif" >的方式，不要这么干，以后读研的时候要这么干就毁了自己。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo6;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出规范上来讲，本科生的毕设现在的要求跟学位论文硕士要求是一样的，今年答完辩之后，七八月份的时候又发打回来一批让大家改，要干这种事儿，到时候毕了业给薅回来改图，可以让</font>AI<font face="sans-serif" >帮你生成一个没有思路的，让它帮你生成一个，然后自己去画放在这里面，</font><font face="Times New Roman" >AI</font><font face="sans-serif" >生成文字、</font><font face="Times New Roman" >AI</font><font face="sans-serif" >生成图，重点学校审查对象，只要有答辩了也给你打回来让你去弄，所以先把规则讲好，以后不要犯这种事情，用可以但是要规范，而且一定要有自己的保持思考能力。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;mso-ansi-font-weight:bold;
+font-size:10.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><b style="mso-bidi-font-weight:normal" ><span class="15"  style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+mso-ansi-font-weight:bold;" ><font face="sans-serif" >学生问题诊断与</font>PID<font face="sans-serif" >调参理论</font></span></b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo7;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出学生开题报告最大的问题就是重心都压在了</font>PS<font face="sans-serif" >的编程实现上，其实前面的理论方法建模这一块是不关注的，甚至都不是很熟悉这个事儿，这个还算好一点，一瞅就是属于干活的人，干项目的人以前是动手干过项目的，所以就啥也不管，只要能实现就可以，这是一个动手能力、实践能力很好的表现，但是如果想读研究生，这个是不够的，前面理论必须有逻辑给我捋顺，所以现在说不清楚运动控制到底是啥，八推进器的控制分配是啥。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo7;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师询问学生水下航行器的六自由度动力学建模，八推进器，然后六自由度，推进器是能转的还是固定的，学生回答固定，推进器是固定的，只能控制它的转速，然后进这个控制进去，整个的话那个汽车发生器就是标准的一个整体的一个缸体，老师指出这些东西一定要从这个角度去理解它，别从战队里面之后，因为要为了参加比赛，以前没跟你们讲过这个事儿，你们都是以效果为方式去玩这个东西，这是动手能力强的一种表现，动手能力强的表现就是不爱思考，只看效果调，反正走不好就调调别的。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo7;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出</font>PID<font face="sans-serif" >参数调参，首先第一点是有理论的，没有人工经验，人工经验是啥，就是瞎一试，输个</font><font face="Times New Roman" >123</font><font face="sans-serif" >不好使，输个</font><font face="Times New Roman" >321</font><font face="sans-serif" >，一直试到它好使为止，事实上不是的，</font><font face="Times New Roman" >PID</font><font face="sans-serif" >自身就是有调参的规律的，一般</font><font face="Times New Roman" >K</font><font face="sans-serif" >这</font><font face="Times New Roman" >3</font><font face="sans-serif" >个参数之间会成</font><font face="Times New Roman" >0.5</font><font face="sans-serif" >倍的关系，先有初始值，然后相互设为前面值的</font><font face="Times New Roman" >0.5</font><font face="sans-serif" >倍，先进去看看结果，然后不行再按</font><font face="Times New Roman" >0.5</font><font face="sans-serif" >倍调，还是有一套这个规律，放到现在就更多了，深度学习、强化学习进行参数的优化，方法就更多了，而且这玩意儿其实都很普遍，甚至现在有些</font><font face="Times New Roman" >matlab</font><font face="sans-serif" >就嵌着这个东西，所以像这些东西得讲清楚，这是第一点，第二点的话就是要考虑要不要用这个方法，有些东西其实挺没有那么大的创新性的，如果精力有限，想多做一做也是可以的。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;mso-ansi-font-weight:bold;
+font-size:10.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><b style="mso-bidi-font-weight:normal" ><span class="15"  style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+mso-ansi-font-weight:bold;" ><font face="sans-serif" >参考文献数量要求</font></span></b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo8;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出学生参考文献太少，学生还算可以，起码是十多篇，不知道伟豪写了多少篇，前面写的开题报告里面写的一些国内外研究现状，三个点，按现在算，</font>16<font face="sans-serif" >篇，一篇五篇论文，一个研究内容就五篇论文，支撑研究现状分析的透彻吗，研究现状是要充分的分析现有的文献，全世界这么多论文，起码得四十多篇。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo8;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出参考文献是一劳永逸的事情，现在写用上了以后，写正经的毕业设计的时候还用得上，毕业设计第一章绪论就是这东西，第一点研究现状，第二个国内外，第一个研究背景意义，第二个研究现状，第三个研究内容就没了，这个东西可以用好多遍的，现在写好了之后以后就可以照搬用，而且写正文的时候文献怎么可能那么少，所以这个时候多挖挖心思去好好把它写好了之后，后面是能用的，省得后面的时候还考研呢，所以这个东西都去加大它的数量，不亏这个事情就不亏，现在有空有时间就好。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;mso-ansi-font-weight:bold;
+font-size:10.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><b style="mso-bidi-font-weight:normal" ><span class="15"  style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+mso-ansi-font-weight:bold;" ><font face="sans-serif" >时间规划与考研、毕设并行安排</font></span></b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:72.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo9;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师询问学生实物怎么办，还到他那去做实验吗，学生回答对，考完研应该就过去，老师指出那也是下学期的事儿，中期之前可能还是得过，考完研就是考完试初试，初试之后就应该要过去，那也就是今年年底，今年年底之前肯定是做底做好了，那这个其实对学生来讲压力还是有的，因为又要准备考研，又要干这个事。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:144.1000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo9;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >老师指出时间这块儿，今天跟洛飞也这么讲的，建议尽量往前赶，虽然现在就是考研和毕业生，就是这个别扭的劲儿，要是把这个东西留着留到后面去，考完研再开始干，肯定来不及，到最后能勉强混个毕业已经很不错了，现在觉得时间紧还得复习，等到后面出了要考试的时候考完试就中期考核，然后开了年之后想准备复试，那个时候就开始准备答辩了，大概四五月份就答辩了，基本上跟复试的是高度重合，把这套考研的流程都走完了开始做就没时间了，然后不行就得延毕，就是这样的，所以不要干这个事情，就是尽量的往前弄一下。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><h2 style="margin-left:72.0000pt;mso-pagination:widow-orphan;mso-line-height-alt:12pt;" ><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:18.0000pt;mso-font-kerning:0.0000pt;" ><font face="宋体" >共识：</font></span></b><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:18.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></b></h2><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:144.1000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 72.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level2 lfo9;" ><![if !supportLists]><span style="font-family:'Courier New';mso-fareast-font-family:宋体;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >o<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >开题报告的研究背景意义应采用三段式结构，第一段写大的环境政策，第二段写研究对象存在的问题，第三段基于问题引出本课题要做什么。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >研究内容、研究方法、研究目标三者概念不同，研究目标说的是干什么，研究内容是怎么做，研究方法是怎么干，研究内容应与前沿综述相呼应。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >运动控制和控制分配是两回事，运动控制得到的结果是每个推进器需要多大的力，控制分配是让推进器按照这个力输出分配好，要搞清楚谁在前谁在后。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >闭环仿真、系统架构这类内容属于用的技术方法或技术模块，没有太大创新点，不需要在开题报告中重点讲。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >使用</font>AI<font face="sans-serif" >可以，但必须保持自己的思考能力，不能无脑使用</font><font face="Times New Roman" >AI</font><font face="sans-serif" >生成的内容，</font><font face="Times New Roman" >AI</font><font face="sans-serif" >生成文字和</font><font face="Times New Roman" >AI</font><font face="sans-serif" >生成图是重点学校审查对象。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >参考文献数量要充足，起码得四十多篇，研究现状要充分分析现有文献，现在写好了以后写毕业设计正文时还能用。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l1 level1 lfo1;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >时间上要尽量往前赶，不能等考完研再开始干，否则肯定来不及，四五月份答辩跟复试高度重合。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><h1 style="mso-pagination:widow-orphan;mso-line-height-alt:12pt;" ><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:24.0000pt;mso-font-kerning:22.0000pt;" ><font face="宋体" >决议和行动事项</font></span></b><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:24.0000pt;mso-font-kerning:22.0000pt;" ><o:p></o:p></span></b></h1><h2 style="mso-pagination:widow-orphan;mso-line-height-alt:12pt;" ><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:18.0000pt;mso-font-kerning:0.0000pt;" ><font face="宋体" >关键决议：</font></span></b><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:18.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></b></h2><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l0 level1 lfo10;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >学生回去后需要把思路理一理，重新修改开题报告。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l0 level1 lfo10;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >开题报告的研究背景意义按三段式结构重新写，第一段写大的环境政策，第二段写研究对象存在的问题，第三段基于问题引出课题要做什么。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l0 level1 lfo10;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >研究内容、研究方法、研究目标的概念要搞清楚，研究内容与前沿综述呼应，研究方法写具体用什么理论方法。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l0 level1 lfo10;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >运动控制和控制分配的关系要搞清楚，谁在前谁在后，每个模块的输入输出结果要明确。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l0 level1 lfo10;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >闭环仿真、系统架构这类内容不需要在开题报告中讲。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:36.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l0 level1 lfo10;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >参考文献数量要加大，起码得四十多篇。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:108.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l0 level1 lfo10;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:sans-serif;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >时间上尽量往前赶，不能等考完研再开始干。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><h2 style="margin-left:36.0000pt;mso-pagination:widow-orphan;mso-line-height-alt:12pt;" ><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:18.0000pt;mso-font-kerning:0.0000pt;" ><font face="宋体" >行动项：</font></span></b><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:18.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></b></h2><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:108.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l0 level1 lfo10;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:宋体;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><table class=MsoNormalTable  border=0  cellspacing=0  style="border-collapse:collapse;width:100.0000%;margin-left:35.4000pt;
+border:none;mso-padding-alt:0.7500pt 0.7500pt 0.7500pt 0.7500pt ;" ><tr><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:1.0000pt solid rgb(51,51,51);mso-border-left-alt:0.5000pt solid rgb(51,51,51);
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:1.0000pt solid rgb(51,51,51);
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);
+background:rgb(240,240,240);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><b style="mso-bidi-font-weight:normal" ><span class="15"  style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;mso-ansi-font-weight:bold;
+font-size:12.0000pt;" ><font face="sans-serif" >执行人</font></span></b><b><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-weight:bold;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></b></p></td><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:none;mso-border-left-alt:none;
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:1.0000pt solid rgb(51,51,51);
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);
+background:rgb(240,240,240);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><b style="mso-bidi-font-weight:normal" ><span class="15"  style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;mso-ansi-font-weight:bold;
+font-size:12.0000pt;" ><font face="sans-serif" >具体任务</font></span></b><b><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-weight:bold;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></b></p></td></tr><tr><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:1.0000pt solid rgb(51,51,51);mso-border-left-alt:0.5000pt solid rgb(51,51,51);
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >学生</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:none;mso-border-left-alt:none;
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >回去把思路理一理，重新修改开题报告</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td></tr><tr><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:1.0000pt solid rgb(51,51,51);mso-border-left-alt:0.5000pt solid rgb(51,51,51);
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >学生</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:none;mso-border-left-alt:none;
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >将开题报告的研究背景意义按三段式结构重新写</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td></tr><tr><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:1.0000pt solid rgb(51,51,51);mso-border-left-alt:0.5000pt solid rgb(51,51,51);
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >学生</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:none;mso-border-left-alt:none;
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >搞清楚研究内容、研究方法、研究目标的概念区分</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td></tr><tr><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:1.0000pt solid rgb(51,51,51);mso-border-left-alt:0.5000pt solid rgb(51,51,51);
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >学生</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:none;mso-border-left-alt:none;
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >搞清楚运动控制和控制分配的关系</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td></tr><tr><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:1.0000pt solid rgb(51,51,51);mso-border-left-alt:0.5000pt solid rgb(51,51,51);
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >学生</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:none;mso-border-left-alt:none;
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >删除开题报告中闭环仿真、系统架构等不必要内容</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td></tr><tr><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:1.0000pt solid rgb(51,51,51);mso-border-left-alt:0.5000pt solid rgb(51,51,51);
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >学生</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:none;mso-border-left-alt:none;
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >加大参考文献数量，起码得四十多篇</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td></tr><tr><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:1.0000pt solid rgb(51,51,51);mso-border-left-alt:0.5000pt solid rgb(51,51,51);
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >学生</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td><td valign=center  style="padding:4.5000pt 6.0000pt 4.5000pt 6.0000pt ;border-left:none;mso-border-left-alt:none;
+border-right:1.0000pt solid rgb(51,51,51);mso-border-right-alt:0.5000pt solid rgb(51,51,51);border-top:none;
+mso-border-top-alt:0.5000pt solid rgb(51,51,51);border-bottom:1.0000pt solid rgb(51,51,51);mso-border-bottom-alt:0.5000pt solid rgb(51,51,51);" ><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><font face="sans-serif" >尽量往前赶时间，不能等考完研再开始干</font></span><span style="font-family:'Times New Roman';mso-fareast-font-family:sans-serif;font-size:12.0000pt;
+mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></td></tr></table><p class=MsoNormal  style="margin-top:5.0000pt;margin-bottom:5.0000pt;margin-left:108.0000pt;
+mso-margin-top-alt:auto;mso-margin-bottom-alt:auto;text-indent:-18.0000pt;
+tab-stops:left blank 36.0000pt ;mso-pagination:widow-orphan;mso-line-height-alt:12pt;
+mso-list:l0 level1 lfo10;" ><![if !supportLists]><span style="font-family:Symbol;mso-fareast-font-family:宋体;font-size:10.0000pt;
+mso-font-kerning:0.0000pt;" ><span style='mso-list:Ignore;' >&#183;<span style='font:7.0pt Times New Roman' >&nbsp;</span></span></span><![endif]><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><h1 style="mso-pagination:widow-orphan;mso-line-height-alt:12pt;" ><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:24.0000pt;mso-font-kerning:22.0000pt;" ><font face="宋体" >会议总结</font></span></b><b><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-weight:bold;font-size:24.0000pt;mso-font-kerning:22.0000pt;" ><o:p></o:p></span></b></h1><p class=p  style="mso-pagination:widow-orphan;mso-line-height-alt:12pt;" ><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >本次会议主要针对学生的开题报告进行了详细的修改指导。老师指出了开题报告在写法上的核心问题，包括研究背景意义应采用三段式结构、研究内容与研究方法的概念区分、运动控制与控制分配的关系辨析、闭环仿真与系统架构等内容的取舍、参考文献数量要求、</font>AI<font face="sans-serif" >使用规范以及时间规划安排等。学生需要按照老师的指导意见，重新梳理思路并修改开题报告，同时注意在考研和毕设并行的情况下尽量往前赶时间，确保按时完成各项任务。</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:宋体;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p><p class=MsoNormal  style="mso-pagination:widow-orphan;text-align:left;mso-line-height-alt:12pt;" ><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><font face="sans-serif" >由</font> OPPO AI <font face="sans-serif" >生成，内容仅供参考</font></span><span style="mso-spacerun:'yes';font-family:'Times New Roman';mso-fareast-font-family:sans-serif;
+font-size:12.0000pt;mso-font-kerning:0.0000pt;" ><o:p></o:p></span></p></div><!--EndFragment--></body></html>
