@@ -18,9 +18,9 @@
 
 ## 二、 四阶段里程碑总进度（Roadmap & Checklist）
 
-### 阶段 0：选题论证、任务书与开题报告（当前阶段：任务书已通过；开题报告推倒重来从零全新起草中）
+### 阶段 0：选题论证、核心任务考量、任务书与开题报告（当前阶段：核心任务考量中，任务书仅作前期参考随时可改；开题报告从零全新起草中）
 - [x] PX4 与 ArduSub 水下控制架构深度对比调研（[PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md)）
-- [x] 任务书定稿与导师审阅口径对齐，官方规范 `.docx` 已定稿通过（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)）
+- [ ] **【核心任务考量与任务书动态联动】**：明确任务书文件（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)）仅作为前期参考工作底稿，**绝非不可修改的死板基准**；课题核心研究任务与科学问题仍在深入考量与动态权衡中，后续任务书与开题报告保持双向联动修订！
 - [x] 建立 Git 版本控制体系、全局规则 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md) 及 4 大专业 Skill
 - [x] 建立开题报告章节契约、证据映射与学术规范体系（[.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md)）
 - [x] **旧版开题全量作废与物理移出（方案 A）**：因导师 9/30 批示原开题报告存在“大作业思维、缺乏外部恶劣场景物理矛盾驱动、提前剧透算法公式”等重大硬伤，2026/09/30 之前的所有旧版草稿（`.md`）、生成脚本及历史 `.docx` 已全部作废并物理移出至项目外部 `D:\tj\Graduation_Project_旧版开题作废备份_20260930\`；严禁任何 Agent 读取或沿用旧版草稿！
