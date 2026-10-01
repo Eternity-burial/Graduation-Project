@@ -32,6 +32,11 @@
 6. **术语统一规范**：
    - 毕业设计类型统一为：**毕业论文**（非“毕业设计”）。
    - 核心术语统一：六自由度（6-DOF）、北东地惯性坐标系（NED）、附体坐标系（Body-fixed Frame / FRD）、附加质量（Added Mass）、水动力阻尼（Hydrodynamic Damping）、恢复力与力矩（Restoring Forces and Moments）、广义控制力与力矩（Generalized Control Forces and Moments）、控制分配（Control Allocation）、软件在环仿真（SITL）。
+7. **旧版开题报告全量作废与物理隔离铁律（严禁沿袭旧版）**：
+   - 2026/09/30 之前撰写的旧版开题报告草稿与代码因存在严重的“大作业思维、缺乏外部恶劣场景物理驱动、提前剧透算法与公式”等问题，已被导师批评并全量推倒重来；
+   - 旧版所有相关 Markdown 草稿（`开题报告_全文草稿.md` 等）、生成脚本（`build_opening_report_doc.py`）及历史 `.docx` 文件已全量物理移出至仓库外部 `D:\tj\Graduation_Project_旧版开题作废备份_20260930\`；
+   - **严禁任何 Agent 读取、恢复、全局搜索或沿用旧版开题报告中的任何段落与表述！**
+   - 开题报告必须严格依据 [.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md) 章节契约，直接向学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 从零逐段撰写。
 
 ---
 
@@ -68,7 +73,7 @@
 - `模板/`：存放学校官方下发的原始空白 `.doc` / `.docx` 模板文件（**只读基准，严禁直接覆盖修改**）。
 - `参考/`：往届优秀任务书与相关参考文档（只读参考）。
 - `选题/`：课题筛选记录及 [PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md) 深度调研报告。
-- `开题报告/`：任务书与开题报告正式版（`.docx`）、当前活跃修改对比版（[开题报告-新旧版本修改对比版_逐段差异高亮.docx](file:///d:/tj/Graduation%20Project/开题报告/开题报告-新旧版本修改对比版_逐段差异高亮.docx)）、开题报告全文草稿（[开题报告_全文草稿.md](file:///d:/tj/Graduation%20Project/开题报告/开题报告_全文草稿.md)）、高清架构图生成脚本（[generate_report_figures.py](file:///d:/tj/Graduation%20Project/开题报告/generate_report_figures.py)）、Word 自动化生成脚本（[build_opening_report_doc.py](file:///d:/tj/Graduation%20Project/开题报告/build_opening_report_doc.py)）及系统化归档目录（`归档/历史DOC版本/`、`归档/历次修改对比版/`、`归档/用户标注备份/`、`归档/任务书前期版本/`，详见 [开题报告/归档/README.md](file:///d:/tj/Graduation%20Project/开题报告/归档/README.md)）。
+- `开题报告/`：仅存放已定稿的任务书正式版（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)）、配图素材（`figures/`）、参考文献源文件（`references.bib`/`references.ris`）以及当前正在基于官方模板从零全新撰写的开题报告。旧版全量草稿、历史版本及生成脚本已全量移出至项目外 `D:\tj\Graduation_Project_旧版开题作废备份_20260930`，严禁任何 Agent 读取！
 - `资料/`：核心英文文献 PDF（`01`~`05`）、中文全译 Markdown 及双语文献精读平台（[index.html](file:///d:/tj/Graduation%20Project/资料/index.html)、`js/data_paper*.js`、`master_vocab_cache.json`）。
 - `PX4_INDI_Research/`：前期 PX4 架构调研、INDI 嵌入式 C++ 原型代码与 Python 离线仿真实验。
 
