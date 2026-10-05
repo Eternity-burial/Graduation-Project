@@ -76,7 +76,10 @@
 - `参考/`：往届优秀任务书与相关参考文档（只读参考）。
 - `选题/`：课题筛选记录及 [PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md) 深度调研报告。
 - `开题报告/`：仅存放前期参考任务书工作底稿（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)，仅作参考，可随时联动修改）、配图素材（`figures/`）、参考文献源文件（`references.bib`/`references.ris`）以及当前正在基于官方模板从零全新撰写的开题报告。旧版全量草稿、历史版本及生成脚本已全量移出至项目外 `D:\tj\Graduation_Project_旧版开题作废备份_20260930`，严禁任何 Agent 读取！
-- `资料/`：按课题主干清晰划分为 4 大主题专题库（`01_海洋航行器机理建模与理论基础/`、`02_水动力参数辨识与数据驱动建模/`、`03_先进运动控制与动态补偿/`、`04_控制分配与水下传感实验/`）及全局极速入门指南；双语文献 Web 精读阅读器及翻译资产已独立归档至远程私有仓库 [Eternity-burial/rov-paper-reader](https://github.com/Eternity-burial/rov-paper-reader)。
+- `资料/`：按课题主干清晰划分为 4 大主题专题库（`01_海洋航行器机理建模与理论基础/`、`02_水动力参数辨识与数据驱动建模/`、`03_先进运动控制与动态补偿/`、`04_控制分配与水下传感实验/`）及 Markdown 源码归档库 `md/`；
+  - **主题分类纯净 PDF 铁律**：4 大主题目录下仅存放纯净权威的 PDF 文档（英文原版、中文全译版、中英双语对照版 PDF）及必要图表，**严禁散落存放任何 Markdown 文档**；
+  - **Markdown 统一归档铁律**：所有文献生成的中文全译、精读导读、双语对照等 Markdown 源码一律且仅存放在 `资料/md/` 统一收纳管理；
+  - 双语文献 Web 精读阅读器及翻译资产已独立归档至远程私有仓库 [Eternity-burial/rov-paper-reader](https://github.com/Eternity-burial/rov-paper-reader)。
 - `PX4_INDI_Research/`：前期 PX4 架构调研、INDI 嵌入式 C++ 原型代码与 Python 离线仿真实验。
 
 ### Windows / PowerShell 与 Python 执行铁律
@@ -124,4 +127,4 @@
    - 所有 Word 公式必须通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 输出原生 OMML，严禁使用图片；
    - 仿真曲线采用颜色+线型双重编码（300 DPI），可编辑矢量框图可通过 [drawio-reconstruction](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md) 重建为 `.drawio` 文件；
 5. **参考文献规范**：严格遵守 GB/T 7714-2015 顺序编码制，正文首次引用递增，同步维护 `references.bib` 与 `references.ris`。
-6. **文献双语化与研读规范**：外文文献全译与双语对照严格执行 [paper-translation-reader](file:///d:/tj/Graduation%20Project/.agents/skills/paper-translation-reader/SKILL.md) 五大铁律与双轨制流水线；严禁省略任何定理证明、子公式与推导步骤，交付前必须执行自动化公式比对门禁，确保差集为 0。
+6. **文献双语化与研读规范**：外文文献全译与双语对照严格执行 [paper-translation-reader](file:///d:/tj/Graduation%20Project/.agents/skills/paper-translation-reader/SKILL.md) 五大铁律与双轨制流水线；严禁省略任何定理证明、子公式与推导步骤，交付前必须执行自动化公式比对门禁，确保差集为 0；**所有文献 Markdown 源码必须统一收纳于 `资料/md/`，各主题分类目录下仅保留纯净权威的 PDF 文档**。
