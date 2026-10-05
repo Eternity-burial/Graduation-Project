@@ -28,7 +28,7 @@
 - [ ] **待办**：准备开题答辩 PPT 汇报材料
 
 ### 阶段 1：外文文献精读与六自由度建模（进行中）
-- [x] 精读并完成前 3 篇核心英文文献中文全译与双语精读平台（[资料/index.html](file:///d:/tj/Graduation%20Project/资料/index.html) `paper1` ~ `paper3`）
+- [x] 精读并完成前 3 篇核心英文文献中文全译与双语精读平台资产，已独立归档并推送至远程私有仓库 [Eternity-burial/rov-paper-reader](https://github.com/Eternity-burial/rov-paper-reader)；主仓库 `资料/` 仅保留原始 PDF 与 ROV 入门精读指南以保持工作区整洁
 - [ ] **待办**：完成 `04-en-*.pdf` 与 `05-en-*.pdf` 的 100% 中文全译及双语阅读器数据接入（`data_paper4.js`, `data_paper5.js`）
 - [ ] **待办**：梳理实验室八推进器 ROV 平台物理几何参数（质量、主尺度、重心/浮心、8 推进器坐标 $\boldsymbol{r}_i$ 与方向矢量 $\boldsymbol{d}_i$），建立参数化 Fossen 6-DOF 仿真模型
 
