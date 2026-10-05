@@ -76,7 +76,7 @@
 - `参考/`：往届优秀任务书与相关参考文档（只读参考）。
 - `选题/`：课题筛选记录及 [PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md) 深度调研报告。
 - `开题报告/`：仅存放前期参考任务书工作底稿（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)，仅作参考，可随时联动修改）、配图素材（`figures/`）、参考文献源文件（`references.bib`/`references.ris`）以及当前正在基于官方模板从零全新撰写的开题报告。旧版全量草稿、历史版本及生成脚本已全量移出至项目外 `D:\tj\Graduation_Project_旧版开题作废备份_20260930`，严禁任何 Agent 读取！
-- `资料/`：文献 PDF 资源库（含 `01`~`05` 论文、Fossen 核心讲义及参数辨识前沿文献）与 ROV 核心精读指南；双语文献 Web 精读阅读器及翻译资产已独立归档至远程私有仓库 [Eternity-burial/rov-paper-reader](https://github.com/Eternity-burial/rov-paper-reader)。
+- `资料/`：按课题主干清晰划分为 4 大主题专题库（`01_海洋航行器机理建模与理论基础/`、`02_水动力参数辨识与数据驱动建模/`、`03_先进运动控制与动态补偿/`、`04_控制分配与水下传感实验/`）及全局极速入门指南；双语文献 Web 精读阅读器及翻译资产已独立归档至远程私有仓库 [Eternity-burial/rov-paper-reader](https://github.com/Eternity-burial/rov-paper-reader)。
 - `PX4_INDI_Research/`：前期 PX4 架构调研、INDI 嵌入式 C++ 原型代码与 Python 离线仿真实验。
 
 ### Windows / PowerShell 与 Python 执行铁律

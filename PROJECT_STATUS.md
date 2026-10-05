@@ -155,5 +155,13 @@
        - 为彻底杜绝后续新对话或任何 Agent 扫描到旧版开题草稿导致“借尸还魂”，已将 2026/09/30 之前的所有旧版文件（全部 Markdown 草稿、代码 `build_opening_report_doc.py` / `generate_report_figures.py`、旧版 `.docx` 及历史归档目录 `归档/`）**全量物理移出至项目外部：`D:\tj\Graduation_Project_旧版开题作废备份_20260930\`**；
        - 当前项目工作区内 [开题报告/](file:///d:/tj/Graduation%20Project/开题报告/) 根目录彻底净化，仅保留前期参考任务书工作底稿（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)，仅作参考，可随时联动修订）、配图素材与参考文献源文件；
        - **【新对话绝对指令】**：后续任何新窗口推进开题报告时，一律严格基于学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx)，按照 `opening_report_contracts_and_evidence.md` 章节契约从零逐段起草，严禁恢复或参考旧版草稿！任务书绝非僵化基准，核心任务仍在深入考量中，后续与开题报告保持双向联动修订！
-
-
+- **2026-10-05**：
+  - **完成文献资料库结构化与 Web 精读阅读器远程归档**：
+    1. **远程仓库独立建库并推送**：将交互式双语文献精读平台（`index.html`、`css/`、`js/`、`images/`、`master_vocab_cache.json` 及全译 Markdown）全量打包初始化为独立 Git 仓库，并推送至 GitHub 私有远程仓库 [Eternity-burial/rov-paper-reader](https://github.com/Eternity-burial/rov-paper-reader)；
+    2. **本地资料库按课题主干全量整合重组**：彻底净化根目录碎片，全量整合为 4 大核心主题文件夹：
+       - `01_海洋航行器机理建模与理论基础/`：Fossen 6-DOF 动力学机理、运动学讲义、核心讲义精读手册及经典文献；
+       - `02_水动力参数辨识与数据驱动建模/`：SINDy、Neural ODE、PH-NODE、零空间自适应辨识、Koopman 在线辨识、动量回归及综述导读；
+       - `03_先进运动控制与动态补偿/`：01~05 号论文（中英 PDF）、Neural-Fly（NMPC、自适应 INDI、神经内模控制）；
+       - `04_控制分配与水下传感实验/`：Fossen 控制分配讲义、冗余推进控制分配（Li2025 PDF/MD）、DVL 时空标定（PDF/MD）与水下多模态数据集（PDF/MD）；
+       - 根目录保留《水下航行器从物理直觉到工程闭环极速入门指南.md》与全局导航索引 [README.md](file:///d:/tj/Graduation%20Project/资料/README.md)；
+    3. **主工程 Git 状态保持 100% 洁净，工作区条理清晰**。
