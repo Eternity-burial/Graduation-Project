@@ -124,5 +124,4 @@
    - 所有 Word 公式必须通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 输出原生 OMML，严禁使用图片；
    - 仿真曲线采用颜色+线型双重编码（300 DPI），可编辑矢量框图可通过 [drawio-reconstruction](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md) 重建为 `.drawio` 文件；
 5. **参考文献规范**：严格遵守 GB/T 7714-2015 顺序编码制，正文首次引用递增，同步维护 `references.bib` 与 `references.ris`。
-
-
+6. **文献双语化与研读规范**：外文文献全译与双语对照严格执行 [paper-translation-reader](file:///d:/tj/Graduation%20Project/.agents/skills/paper-translation-reader/SKILL.md) 五大铁律与双轨制流水线；严禁省略任何定理证明、子公式与推导步骤，交付前必须执行自动化公式比对门禁，确保差集为 0。

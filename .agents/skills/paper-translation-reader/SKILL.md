@@ -13,30 +13,56 @@ description: >-
 
 ---
 
-## 一、 外文文献全译四大铁律
+## 一、 外文文献全译五大铁律
 
 1. **100% 完整全译（严禁漏段、严禁缩写）**：
    - 翻译外文论文时，必须从摘要、引言、数学建模、控制律设计、实验设置、结果讨论到结论**逐段逐句完整翻译**。
    - **严禁**因为篇幅长而擅自使用“（此处省略实验细节）”、“（公式推导略）”或将多句合并概括成一句话。
 2. **数学公式 100% KaTeX 精确还原**：
    - 原文中的所有行内公式（`$...$`）与独立编号公式（`$$...$$`）必须完整还原，矢量/矩阵加粗符号（`\boldsymbol{...}` 或 `\mathbf{...}`）、上下标及正体算子保持严谨规范。
-3. **专业术语强制统一**：
+3. **零遗漏推导证明与公式校验门禁（Formula & Proof Zero-Loss Invariant）**：
+   - 论文中的所有理论定理（Theorems）、引理（Lemmas）、注记（Remarks）、推导步骤（Proofs）以及中间公式展开必须 100% 完整呈现；
+   - 交付前**必须执行自动化公式比对门禁**：编写 Python 脚本提取原文中所有公式编号集合（$1 \sim N$），比对译文中 `\tag{}` 编号集合，确保差集为 0；
+   - 双语对照版页数必须与原文字量相匹配（通常为原文页数的 1.2 ~ 1.5 倍），严禁出现页数严重缩水或摘要概括化。
+4. **专业术语强制统一**：
    - 翻译前必须查阅并遵守本技能目录下的标准术语表：[references/terminology.md](./references/terminology.md)，确保文献译稿中的专业词汇与开题报告、毕业论文正文完全一致。
-4. **原图提取与图文对应**：
-   - 使用 PyMuPDF (`fitz`) 从原版 PDF 中提取高清实验图与架构框图，统一存放于 `资料/images/paperX_figY_*.png`，并在全译 Markdown 与双语阅读器对应章节中准确嵌入图片与中英双语图注。
+5. **原图提取与图文对应**：
+   - 使用 PyMuPDF (`fitz`) 从原版 PDF 中提取高清实验图与架构框图，统一存放于 `资料/images/paperX_figY_*.png` 或各专业目录，并在全译 Markdown 与双语阅读器对应章节中准确嵌入图片与中英双语图注。
 
 ---
 
-## 二、 产出物标准（一文双档）
+## 二、 产出物标准与双轨排版技术流水线 (Dual-Track Pipeline)
 
-每精读翻译一篇新文献（如 `资料/04-en-*.pdf`、`资料/05-en-*.pdf`），根据用户需求产出以下两类文件：
+每精读翻译一篇新文献（如 `资料/` 各子目录下的核心论文），标准产出为完整的**双语对照出版级文档集**：
 
-### 1. 中文全译 Markdown 文档
-- **命名规范**：`资料/论文<序号>_<中文标题>_中文全译.md`（参考范例：[论文3_基于增量非线性动态逆的水下特技作业AUV姿态控制_中文全译.md](file:///d:/tj/Graduation%20Project/资料/论文3_基于增量非线性动态逆的水下特技作业AUV姿态控制_中文全译.md)）。
-- **头部元数据**：包含中文标题、英文原题、作者、发表期刊/会议、研究机构、开源代码库链接（如有）、演示视频链接（如有）。
+### 1. 核心产出物三件套
+1. **中英双语卡片对照 Markdown 文档**：
+   - 命名：`资料/<分类>/<编号>_<标题>_双语对照.md`
+   - 格式：采用 `<div class="bilingual-box">` 容器，内部嵌套 `<div class="en-text"><strong>[EN]</strong> ...</div>` 与 `<div class="zh-text"><strong>[中文]</strong> ...</div>`。
+2. **中文全译精读 Markdown 文档**：
+   - 命名：`资料/<分类>/<编号>_<标题>_中文全译精读.md`
+   - 格式：纯净学术中文单语版，公式、图表与定理完全一致。
+3. **高保真出版级矢量 PDF 文档**：
+   - `_双语对照.pdf`：中英双语卡片并排，公式原生渲染，带有防分页撕裂保护；
+   - `_中文版.pdf`：中文紧凑精排单语版。
 
-### 2. 双语精读网页阅读器数据 (`资料/js/data_paper<X>.js`)
-双语阅读器由 [index.html](file:///d:/tj/Graduation%20Project/资料/index.html) 与 [reader_app.js](file:///d:/tj/Graduation%20Project/资料/js/reader_app.js) 驱动，数据挂载在全局变量 `window.BISHE_DATA['paperX']` 上（参考范例：[data_paper3.js](file:///d:/tj/Graduation%20Project/资料/js/data_paper3.js)）。
+### 2. 双轨制排版技术流水线 (Dual-Track Pipeline)
+
+针对不同技术历史时期的 PDF 源码特性，严格执行以下双轨分工，杜绝排版灾难：
+
+- **Track A：现代原生双栏数字论文（如 IEEE/Elsevier 2015 之后的论文，如 Li 2025）**：
+  - **适用特征**：现代排版软件生成，文本层未打散，坐标系标准；
+  - **处理工具**：采用 `pdf2zh` 原位双栏替换引擎，自动化保留原文矢量图排版与双语分栏对照。
+- **Track B：早期历史经典文献（如 1990 年代及更早的 TeX/DVI 论文，如 Fossen 1995）**：
+  - **技术陷阱警示**：`dvipsk` 编译导致文字层被编码为 0.17 pt 微米级字体、单词按音节打散为独立文字块、负 Y 轴坐标颠倒，`pdf2zh` 会导致严重的错乱或排版灾难；
+  - **处理管线**：
+    1. **空间重构文本**：使用 PyMuPDF 获取单词坐标并按行高容差（y 轴容差 3 pt）排序，拼接恢复连贯文本；
+    2. **逐段 1:1 双语卡片重构**：编写 Markdown，包含全部定理、证明、注记和所有公式编号（`\tag{1} ~ \tag{N}`）；
+    3. **出版级 CSS 与分页防护**：强制为 `.bilingual-box`、`.theorem-box`、`.proof-box`、`table`、公式块注入 `page-break-inside: avoid;`，为各级标题注入 `page-break-after: avoid;`；
+    4. **Headless Edge 矢量打印**：通过 Pandoc + MathJax 生成单文件 HTML，调用 `msedge --headless --print-to-pdf --virtual-time-budget=12000` 渲染高保真矢量 PDF。
+
+### 3. 双语精读网页阅读器数据 (`资料/js/data_paper<X>.js`)
+当需要将文献挂载到 Web 双语阅读平台（[index.html](file:///d:/tj/Graduation%20Project/资料/index.html)）时，构建对应数据文件：
 
 #### `data_paper<X>.js` 标准 Schema：
 ```javascript
