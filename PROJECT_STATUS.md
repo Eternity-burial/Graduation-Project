@@ -29,12 +29,14 @@
 
 ### 阶段 1：外文文献精读与六自由度建模（进行中）
 - [x] 精读并完成前 3 篇核心英文文献中文全译与双语精读平台资产，已独立归档至远程私有仓库 [Eternity-burial/rov-paper-reader](https://github.com/Eternity-burial/rov-paper-reader)
-- [x] **文献中英双语化流水线建立与基准样板落地**：
+- [x] **全量外文文献双语化翻译与排版工程圆满完成（100% 覆盖 4 大主题，共 18 篇经典文献与核心教材，累计 300+ 页无损转换）**：
   - 成功搭建双轨双语文献转换管线：现代论文走自动化 `pdf2zh` 保持双栏与公式；早期 TeX/DVI 论文（如 1995 年 Fossen 奠基作，存在 0.17 pt 字体微米级编码陷阱）走大模型全译精排与 Edge 高清矢量渲染。
-  - 完成《Li2025 水下航行器冗余推进控制分配》全篇 8 页 1:1 原位排版中文版与 16 页逐页双语对照版 PDF（归档于 `资料/04_控制分配与水下传感实验/`）。
-  - 完成《Fossen 1995 海洋航行器六自由度非线性统一建模》100% 全文无删减中文全译精读 Markdown 与 8 页中文版 PDF，以及 15 页中英双语卡片逐段对照版 PDF（涵盖全部 11 页原文、2 大定理、完整证明推导过程及全部 50 个公式与 7 篇经典文献）。
-  - **目录架构优化**：所有文献 Markdown 源码已统一归集收纳至 [资料/md/](file:///d:/tj/Graduation%20Project/资料/md/) 单个总文件夹中，各主题分类子目录下仅保留纯净权威的 PDF 文档。
-- [ ] **待办**：依次推进第一梯队其余核心文献（arXiv2312 综述、Zhao2025 DVL标定、Harris2023 辨识、Neural-Fly 等）的中英双语化
+  - **4 大主题分类库全面配备高保真中文版与双语对照版 PDF**：
+    - `01_海洋航行器机理建模与理论基础`：Fossen 讲义第 2 章 (51p)、第 3 章 (29p)、Fossen 1995 统一建模 (11p)，全部配备中文版与双语对照版 PDF；
+    - `02_水动力参数辨识与数据驱动建模`：SINDy (Brunton 2016)、动量回归 (Park 2016)、综述 (arXiv 2023, 33p)、Koopman 在线辨识 (Liu 2026)、Neural ODE (Chen 2019)、PH-NODE (Duong 2024)、零空间辨识 (Harris 2023) 等全 7 篇全部配备中文版与双语对照版 PDF；
+    - `03_先进运动控制与动态补偿`：自适应 INDI (MAV)、NMPC vs 平坦控制、Cuttlefish AUV INDI 姿态控制、神经内模控制、神经增广 INDI、Neural-Fly 强风敏捷飞行 (Science Robotics 2024, 41p) 等全 6 篇全部配备中文版与双语对照版 PDF；
+    - `04_控制分配与水下传感实验`：Fossen 讲义第 6 章控制分配 (52p)、冗余推进控制分配 (Li 2025)、LIAS 实验室 DVL 时空标定 (Zhao 2025)、AquaticVision 水下数据集 (Peng 2025) 等全 4 篇全部配备中文版与双语对照版 PDF。
+  - **纯净 PDF 铁律与源码归档规范 100% 落地**：4 大主题分类目录下绝无散落任何 Markdown 文件，所有 26 个双语精读与全译 Markdown 源码统一收纳于 [资料/md/](file:///d:/tj/Graduation%20Project/资料/md/) 统一管理。
 - [ ] **待办**：梳理实验室八推进器 ROV 平台物理几何参数（质量、主尺度、重心/浮心、8 推进器坐标 $\boldsymbol{r}_i$ 与方向矢量 $\boldsymbol{d}_i$），建立参数化 Fossen 6-DOF 仿真模型
 
 ### 阶段 2：系统辨识与模型验证（待启动）
@@ -170,3 +172,14 @@
        - `04_控制分配与水下传感实验/`：Fossen 控制分配讲义、冗余推进控制分配（Li2025 PDF/MD）、DVL 时空标定（PDF/MD）与水下多模态数据集（PDF/MD）；
        - 根目录保留《水下航行器从物理直觉到工程闭环极速入门指南.md》与全局导航索引 [README.md](file:///d:/tj/Graduation%20Project/资料/README.md)；
     3. **主工程 Git 状态保持 100% 洁净，工作区条理清晰**。
+- **2026-10-06**：
+  - **完成全量文献标准化翻译与双语对照转换（涵盖 4 大主题专题库，共 18 篇文献，300+ 页无损转换）**：
+    1. **固化全局规则与专业技能**：在 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md) 中增加“主题分类纯净 PDF 铁律”与“Markdown 统一归档铁律”，在 [paper-translation-reader/SKILL.md](file:///d:/tj/Graduation%20Project/.agents/skills/paper-translation-reader/SKILL.md) 中确立五大铁律与双轨流水线规范（零公式遗漏门禁）；
+    2. **全量批次推进**：
+       - 批次 1（LIAS 成果）：Zhao 2025 DVL 标定、Peng 2025 AquaticVision 数据集；
+       - 批次 2（控制理论）：Cuttlefish AUV INDI、微型飞行器自适应 INDI、四旋翼 NMPC vs 平坦控制、神经内模控制、神经增广 INDI；
+       - 批次 3（系统辨识）：SINDy (Brunton 2016)、动量回归 (Park 2016)、海龟 ROV Koopman (Liu 2026)、Neural ODE (Chen 2019)、李群端口哈密顿 PH-NODE (Duong 2024)、零空间辨识 (Harris 2023)；
+       - 批次 4（顶刊长篇代表作）：arXiv 2023 航行器建模与辨识长篇综述 (66p 双语)、Science Robotics 2024 Neural-Fly 强风飞行 (82p 双语)；
+       - 批次 5（Fossen 经典教材三章）：第 2 章运动学与坐标系 (51p 原文 / 102p 双语)、第 3 章 6DOF 动力学与水动力 (29p 原文 / 58p 双语)、第 6 章控制分配与推进器模型 (52p 原文 / 104p 双语)；
+    3. **纯净性与归档 100% 达标**：清理历史旧版翻译残留，全量 26 个双语 Markdown 统一归档收纳至 `资料/md/`，4 大分类子目录下仅保留纯净权威的原版、中文版与双语对照版 PDF。
+
