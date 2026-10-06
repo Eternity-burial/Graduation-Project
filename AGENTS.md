@@ -42,35 +42,7 @@
 
 ---
 
-## 3. 全局数学符号与坐标系规范（Fossen 6-DOF + PX4 标准）
-
-所有学术文档（Markdown / Word）、Python 仿真脚本与 PX4 C++ 源码注释必须严格遵循以下符号与坐标系约定：
-
-- **坐标系定义**：
-  - **惯性系 $\{n\}$**：北-东-地（North-East-Down, **NED**）坐标系。
-  - **附体系 $\{b\}$**：前-右-下（Forward-Right-Down, **FRD**）附体坐标系（与 PX4 机体坐标系严格一致）。
-- **核心数学符号与代码变量映射**：
-  - 广义位置与欧拉角姿态矢量：$\boldsymbol{\eta} = [x, y, z, \phi, \theta, \psi]^T \in \mathbb{R}^6$ （代码变量：`eta`）
-  - 附体系线速度与角速度矢量：$\boldsymbol{\nu} = [u, v, w, p, q, r]^T \in \mathbb{R}^6$，对应纵荡（Surge $u$）、横荡（Sway $v$）、垂荡（Heave $w$）、横滚角速度（Roll rate $p$）、俯仰角速度（Pitch rate $q$）、偏航角速度（Yaw rate $r$）（代码变量：`nu`）
-  - 运动学坐标转换矩阵：$\dot{\boldsymbol{\eta}} = \boldsymbol{J}(\boldsymbol{\eta})\boldsymbol{\nu}$ （代码变量：`J_eta`）
-  - 动力学标准方程：
-    $$\boldsymbol{M}\dot{\boldsymbol{\nu}} + \boldsymbol{C}(\boldsymbol{\nu})\boldsymbol{\nu} + \boldsymbol{D}(\boldsymbol{\nu})\boldsymbol{\nu} + \boldsymbol{g}(\boldsymbol{\eta}) = \boldsymbol{\tau} + \boldsymbol{\tau}_d$$
-    - $\boldsymbol{M} = \boldsymbol{M}_{RB} + \boldsymbol{M}_A \in \mathbb{R}^{6 \times 6}$：刚体惯性矩阵与附加质量矩阵之和（代码变量：`M_total`, `M_RB`, `M_A`）
-    - $\boldsymbol{C}(\boldsymbol{\nu}) = \boldsymbol{C}_{RB}(\boldsymbol{\nu}) + \boldsymbol{C}_A(\boldsymbol{\nu}) \in \mathbb{R}^{6 \times 6}$：科氏力与向心力矩阵（代码变量：`C_nu`）
-    - $\boldsymbol{D}(\boldsymbol{\nu}) = \boldsymbol{D}_{\text{lin}} + \boldsymbol{D}_{\text{quad}}(\boldsymbol{\nu}) \in \mathbb{R}^{6 \times 6}$：线性与二次非线性水动力阻尼矩阵（代码变量：`D_nu`, `D_lin`, `D_quad`）
-    - $\boldsymbol{g}(\boldsymbol{\eta}) \in \mathbb{R}^6$：重力与浮力恢复力/力矩矢量（代码变量：`g_eta`）
-    - $\boldsymbol{\tau} \in \mathbb{R}^6$：实际作用于机体的广义推力与力矩矢量（代码变量：`tau`）
-    - $\boldsymbol{\tau}_d \in \mathbb{R}^6$：外部水流等未知扰动力与力矩矢量（代码变量：`tau_d`）
-  - 运动控制与八推进器控制分配：
-    - 参考状态与误差：$\boldsymbol{\eta}_r, \boldsymbol{\nu}_r$，位置/姿态误差 $\boldsymbol{e}_{\eta} = \boldsymbol{\eta}_r - \boldsymbol{\eta}$，速度误差 $\boldsymbol{e}_{\nu} = \boldsymbol{\nu}_r - \boldsymbol{\nu}$（代码变量：`eta_ref`, `nu_ref`, `e_eta`, `e_nu`）
-    - 期望广义控制力/力矩：$\boldsymbol{\tau}_c = [F_x, F_y, F_z, M_x, M_y, M_z]^T \in \mathbb{R}^6$（代码变量：`tau_c`）
-    - 八推进器控制分配矩阵：$\boldsymbol{B} \in \mathbb{R}^{6 \times 8}$，由各推进器安装位置 $\boldsymbol{r}_i$ 与推力方向单位矢量 $\boldsymbol{d}_i$ 构造（代码变量：`B_alloc`）
-    - 推进器推力指令矢量：$\boldsymbol{T} = [T_1, T_2, \dots, T_8]^T \in \mathbb{R}^8$，满足推力范围约束 $\boldsymbol{T}_{\min} \le \boldsymbol{T} \le \boldsymbol{T}_{\max}$（代码变量：`T_cmd`, `T_min`, `T_max`）
-    - 控制分配残差矢量：$\boldsymbol{e}_{\tau} = \boldsymbol{\tau}_c - \boldsymbol{B}\boldsymbol{T} \in \mathbb{R}^6$（代码变量：`e_tau`）
-
----
-
-## 4. 工作区目录结构与工程环境约定
+## 3. 工作区目录结构与工程环境约定
 
 - `模板/`：存放学校官方下发的原始空白 `.doc` / `.docx` 模板文件（**只读基准，严禁直接覆盖修改**）。
 - `参考/`：往届优秀任务书与相关参考文档（只读参考）。
@@ -89,7 +61,7 @@
 
 ---
 
-## 5. Git 版本控制与数据安全红线（防覆盖、防丢失）
+## 4. Git 版本控制与数据安全红线（防覆盖、防丢失）
 
 项目已建立完整的 Git 本地版本控制仓库，Agent 与开发者必须严格执行以下版本纪律：
 
@@ -107,7 +79,7 @@
 
 ---
 
-## 6. 项目全流程运行与协同总规范（含跨对话记忆与科研质量门禁）
+## 5. 项目全流程运行与协同总规范（含跨对话记忆与科研质量门禁）
 
 为确保毕业论文高质高效推进，日常开发与写作遵循以下统一闭环：
 

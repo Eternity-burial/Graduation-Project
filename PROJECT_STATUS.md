@@ -18,13 +18,23 @@
 
 ## 二、 四阶段里程碑总进度（Roadmap & Checklist）
 
-### 阶段 0：选题论证、核心任务考量、任务书与开题报告（当前阶段：核心任务考量中，任务书仅作前期参考随时可改；开题报告从零全新起草中）
+### 阶段 0：选题论证、核心任务考量、任务书与开题报告（当前阶段：核心任务考量与文献库整备完毕，正式启动 5 轮中颗粒度起草）
 - [x] PX4 与 ArduSub 水下控制架构深度对比调研（[PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md)）
-- [ ] **【核心任务考量与任务书动态联动】**：明确任务书文件（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)）仅作为前期参考工作底稿，**绝非不可修改的死板基准**；课题核心研究任务与科学问题仍在深入考量与动态权衡中，后续任务书与开题报告保持双向联动修订！
+- [x] **【核心任务考量与精简闭环确立】**：破译学长实验室暗语，确立“考研保命工程实现（PX4 RateControl/Alloc 固件二次开发） vs 学术高规格包装（6-DOF 机理标定 + 飞控高频抗扰 + 8推力矩保形）”双轨战略；
+- [x] **【全课题四大专题文献库整备完成（80+ 篇独立编号）】**：
+  - `00_研究背景与装备现状`：2024 工信部七部门未来产业意见 + 巡检级 ROV 痛点 + 4/6/8 推进器构型可控度对比（Omerdic 2004 IEEE JOE, Allotta 2015 OE 等）；
+  - `02_水动力机理建模与参数辨识文献库`：Fossen 6-DOF、MIT Prestero 标杆报告、动量回归抗噪（Park）、零空间解耦（Harris）及 PINN / SINDy / PH-NODE 等 27 篇；
+  - `03_先进运动控制与动态补偿文献库`：MPCC 开山奠基（Liniger）、NMPC 对比（Torrente / Heshmati T-RO）、TU Delft / IROS 2024 水下 INDI 高频抗扰、Science Robotics Neural-Fly 等 26 篇；
+  - `04_多推进器控制分配文献库`：Automatica 分配圣经（Johansen）、力矩优先保形抗饱和（Bøgh）、PX4 `control_allocator` 架构（Silano）及 Fossen 第6章推力模型等 20 篇；
 - [x] 建立 Git 版本控制体系、全局规则 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md) 及 4 大专业 Skill
 - [x] 建立开题报告章节契约、证据映射与学术规范体系（[.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md)）
 - [x] **旧版开题全量作废与物理移出（方案 A）**：因导师 9/30 批示原开题报告存在“大作业思维、缺乏外部恶劣场景物理矛盾驱动、提前剧透算法公式”等重大硬伤，2026/09/30 之前的所有旧版草稿（`.md`）、生成脚本及历史 `.docx` 已全部作废并物理移出至项目外部 `D:\tj\Graduation_Project_旧版开题作废备份_20260930\`；严禁任何 Agent 读取或沿用旧版草稿！
-- [ ] **【核心进行中】开题报告从零全新起草**：严格对标郑祺耀优秀开题范式（标准三段式）与章节契约（Section Contracts），直接基于学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 从零逐段起草写入
+- [ ] **【核心进行中】开题报告从零全新起草（执行 5 轮中颗粒度小节交付 + 文件持久化工作法）**：严格对标郑祺耀优秀开题范式（标准三段式）与章节契约（Section Contracts），直接基于学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 推进：
+  - [ ] 第 1 轮：§1.1 研究背景与意义（战略高位 + 紧凑 ROV 深水流扰矛盾 + 4/6/8 构型可控度对比 + PX4 原生高频切入点，约 1000 字）
+  - [ ] 第 2 轮：§1.2 国内外研究现状与文献综述（建模辨识、先进控制、推力分配三大流派递进，约 2000 字）
+  - [ ] 第 3 轮：§2.1~§2.3 研究目标、研究内容与关键科学问题（精简三大任务，约 1200 字）
+  - [ ] 第 4 轮：§3.1~§3.3 研究方案与技术路线（逻辑闭环框图 + SITL 虚仿与水池方案，约 1200 字）
+  - [ ] 第 5 轮：进度计划、特色创新与 GB/T 7714 参考文献列表整合
 - [ ] **待办**：准备开题答辩 PPT 汇报材料
 
 ### 阶段 1：外文文献精读与六自由度建模（进行中）
