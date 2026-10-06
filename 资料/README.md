@@ -35,32 +35,32 @@
 
 ### 02_水动力参数辨识与数据驱动建模
 
-聚焦水下航行器附加质量、线性/二次阻尼参数及未建模水流扰动的系统辨识与数据驱动建模前沿算法。
+聚焦水下航行器附加质量、线性/二次阻尼参数及未建模水流扰动的系统辨识与数据驱动建模前沿算法（由宏观综述、工程防噪、显式方程发现到物理信息深度学习与过驱动联合辨识）。
 
 | 序号 | 英文原版 PDF | 中文版 PDF | 双语对照版 PDF | 说明 |
 | :---: | :--- | :--- | :--- | :--- |
-| **01** | `01_Brunton2016_Discovering governing equations from data by sparse identification of nonlinear dynamical systems.pdf` | `01_SINDy非线性动力学稀疏辨识_Brunton2016_中文版.pdf` | `01_SINDy非线性动力学稀疏辨识_Brunton2016_双语对照.pdf` | SINDy 稀疏回归算法奠基作（PNAS），非线性动力学机理方程数据驱动发现 |
-| **02** | `02_Park2016_System identification method for robotic manipulator based on dynamic momentum regressor.pdf` | `02_机械臂动态动量回归器系统辨识_Park2016_中文版.pdf` | `02_机械臂动态动量回归器系统辨识_Park2016_双语对照.pdf` | 基于广义动量回归（Momentum Regressor）的机器人系统辨识，无需角加速度信号 |
-| **03** | `03_Makam2023_A Comprehensive Study on Modelling and Control of Autonomous Underwater Vehicle.pdf` | `03_水下航行器动力学建模与参数辨识综述_arXiv2312_中文版.pdf` | `03_水下航行器动力学建模与参数辨识综述_arXiv2312_双语对照.pdf` | 2023 最新水下机器人动力学建模与参数辨识方法前沿综述 (33p 长篇综述) |
-| **04** | `04_Liu2026_Koopman-Based Online Identification With Sim2Real Transfer for Hydrodynamic Modeling of Turtle Inspired ROV.pdf` | `04_仿生海龟ROV水动力Koopman在线辨识与Sim2Real迁移_Liu2026_中文版.pdf` | `04_仿生海龟ROV水动力Koopman在线辨识与Sim2Real迁移_Liu2026_双语对照.pdf` | 基于 Koopman 算子理论的在线水动力辨识与 Sim2Real 迁移 (Liu 2026) |
-| **05** | `05_Chen2019_Neural Ordinary Differential Equations.pdf` | `05_神经常微分方程Neural_ODE_Chen2019_中文版.pdf` | `05_神经常微分方程Neural_ODE_Chen2019_双语对照.pdf` | Neural ODE 神经微分方程奠基作（NeurIPS Best Paper），连续动力系统建模 |
-| **06** | `06_Duong2024_Port-Hamiltonian Neural ODE Networks on Lie Groups for Robot Dynamics Learning and Control.pdf` | `06_李群端口哈密顿Neural_ODE机器人动力学学习与控制_Duong2024_中文版.pdf` | `06_李群端口哈密顿Neural_ODE机器人动力学学习与控制_Duong2024_双语对照.pdf` | 李群上端口哈密顿神经微分方程（PH-NODE），保留物理守恒特性的动力学学习 |
-| **07** | `07_Harris2023_Stable nullspace adaptive parameter identification of 6 degree-of-freedom plant and actuator models.pdf` | `07_水下航行器六自由度零空间自适应参数辨识_Harris2023_中文版.pdf` | `07_水下航行器六自由度零空间自适应参数辨识_Harris2023_双语对照.pdf` | IEEE TCST：6 自由度被控对象与执行器模型的零空间稳定自适应参数辨识 |
+| **01** | `01_Makam2023_A Comprehensive Study on Modelling and Control of Autonomous Underwater Vehicle.pdf` | `01_水下航行器动力学建模与参数辨识综述_arXiv2312_中文版.pdf` | `01_水下航行器动力学建模与参数辨识综述_arXiv2312_双语对照.pdf` | 【全局地图】2023 最新水下机器人动力学建模与参数辨识方法前沿综述 (33p 长篇综述) |
+| **02** | `02_Park2016_System identification method for robotic manipulator based on dynamic momentum regressor.pdf` | `02_机械臂动态动量回归器系统辨识_Park2016_中文版.pdf` | `02_机械臂动态动量回归器系统辨识_Park2016_双语对照.pdf` | 【工程防噪基石】基于广义动量回归（Momentum Regressor）的系统辨识，彻底规避加速度求导噪声 |
+| **03** | `03_Brunton2016_Discovering governing equations from data by sparse identification of nonlinear dynamical systems.pdf` | `03_SINDy非线性动力学稀疏辨识_Brunton2016_中文版.pdf` | `03_SINDy非线性动力学稀疏辨识_Brunton2016_双语对照.pdf` | 【显式方程发现】SINDy 稀疏回归算法奠基作（PNAS），物理字典+稀疏化提炼紧凑方程，可直上PX4飞控 |
+| **04** | `04_Chen2019_Neural Ordinary Differential Equations.pdf` | `04_神经常微分方程Neural_ODE_Chen2019_中文版.pdf` | `04_神经常微分方程Neural_ODE_Chen2019_双语对照.pdf` | 【连续神经底座】Neural ODE 神经微分方程奠基作（NeurIPS Best Paper），连续动力系统深度学习建模 |
+| **05** | `06_Duong2024_Port-Hamiltonian Neural ODE Networks on Lie Groups for Robot Dynamics Learning and Control.pdf` | `05_李群端口哈密顿Neural_ODE机器人动力学学习与控制_Duong2024_中文版.pdf` | `05_李群端口哈密顿Neural_ODE机器人动力学学习与控制_Duong2024_双语对照.pdf` | 【物理守恒约束】李群 SE(3) 上端口哈密顿神经微分方程（PH-NODE），保留能量守恒与无源性约束 |
+| **06** | `06_Liu2026_Koopman-Based Online Identification With Sim2Real Transfer for Hydrodynamic Modeling of Turtle Inspired ROV.pdf` | `06_仿生海龟ROV水动力Koopman在线辨识与Sim2Real迁移_Liu2026_中文版.pdf` | `06_仿生海龟ROV水动力Koopman在线辨识与Sim2Real迁移_Liu2026_双语对照.pdf` | 【算子升维与实车迁移】基于 Koopman 算子理论的在线水动力辨识与 Sim2Real 迁移 (Liu 2026) |
+| **07** | `07_Harris2023_Stable nullspace adaptive parameter identification of 6 degree-of-freedom plant and actuator models.pdf` | `07_水下航行器六自由度零空间自适应参数辨识_Harris2023_中文版.pdf` | `07_水下航行器六自由度零空间自适应参数辨识_Harris2023_双语对照.pdf` | 【过驱动联合辨识】IEEE TCST：6 自由度水下航行器被控对象与多执行器模型的零空间稳定自适应辨识 |
 
 ---
 
 ### 03_先进运动控制与动态补偿
 
-聚焦未知水流扰动与模型不确定性下的先进鲁棒与模型控制方法（增量非线性动态逆 INDI、非线性模型预测控制 NMPC、神经自适应控制）。
+聚焦未知水流扰动与模型不确定性下的先进鲁棒与模型控制方法（从先进优化基准、增量动态逆理论、水下工程落地，到神经内模、增广复合控制与深度自适应极限）。
 
 | 序号 | 英文原版 PDF | 中文版 PDF | 双语对照版 PDF | 说明 |
 | :---: | :--- | :--- | :--- | :--- |
-| **01** | `01_Smeur2016_Adaptive Incremental Nonlinear Dynamic Inversion for Attitude Control of Micro Air Vehicles.pdf` | `01_微型飞行器自适应INDI姿态控制_中文版.pdf` | `01_微型飞行器自适应INDI姿态控制_双语对照.pdf` | 自适应增量非线性动态逆（A-INDI）微型飞行器姿态控制（TU Delft 标杆） |
-| **02** | `02_Torrente2021_A Comparative Study of Nonlinear MPC and Differential-Flatness-Based Control for Quadrotor Agile Flight.pdf` | `02_四旋翼NMPC与微分平坦控制对比研究_中文版.pdf` | `02_四旋翼NMPC与微分平坦控制对比研究_双语对照.pdf` | 敏捷飞行下非线性模型预测控制（NMPC）与微分平坦控制（DFBC）横向对比 |
-| **03** | `03_Corno2020_Attitude Control of the Hydrobatic Intervention AUV Cuttlefish using Incremental Nonlinear Dynamic Inversion.pdf` | `03_AUV_INDI姿态控制_Cuttlefish_中文版.pdf` | `03_AUV_INDI姿态控制_Cuttlefish_双语对照.pdf` | 特技作业 AUV Cuttlefish 姿态控制：基于水下传感器滤波的 INDI 水池实测验证 |
-| **04** | `04_Neural Internal Model Control - Learning a Robust Control Policy Via Predictive Error Feedback.pdf` | `04_神经内模控制_基于预测误差反馈学习鲁棒策略_中文版.pdf` | `04_神经内模控制_基于预测误差反馈学习鲁棒策略_双语对照.pdf` | 神经内模控制（NIMC）：基于预测误差反馈学习的高鲁棒性控制策略 |
-| **05** | `05_Neural-Augmented Incremental Nonlinear Dynamic Inversion for Quadrotors with Payload Adaptation.pdf` | `05_神经增广INDI四旋翼负载自适应控制_中文版.pdf` | `05_神经增广INDI四旋翼负载自适应控制_双语对照.pdf` | 神经增强增量非线性动态逆（NA-INDI）：负载自适应与机动性能增强 |
-| **06** | `06_OConnell2024_Neural-Fly Enables Rapid Learning for Agile Flight in Strong Winds.pdf` | `06_Neural-Fly强风敏捷飞行深度学习自适应控制_ScienceRobotics2024_中文版.pdf` | `06_Neural-Fly强风敏捷飞行深度学习自适应控制_ScienceRobotics2024_双语对照.pdf` | Caltech Neural-Fly：基于元学习与深度表征的风扰自适应飞行控制 (Science Robotics 封面) |
+| **01** | `01_Torrente2021_A Comparative Study of Nonlinear MPC and Differential-Flatness-Based Control for Quadrotor Agile Flight.pdf` | `01_四旋翼NMPC与微分平坦控制对比研究_中文版.pdf` | `01_四旋翼NMPC与微分平坦控制对比研究_双语对照.pdf` | 【先进优化基准】敏捷运动下非线性模型预测控制（NMPC）与微分平坦控制（DFBC）横向对比 |
+| **02** | `02_Smeur2016_Adaptive Incremental Nonlinear Dynamic Inversion for Attitude Control of Micro Air Vehicles.pdf` | `02_微型飞行器自适应INDI姿态控制_中文版.pdf` | `02_微型飞行器自适应INDI姿态控制_双语对照.pdf` | 【抗扰逆控理论源头】自适应增量非线性动态逆（A-INDI）姿态控制（TU Delft 奠基标杆） |
+| **03** | `03_Corno2020_Attitude Control of the Hydrobatic Intervention AUV Cuttlefish using Incremental Nonlinear Dynamic Inversion.pdf` | `03_AUV_INDI姿态控制_Cuttlefish_中文版.pdf` | `03_AUV_INDI姿态控制_Cuttlefish_双语对照.pdf` | 【水下INDI实战验证】特技干预 AUV Cuttlefish 姿态控制：基于水下低通滤波的 INDI 水池实测验证 |
+| **04** | `04_Neural Internal Model Control - Learning a Robust Control Policy Via Predictive Error Feedback.pdf` | `04_神经内模控制_基于预测误差反馈学习鲁棒策略_中文版.pdf` | `04_神经内模控制_基于预测误差反馈学习鲁棒策略_双语对照.pdf` | 【预测误差反馈】神经内模控制（NIMC）：基于数据驱动预测误差反馈学习的高鲁棒性控制策略 |
+| **05** | `05_Neural-Augmented Incremental Nonlinear Dynamic Inversion for Quadrotors with Payload Adaptation.pdf` | `05_神经增广INDI四旋翼负载自适应控制_中文版.pdf` | `05_神经增广INDI四旋翼负载自适应控制_双语对照.pdf` | 【复合增广控制】神经增强增量非线性动态逆（NA-INDI）：机理增量逆 + 神经负载在线自适应 |
+| **06** | `06_OConnell2024_Neural-Fly Enables Rapid Learning for Agile Flight in Strong Winds.pdf` | `06_Neural-Fly强风敏捷飞行深度学习自适应控制_ScienceRobotics2024_中文版.pdf` | `06_Neural-Fly强风敏捷飞行深度学习自适应控制_ScienceRobotics2024_双语对照.pdf` | 【深度自适应前沿】Caltech Neural-Fly：基于元学习与深度表征的风扰自适应飞行控制 (Science Robotics) |
 
 ---
 
