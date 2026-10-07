@@ -76,11 +76,13 @@
    - **封面与正文分页铁律**：官方开题报告模板在第一节标题段落（`一、毕业设计（论文）课题背景`）的首个 Run 中内置了硬分页符 `<w:br w:type="page"/>`。若在脚本清理占位段落后重新插入正文标题时未包含分页符，正文内容将直接紧接在第 1 页封面表格下方。已在 `build_opening_report_doc.py` 中为 `一、毕业论文课题背景` 建立显式及自动分页机制（`page_break_before`），严格保证第 1 页为独立封面页（标题、信息表 Table 0 与日期表 Table 1），第 2 页顶格起排正文；
    - **分阶段排版参数隔离**：《任务书/开题报告》（小四号正文 + 1.5 倍行距）与《毕业论文最终正稿》（五号正文 + 固定值 18 磅行距，源自 `D:\tj\模板\带学院.doc` 47 条批注）在 [`academic-doc-builder/SKILL.md`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md) 中分表隔离管理，同时吸收了物理量斜体/单位正体、复合单位严禁双斜杠 `/`、公式不加虚线引导符、先见文后见图表、跨页重复表头 `<w:tblHeader/>` 等 7 项通用国标细则；
    - **文档格式规范（DOCX 优先）**：除用户明确要求外，所有文档生成脚本默认仅生成规范 `.docx`，不再自动调用 Word COM 导出 `.doc`，消除了进程锁死风险并将构建速度提升近 10 倍（仅在显式传入 `--doc` 时按需导出）。
-3. **工作区四大技能（`.agents/skills/`）分工**：
-   - [`academic-doc-builder`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md)：负责文档撰写、原生 OMML 公式转换、GB/T 7714 参考文献及去 AI 腔润色（内嵌 `Supervisor-Skills` 证据门控、本科毕业论文正稿规范与三大国标细则）；
-   - [`rov-modeling-control-px4`](file:///d:/tj/Graduation%20Project/.agents/skills/rov-modeling-control-px4/SKILL.md)：负责 6-DOF 建模、系统辨识、运动控制、$6 \times 8$ 推力分配及 `Autoresearch` 定量指标迭代实验闭环；
+3. **工作区核心专业技能（`.agents/skills/`）解耦分工**：
+   - [`academic-writing`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-writing/SKILL.md)：负责开题报告与毕业论文正文撰写、去 AI 腔润色、开题章节契约（Section Contracts）、主张-证据映射（Evidence Table）与审稿人视角逻辑自检；
+   - [`academic-doc-builder`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md)：负责 Word 自动化排版、原生 OMML 数学公式生成、封面单元格靠底对齐、GB/T 7714 参考文献自动重排与差异对比版高亮导出；
+   - [`drawio-skill`](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-skill/SKILL.md) & [`drawio-reconstruction`](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md)：负责可编辑 `.drawio` 架构图生成、布局自检与参考图逆向矢量化；
+   - [`paper-framework-figure-studio-pro`](file:///d:/tj/Graduation%20Project/.agents/skills/paper-framework-figure-studio-pro/SKILL.md)：负责顶刊/顶会论文框架图与技术路线图 S0~S5 契约化设计，贯彻 IEEE/IFAC Line-Art 线稿风格；
    - [`paper-translation-reader`](file:///d:/tj/Graduation%20Project/.agents/skills/paper-translation-reader/SKILL.md)：负责外文文献 100% 全译、双语网页阅读器更新及引文两步真伪核验；
-   - [`drawio-reconstruction`](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md)：负责将参考架构图、控制框图一键重建为可编辑的 `.drawio` 矢量源文件。
+   - [`academic-research-skills`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-research-skills/)：克隆引入的开源 0202 权威学术研究管道，供随时借鉴查阅其写作与审校机制。
 
 ---
 
@@ -217,4 +219,11 @@
     3. **已有文献 16 组翻译资产镜像对齐至专题文献库目录**：
        - 将已有 16 组高质量翻译产物（Fossen 1995/Ch3/Ch6、Park2016、Harris2023、Brunton2016、Chen2018、Duong2024、Liu2026、Makam2023、Torrente2021、Smeur2016、Corno2020、OConnell2022、Bauersfeld2021、Li2025）同步复制至带“文献库”后缀目录中，彻底实现任意目录下文献均 100% 配备中文版与双语对照版；
     4. **更新 [资料/README.md](file:///d:/tj/Graduation%20Project/资料/README.md)**：将文献索引扩充为 5 大主题专题库，全面对齐 30+ 篇中英文文献与双语 Markdown。
+  - **完成作图与写作技能体系全面重构与开源资产配置（写排解耦闭环）**：
+    1. **作图工具链双引擎就位**：完整克隆并提根配置 `Agents365-ai/drawio-skill`（可编辑 `.drawio` 生成与同步），解压并暴露 `c-narcissus/paper-framework-figure-studio-pro`（IEEE/ACM Line-Art 顶刊框架图 S0~S5 契约化工作流）；
+    2. **写作与排版彻底解耦（方案 1）**：
+       - 新建专属学术写作技能 [`.agents/skills/academic-writing/`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-writing/SKILL.md)，吸纳导师审阅红线、去 AI 腔词表与开题章节契约，专注正文撰写与论述逻辑；
+       - 纯化 [`.agents/skills/academic-doc-builder/`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md)，彻底剥离写作规矩，专注 Word 样式映射、原生 OMML 公式注入与对比版导出；
+       - 完整克隆开源 0202 权威学术研究管道 [`.agents/skills/academic-research-skills/`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-research-skills/)，供随时借鉴其 39-agent 审查流水线与质量门禁；
+    3. **技能库纯净化达标**：移除了开题阶段尚不需要的 `rov-modeling-control-px4`，全局规则 `AGENTS.md` 与总控台账同步对齐最新架构。
 

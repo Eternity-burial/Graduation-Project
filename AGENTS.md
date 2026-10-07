@@ -27,7 +27,7 @@
    - 2026/09/30 之前撰写的旧版开题报告草稿与代码因存在严重的“大作业思维、缺乏外部恶劣场景物理驱动、提前剧透算法与公式”等问题，已被导师批评并全量推倒重来；
    - 旧版所有相关 Markdown 草稿（`开题报告_全文草稿.md` 等）、生成脚本（`build_opening_report_doc.py`）及历史 `.docx` 文件已全量物理移出至仓库外部 `D:\tj\Graduation_Project_旧版开题作废备份_20260930\`；
    - **严禁任何 Agent 读取、恢复、全局搜索或沿用旧版开题报告中的任何段落与表述！**
-   - 开题报告必须严格依据 [.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md) 章节契约，直接向学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 从零撰写。
+   - 开题报告必须严格依据 [.agents/skills/academic-writing/references/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-writing/references/opening_report_contracts_and_evidence.md) 章节契约，直接向学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 从零撰写。
 6. **任务书定位铁律（仅作前期参考，绝非死板基准）**：
    - 任务书文件（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)）目前仅作为前期参考工作底稿，**绝非不可更改的死板基准**；
    - 毕业论文的核心研究任务、模块边界与重心仍处于重新审视与深入考量中；
@@ -87,9 +87,9 @@
      3. **先界定元规则（性质边界）**：明确该部分“是写什么性质的内容，坚决不是写什么（准入与禁区）”；
      4. **再推导具体细节**：在元规则框架锁定后，再深入讨论并确认具体场景、具体方法与具体参数。
 3. **学术严谨性、去 AI 腔与证据门控**：
-   - 始终对标 [学长毕设全过程资料深度解析与演进避坑指南.md](file:///d:/tj/Graduation%20Project/参考/学长毕设全过程资料深度解析与演进避坑指南.md) 与 [supervisor_writing_and_figure_guide.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/supervisor_writing_and_figure_guide.md)，保持学术语言克制、禁用破折号连接分句与浮夸词汇，严守 L0~L4 证据门控纪律（严禁编造实验数据与未核实引文）；
+   - 始终对标 [学长毕设全过程资料深度解析与演进避坑指南.md](file:///d:/tj/Graduation%20Project/参考/学长毕设全过程资料深度解析与演进避坑指南.md) 与专属写作技能 [.agents/skills/academic-writing/SKILL.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-writing/SKILL.md)，保持学术语言克制、禁用破折号连接分句与浮夸词汇，严守 L0~L4 证据门控纪律（严禁编造实验数据与未核实引文）；
 4. **公式与图表规范**：
    - 所有 Word 公式必须通过 [omml_converter.py](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/scripts/omml_converter.py) 输出原生 OMML，严禁使用图片；
-   - 仿真曲线采用颜色+线型双重编码（300 DPI），可编辑矢量框图可通过 [drawio-reconstruction](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md) 重建为 `.drawio` 文件；
+   - 仿真曲线采用颜色+线型双重编码（300 DPI），可编辑矢量框图通过 [drawio-skill](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-skill/SKILL.md) / [drawio-reconstruction](file:///d:/tj/Graduation%20Project/.agents/skills/drawio-reconstruction/SKILL.md) 构建为 `.drawio` 文件，框架图设计遵循 [paper-framework-figure-studio-pro](file:///d:/tj/Graduation%20Project/.agents/skills/paper-framework-figure-studio-pro/SKILL.md)；
 5. **参考文献规范**：严格遵守 GB/T 7714-2015 顺序编码制，正文首次引用递增，同步维护 `references.bib` 与 `references.ris`。
 6. **文献双语化与研读规范**：外文文献全译与双语对照严格执行 [paper-translation-reader](file:///d:/tj/Graduation%20Project/.agents/skills/paper-translation-reader/SKILL.md) 五大铁律与双轨制流水线；严禁省略任何定理证明、子公式与推导步骤，交付前必须执行自动化公式比对门禁，确保差集为 0；**所有文献 Markdown 源码必须统一收纳于 `资料/md/`，各主题分类目录下仅保留纯净权威的 PDF 文档**。

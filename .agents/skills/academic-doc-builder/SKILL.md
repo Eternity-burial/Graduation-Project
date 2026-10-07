@@ -15,20 +15,10 @@ description: >-
 
 ---
 
-## 一、 导师审阅文风与学术表述准则
+1. **与学术写作技能解耦协同**：
+   - 本技能专注于**文档工程与排版格式**（Word 样式注入、原生 OMML 数学公式、封面表格对齐、差异对比版高亮导出及 GB/T 7714 参考文献自动重排）；
+   - 正文内容撰写、立项逻辑推导、去 AI 腔润色与章节契约，由专属学术写作技能 [academic-writing](../academic-writing/SKILL.md) 负责。
 
-在起草或修改任何毕设材料时，必须严格遵守以下表述口径（详见根目录 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md)）：
-
-1. **研究链路闭环口径**：
-   - 围绕“水下航行器动力学机理建模 ➔ 参数辨识与模型验证 ➔ 运动控制与动态补偿 ➔ 多推进器控制分配 ➔ 闭环仿真与实验验证”系统展开。
-2. **稳健弹性、保持学术开放性**：
-   - 动力学建模立足于客观流体物理特性，系统辨识与模型验证采用严谨的科学方法，分析模型误差及适用边界。
-   - 运动控制与控制分配表述保持学术开放性，为后续具体控制算法与分配策略的横向比选留出充分空间，严禁过早写死排他性的狭窄实现。
-3. **行文规范、去 AI 腔与证据门控（Supervisor-Skills 融合规范）**：
-   - 杜绝口语化、空洞套话与大模型浮夸词（如“卓越、颠覆性、完美解决、赋能”，以及破折号 `——` 连接分句），遵循通用学术数学符号规范与国家标准，保持全文内部符号自洽一致。
-   - **撰写或润色任何正文段落与设计配图前，必须阅读并执行**：
-     * [supervisor_writing_and_figure_guide.md](./references/supervisor_writing_and_figure_guide.md)（包含 L0~L4 证据门控防幻觉纪律、中英文去 AI 腔禁用词表、审稿人逻辑自查清单及双重编码科研作图规范）；
-     * [opening_report_contracts_and_evidence.md](./references/opening_report_contracts_and_evidence.md)（包含开题报告事实准则库、主张-证据映射表、禁用主张清单与全篇各节**章节契约卡片 Section Contracts**）。
 
 ---
 
@@ -39,10 +29,9 @@ description: >-
 1. **第零步：Git 状态前置检查（防覆盖、防丢失铁律）**
    - 在运行任何构建或修改脚本前，必须先在终端执行 `git status --short`，检查目标 Word 文档或脚本是否有未暂存的用户手工编辑；
    - 若检测到用户改动，**严禁静默覆盖**，必须先提示用户或将其单独另存为快照备份（如 `*_用户标注备份.*`）；写操作必须保留 `.bak` 备份机制。
-2. **第一步：两阶段学术推导与 Markdown 草稿契约对齐**
-   - 严格遵循**“文献先行 ➔ 范文对标 ➔ 契约先行 ➔ 具体起草”**的四步递进工作法；
-   - 动笔前必须调阅 [opening_report_contracts_and_evidence.md](./references/opening_report_contracts_and_evidence.md)，严格核对该小节的章节契约（Purpose、Inputs、Allowed Claims、Forbidden Claims、Validation Criteria），严守立项逻辑红线（绝不把已有平台作为研究意义）；
-   - 逐段起草正文时，每写完一段必须对照章节契约进行质量门禁核对，确保论述逻辑严密、证据链完整。
+2. **第一步：内容协同与 Markdown 草稿输入**
+   - 正文内容起草由专属技能 [academic-writing](../academic-writing/SKILL.md) 负责，严格对齐章节契约与学术证据门禁；
+   - 经审校合格的 Markdown 草稿或文本片段作为本构建技能的排版输入源。
 3. **第二步：参考文献顺序校验与 `.bib` / `.ris` 题录库同步**
    - 按 GB/T 7714-2015 顺序编码制，严格依据文献在正文中**首次出现的先后顺序**编号 `[1] ~ [N]`，同步更新 [references.bib](file:///d:/tj/Graduation%20Project/开题报告/references.bib) 与 [references.ris](file:///d:/tj/Graduation%20Project/开题报告/references.ris)，支持一键导入本地 **Zotero**（`C:\Program Files\Zotero\zotero.exe`）或 **EndNote**。
 4. **第三步：300 DPI 高清配图与可编辑 `.drawio` 架构图生成（如需配图）**
