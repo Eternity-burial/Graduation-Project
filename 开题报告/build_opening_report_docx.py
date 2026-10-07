@@ -88,6 +88,39 @@ def set_paragraph_spacing(paragraph, line_spacing=1.5, before_pt=0.0, after_pt=0
         sp.set(qn("w:after"), str(int(after_pt * 20)))
 
 
+def set_image_paragraph_format(paragraph, before_pt=6.0, after_pt=2.0):
+    """
+    专门设置图片所在段落的格式：
+    1. 居中对齐；
+    2. 单倍行距，XML 严格设为 lineRule="auto" line="240"，绝不使用 exact 固定值（防止图片被裁剪或覆盖）；
+    3. 段前段后间距；
+    4. 显式开启 keepNext（keep_with_next = True），保证图片与下方的图题绝不跨页分裂！
+    """
+    paragraph.alignment = WD_ALIGN_PARAGRAPH.CENTER
+    paragraph.paragraph_format.keep_with_next = True
+
+    pPr = paragraph._p.get_or_add_pPr()
+    if pPr.find(qn("w:keepNext")) is None:
+        pPr.append(OxmlElement("w:keepNext"))
+
+    sp = pPr.find(qn("w:spacing"))
+    if sp is None:
+        sp = OxmlElement("w:spacing")
+        pPr.append(sp)
+    sp.set(qn("w:line"), "240")
+    sp.set(qn("w:lineRule"), "auto")
+    if qn("w:beforeLines") in sp.attrib:
+        del sp.attrib[qn("w:beforeLines")]
+    if qn("w:afterLines") in sp.attrib:
+        del sp.attrib[qn("w:afterLines")]
+    sp.set(qn("w:before"), str(int(before_pt * 20)))
+    sp.set(qn("w:after"), str(int(after_pt * 20)))
+
+    ind = pPr.find(qn("w:ind"))
+    if ind is not None:
+        pPr.remove(ind)
+
+
 def set_paragraph_indent(paragraph, first_line_dxa=480, first_line_chars=200):
     """设置首行缩进 2 字符"""
     pPr = paragraph._p.get_or_add_pPr()
@@ -135,11 +168,15 @@ def set_paragraph_hanging_indent(paragraph, left_dxa=420, hanging_dxa=420):
 
 def add_text_with_superscripts(paragraph, text, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0, default_bold=False):
     """
-    智能解析 Markdown 正文中的上标（如 $^{[1]}$、$^{[1][2]}$）与普通文字、粗体，
+    智能解析 Markdown 正文中的上标（如 $^{[1]}$、$^{[1][2]}$）与普通文字，
     并自动拆分为正文 Run 和上标 Run。
+    正文段落统一以统一字体与常规字重排版，绝不在段落内部产生孤立的加粗或黑体。
     """
     # 替换 LaTeX 箭头为标准中文符号
     clean_text = text.replace(r"$\rightarrow$", "→").replace(r"\rightarrow", "→")
+
+    # 去除任何残留的 Markdown 粗体标记 **...**，还原为纯净文字
+    clean_text = clean_text.replace("**", "")
 
     # 正则切分：识别 $^{[数字等]}$ 或 $^\{...\}$
     pattern = re.compile(r'(\$\^\{[^}]+\}\$)')
@@ -155,19 +192,8 @@ def add_text_with_superscripts(paragraph, text, chinese_font="宋体", western_f
             set_run_font(run, chinese_font=chinese_font, western_font=western_font, font_size_pt=font_size_pt, bold=default_bold)
             run.font.superscript = True
         else:
-            # 普通文本，处理粗体 **...**
-            bold_parts = re.split(r'(\*\*[^*]+\*\*)', token)
-            for part in bold_parts:
-                if not part:
-                    continue
-                if part.startswith("**") and part.endswith("**"):
-                    inner = part[2:-2]
-                    run = paragraph.add_run(inner)
-                    set_run_font(run, chinese_font="黑体" if ("（" in inner or "目标" in inner) and len(inner) < 25 else chinese_font,
-                                 western_font=western_font, font_size_pt=font_size_pt, bold=True)
-                else:
-                    run = paragraph.add_run(part)
-                    set_run_font(run, chinese_font=chinese_font, western_font=western_font, font_size_pt=font_size_pt, bold=default_bold)
+            run = paragraph.add_run(token)
+            set_run_font(run, chinese_font=chinese_font, western_font=western_font, font_size_pt=font_size_pt, bold=default_bold)
 
 
 # ==================== 表格边框与对齐辅助函数 ====================
@@ -281,13 +307,18 @@ def populate_section_paragraphs(anchor_p, markdown_section_text, is_ref_section=
         if in_code_block:
             continue
 
+        # 彻底清洗行首的 Markdown 列表符号（如 '- ', '* ', '+ '）
+        if stripped.startswith("- ") or stripped.startswith("* ") or stripped.startswith("+ "):
+            stripped = stripped[2:].strip()
+
         # 参考文献条目：[1] ... / [45] ...
         if is_ref_section and stripped.startswith("["):
             p_ref = anchor_p.insert_paragraph_before()
             p_ref.style = "参考文献"
-            set_paragraph_spacing(p_ref, line_spacing=1.5, before_lines=0, after_lines=0)
+            # 严格依据同济大学规范：参考文献五号字 (10.5 pt)，1.3倍行距，零段间距，悬挂缩进 0.74 cm
+            set_paragraph_spacing(p_ref, line_spacing=1.3, before_lines=0, after_lines=0)
             set_paragraph_hanging_indent(p_ref, left_dxa=420, hanging_dxa=420)
-            add_text_with_superscripts(p_ref, stripped, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0)
+            add_text_with_superscripts(p_ref, stripped, chinese_font="宋体", western_font="Times New Roman", font_size_pt=10.5)
             continue
 
         # 三级标题：#### 2.1 ... / #### 1.1 ... / #### （1）...
@@ -327,20 +358,19 @@ def populate_section_paragraphs(anchor_p, markdown_section_text, is_ref_section=
             run = p_lead.add_run("课题总体技术路线如图 1 所示：")
             set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0)
 
-            # 插入高清技术路线图
+            # 插入高清技术路线图（严格设置居中、单倍行距auto、keepNext防跨页拆散、宽14.5cm）
             if os.path.exists(ROADMAP_FIGURE):
                 p_img = anchor_p.insert_paragraph_before()
                 p_img.style = "Normal"
-                p_img.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                set_paragraph_spacing(p_img, line_spacing=1.0, before_lines=0.5, after_lines=0)
+                set_image_paragraph_format(p_img, before_pt=6.0, after_pt=2.0)
                 r_img = p_img.add_run()
-                r_img.add_picture(ROADMAP_FIGURE, width=Cm(14.8))
+                r_img.add_picture(ROADMAP_FIGURE, width=Cm(14.5))
 
-                # 图题
+                # 图题段落：五号黑体加粗，单倍行距，段前2pt段后6pt，居中
                 p_fig_caption = anchor_p.insert_paragraph_before()
                 p_fig_caption.style = "Normal"
                 p_fig_caption.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                set_paragraph_spacing(p_fig_caption, line_spacing=1.5, before_lines=0, after_lines=0.5)
+                set_paragraph_spacing(p_fig_caption, line_spacing=1.0, before_lines=0, after_lines=0, before_pt=2.0, after_pt=6.0)
                 run = p_fig_caption.add_run("图 1 课题总体研究技术路线流程图")
                 set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
             continue
