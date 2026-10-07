@@ -20,13 +20,12 @@ description: >-
 在起草或修改任何毕设材料时，必须严格遵守以下表述口径（详见根目录 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md)）：
 
 1. **研究链路闭环口径**：
-   - 始终围绕**“已有八推进器水下航行器平台 $\rightarrow$ 六自由度动力学与推进器建模 $\rightarrow$ 系统辨识与模型验证 $\rightarrow$ 基于模型与状态反馈的运动控制 $\rightarrow$ 八推进器控制分配 $\rightarrow$ PX4/SITL 闭环仿真验证”**展开。
-2. **稳健弹性、不把路走窄**：
-   - 强调“依托已有平台参数资料和相关数据开展系统辨识与模型验证，分析模型误差及适用范围”。
-   - 运动控制部分表述为“结合航行器模型特性补偿与实时状态反馈构建闭环运动控制系统，计算期望广义力和力矩，实现姿态、深度和航向等基本运动状态的闭环控制”，为后续具体算法比选（如模型前馈 + PID、反馈线性化 FBL、增量非线性动态逆 INDI 等）留出充分空间。
-   - 控制分配部分表述为“根据八推进器安装位置、推力方向及力臂关系建立控制分配矩阵，考虑推进器基本推力输出范围，分析控制分配误差及各推进器输出情况”，不随意承诺难以验证的复杂硬件约束（如推力变化率动态约束等）。
+   - 围绕“水下航行器动力学机理建模 ➔ 参数辨识与模型验证 ➔ 运动控制与动态补偿 ➔ 多推进器控制分配 ➔ 闭环仿真与实验验证”系统展开。
+2. **稳健弹性、保持学术开放性**：
+   - 动力学建模立足于客观流体物理特性，系统辨识与模型验证采用严谨的科学方法，分析模型误差及适用边界。
+   - 运动控制与控制分配表述保持学术开放性，为后续具体控制算法与分配策略的横向比选留出充分空间，严禁过早写死排他性的狭窄实现。
 3. **行文规范、去 AI 腔与证据门控（Supervisor-Skills 融合规范）**：
-   - 杜绝口语化、空洞套话与大模型浮夸词（如“卓越、颠覆性、完美解决、赋能”，以及破折号 `——` 连接分句），数学符号与 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md) 中的 Fossen 6-DOF 符号体系 100% 保持一致。
+   - 杜绝口语化、空洞套话与大模型浮夸词（如“卓越、颠覆性、完美解决、赋能”，以及破折号 `——` 连接分句），遵循通用学术数学符号规范与国家标准，保持全文内部符号自洽一致。
    - **撰写或润色任何正文段落与设计配图前，必须阅读并执行**：
      * [supervisor_writing_and_figure_guide.md](./references/supervisor_writing_and_figure_guide.md)（包含 L0~L4 证据门控防幻觉纪律、中英文去 AI 腔禁用词表、审稿人逻辑自查清单及双重编码科研作图规范）；
      * [opening_report_contracts_and_evidence.md](./references/opening_report_contracts_and_evidence.md)（包含开题报告事实准则库、主张-证据映射表、禁用主张清单与全篇各节**章节契约卡片 Section Contracts**）。
@@ -144,13 +143,13 @@ description: >-
 2. **独立公式行（Displayed Equations）**：
    - 使用 `<m:oMathPara><m:oMath>...</m:oMath></m:oMathPara>` 嵌入公式段落，并在行末标注标准右对齐或居中公式编号 `（1）`、`（2）`。
 3. **行内数学符号（Inline Math）**：
-   - 正文中的矢量、矩阵、上下标与集合表达式（如 $\boldsymbol{\eta} = [x, y, z, \phi, \theta, \psi]^T$、$\boldsymbol{M} = \boldsymbol{M}_{RB} + \boldsymbol{M}_A$、$\boldsymbol{\tau}_c \in \mathbb{R}^6$、$6 \times 8$、$\boldsymbol{T}_{\min} \le \boldsymbol{T} \le \boldsymbol{T}_{\max}$、$\boldsymbol{e}_{\tau} = \boldsymbol{\tau}_c - \boldsymbol{B}\boldsymbol{T}$）均使用内联 `<m:oMath>` 节点嵌入段落 `<w:p>`。
+   - 正文中的矢量、矩阵、上下标与集合数学表达式均使用内联 `<m:oMath>` 节点嵌入段落 `<w:p>`。
 4. **OMML 数学字体与字形规范**：
    - 公式字体统一绑定 `Cambria Math`，字号小四（`w:sz w:val="24"`）；
-   - 矩阵与矢量（如 $\boldsymbol{\eta}, \boldsymbol{\nu}, \boldsymbol{J}, \boldsymbol{M}, \boldsymbol{C}, \boldsymbol{D}, \boldsymbol{g}, \boldsymbol{\tau}, \boldsymbol{B}, \boldsymbol{T}, \boldsymbol{e}, \boldsymbol{\theta}, \boldsymbol{r}, \boldsymbol{d}$）设置 `<m:sty m:val="bi"/>`（粗斜体 Bold-Italic）；
-   - 标量变量（如 $x, y, z, \phi, \theta, \psi, u, v, w, p, q, r, i$）设置 `<m:sty m:val="i"/>`（斜体 Italic）；
-   - 算子、括号、数字与描述性下标（如 $\text{RB}, \text{min}, \text{max}, \text{model}, \text{fb}, [, ], (, ), +, -, =, \le, \times$）设置 `<m:sty m:val="p"/>`（正体 Plain Roman）；
-   - 导数点号（如 $\dot{\boldsymbol{\eta}}, \dot{\boldsymbol{\nu}}$）与估计帽号（如 $\hat{\boldsymbol{M}}, \hat{\boldsymbol{C}}, \hat{\boldsymbol{D}}, \hat{\boldsymbol{g}}$）使用 `<m:acc>` 顶标结构渲染。
+   - 矩阵与矢量设置 `<m:sty m:val="bi"/>`（粗斜体 Bold-Italic）；
+   - 标量变量设置 `<m:sty m:val="i"/>`（斜体 Italic）；
+   - 算子、括号、数字与描述性文字下标设置 `<m:sty m:val="p"/>`（正体 Plain Roman）；
+   - 导数点号与估计帽号使用 `<m:acc>` 顶标结构渲染。
 5. **学长全过程经验对照基准**：
    - 撰写报告、大论文或答辩 PPT 时，必须参考 [学长毕设全过程资料深度解析与演进避坑指南.md](file:///d:/tj/Graduation%20Project/参考/学长毕设全过程资料深度解析与演进避坑指南.md)（解析了学长论文 V5 中 186 个原生 OMML 公式及开题 V1~V5 的演进避坑点）。
 

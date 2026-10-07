@@ -41,11 +41,11 @@
 | Incremental Nonlinear Dynamic Inversion (INDI) | 增量非线性动态逆 | 基于传感器局部增量线性化 |
 | Differential-Flatness-Based Control (DFBC) | 基于微分平坦的控制 | 常用于四旋翼/敏捷轨迹对比 |
 | Nonlinear Model Predictive Control (NMPC) | 非线性模型预测控制 | 滚动时域优化控制 |
-| Control allocation | 控制分配（推力分配） | 将6维广义力矩映射至8推进器推力 |
-| Control effectiveness matrix ($\boldsymbol{B}$) | 控制分配矩阵（控制效能矩阵） | 维度 $6 \times 8$ |
+| Control allocation | 控制分配（推力分配） | 将广义力与力矩映射至各推进器控制量 |
+| Control effectiveness matrix ($\boldsymbol{B}$) | 控制分配矩阵（控制效能矩阵） | 映射矩阵 |
 | Moore-Penrose pseudoinverse ($\boldsymbol{B}^+$) | 广义逆（Moore-Penrose 伪逆） | 最小二乘最小范数解析解 |
 | Weighted pseudoinverse | 加权伪逆 | 含推进器权重矩阵 |
-| Actuator saturation | 执行器饱和（推力幅值饱和） | $\boldsymbol{T}_{\min} \le \boldsymbol{T} \le \boldsymbol{T}_{\max}$ |
+| Actuator saturation | 执行器饱和（推力幅值饱和） | 执行机构推力或输出达到物理极限 |
 | Sequential desaturation | 序贯解饱和法 | PX4 内置优先级抗饱和分配方法 |
 
 ---

@@ -2,128 +2,60 @@
 name: rov-modeling-control-px4
 description: >-
   Use this skill whenever the user asks to derive mathematical models, run
-  system identification, design motion controllers (model-based + state feedback,
-  PID, FBL, INDI), configure 8-thruster 6x8 control allocation, write Python
-  6-DOF simulations, or develop/modify PX4 C++ modules and uORB topics for the
+  system identification, design motion controllers, configure control allocation,
+  write simulations, or develop/modify PX4 C++ modules and uORB topics for the
   underwater vehicle (UUV/ROV).
 ---
 
-# 八推进器水下航行器建模、控制分配与 PX4 仿真规范 (ROV Modeling, Control & PX4 Skill)
+# 水下航行器建模、控制分配与 PX4 仿真工程规范 (ROV Modeling, Control & PX4 Skill)
 
-本技能规范了《基于PX4的水下航行器模型控制方法研究》课题在数学推导、Python 原型仿真与 PX4/SITL (C++) 模块开发中的符号体系、坐标系约定、模块接口规范与验证指标。
+本技能规范了《基于PX4的水下航行器模型控制方法研究》课题在动力学推导、数值仿真与 PX4/SITL 开发中的工程设计原则、模块解耦架构与仿真验证规范。
 
 > [!IMPORTANT]
-> **阶段性推进原则**：由于具体水动力参数辨识结果与最终选定的细分控制律形式将随研究推进逐步确定，在编写仿真代码与文档时，必须采用**参数化配置（Config/YAML/Struct）与模块化插拔设计**，严禁将未验证的物理参数或单一算法假设硬编码死。
+> **通用工程与模块化原则**：水动力参数辨识方案与控制算法需保持充分的学术开放性与工程比选空间。在编写仿真脚本、嵌入式代码及文档时，必须采用**参数化配置（Config/YAML/Struct）与模块化插拔设计**，严禁将未验证的经验假设或排他性的狭窄实现硬编码死。
 
 ---
 
-## 一、 坐标系与正方向严格约定（NED + FRD）
+## 一、 通用工程架构与四大模块解耦规范
 
-所有动力学推导、Python 仿真与 PX4 C++ 模块必须统一采用海洋工程（Fossen）与航空飞控（PX4）天然兼容的右手坐标系：
+无论编写离线仿真脚本还是二次开发飞控固件，系统均遵循清晰的分层解耦架构，确保各环节具备高度独立性与可替换性：
 
-1. **北东地惯性坐标系 $\{n\} = (x_n, y_n, z_n)$ (NED)**：
-   - $x_n$ 指北（North），$y_n$ 指东（East），$z_n$ **垂直向下指向地心（Down，即潜深正方向向下）**。
-2. **附体坐标系 $\{b\} = (x_b, y_b, z_b)$ (Body-fixed / FRD)**：
-   - 原点取在航行器重心（CG）或几何中心；
-   - $x_b$ 沿艇体纵轴向前（Forward，纵荡 Surge $u$ 正方向）；
-   - $y_b$ 沿艇体横轴向右舷（Right/Starboard，横荡 Sway $v$ 正方向）；
-   - $z_b$ 沿艇体立轴向下（Down，垂荡 Heave $w$ 正方向）；
-   - 姿态欧拉角 $\boldsymbol{\Theta} = [\phi, \theta, \psi]^T$ 采用 Z-Y-X 旋转顺序（横滚 Roll $\phi$、俯仰 Pitch $\theta$、偏航 Yaw $\psi$），满足右手螺旋定则。
-
----
-
-## 二、 论文公式、Python 与 PX4 C++ 变量命名对齐表
-
-为防止论文公式、Python 脚本与 C++ 代码之间出现符号混乱，强制执行以下命名映射：
-
-| 物理意义 | 论文 LaTeX 符号 | 维度 | Python 变量名 | PX4 C++ / uORB 对应变量或主题 |
-| :--- | :--- | :---: | :--- | :--- |
-| 广义位置与姿态矢量 | $\boldsymbol{\eta} = [x, y, z, \phi, \theta, \psi]^T$ | $6 \times 1$ | `eta` | `vehicle_local_position` + `vehicle_attitude` |
-| 附体系线速度与角速度 | $\boldsymbol{\nu} = [u, v, w, p, q, r]^T$ | $6 \times 1$ | `nu` | `vehicle_local_position` ($v_b$) + `vehicle_angular_velocity` (`xyz`) |
-| 附体系加速度矢量 | $\dot{\boldsymbol{\nu}} = [\dot{u}, \dot{v}, \dot{w}, \dot{p}, \dot{q}, \dot{r}]^T$ | $6 \times 1$ | `nu_dot` | `sensor_combined` / `vehicle_angular_velocity` (差分/滤波) |
-| 运动学转换矩阵 | $\boldsymbol{J}(\boldsymbol{\eta})$ | $6 \times 6$ | `J_eta` | `matrix::Dcmf(q)` (旋转矩阵) + 欧拉角速率变换 |
-| 总惯性矩阵（刚体+附加质量） | $\boldsymbol{M} = \boldsymbol{M}_{RB} + \boldsymbol{M}_A$ | $6 \times 6$ | `M_total` (`M_RB`, `M_A`) | 模型参数结构体 `ModelParams` |
-| 科氏力与向心力矩阵 | $\boldsymbol{C}(\boldsymbol{\nu}) = \boldsymbol{C}_{RB}(\boldsymbol{\nu}) + \boldsymbol{C}_A(\boldsymbol{\nu})$ | $6 \times 6$ | `C_nu` (`C_RB`, `C_A`) | `computeCoriolisMatrix(nu)` |
-| 水动力阻尼矩阵（线性+二次） | $\boldsymbol{D}(\boldsymbol{\nu}) = \boldsymbol{D}_{\text{lin}} + \boldsymbol{D}_{\text{quad}}(\boldsymbol{\nu})$ | $6 \times 6$ | `D_nu` (`D_lin`, `D_quad`) | `computeDampingMatrix(nu)` |
-| 重浮力恢复力与力矩矢量 | $\boldsymbol{g}(\boldsymbol{\eta})$ | $6 \times 1$ | `g_eta` | `computeRestoringWrench(q, W, B, r_g, r_b)` |
-| 待辨识未知水动力参数集 | $\boldsymbol{\theta}$ | $p \times 1$ | `theta_id` | 辨识参数配置文件 / PX4 `ParamFloat` |
-| 参考状态与跟踪误差 | $\boldsymbol{\eta}_r, \boldsymbol{\nu}_r, \boldsymbol{e}_{\eta}, \boldsymbol{e}_{\nu}$ | $6 \times 1$ | `eta_ref`, `nu_ref`, `e_eta`, `e_nu` | `vehicle_attitude_setpoint`, `vehicle_rates_setpoint` |
-| 期望广义控制力与力矩 | $\boldsymbol{\tau}_c = [F_x, F_y, F_z, M_x, M_y, M_z]^T$ | $6 \times 1$ | `tau_c` | `vehicle_thrust_setpoint` ($F_{x,y,z}$) + `vehicle_torque_setpoint` ($M_{x,y,z}$) |
-| 八推进器控制分配矩阵 | $\boldsymbol{B}$ | $6 \times 8$ | `B_alloc` | `control_allocator` (`ActuatorEffectivenessUUV`) |
-| 各推进器推力指令矢量 | $\boldsymbol{T} = [T_1, \dots, T_8]^T$ | $8 \times 1$ | `T_cmd` | `actuator_motors` (归一化控制量 $u_i \in [-1, 1]$) |
-| 推进器推力范围约束 | $[\boldsymbol{T}_{\min}, \boldsymbol{T}_{\max}]$ | $8 \times 1$ | `T_min`, `T_max` | `CA_ACT_MIN`, `CA_ACT_MAX` |
-| 控制分配残差矢量 | $\boldsymbol{e}_{\tau} = \boldsymbol{\tau}_c - \boldsymbol{B}\boldsymbol{T}$ | $6 \times 1$ | `e_tau` | `control_allocator_status` (`unallocated_thrust`, `unallocated_torque`) |
+1. **航行器与执行器动力学仿真模块 (Plant Dynamics)**：
+   - 职责：根据执行器控制输入与外部环境扰动，数值积分求解航行器运动状态；
+   - 接口：接收底层控制输入与扰动，输出航行器位姿、速度与加速度状态；内部动力学参数通过外部配置文件注入。
+2. **系统辨识与模型验证模块 (System Identification & Validation)**：
+   - 职责：基于激励测试数据与状态响应序列，进行水动力参数辨识，并评估标称模型的预测精度与残差特性；
+   - 接口：接收时序输入输出数据，输出校准后的模型参数集与残差量化评估报告。
+3. **闭环运动控制模块 (Motion Controller)**：
+   - 职责：结合航行器模型特性补偿与实时状态反馈，计算航行器在各受控自由度上的期望广义控制力与力矩；
+   - 架构：采用支持多算法横向比选的开放式架构，能够平滑接入基础反馈控制、模型前馈补偿以及增量/自适应控制策略；
+   - 接口：接收参考设定值与状态反馈估计值，输出期望广义控制量。
+4. **控制分配模块 (Control Allocator)**：
+   - 职责：根据航行器推进器空间布局与几何配置，将期望广义控制量映射至各个独立推进器的控制指令，并合理处理执行器物理受限情况；
+   - 接口：接收期望广义控制量，输出各推进器控制指令及未分配残差。
 
 ---
 
-## 三、 四大模块解耦接口规范
+## 二、 仿真实验、数据可视化与验证门禁
 
-无论是编写 Python 仿真程序还是改造 PX4 C++ 模块，均需严格保持以下四个子模块的接口解耦（对应开题报告图 2 系统结构框图）：
+在开展算法验证与仿真对比时，必须严格执行以下工程规范：
 
-1. **航行器与推进器动力学模型模块 (`Plant6DOF` & `ThrusterModel`)**：
-   - 输入：8 推进器推力指令 $\boldsymbol{T}$ 及外部扰动 $\boldsymbol{\tau}_d$；
-   - 内部：包含单推进器静态/动态特性映射与 6-DOF 微分方程积分器（RK4 或欧拉法）；
-   - 输出：实时运动状态 $\boldsymbol{\eta}, \boldsymbol{\nu}, \dot{\boldsymbol{\nu}}$。
-2. **系统辨识与模型验证模块 (`SystemIdentification`)**：
-   - 输入：激励输入序列（$\boldsymbol{T}$ 或 $\boldsymbol{\tau}$）与状态响应数据（$\boldsymbol{\eta}, \boldsymbol{\nu}$）；
-   - 输出：辨识修正后的标称模型参数 $(\hat{\boldsymbol{M}}, \hat{\boldsymbol{C}}, \hat{\boldsymbol{D}}, \hat{\boldsymbol{g}})$ 及模型验证拟合残差分析。
-3. **基于模型与状态反馈的运动控制模块 (`MotionController`)**：
-   - 输入：参考状态 $(\boldsymbol{\eta}_r, \boldsymbol{\nu}_r)$、实时状态反馈 $(\boldsymbol{\eta}, \boldsymbol{\nu})$ 及经验证的标称模型参数；
-   - 结构：遵循通用弹性架构 $\boldsymbol{\tau}_c = \mathcal{F}_{\text{model}}(\hat{\boldsymbol{M}}, \hat{\boldsymbol{C}}, \hat{\boldsymbol{D}}, \hat{\boldsymbol{g}}, \boldsymbol{\eta}, \boldsymbol{\nu}, \boldsymbol{\eta}_r, \boldsymbol{\nu}_r) + \mathcal{F}_{\text{fb}}(\boldsymbol{e}_{\eta}, \boldsymbol{e}_{\nu})$，支持通过配置切换不同控制律实现（如纯反馈 PID、标称模型前馈补偿 + 状态反馈、增量动态逆 INDI 等）以开展对比实验；
-   - 输出：六维期望广义控制力与力矩 $\boldsymbol{\tau}_c \in \mathbb{R}^6$。
-4. **八推进器控制分配模块 (`ControlAllocator8T`)**：
-   - 输入：期望广义力与力矩 $\boldsymbol{\tau}_c \in \mathbb{R}^6$、$6 \times 8$ 控制分配矩阵 $\boldsymbol{B}$、推力上下限 $[\boldsymbol{T}_{\min}, \boldsymbol{T}_{\max}]$；
-   - 输出：各推进器推力指令 $\boldsymbol{T} \in \mathbb{R}^8$ 及控制分配误差 $\boldsymbol{e}_{\tau} = \boldsymbol{\tau}_c - \boldsymbol{B}\boldsymbol{T}$。
+1. **定量指标量化输出**：
+   - 每次仿真评估必须自动统计并输出量化指标：包括状态跟踪均方根误差（RMSE）、调节时间、超调量、控制分配残差范数以及推进器输出负荷分布等；
+   - 严禁缺乏定量数据的空泛定性评价。
+2. **出版级科学绘图规范**：
+   - 曲线对比图必须采用**颜色 + 线型双重编码**（实线、虚线、点划线等），确保黑白打印或色盲场景下均可清晰分辨；
+   - 图像分辨率保持在 300 DPI 以上，物理量符号与度量单位标注规范严谨，杜绝字体过小、文字遮挡或背景杂乱。
+3. **参数整定与优化闭环**：
+   - 在进行模型参数调优或控制器增益整定时，坚持**“明确量化目标 ➔ 运行基准记录 ➔ 单一变量改动 ➔ 评估对比验证”**的渐进迭代流程，避免同时修改多重参数导致因果关系混乱；
+   - 有效优化结果与关键配置及时记录并提交版本管理。
 
 ---
 
-## 四、 PX4/SITL 相关参考资料与代码资产索引
+## 三、 PX4/SITL 相关参考资料与代码资产索引
 
-在推进 PX4 相关工作时，优先查阅项目内已有研报与代码资产：
-- PX4 与 ArduSub 水下 6-DOF 控制与分配深度对比：[PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md)
-- PX4 架构与 uORB 控制链路研报：[01_PX4架构与控制体系全景深度报告.md](file:///d:/tj/Graduation%20Project/PX4_INDI_Research/01_PX4架构与控制体系全景深度报告.md)
-- INDI 嵌入式 C++ 原型实现：[RateControlINDI.hpp](file:///d:/tj/Graduation%20Project/PX4_INDI_Research/02_INDI算法在PX4中的嵌入式C++实现/RateControlINDI.hpp)、[RateControlINDI.cpp](file:///d:/tj/Graduation%20Project/PX4_INDI_Research/02_INDI算法在PX4中的嵌入式C++实现/RateControlINDI.cpp)
-- Python 离线仿真原型：[indi_vs_pid_simulation.py](file:///d:/tj/Graduation%20Project/PX4_INDI_Research/03_Python离线原型与对比实验仿真/indi_vs_pid_simulation.py)
-
----
-
-## 五、 仿真实验与图表输出验证规范
-
-每次运行仿真或对比实验脚本时：
-1. **定量指标自动输出**：必须在终端或日志中量化输出**状态跟踪误差（如 RMSE、ITAE、最大超调量 $\sigma\%$、调节时间 $t_s$）**以及**控制分配误差（$\|\boldsymbol{e}_{\tau}\|_2$ 均值与峰值、各推进器推力饱和占比）**。
-2. **学术级绘图标准**：所有 Matplotlib 生成的仿真曲线图必须配置中英文字体兼容（中文宋体/黑体、英文 Times New Roman / Arial，修复负号显示 `axes.unicode_minus = False`），分辨率不少于 300 DPI，采用**颜色 + 线型双重编码**区分算法曲线（详见 [supervisor_writing_and_figure_guide.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/supervisor_writing_and_figure_guide.md)），坐标轴物理量及单位（如 $\text{m}, \text{deg}, \text{rad/s}, \text{N}, \text{N}\cdot\text{m}$）标注齐全。
-
----
-
-## 六、 Autoresearch 定量指标驱动的自动辨识与控制器整定闭环
-*(吸收自 `leo-lilinxiao/codex-autoresearch` 核心范式，结合 Antigravity `/goal` 指令与 Git 版本控制)*
-
-当开展**未知水动力参数辨识寻优**或**运动控制器（PID / FBL / INDI）参数整定与横向对比**时，严禁盲目同时乱改多处参数，必须遵循以下可复现的 **Autoresearch 单步迭代实验闭环**：
-
-```text
-[1. 明确量化目标与约束 Guard]
-        │
-        ▼
-[2. 运行基线脚本，记录 Baseline 指标]
-        │
-        ▼
-[3. 提出假设，每次仅修改单一参数组或单一补偿项]
-        │
-        ▼
-[4. 运行评估脚本，解析 JSON/终端量化指标]
-        │
-        ├── 指标改善 且 满足推力饱和约束 (Guard Passes) ──► 保留改动 + 记录实验台账 + Git Commit
-        │
-        └── 指标劣化 或 触发发散/严重饱和 (Guard Fails) ──► 立即回滚该次改动 + 记录失败原因
-        │
-        ▼
-[5. 循环迭代直至达到收敛阈值或迭代上限]
-```
-
-### 执行细则：
-1. **定义单一标量评价函数（Objective Metric）与护栏约束（Regression Guard）**：
-   - **水动力辨识阶段**：以验证集上的六自由度速度预测综合均方根误差 $J_{\text{ID}} = \sum w_i \cdot \text{RMSE}(\nu_i, \hat{\nu}_i)$ 为优化目标（越小越好）；以物理合理性（附加质量与阻尼矩阵正定性 $M_A > 0, D > 0$）为护栏约束。
-   - **运动控制整定阶段**：以阶跃与扰动工况下的综合跟踪指标 $J_{\text{ctrl}} = w_1 \cdot \text{RMSE}(\boldsymbol{e}_{\eta}) + w_2 \cdot \sigma_{\max}\% + w_3 \cdot \|\boldsymbol{e}_{\tau}\|_2$ 为目标；以**推进器饱和率 $< 15\%$ 且无高频抖振**为护栏约束。
-2. **结果落盘与台账同步**：
-   - 每轮有效改进必须将参数配置、指标对比表更新至实验日志及根目录 [PROJECT_STATUS.md](file:///d:/tj/Graduation%20Project/PROJECT_STATUS.md)，严禁仅停留在终端输出中。
-
+在推进 PX4 架构调研与算法移植时，优先查阅项目内已有技术报告与验证原型：
+- PX4 与 ArduSub 控制与分配架构调研：[PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md)
+- PX4 架构与消息链路研报：[01_PX4架构与控制体系全景深度报告.md](file:///d:/tj/Graduation%20Project/PX4_INDI_Research/01_PX4架构与控制体系全景深度报告.md)
+- 飞控端 C++ 原型参考：[RateControlINDI.hpp](file:///d:/tj/Graduation%20Project/PX4_INDI_Research/02_INDI算法在PX4中的嵌入式C++实现/RateControlINDI.hpp)
+- Python 离线对比仿真原型：[indi_vs_pid_simulation.py](file:///d:/tj/Graduation%20Project/PX4_INDI_Research/03_Python离线原型与对比实验仿真/indi_vs_pid_simulation.py)
