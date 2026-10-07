@@ -37,8 +37,8 @@ OUTPUT_DOCX = r"开题报告/开题报告-基于PX4的水下航行器模型控�
 
 # ==================== XML 样式辅助函数 ====================
 
-def set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0, bold=False, italic=False, color=None):
-    """同时精确设置中西文字体、字号与样式属性"""
+def set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=10.5, bold=False, italic=False, color=None):
+    """同时精确设置中西文字体、字号与样式属性（默认五号 10.5 pt，对齐杨佳轩学长终稿）"""
     run.font.name = western_font
     run.font.size = Pt(font_size_pt)
     run.font.bold = bold
@@ -58,18 +58,17 @@ def set_run_font(run, chinese_font="宋体", western_font="Times New Roman", fon
     rFonts.set(qn("w:eastAsia"), chinese_font)
 
 
-def set_paragraph_spacing(paragraph, line_spacing=1.5, before_pt=0.0, after_pt=0.0, before_lines=None, after_lines=None):
-    """设置段落行距与段前段后间距（支持磅值与行数）"""
-    paragraph.paragraph_format.line_spacing = line_spacing
+def set_paragraph_spacing(paragraph, line_pt=18.0, line_rule="exact", before_pt=0.0, after_pt=0.0, before_lines=None, after_lines=None):
+    """设置段落行距与段前段后间距（默认固定值 18 磅 line=360 exact，支持磅值与行数，严格对齐杨佳轩学长规范）"""
     pPr = paragraph._p.get_or_add_pPr()
     sp = pPr.find(qn("w:spacing"))
     if sp is None:
         sp = OxmlElement("w:spacing")
         pPr.append(sp)
 
-    # 1.5 倍行距对应 line="360" lineRule="exact"
-    sp.set(qn("w:line"), "360")
-    sp.set(qn("w:lineRule"), "exact")
+    # 固定值 18 磅对应 line="360" lineRule="exact"
+    sp.set(qn("w:line"), str(int(line_pt * 20)))
+    sp.set(qn("w:lineRule"), line_rule)
 
     if before_lines is not None:
         sp.set(qn("w:beforeLines"), str(int(before_lines * 100)))
@@ -86,6 +85,29 @@ def set_paragraph_spacing(paragraph, line_spacing=1.5, before_pt=0.0, after_pt=0
         if qn("w:afterLines") in sp.attrib:
             del sp.attrib[qn("w:afterLines")]
         sp.set(qn("w:after"), str(int(after_pt * 20)))
+
+
+def configure_normal_style(doc):
+    """校准文档全局 Normal 样式为杨佳轩学长终稿规范：五号宋体/Times New Roman，固定值 18 磅行距"""
+    s = doc.styles["Normal"]
+    s.font.name = "Times New Roman"
+    s.font.size = Pt(10.5)
+    rPr = s._element.get_or_add_rPr()
+    rFonts = rPr.find(qn("w:rFonts"))
+    if rFonts is None:
+        rFonts = OxmlElement("w:rFonts")
+        rPr.append(rFonts)
+    rFonts.set(qn("w:ascii"), "Times New Roman")
+    rFonts.set(qn("w:hAnsi"), "Times New Roman")
+    rFonts.set(qn("w:eastAsia"), "宋体")
+
+    pPr = s._element.get_or_add_pPr()
+    sp = pPr.find(qn("w:spacing"))
+    if sp is None:
+        sp = OxmlElement("w:spacing")
+        pPr.append(sp)
+    sp.set(qn("w:line"), "360")
+    sp.set(qn("w:lineRule"), "exact")
 
 
 def set_image_paragraph_format(paragraph, before_pt=6.0, after_pt=2.0):
@@ -121,8 +143,8 @@ def set_image_paragraph_format(paragraph, before_pt=6.0, after_pt=2.0):
         pPr.remove(ind)
 
 
-def set_paragraph_indent(paragraph, first_line_dxa=480, first_line_chars=200):
-    """设置首行缩进 2 字符"""
+def set_paragraph_indent(paragraph, first_line_dxa=420, first_line_chars=200):
+    """设置首行缩进 2 字符 (五号字对应 420 dxa = 21 pt)"""
     pPr = paragraph._p.get_or_add_pPr()
     ind = pPr.find(qn("w:ind"))
     if ind is None:
@@ -152,7 +174,7 @@ def set_paragraph_no_indent(paragraph):
 
 
 def set_paragraph_hanging_indent(paragraph, left_dxa=420, hanging_dxa=420):
-    """设置参考文献悬挂缩进 0.74 cm (~420 dxa)"""
+    """设置参考文献悬挂缩进 2 汉字符 (420 dxa = 21 pt)"""
     pPr = paragraph._p.get_or_add_pPr()
     ind = pPr.find(qn("w:ind"))
     if ind is None:
@@ -166,7 +188,7 @@ def set_paragraph_hanging_indent(paragraph, left_dxa=420, hanging_dxa=420):
         del ind.attrib[qn("w:firstLineChars")]
 
 
-def add_text_with_superscripts(paragraph, text, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0, default_bold=False):
+def add_text_with_superscripts(paragraph, text, chinese_font="宋体", western_font="Times New Roman", font_size_pt=10.5, default_bold=False):
     """
     智能解析 Markdown 正文中的上标（如 $^{[1]}$、$^{[1][2]}$）与普通文字，
     并自动拆分为正文 Run 和上标 Run。
@@ -314,9 +336,9 @@ def populate_section_paragraphs(anchor_p, markdown_section_text, is_ref_section=
         # 参考文献条目：[1] ... / [45] ...
         if is_ref_section and stripped.startswith("["):
             p_ref = anchor_p.insert_paragraph_before()
-            p_ref.style = "参考文献"
-            # 严格依据同济大学规范：参考文献五号字 (10.5 pt)，1.3倍行距，零段间距，悬挂缩进 0.74 cm
-            set_paragraph_spacing(p_ref, line_spacing=1.3, before_lines=0, after_lines=0)
+            p_ref.style = "Normal"
+            # 严格依据杨佳轩学长终稿规范：参考文献五号字 (10.5 pt)，固定值 18 磅行距，零段间距，悬挂缩进 2 字符 (420 dxa)
+            set_paragraph_spacing(p_ref, line_pt=18.0, line_rule="exact", before_pt=0.0, after_pt=0.0)
             set_paragraph_hanging_indent(p_ref, left_dxa=420, hanging_dxa=420)
             add_text_with_superscripts(p_ref, stripped, chinese_font="宋体", western_font="Times New Roman", font_size_pt=10.5)
             continue
@@ -327,22 +349,22 @@ def populate_section_paragraphs(anchor_p, markdown_section_text, is_ref_section=
             if "课题进度安排与阶段成果表" in h3_text:
                 continue
             p_h3 = anchor_p.insert_paragraph_before()
-            p_h3.style = "正文格式"
-            set_paragraph_spacing(p_h3, line_spacing=1.5, before_lines=0, after_lines=0)
-            set_paragraph_indent(p_h3, first_line_dxa=480, first_line_chars=200)
+            p_h3.style = "Normal"
+            set_paragraph_spacing(p_h3, line_pt=18.0, line_rule="exact", before_pt=7.8, after_pt=3.9)
+            set_paragraph_indent(p_h3, first_line_dxa=420, first_line_chars=200)
             run = p_h3.add_run(h3_text)
-            set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=12.0, bold=True)
+            set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
             continue
 
         # 四级/占行标题：##### （1）... / ##### （2）...
         if stripped.startswith("##### "):
             h4_text = stripped[6:].strip()
             p_h4 = anchor_p.insert_paragraph_before()
-            p_h4.style = "正文格式"
-            set_paragraph_spacing(p_h4, line_spacing=1.5, before_lines=0, after_lines=0)
-            set_paragraph_indent(p_h4, first_line_dxa=480, first_line_chars=200)
+            p_h4.style = "Normal"
+            set_paragraph_spacing(p_h4, line_pt=18.0, line_rule="exact", before_pt=0.0, after_pt=0.0)
+            set_paragraph_indent(p_h4, first_line_dxa=420, first_line_chars=200)
             run = p_h4.add_run(h4_text)
-            set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=12.0, bold=True)
+            set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
             continue
 
         # 进度表格：由独立逻辑插入，跳过 markdown 表格文本
@@ -352,11 +374,11 @@ def populate_section_paragraphs(anchor_p, markdown_section_text, is_ref_section=
         # 技术路线图引导文字与插图处理
         if "课题总体技术路线流程如下所示" in stripped or "课题总体技术路线流程如下" in stripped:
             p_lead = anchor_p.insert_paragraph_before()
-            p_lead.style = "正文格式"
-            set_paragraph_spacing(p_lead, line_spacing=1.5, before_lines=0, after_lines=0)
-            set_paragraph_indent(p_lead, first_line_dxa=480, first_line_chars=200)
+            p_lead.style = "Normal"
+            set_paragraph_spacing(p_lead, line_pt=18.0, line_rule="exact", before_pt=0.0, after_pt=0.0)
+            set_paragraph_indent(p_lead, first_line_dxa=420, first_line_chars=200)
             run = p_lead.add_run("课题总体技术路线如图 1 所示：")
-            set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0)
+            set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=10.5)
 
             # 插入高清技术路线图（严格设置居中、单倍行距auto、keepNext防跨页拆散、宽14.5cm）
             if os.path.exists(ROADMAP_FIGURE):
@@ -366,21 +388,21 @@ def populate_section_paragraphs(anchor_p, markdown_section_text, is_ref_section=
                 r_img = p_img.add_run()
                 r_img.add_picture(ROADMAP_FIGURE, width=Cm(14.5))
 
-                # 图题段落：五号黑体加粗，单倍行距，段前2pt段后6pt，居中
+                # 图题段落：五号黑体加粗，单倍行距或固定值18磅，段前2pt段后6pt，居中
                 p_fig_caption = anchor_p.insert_paragraph_before()
                 p_fig_caption.style = "Normal"
                 p_fig_caption.alignment = WD_ALIGN_PARAGRAPH.CENTER
-                set_paragraph_spacing(p_fig_caption, line_spacing=1.0, before_lines=0, after_lines=0, before_pt=2.0, after_pt=6.0)
+                set_paragraph_spacing(p_fig_caption, line_pt=18.0, line_rule="exact", before_pt=2.0, after_pt=6.0)
                 run = p_fig_caption.add_run("图 1 课题总体研究技术路线流程图")
                 set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
             continue
 
         # 普通正文段落
         p_body = anchor_p.insert_paragraph_before()
-        p_body.style = "正文格式"
-        set_paragraph_spacing(p_body, line_spacing=1.5, before_lines=0, after_lines=0)
-        set_paragraph_indent(p_body, first_line_dxa=480, first_line_chars=200)
-        add_text_with_superscripts(p_body, stripped, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0)
+        p_body.style = "Normal"
+        set_paragraph_spacing(p_body, line_pt=18.0, line_rule="exact", before_pt=0.0, after_pt=0.0)
+        set_paragraph_indent(p_body, first_line_dxa=420, first_line_chars=200)
+        add_text_with_superscripts(p_body, stripped, chinese_font="宋体", western_font="Times New Roman", font_size_pt=10.5)
 
 
 def insert_progress_table(anchor_p, doc):
@@ -389,7 +411,7 @@ def insert_progress_table(anchor_p, doc):
     p_tbl_caption = anchor_p.insert_paragraph_before()
     p_tbl_caption.style = "Normal"
     p_tbl_caption.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    set_paragraph_spacing(p_tbl_caption, line_spacing=1.5, before_lines=0.5, after_lines=0.2)
+    set_paragraph_spacing(p_tbl_caption, line_pt=18.0, line_rule="exact", before_lines=0.5, after_lines=0.2)
     run = p_tbl_caption.add_run("表 1 课题进度安排与阶段成果表")
     set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
 
@@ -455,8 +477,8 @@ def insert_progress_table(anchor_p, doc):
 
     # 紧随空行间隔
     p_space = anchor_p.insert_paragraph_before()
-    p_space.style = "正文格式"
-    set_paragraph_spacing(p_space, line_spacing=1.0, before_lines=0, after_lines=0)
+    p_space.style = "Normal"
+    set_paragraph_spacing(p_space, line_pt=12.0, line_rule="exact", before_pt=0, after_pt=0)
 
 
 def build_opening_report():
@@ -479,6 +501,7 @@ def build_opening_report():
     # 2. 打开刚刚复制出的文档对象进行就地填充
     print(f"正在打开复制后的文档：{OUTPUT_DOCX}")
     doc = docx.Document(OUTPUT_DOCX)
+    configure_normal_style(doc)
 
     # 3. 就地填充封面表格 Table 0
     print("正在就地填充封面表格 Table 0...")
@@ -603,52 +626,62 @@ def build_opening_report():
         p27_empty4, p29_empty5, p31_empty6, p32_empty7, p33_empty8
     ]
 
-    print("正在就地校准模板骨架标题文字与样式...")
-    # 一级标题 1：P 16（保留原生硬分页符 run 0）
+    print("正在就地校准模板骨架标题文字与样式（严格对齐杨佳轩学长终稿规范）...")
+    # 一级标题 1：P 16（保留原生硬分页符 run 0，四号黑体 14 pt，固定值 18 磅，首行缩进 2 字符 560 dxa）
     p16_h1_1.runs[2].text = "毕业论文"
-    set_paragraph_spacing(p16_h1_1, line_spacing=1.5, before_lines=0.5, after_lines=0.5)
+    set_paragraph_spacing(p16_h1_1, line_pt=18.0, line_rule="exact", before_lines=0.5, after_lines=0.5)
     set_paragraph_indent(p16_h1_1, first_line_dxa=560, first_line_chars=200)
 
-    # 二级标题 1：P 19
+    # 二级标题 1：P 19（五号黑体 10.5 pt，固定值 18 磅，顶格无缩进，段前段后 0.5 行）
     p19_h2_1.runs[1].text = "． "
-    set_paragraph_spacing(p19_h2_1, line_spacing=1.5, before_lines=0.5, after_lines=0.5)
+    set_paragraph_spacing(p19_h2_1, line_pt=18.0, line_rule="exact", before_lines=0.5, after_lines=0.5)
     set_paragraph_no_indent(p19_h2_1)
+    for r in p19_h2_1.runs:
+        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
 
-    # 二级标题 2：P 21
+    # 二级标题 2：P 21（五号黑体 10.5 pt，固定值 18 磅，顶格无缩进，段前段后 0.5 行）
     p21_h2_2.runs[1].text = "． 国内外在该方向的研究现状"
     p21_h2_2.runs[3].text = ""  # 清除末尾制表符
-    set_paragraph_spacing(p21_h2_2, line_spacing=1.5, before_lines=0.5, after_lines=0.5)
+    set_paragraph_spacing(p21_h2_2, line_pt=18.0, line_rule="exact", before_lines=0.5, after_lines=0.5)
     set_paragraph_no_indent(p21_h2_2)
+    for r in p21_h2_2.runs:
+        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
 
-    # 一级标题 2：P 23
+    # 一级标题 2：P 23（四号黑体 14 pt，固定值 18 磅，首行缩进 2 字符 560 dxa）
     p23_h1_2.runs[1].text = "毕业论文"
-    set_paragraph_spacing(p23_h1_2, line_spacing=1.5, before_lines=0.5, after_lines=0.5)
+    set_paragraph_spacing(p23_h1_2, line_pt=18.0, line_rule="exact", before_lines=0.5, after_lines=0.5)
     set_paragraph_indent(p23_h1_2, first_line_dxa=560, first_line_chars=200)
 
-    # 二级标题 3：P 24
+    # 二级标题 3：P 24（五号黑体 10.5 pt，固定值 18 磅，顶格无缩进，段前段后 0.5 行）
     p24_h2_3.runs[1].text = "． "
     p24_h2_3.runs[3].text = ""  # 清除括号说明
-    set_paragraph_spacing(p24_h2_3, line_spacing=1.5, before_lines=0.5, after_lines=0.5)
+    set_paragraph_spacing(p24_h2_3, line_pt=18.0, line_rule="exact", before_lines=0.5, after_lines=0.5)
     set_paragraph_no_indent(p24_h2_3)
+    for r in p24_h2_3.runs:
+        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
 
-    # 二级标题 4：P 26
+    # 二级标题 4：P 26（五号黑体 10.5 pt，固定值 18 磅，顶格无缩进，段前段后 0.5 行）
     p26_h2_4.runs[1].text = "． "
     p26_h2_4.runs[3].text = ""  # 清除括号说明
-    set_paragraph_spacing(p26_h2_4, line_spacing=1.5, before_lines=0.5, after_lines=0.5)
+    set_paragraph_spacing(p26_h2_4, line_pt=18.0, line_rule="exact", before_lines=0.5, after_lines=0.5)
     set_paragraph_no_indent(p26_h2_4)
+    for r in p26_h2_4.runs:
+        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
 
-    # 二级标题 5：P 28
+    # 二级标题 5：P 28（五号黑体 10.5 pt，固定值 18 磅，顶格无缩进，段前段后 0.5 行）
     p28_h2_5.runs[1].text = "． "
-    set_paragraph_spacing(p28_h2_5, line_spacing=1.5, before_lines=0.5, after_lines=0.5)
+    set_paragraph_spacing(p28_h2_5, line_pt=18.0, line_rule="exact", before_lines=0.5, after_lines=0.5)
     set_paragraph_no_indent(p28_h2_5)
+    for r in p28_h2_5.runs:
+        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
 
-    # 一级标题 3：P 30
+    # 一级标题 3：P 30（四号黑体 14 pt，固定值 18 磅，首行缩进 2 字符 560 dxa）
     p30_h1_3.runs[1].text = "毕业论文"
-    set_paragraph_spacing(p30_h1_3, line_spacing=1.5, before_lines=0.5, after_lines=0.5)
+    set_paragraph_spacing(p30_h1_3, line_pt=18.0, line_rule="exact", before_lines=0.5, after_lines=0.5)
     set_paragraph_indent(p30_h1_3, first_line_dxa=560, first_line_chars=200)
 
-    # 一级标题 4：P 34
-    set_paragraph_spacing(p34_h1_4, line_spacing=1.5, before_lines=0.5, after_lines=0.5)
+    # 一级标题 4：P 34（四号黑体 14 pt，固定值 18 磅，首行缩进 2 字符 560 dxa）
+    set_paragraph_spacing(p34_h1_4, line_pt=18.0, line_rule="exact", before_lines=0.5, after_lines=0.5)
     set_paragraph_indent(p34_h1_4, first_line_dxa=560, first_line_chars=200)
 
     # 7. 分别在对应骨架锚点前注入各小节正文内容
