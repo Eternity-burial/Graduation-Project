@@ -21,11 +21,12 @@
 ### 阶段 0：选题论证、核心任务考量、任务书与开题报告（当前阶段：核心任务考量与文献库整备完毕，正式启动 5 轮中颗粒度起草）
 - [x] PX4 与 ArduSub 水下控制架构深度对比调研（[PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md)）
 - [x] **【核心任务考量与精简闭环确立】**：破译学长实验室暗语，确立“考研保命工程实现（PX4 RateControl/Alloc 固件二次开发） vs 学术高规格包装（6-DOF 机理标定 + 飞控高频抗扰 + 8推力矩保形）”双轨战略；
-- [x] **【全课题四大专题文献库整备完成（80+ 篇独立编号）】**：
-  - `00_研究背景与装备现状`：2024 工信部七部门未来产业意见 + 巡检级 ROV 痛点 + 4/6/8 推进器构型可控度对比（Omerdic 2004 IEEE JOE, Allotta 2015 OE 等）；
-  - `02_水动力机理建模与参数辨识文献库`：Fossen 6-DOF、MIT Prestero 标杆报告、动量回归抗噪（Park）、零空间解耦（Harris）及 PINN / SINDy / PH-NODE 等 27 篇；
-  - `03_先进运动控制与动态补偿文献库`：MPCC 开山奠基（Liniger）、NMPC 对比（Torrente / Heshmati T-RO）、TU Delft / IROS 2024 水下 INDI 高频抗扰、Science Robotics Neural-Fly 等 26 篇；
-  - `04_多推进器控制分配文献库`：Automatica 分配圣经（Johansen）、力矩优先保形抗饱和（Bøgh）、PX4 `control_allocator` 架构（Silano）及 Fossen 第6章推力模型等 20 篇；
+- [x] **【全课题四大专题文献库整备与权威综述补全完成】**：
+  - `00_研究背景与装备现状`：2024 工信部七部门未来产业意见 + 巡检级 ROV 痛点 + Yuh (2000 Autonomous Robots) 水下机器人设计与控制奠基综述（18p, 被引2500+）；
+  - `02_水动力参数辨识与数据驱动建模`：Fossen 6-DOF、MIT Prestero 标杆报告、Caccia (2000 IEEE JOE) 板载最小二乘辨识、Chin & Lau (2012) 阻尼建模与试验、动量回归抗噪（Park）、零空间解耦（Harris）及 PINN / SINDy / PH-NODE 等；
+  - `03_先进运动控制与动态补偿`：Yoerger & Slotine (1985 IEEE JOE) 滑模鲁棒控制开山作、Healey & Lienard (1993 IEEE JOE) 多变量解耦滑模、Smallwood & Whitcomb (2004 IEEE JOE) 模型前馈动力定位实机消融验证、MPCC 开山奠基（Liniger）、NMPC 对比（Torrente / Heshmati T-RO）、水下 INDI 高频抗扰、Science Robotics Neural-Fly 等；
+  - `04_控制分配与水下传感实验`：Johansen & Fossen (2013 Automatica) 控制分配行业宪法综述、Fossen 第6章推力模型与分配 (52p)、Li 2025 冗余推进分配与抗饱和、LIAS 实验室水下传感数据集与标定等；
+  - **规范化处理**：全量 7 篇新增核心文献原版 PDF 已归入各主题纯净目录，并在 `资料/md/` 编写配套中文精读导读手册，同步更新 `资料/README.md`、`references.bib` 与 `references.ris`。
 - [x] 建立 Git 版本控制体系、全局规则 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md) 及 4 大专业 Skill
 - [x] 建立开题报告章节契约、证据映射与学术规范体系（[.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md)）
 - [x] **旧版开题全量作废与物理移出（方案 A）**：因导师 9/30 批示原开题报告存在“大作业思维、缺乏外部恶劣场景物理矛盾驱动、提前剧透算法公式”等重大硬伤，2026/09/30 之前的所有旧版草稿（`.md`）、生成脚本及历史 `.docx` 已全部作废并物理移出至项目外部 `D:\tj\Graduation_Project_旧版开题作废备份_20260930\`；严禁任何 Agent 读取或沿用旧版草稿！

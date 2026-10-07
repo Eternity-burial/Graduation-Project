@@ -205,3 +205,55 @@ SP  - 1
 EP  - 6
 DO  - 10.1109/AUV50043.2020.9267895
 ER  - 
+
+TY  - JOUR
+AU  - Yuh, J.
+TI  - Design and control of autonomous underwater robots: A survey
+JO  - Autonomous Robots
+PY  - 2000
+VL  - 8
+IS  - 1
+SP  - 7
+EP  - 24
+DO  - 10.1023/A:1008984701078
+ER  - 
+
+TY  - JOUR
+AU  - Yoerger, Dana R.
+AU  - Slotine, Jean-Jacques E.
+TI  - Robust trajectory control of underwater vehicles
+JO  - IEEE Journal of Oceanic Engineering
+PY  - 1985
+VL  - 10
+IS  - 4
+SP  - 462
+EP  - 470
+DO  - 10.1109/JOE.1985.1145131
+ER  - 
+
+TY  - JOUR
+AU  - Healey, Anthony J.
+AU  - Lienard, David
+TI  - Multivariable sliding mode control for autonomous diving and steering of unmanned underwater vehicles
+JO  - IEEE Journal of Oceanic Engineering
+PY  - 1993
+VL  - 18
+IS  - 3
+SP  - 327
+EP  - 339
+DO  - 10.1109/JOE.1993.236372
+ER  - 
+
+TY  - JOUR
+AU  - Smallwood, David A.
+AU  - Whitcomb, Louis L.
+TI  - Model-based dynamic positioning of underwater robotic vehicles: Theory and experiment
+JO  - IEEE Journal of Oceanic Engineering
+PY  - 2004
+VL  - 29
+IS  - 1
+SP  - 169
+EP  - 186
+DO  - 10.1109/JOE.2003.823312
+ER  - 
+
