@@ -75,7 +75,7 @@
 | **10** | `10_Chin2012_Modeling_and_testing_hydrodynamic_damping_ROV.pdf` | `资料/md/10_水下航行器阻尼建模与试验测试_Chin2012_中文精译导读.md` | - | 【阻尼建模与试验测试】JMSA：复杂构型 ROV 线性黏性与非线性二次压差阻尼的 CFD 虚拟拖曳与水池试验互证 (14p) |
 | **10-2** | `10_Avila2013_Experimental_model_identification_open_frame_ROV.pdf` | `资料/md/10_Avila2013_水下航行器水动力模型试验辨识_中文精读导读.md` | - | 【实机水动力辨识】Ocean Engineering：基于水池拖曳与阶跃激励的水动力模型实验辨识 (14p) |
 | **11** | `11_vonBenzon2022_BlueROV2_Benchmark_Simulator.pdf` | `资料/md/11_vonBenzon2022_BlueROV2开源基准仿真与控制_中文精读导读.md` | - | 【开源基准平台】JMSE：BlueROV2 开源基准仿真环境与运动控制基准验证 (19p) |
-| **12** | （高婷2019哈工程学报） | `资料/md/12_水下航行器水动力系数计算方法_高婷2019_中文精读导读.md` | - | 【空间虚拟PMM方法】哈尔滨工程大学学报：基于空间拘束运动的高效水动力导数数值模拟方法 (7p) |
+| **12** | `12_Gao2018_Time_efficient_CFD_hydrodynamic_coefficients_OceanEng.pdf` | `资料/md/12_水下航行器水动力系数计算方法_高婷2019_中文精读导读.md` | - | 【空间虚拟PMM方法】Ocean Eng 2018 / 哈工程学报 2019：庞永杰/高婷团队基于空间拘束运动的高效水动力导数数值模拟方法 (11p, 3.3MB) |
 
 ---
 
