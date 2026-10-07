@@ -38,7 +38,8 @@
 | **01** | `01_Capocci2017_Inspection-Class Remotely Operated Vehicles A Review.pdf` | `01_巡检级水下航行器ROV综述_Capocci2017_中文版.pdf` | `01_巡检级水下航行器ROV综述_Capocci2017_双语对照.pdf` | 【装备现状综述】巡检级（Inspection-class）遥控水下机器人发展现状、典型构型与抗扰瓶颈分析 (10p) |
 | **02** | `02_钱辰2020_面向扑翼飞行控制的建模与奇异摄动分析.pdf` | （源文件即为中文） | - | 【多时间尺度解耦】自动化学报：多刚体时变动力学建模与高频脉动流扰的双时间尺度奇异摄动分析 (10p) |
 | **05** | `05_Yuh2000_Design_and_control_of_autonomous_underwater_robots.pdf` | `资料/md/05_水下机器人设计与控制综述_Yuh2000_中文精译导读.md` | - | 【运动控制大综述】Autonomous Robots：水下机器人设计与六大运动控制流派权威奠基综述 (18p, 被引2500+) |
-
+| **06** | `06_Meier2015_PX4_node_based_robotics_framework.pdf` | `资料/md/06_Meier2015_PX4嵌入式多线程发布订阅机器人框架_中文精读导读.md` | - | 【飞控底层生态】ICRA 2015：PX4 基于微内核与发布订阅机制的嵌入式机器人多任务架构 (6p) |
+| **07** | `07_Duecker2020_HippoCampusX_micro_AUV.pdf` | `资料/md/07_Duecker2020_HippoCampus水下机器人与敏捷机动_中文精读导读.md` | - | 【微小型水下航行器与PX4适配】IEEE/OES AUV：HippoCampus X 微型水下机器人与开源敏捷全驱动控制架构 (6p) |
 
 ---
 
@@ -70,7 +71,11 @@
 | **07** | `07_Harris2023_Stable nullspace adaptive parameter identification of 6 degree-of-freedom plant and actuator models.pdf` | `07_水下航行器六自由度零空间自适应参数辨识_Harris2023_中文版.pdf` | `07_水下航行器六自由度零空间自适应参数辨识_Harris2023_双语对照.pdf` | 【过驱动联合辨识】IEEE TCST：6 自由度水下航行器被控对象与多执行器模型的零空间稳定自适应辨识 |
 | **08** | `08_Raissi2019_Physics-Informed Neural Networks.pdf` | `08_物理信息神经网络PINN_Raissi2019_中文版.pdf` | `08_物理信息神经网络PINN_Raissi2019_双语对照.pdf` | 【物理约束深度学习】JCP 开山之作：物理信息神经网络（PINN）求解偏微分与常微分非线性正逆动力学问题 (22p) |
 | **09** | `09_Caccia2000_Modeling_and_identification_open_frame_UUV.pdf` | `资料/md/09_水下航行器建模与板载辨识_Caccia2000_中文精译导读.md` | - | 【板载辨识工程标杆】IEEE JOE：无需拖曳水池、仅利用板载传感器阶跃与衰减试验的最小二乘水动力辨识 (14p, 被引500+) |
+| **09-2** | `09_Ross2004_Identification_hydrodynamic_coefficients_free_decay_tests.pdf` | `资料/md/09_Ross2004_水下航行器自由衰减试验水动力系数辨识_中文精读导读.md` | - | 【衰减试验标杆】IFAC：基于自由衰减试验的水动力附加质量与阻尼参数解析提取 (6p) |
 | **10** | `10_Chin2012_Modeling_and_testing_hydrodynamic_damping_ROV.pdf` | `资料/md/10_水下航行器阻尼建模与试验测试_Chin2012_中文精译导读.md` | - | 【阻尼建模与试验测试】JMSA：复杂构型 ROV 线性黏性与非线性二次压差阻尼的 CFD 虚拟拖曳与水池试验互证 (14p) |
+| **10-2** | `10_Avila2013_Experimental_model_identification_open_frame_ROV.pdf` | `资料/md/10_Avila2013_水下航行器水动力模型试验辨识_中文精读导读.md` | - | 【实机水动力辨识】Ocean Engineering：基于水池拖曳与阶跃激励的水动力模型实验辨识 (14p) |
+| **11** | `11_vonBenzon2022_BlueROV2_Benchmark_Simulator.pdf` | `资料/md/11_vonBenzon2022_BlueROV2开源基准仿真与控制_中文精读导读.md` | - | 【开源基准平台】JMSE：BlueROV2 开源基准仿真环境与运动控制基准验证 (19p) |
+| **12** | （高婷2019哈工程学报） | `资料/md/12_水下航行器水动力系数计算方法_高婷2019_中文精读导读.md` | - | 【空间虚拟PMM方法】哈尔滨工程大学学报：基于空间拘束运动的高效水动力导数数值模拟方法 (7p) |
 
 ---
 
@@ -93,6 +98,8 @@
 | **11** | `11_Yoerger1985_Robust_trajectory_control_underwater_vehicles.pdf` | `资料/md/11_水下航行器鲁棒轨迹滑模控制_Yoerger1985_中文精译导读.md` | - | 【滑模鲁棒控制开山鼻祖】IEEE JOE：Yoerger & Slotine 首次将滑模变结构控制引入 UUV，提出边界层消除抖振 (9p, 被引1300+) |
 | **12** | `12_Healey1993_Multivariable_sliding_mode_control_diving_steering_AUV.pdf` | `资料/md/12_水下航行器多变量滑模解耦控制_Healey1993_中文精译导读.md` | - | 【多变量解耦控制标杆】IEEE JOE：NPS AUV II 航速、潜浮、航向三大子系统解耦与交叉耦合滑模抵消经典架构 (13p, 被引900+) |
 | **13** | `13_Smallwood2004_Model_based_dynamic_positioning_underwater_vehicles.pdf` | `资料/md/13_水下机器人基于模型的动力定位控制_Smallwood2004_中文精译导读.md` | - | 【模型控制实机消融验证】IEEE JOE：JHU ROV 水池真实对比纯PD、非线性解耦与模型前馈补偿（MB-PD），跟踪精度提升2~3倍 (18p, 被引500+) |
+| **14** | `14_Fernandes2015_Output_feedback_motion_control_ROV.pdf` | `资料/md/14_Fernandes2015_观测级ROV高增益观测器输出反馈控制_中文精读导读.md` | - | 【状态观测与输出反馈】Control Engineering Practice：高增益观测器水下输出反馈控制理论与水池验证 (13p) |
+| **15** | `15_Chu2020_Adaptive_trajectory_tracking_ROV_thruster_saturation.pdf` | `资料/md/15_Chu2020_考虑推进器动力学与饱和约束的ROV自适应轨迹跟踪_中文精读导读.md` | - | 【推进器动态与抗饱和】ISA Transactions：计及推进器动态响应与饱和约束的自适应轨迹跟踪 (10p) |
 
 ---
 
@@ -107,6 +114,8 @@
 | **03** | `03_Zhao2025_Spatiotemporal Calibration of Doppler Velocity Logs for Underwater Robots.pdf` | `03_LIAS实验室_DVL时空标定_Zhao2025_中文版.pdf` | `03_LIAS实验室_DVL时空标定_Zhao2025_双语对照.pdf` | CUHK-SZ LIAS 成果：水下多普勒计程仪（DVL）与惯导时空联合标定方法 |
 | **04** | `04_Peng2025_AquaticVision Benchmarking Visual SLAM in Underwater Environment with Events and Frames.pdf` | `04_LIAS实验室_AquaticVision水下数据集_Peng2025_中文版.pdf` | `04_LIAS实验室_AquaticVision水下数据集_Peng2025_双语对照.pdf` | CUHK-SZ LIAS 成果（ICRA）：AquaticVision 多模态水下感知与定位基准数据集 |
 | **05** | `05_Johansen2013_Control_Allocation_Survey_Automatica.pdf` | `资料/md/05_多执行器控制分配综述_Johansen2013_中文精译导读.md` | - | 【控制分配行业宪法】Automatica：过驱动多执行器控制分配权威长篇综述（加权伪逆、保方向等比例抗饱和缩放、QP二次规划、动态分配） (17p, 被引2000+) |
+| **06** | `06_Cheng2022_基于可行方向法的水下机器人推力分配.pdf` | `资料/md/06_水下机器人推力分配可行方向法_Cheng2022_中文精读导读.md` | - | 【可行方向法推力分配】舰船科学技术：约束非线性推力分配可行方向法及能耗优化 (5p) |
+| **07** | `07_Sun2023_基于模糊逻辑的混合推进ROV多级推力分配策略.pdf` | `资料/md/07_水下航行器多级推力分配策略_Sun2023_中文精读导读.md` | - | 【多级推进模糊分配】机器人：混合推进水下航行器推力死区补偿与多级控制分配策略 (11p) |
 
 
 ---

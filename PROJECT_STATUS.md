@@ -226,4 +226,8 @@
        - 纯化 [`.agents/skills/academic-doc-builder/`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/SKILL.md)，彻底剥离写作规矩，专注 Word 样式映射、原生 OMML 公式注入与对比版导出；
        - 完整克隆开源 0202 权威学术研究管道 [`.agents/skills/academic-research-skills/`](file:///d:/tj/Graduation%20Project/.agents/skills/academic-research-skills/)，供随时借鉴其 39-agent 审查流水线与质量门禁；
     3. **技能库纯净化达标**：移除了开题阶段尚不需要的 `rov-modeling-control-px4`，全局规则 `AGENTS.md` 与总控台账同步对齐最新架构。
+  - **完成开题大纲与参考文献题录库 100% 全量排查与新文献采购入库**：
+    1. **新采购 9 篇核心文献 PDF 入库**：`Ross 2004` (IFAC)、`Avila 2013` (Ocean Eng)、`von Benzon 2022` (JMSE)、`Fernandes 2015` (Control Eng Pract)、`Chu 2020` (ISA Trans)、`Meier 2015` (ICRA)、`Duecker 2020` (HippoCampus X)、`Cheng 2022` (舰船科学技术)、`Sun 2023` (机器人)，加上国家产业规划 2 篇，全库基础支撑文献全面达到 20 篇高保真 PDF；
+    2. **编写 10 篇配套中文精读导读手册**：统一收纳于 `资料/md/`；
+    3. **双向核验并修正题录库**：同步更新 `开题报告/references.bib`、`开题报告/references.ris` 与 `资料/README.md` 索引，确保正文大纲引文、题录库与本地文件资产 100% 互锁闭环。
 
