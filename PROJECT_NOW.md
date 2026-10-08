@@ -28,7 +28,7 @@
 
 ## 当前任务
 
-学术写作流程架构第二轮质量修复：修复质量门禁五大潜在缺陷（三态退出码、DOCX 原生段落/表格解析、零文件/缺失目标/规则拦截），显式标注章节契约内容状态，同步消除语义冲突，同步 Skill 职责并补充自动化回归测试。
+学术写作流程架构小范围稳定性修复：修复测试沙箱隔离与安全清理、PROJECT_FACTS/TERMINOLOGY 双规必需校验防放行、开题报告归档排除与 DOCX 页眉/页脚/嵌套表格深度扫描、--target 空参数拦截，并收窄 academic-doc-builder 触发边界。
 
 ## 已确认的流程原则
 
@@ -48,7 +48,7 @@
 ## 下一次会话交接
 
 最近完成：
-- 完成学术写作流程架构第二轮质量修复（scripts/check_academic_quality.py 确定性三态门禁与 OOXML DOCX 支持、docs/contracts/ 章节契约状态显式声明、AGENTS.md/PROJECT_NOW.md/academic-entry.md 消除语义冲突、academic-doc-builder/SKILL.md 职责同步、10 项隔离自动化回归测试套件）。
+- 完成学术写作流程架构小范围稳定性修复（测试沙箱隔离与唯一性递归清理、PROJECT_FACTS/TERMINOLOGY 双规必需校验、归档排除与 DOCX 页眉/页脚/嵌套表格深度扫描、--target 空参数拦截、收窄 academic-doc-builder 触发边界，13 项回归测试套件连续两次运行通过）。
 
 下一项任务：
 - 基于 docs/contracts/opening_report_contracts_and_evidence.md 的章节功能框架与质量门禁，推进开题报告后续环节；契约内的技术路线与任务细分维持 PROVISIONAL 状态，不作为已敲定的研究决定。

@@ -1,24 +1,24 @@
 ---
 name: academic-doc-builder
 description: >-
-  Use this skill whenever the user asks to draft, edit, format, or generate
-  graduation project academic documents (Task Book 任务书, Opening Report 开题报告,
-  Midterm Report 中期检查, Thesis 毕业论文), manipulate Word (.doc/.docx) files,
-  manage citations/references with EndNote or Zotero (.bib/.ris), render native
-  Word OMML math formulas, generate diff-highlighted review versions, or plot
-  300 DPI technical figures for reports.
+  Use this skill exclusively for Word (.docx/.doc) document engineering, formatting,
+  and template-compliant generation (Task Book 任务书, Opening Report 开题报告, Midterm
+  Report 中期检查, Thesis 毕业论文). Handles Word XML structure, native OMML math
+  formulas, GB/T 7714 citation management (.bib/.ris), diff-highlighted review versions,
+  and publication-grade figure layout. Do NOT use for general academic prose writing,
+  drafting, or revision (use academic-writing instead).
 ---
 
-# 毕设学术文档撰写、原生公式与参考文献自动化技能 (Academic Document Builder)
+# 毕设学术文档工程、原生公式与排版自动化技能 (Academic Document Builder)
 
-本技能定义了《基于PX4的水下航行器模型控制方法研究》毕业论文全周期学术文档（任务书、开题报告、中期检查、毕业论文）的文风准则、学校官方模板原生 XML 样式映射规范、Word 原生 OMML 数学公式渲染规范、GB/T 7714-2015 参考文献自动重排与 Zotero/EndNote（`.bib`/`.ris`）协同规范，以及 Word 自动化操作安全红线。
+本技能定义了《基于PX4的水下航行器模型控制方法研究》毕业论文全周期学术文档（任务书、开题报告、中期检查、毕业论文）的学校官方模板原生 XML 样式映射规范、Word 原生 OMML 数学公式渲染规范、GB/T 7714-2015 参考文献自动重排与 Zotero/EndNote（`.bib`/`.ris`）协同规范，以及 Word 自动化排版工程安全红线。
 
 ---
 
 1. **与学术写作技能及章节契约解耦协同**：
    - 通用学术写作技能 [academic-writing](../academic-writing/SKILL.md) 专注于**正文学术质量**（论证逻辑、学术语言、证据匹配与去 AI 腔润色）；
    - 项目专属章节要求与结构由 [docs/contracts/](../../../docs/contracts/) 集中定义与管理；
-   - 本技能（academic-doc-builder）专注于**文档工程与排版格式**（Word 样式注入、原生 OMML 数学公式、封面表格对齐、差异对比版高亮导出及 GB/T 7714 参考文献自动重排与题录实现）；
+   - 本技能（academic-doc-builder）专注于**Word 文档工程与排版格式**（Word 模板样式注入、原生 OMML 数学公式、封面表格对齐、差异对比版高亮导出及 GB/T 7714 参考文献自动重排与题录实现），绝不介入正文学术立意与论述推演；
    - 日常工作状态与交接优先同步根目录 [PROJECT_NOW.md](../../../PROJECT_NOW.md)，达成重大阶段里程碑时同步更新演进台账 [PROJECT_STATUS.md](../../../PROJECT_STATUS.md)；
    - **禁止将项目专属知识与技术方案重新写回通用 `academic-writing`**。
 

@@ -4,13 +4,14 @@ scripts/check_academic_quality.py: 毕业论文写作质量门禁确定性检查
 
 功能：
 1. 动态解析 docs/PROJECT_FACTS.md 与 docs/TERMINOLOGY.md 中的 <!-- gate:forbid:关键词 --> 门禁标记；
+   两份规则均为必需配置，任一份缺失、不可读或无规则均严格返回 ERROR(2)；
 2. 针对指定或默认的学术正文草稿（支持 Markdown 与 Word OOXML DOCX）执行确定性违规扫描；
-3. 严格执行白名单/黑名单过滤，绝不扫描规则文件、参考文献、历史档案或字典；
-4. 实现 PASS(0) / FAIL(1) / ERROR(2) 确定性三态退出码：
-   - 0 (PASS): 实际扫描 >= 1 个正文文件，未发现违规；
-   - 1 (FAIL): 扫描完成，正文中发现阻断级违规词汇；
-   - 2 (ERROR): 规则加载失败、指定目标不存在、零文件扫描、文件损坏或解码失败、路径越界等致命异常；
-5. 显式输出生效规则清单与实际扫描的文件清单及数量。
+3. 严格执行黑名单与目录授权控制：
+   - 排除系统规则、参考文献、开题报告内部各级归档（归档/archive/历史/history）及图片素材（figures/）；
+   - 限制显式目录目标仅允许在 [开题报告] 授权范围内，禁止根目录越权扫描；
+   - 命令行 --target 后无实际参数时明确报错 ERROR(2)；
+4. DOCX 深度扫描：全面覆盖正文段落、表格、嵌套表格、节页眉与节页脚（含首页/奇偶页）；
+5. 实现 PASS(0) / FAIL(1) / ERROR(2) 确定性三态退出码。
 """
 
 import sys
@@ -22,8 +23,11 @@ from pathlib import Path
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-# 绝对排除扫描的路径或目录（黑名单，防止误扫规则与历史资产）
-IGNORED_DIRS_AND_FILES = {
+# 必需的规则文件清单（缺一不可）
+REQUIRED_RULE_FILES = ["PROJECT_FACTS.md", "TERMINOLOGY.md"]
+
+# 绝对排除扫描的目录名称（黑名单，涵盖根目录与各级子目录中的归档、历史、图片等）
+IGNORED_DIR_NAMES = {
     ".git",
     ".agents",
     "docs",
@@ -32,6 +36,16 @@ IGNORED_DIRS_AND_FILES = {
     "模板",
     "PX4_INDI_Research",
     "选题",
+    "归档",
+    "archive",
+    "历史",
+    "history",
+    "figures",
+    "__pycache__",
+}
+
+# 绝对排除扫描的文件名称
+IGNORED_FILE_NAMES = {
     "AGENTS.md",
     "PROJECT_NOW.md",
     "PROJECT_STATUS.md",
@@ -70,22 +84,32 @@ class QualityCheckResult:
 
 def load_gate_rules(project_root: Path):
     """
-    从 docs/PROJECT_FACTS.md 与 docs/TERMINOLOGY.md 提取所有 <!-- gate:forbid:KEYWORD --> 规则
-    返回: list of dict [{"keyword": ..., "rule_id": ..., "source_file": ..., "rule_line": ...}]
+    从 docs/PROJECT_FACTS.md 与 docs/TERMINOLOGY.md 提取所有 <!-- gate:forbid:KEYWORD --> 规则。
+    两份文件均为必需配置。任意一份缺失、不可读取或未包含有效门禁规则，均记录致命错误。
+    返回: (rules, errors)
     """
     rules = []
+    errors = []
     docs_dir = project_root / "docs"
-    if not docs_dir.exists():
-        return rules
+    if not docs_dir.exists() or not docs_dir.is_dir():
+        errors.append(f"必需规则目录不存在: {docs_dir}")
+        return rules, errors
 
-    for doc_name in ["PROJECT_FACTS.md", "TERMINOLOGY.md"]:
+    for doc_name in REQUIRED_RULE_FILES:
         doc_path = docs_dir / doc_name
-        if not doc_path.exists():
+        if not doc_path.exists() or not doc_path.is_file():
+            errors.append(f"必需门禁规则文件缺失: docs/{doc_name}")
             continue
 
-        content = doc_path.read_text(encoding="utf-8")
+        try:
+            content = doc_path.read_text(encoding="utf-8")
+        except Exception as e:
+            errors.append(f"无法读取门禁规则文件 docs/{doc_name}: {e}")
+            continue
+
         lines = content.splitlines()
         current_id = "UNKNOWN"
+        file_rule_count = 0
 
         for idx, line in enumerate(lines, start=1):
             # 匹配形如 ### F-001： 或 ### T-001： 的编号
@@ -104,39 +128,93 @@ def load_gate_rules(project_root: Path):
                         "source_file": doc_name,
                         "rule_line": idx,
                     })
+                    file_rule_count += 1
 
-    return rules
+        if file_rule_count == 0:
+            errors.append(f"门禁规则文件 docs/{doc_name} 未包含任何有效 <!-- gate:forbid:... --> 规则")
+
+    return rules, errors
 
 
 def is_blacklisted(file_path: Path, project_root: Path) -> bool:
-    """检查文件是否位于严格忽略的黑名单路径中"""
+    """检查文件或目录是否位于严格忽略的黑名单路径中（覆盖任意层级目录）"""
     try:
         rel = file_path.resolve().relative_to(project_root.resolve())
     except ValueError:
-        # 不在 project_root 内部，视为黑名单/越界
+        # 不在 project_root 内部，视为越界
         return True
 
     parts = rel.parts
     if not parts:
         return True
-    # 顶层目录或文件在黑名单中
-    if parts[0] in IGNORED_DIRS_AND_FILES:
-        return True
-    if file_path.name in IGNORED_DIRS_AND_FILES:
-        return True
-    # 临时或备份文件
-    if file_path.suffix.lower() in [".bak", ".tmp", ".log"]:
-        return True
-    if file_path.name.startswith("~$"):
-        return True
+
+    # 检查相对路径中所有目录层级：若命中黑名单目录或包含归档/历史字样，直接过滤
+    dir_parts = parts[:-1] if file_path.is_file() else parts
+    for part in dir_parts:
+        if part in IGNORED_DIR_NAMES or "归档" in part or "历史" in part:
+            return True
+
+    # 检查具体文件
+    if file_path.is_file():
+        if file_path.name in IGNORED_FILE_NAMES:
+            return True
+        if file_path.suffix.lower() in [".bak", ".tmp", ".log"]:
+            return True
+        if file_path.name.startswith("~$"):
+            return True
+        if file_path.name.startswith("基于PX4"):
+            # 历史任务书参考底稿
+            return True
+
     return False
+
+
+def _extract_table_lines(tbl, prefix="表格"):
+    """递归提取表格及其单元格内嵌套表格的文本行，自动对合并单元格去重"""
+    lines = []
+    seen_cells = set()
+    for r_idx, row in enumerate(tbl.rows, start=1):
+        for c_idx, cell in enumerate(row.cells, start=1):
+            cell_id = cell._tc
+            if cell_id in seen_cells:
+                continue
+            seen_cells.add(cell_id)
+
+            cell_loc = f"{prefix} (行{r_idx}, 列{c_idx})"
+            # 提取单元格内的段落文本
+            for p_idx, p in enumerate(cell.paragraphs, start=1):
+                t = p.text.strip()
+                if t:
+                    loc = f"{cell_loc} 段落{p_idx}" if len(cell.paragraphs) > 1 else cell_loc
+                    lines.append((None, t, loc))
+
+            # 递归提取嵌套表格
+            for sub_t_idx, sub_tbl in enumerate(cell.tables, start=1):
+                sub_lines = _extract_table_lines(
+                    sub_tbl,
+                    prefix=f"{cell_loc} -> 嵌套表格{sub_t_idx}"
+                )
+                lines.extend(sub_lines)
+    return lines
+
+
+def _scan_header_or_footer(hf, desc, lines):
+    """扫描页眉或页脚中的段落与表格"""
+    if hf is None:
+        return
+    for p_idx, p in enumerate(hf.paragraphs, start=1):
+        t = p.text.strip()
+        if t:
+            lines.append((None, t, f"{desc} (段落{p_idx})"))
+    for t_idx, tbl in enumerate(hf.tables, start=1):
+        lines.extend(_extract_table_lines(tbl, prefix=f"{desc} (表格{t_idx})"))
 
 
 def extract_file_lines(file_path: Path):
     """
     从目标文件中提取文本行列表。
     - Markdown / Text: 按 UTF-8 解码提取行
-    - DOCX: 按 Word OOXML 规范提取段落与表格文本
+    - DOCX: 深度覆盖节页眉、节页脚（含首页/奇偶页）、正文段落及各级表格与嵌套表格
     返回: list of tuple (line_num or None, text, location_str)
     """
     ext = file_path.suffix.lower()
@@ -153,16 +231,28 @@ def extract_file_lines(file_path: Path):
         import docx
         doc = docx.Document(str(file_path))
         lines = []
+
+        # 1. 扫描所有节的页眉与页脚（全面覆盖默认、首页及奇偶页）
+        for s_idx, sec in enumerate(doc.sections, start=1):
+            _scan_header_or_footer(sec.header, f"页眉 (第{s_idx}节)", lines)
+            _scan_header_or_footer(sec.footer, f"页脚 (第{s_idx}节)", lines)
+            if getattr(sec, "different_first_page_header_footer", False):
+                _scan_header_or_footer(getattr(sec, "first_page_header", None), f"首页页眉 (第{s_idx}节)", lines)
+                _scan_header_or_footer(getattr(sec, "first_page_footer", None), f"首页页脚 (第{s_idx}节)", lines)
+            if getattr(doc.settings, "odd_and_even_pages_header_footer", False):
+                _scan_header_or_footer(getattr(sec, "even_page_header", None), f"偶数页页眉 (第{s_idx}节)", lines)
+                _scan_header_or_footer(getattr(sec, "even_page_footer", None), f"偶数页页脚 (第{s_idx}节)", lines)
+
+        # 2. 扫描正文段落
         for p_idx, p in enumerate(doc.paragraphs, start=1):
             t = p.text.strip()
             if t:
                 lines.append((p_idx, t, f"段落 {p_idx}"))
+
+        # 3. 扫描正文表格（包含嵌套表格）
         for t_idx, tbl in enumerate(doc.tables, start=1):
-            for r_idx, row in enumerate(tbl.rows, start=1):
-                for c_idx, cell in enumerate(row.cells, start=1):
-                    t = cell.text.strip()
-                    if t:
-                        lines.append((None, t, f"表格 {t_idx} (行{r_idx}, 列{c_idx})"))
+            lines.extend(_extract_table_lines(tbl, prefix=f"表格 {t_idx}"))
+
         return lines
 
     else:
@@ -173,7 +263,7 @@ def find_default_targets(project_root: Path):
     """
     查找默认需要受检的学术正文草稿及正式交付文件
     授权范围：开题报告目录下的正文起草稿、正文草稿 Markdown 以及正式/草稿 DOCX 文件
-    排除：备份文件（.bak）、大纲规划、脚本、参考文献、历史任务书底稿
+    排除：备份文件（.bak）、大纲规划、脚本、参考文献、历史任务书底稿及各级归档
     """
     targets = []
     report_dir = project_root / "开题报告"
@@ -183,15 +273,14 @@ def find_default_targets(project_root: Path):
     for p in report_dir.iterdir():
         if not p.is_file():
             continue
-        if p.name.endswith(".bak") or p.name.startswith("~$"):
+        if is_blacklisted(p, project_root):
             continue
         # Markdown 正文草稿
         if p.suffix.lower() == ".md" and ("起草" in p.name or "草稿" in p.name):
             targets.append(p)
         # DOCX 正文与正式交付文件
         elif p.suffix.lower() == ".docx":
-            # 扫描正式开题报告与草稿 DOCX，排除历史任务书底稿
-            if ("开题报告" in p.name or "草稿" in p.name or "起草" in p.name) and not p.name.startswith("基于PX4"):
+            if "开题报告" in p.name or "草稿" in p.name or "起草" in p.name:
                 targets.append(p)
     return sorted(targets)
 
@@ -204,37 +293,54 @@ def run_quality_check(target_paths=None, project_root=None) -> QualityCheckResul
         project_root = Path(__file__).resolve().parent.parent
 
     errors = []
-    rules = load_gate_rules(project_root)
-    if not rules:
-        errors.append("未在 docs/ 中发现任何有效的 gate:forbid 门禁规则（或规则文件不存在）！")
+    rules, rule_errors = load_gate_rules(project_root)
+    errors.extend(rule_errors)
 
     targets = []
-    if target_paths:
-        for p in target_paths:
-            path_obj = Path(p).resolve()
-            if not path_obj.exists():
-                errors.append(f"指定的目标路径不存在: {p}")
-                continue
-            try:
-                path_obj.relative_to(project_root.resolve())
-            except ValueError:
-                errors.append(f"目标路径超出项目授权范围: {p}")
-                continue
-            if is_blacklisted(path_obj, project_root):
-                errors.append(f"目标路径属于受保护黑名单或非学术正文范围: {p}")
-                continue
-            if path_obj.is_file():
-                targets.append(path_obj)
-            elif path_obj.is_dir():
-                found = []
-                for f in path_obj.glob("**/*"):
-                    if f.is_file() and not is_blacklisted(f, project_root):
-                        if f.suffix.lower() in [".md", ".docx", ".txt"] and not f.name.endswith(".bak") and not f.name.startswith("~$"):
+    if target_paths is not None:
+        if len(target_paths) == 0:
+            errors.append("指定了 --target 参数但未提供任何有效目标路径（若需使用默认范围请不要指定 --target 参数）！")
+        else:
+            for p in target_paths:
+                path_obj = Path(p).resolve()
+                if not path_obj.exists():
+                    errors.append(f"指定的目标路径不存在: {p}")
+                    continue
+                try:
+                    rel = path_obj.relative_to(project_root.resolve())
+                except ValueError:
+                    errors.append(f"目标路径超出项目授权范围: {p}")
+                    continue
+                if path_obj == project_root.resolve():
+                    errors.append(f"禁止将整个项目根目录作为受检目标，请指定具体正文文件或 [开题报告] 目录: {p}")
+                    continue
+                if is_blacklisted(path_obj, project_root):
+                    errors.append(f"目标路径属于受保护黑名单或非学术正文范围: {p}")
+                    continue
+                if path_obj.is_file():
+                    targets.append(path_obj)
+                elif path_obj.is_dir():
+                    if len(rel.parts) == 0 or rel.parts[0] != "开题报告":
+                        errors.append(f"指定目录超出学术正文受检授权范围（仅允许检查 [开题报告] 目录或其下正文目录）: {p}")
+                        continue
+
+                    found = []
+                    for f in path_obj.glob("**/*"):
+                        if not f.is_file():
+                            continue
+                        if is_blacklisted(f, project_root):
+                            continue
+                        # 若在开题报告下遍历，跳过非当前显式目标的测试沙箱子目录
+                        sub_parts = f.relative_to(path_obj).parts[:-1]
+                        if any(part.startswith(("_test_sandbox_", "_temp_")) for part in sub_parts):
+                            continue
+                        if f.suffix.lower() in [".md", ".docx", ".txt"]:
                             found.append(f)
-                if not found:
-                    errors.append(f"指定目录下未找到任何有效的正文文件: {p}")
-                else:
-                    targets.extend(found)
+
+                    if not found:
+                        errors.append(f"指定目录下未找到任何有效的正文文件: {p}")
+                    else:
+                        targets.extend(found)
     else:
         targets = find_default_targets(project_root)
         if not targets:
@@ -287,11 +393,20 @@ def run_quality_check(target_paths=None, project_root=None) -> QualityCheckResul
 
 def main():
     parser = argparse.ArgumentParser(description="学术写作质量门禁确定性检查工具")
-    parser.add_argument("--target", "-t", nargs="*", help="指定受检目标文件或目录（默认扫描开题报告正文草稿）")
+    parser.add_argument("--target", "-t", nargs="*", default=None, help="指定受检目标文件或目录（默认扫描开题报告正文草稿）")
     parser.add_argument("--root", "-r", default=None, help="指定项目根目录（可选）")
     args = parser.parse_args()
 
     project_root = Path(args.root).resolve() if args.root else Path(__file__).resolve().parent.parent
+
+    # 显式传递 --target 但未提供实际参数时，明确报错拦截
+    if args.target is not None and len(args.target) == 0:
+        print(f"==================================================")
+        print(f" 学术写作流程确定性质量门禁 (Quality Gate Check)")
+        print(f" 根目录: {project_root}")
+        print(f"==================================================")
+        print("\n[ERROR] 质量门禁执行失败！命令行参数 --target 未指定具体目标路径（若需使用默认范围请不要传递 --target 参数）\n")
+        sys.exit(2)
 
     print(f"==================================================")
     print(f" 学术写作流程确定性质量门禁 (Quality Gate Check)")
