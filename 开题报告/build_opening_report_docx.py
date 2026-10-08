@@ -541,15 +541,18 @@ def build_opening_report():
         set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=14.0, bold=False)
 
     # 7. 在对应锚点处注入各节正文内容
-    print("注入 Section 1 正文内容...")
+    # 关键防泄漏原则：
+    # Section 1 的 permEnd 1319923814 紧接在 P22 之后，必须以 P22 为锚点注入 sec_1_2，确保 2.1~2.4 完全位于 permEnd 之前！
+    # Section 2 的 permEnd 1741359920 紧接在 P29 之后，必须以 P29 为锚点注入 sec_2_3 与进度表，确保完全位于 permEnd 之前！
+    print("注入 Section 1 正文内容（sec_1_1 锚定 P21，sec_1_2 锚定 P22 保障 2.1~2.4 严密位于 permEnd 1319923814 内部）...")
     populate_section_paragraphs(p21, sec_1_1)
-    populate_section_paragraphs(p23, sec_1_2)
+    populate_section_paragraphs(p22, sec_1_2)
 
-    print("注入 Section 2 正文与图表内容...")
+    print("注入 Section 2 正文与图表内容（sec_2_3 与进度表锚定 P29 保障严密位于 permEnd 1741359920 内部）...")
     populate_section_paragraphs(p26, sec_2_1)
     populate_section_paragraphs(p28, sec_2_2)
-    populate_section_paragraphs(p30, sec_2_3)
-    insert_progress_table(p30, doc)
+    populate_section_paragraphs(p29, sec_2_3)
+    insert_progress_table(p29, doc)
 
     print("注入 Section 3 参考文献内容（复用 P31 及其 permStart 61024898）...")
     ref_lines = [l.strip() for l in sec_3_ref.splitlines() if l.strip().startswith("[")]
@@ -621,7 +624,44 @@ def run_automated_audit(doc_path):
     assert not perm_errors, f"权限节点闭合错误: {perm_errors}"
     print(f"【审计 2 通过】全部 25 对权限节点在文档树中顺序闭合完全平衡！")
 
-    # 2. 检查 Markdown 标记泄漏
+    # 检查各区域正文是否 100% 被包裹在对应可编辑区域 (permStart ~ permEnd) 内部
+    body = doc_built._element.body
+    active_perms = set()
+    sec1_leaks = []
+    sec2_leaks = []
+    sec3_leaks = []
+    for child in body:
+        tag = child.tag.split('}')[-1]
+        if tag == 'permStart':
+            active_perms.add(child.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}id'))
+        elif tag == 'permEnd':
+            active_perms.discard(child.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}id'))
+        else:
+            for ps in child.xpath('.//w:permStart'):
+                active_perms.add(ps.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}id'))
+            if tag == 'p':
+                t = docx.text.paragraph.Paragraph(child, doc_built).text.strip()
+                if any(k in t for k in ['2.1 水下航行器', '2.2 先进水下', '2.3 冗余推进', '2.4 研究局限']):
+                    if '1319923814' not in active_perms:
+                        sec1_leaks.append(t[:30])
+                if any(k in t for k in ['阶段一', '阶段二', '阶段五', '表 1 课题进度安排']):
+                    if '1741359920' not in active_perms:
+                        sec2_leaks.append(t[:30])
+                if t.startswith('[1]') or t.startswith('[45]'):
+                    if '61024898' not in active_perms:
+                        sec3_leaks.append(t[:30])
+            elif tag == 'tbl':
+                tbl_text = ''.join(child.xpath('.//w:t/text()'))
+                if '主要研究工作内容' in tbl_text:
+                    if '1741359920' not in active_perms:
+                        sec2_leaks.append('表 1 (Table)')
+            for pe in child.xpath('.//w:permEnd'):
+                active_perms.discard(pe.get('{http://schemas.openxmlformats.org/wordprocessingml/2006/main}id'))
+
+    assert not sec1_leaks, f"Section 1 正文泄漏至可编辑区域外: {sec1_leaks}"
+    assert not sec2_leaks, f"Section 2 工作进度/表格泄漏至可编辑区域外: {sec2_leaks}"
+    assert not sec3_leaks, f"Section 3 参考文献泄漏至可编辑区域外: {sec3_leaks}"
+    print(f"【审计 2b 通过】Section 1（含2.1~2.4）、Section 2（含工作进度及表1）、Section 3（全部45篇文献）100% 严密包裹在官方可编辑区域内部，0 外部泄漏！")
     md_leaks = []
     for i, p in enumerate(doc_built.paragraphs):
         t = p.text.strip()
