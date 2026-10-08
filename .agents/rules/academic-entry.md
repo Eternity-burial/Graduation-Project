@@ -15,7 +15,7 @@ description: 项目学术写作任务的规则入口、事实来源与质量检�
 1. 先读取 `PROJECT_NOW.md`，确认当前任务与有效状态。
 2. 读取 `docs/PROJECT_FACTS.md`，确定当前有效的项目事实。
 3. 读取 `docs/TERMINOLOGY.md`，确定术语和表达偏好。
-4. 根据任务读取适用的章节契约（存放在 `docs/contracts/`）及实际证据。
+4. 根据任务读取适用的章节契约（存放在 `docs/contracts/`）作为章节功能与结构参考，结合实际证据组织内容。注意契约中的未决技术路线与任务细分不得直接升级为已确定的研究决定。
 5. 使用 `academic-writing` 执行内容构思、起草或审校。
 
 不得将 `PROJECT_STATUS.md` 中的历史叙述直接当作当前决策。

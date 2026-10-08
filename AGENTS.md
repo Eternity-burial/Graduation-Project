@@ -27,7 +27,7 @@
    - 2026/09/30 之前撰写的旧版开题报告草稿与代码因存在严重的“大作业思维、缺乏外部恶劣场景物理驱动、提前剧透算法与公式”等问题，已被导师批评并全量推倒重来；
    - 旧版所有相关 Markdown 草稿（`开题报告_全文草稿.md` 等）、生成脚本（`build_opening_report_doc.py`）及历史 `.docx` 文件已全量物理移出至仓库外部 `D:\tj\Graduation_Project_旧版开题作废备份_20260930\`；
    - **严禁任何 Agent 读取、恢复、全局搜索或沿用旧版开题报告中的任何段落与表述！**
-   - 开题报告必须严格依据 [docs/contracts/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/docs/contracts/opening_report_contracts_and_evidence.md) 章节契约，直接向学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 从零撰写。
+   - 开题报告的章节功能与组织框架参考 [docs/contracts/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/docs/contracts/opening_report_contracts_and_evidence.md) 章节契约规范，直接向学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 从零撰写；契约中涉及的具体算法与技术方案仅供参考，尚未最终锁定，不得将未决假设作为既定研究决定。
 6. **任务书定位铁律（仅作前期参考，绝非死板基准）**：
    - 任务书文件（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)）目前仅作为前期参考工作底稿，**绝非不可更改的死板基准**；
    - 毕业论文的核心研究任务、模块边界与重心仍处于重新审视与深入考量中；

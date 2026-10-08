@@ -22,19 +22,20 @@
 - .agents/rules/academic-entry.md：学术任务接入网关规则。
 - docs/PROJECT_FACTS.md：当前有效项目事实（含物理平台构型与 F-001）。
 - docs/TERMINOLOGY.md：专业术语纠错与写作偏好（区分 ERROR / PREFERENCE / CONTEXT）。
-- docs/contracts/：现行学术文档章节契约（开题报告契约见 docs/contracts/opening_report_contracts_and_evidence.md）。
+- docs/contracts/：学术文档章节功能与框架契约（开题报告见 docs/contracts/opening_report_contracts_and_evidence.md，提供结构与功能参考，具体技术路线尚未最终确认）。
 - .agents/skills/academic-writing/SKILL.md：通用学术写作与审稿方法（课题无关）。
 - PROJECT_STATUS.md：历史台账，仅在需要追溯演进过程时按需查阅。
 
 ## 当前任务
 
-学术写作流程架构重构：消除项目知识与通用 Skill 的混合，集中管理章节契约，建立质量门禁与事实/术语独立源。
+学术写作流程架构第二轮质量修复：修复质量门禁五大潜在缺陷（三态退出码、DOCX 原生段落/表格解析、零文件/缺失目标/规则拦截），显式标注章节契约内容状态，同步消除语义冲突，同步 Skill 职责并补充自动化回归测试。
 
 ## 已确认的流程原则
 
 - 通用 Skill 不包含具体研究路线与课题特定知识。
 - 项目事实（PROJECT_FACTS.md）与术语纠错（TERMINOLOGY.md）分别管理。
 - 章节契约集中收纳于 docs/contracts/，不散落在 Skills 内部。
+- 章节契约中的具体技术方案仅供参考，不自动升级为确定事实。
 - 重大修改先审查计划，经批准后再执行。
 - 不以模型自检声明代替真实验证，交付前执行自动化门禁脚本。
 - 每次任务应有明确范围及可验收输出。
@@ -47,10 +48,10 @@
 ## 下一次会话交接
 
 最近完成：
-- 完成学术写作流程架构重构（解耦 academic-writing，建立 docs/PROJECT_FACTS.md 与 docs/TERMINOLOGY.md，集中管理 docs/contracts/ 章节契约，实现 scripts/check_academic_quality.py 门禁脚本与自动化测试验证）。
+- 完成学术写作流程架构第二轮质量修复（scripts/check_academic_quality.py 确定性三态门禁与 OOXML DOCX 支持、docs/contracts/ 章节契约状态显式声明、AGENTS.md/PROJECT_NOW.md/academic-entry.md 消除语义冲突、academic-doc-builder/SKILL.md 职责同步、10 项隔离自动化回归测试套件）。
 
 下一项任务：
-- 严格基于 docs/contracts/opening_report_contracts_and_evidence.md 契约与质量门禁，推进开题报告后续环节。
+- 基于 docs/contracts/opening_report_contracts_and_evidence.md 的章节功能框架与质量门禁，推进开题报告后续环节；契约内的技术路线与任务细分维持 PROVISIONAL 状态，不作为已敲定的研究决定。
 
 允许修改的文件：
 - 开题报告草稿与相关配图脚本（如 开题报告/ 目录下草稿）。

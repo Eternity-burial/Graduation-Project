@@ -15,9 +15,12 @@ description: >-
 
 ---
 
-1. **与学术写作技能解耦协同**：
-   - 本技能专注于**文档工程与排版格式**（Word 样式注入、原生 OMML 数学公式、封面表格对齐、差异对比版高亮导出及 GB/T 7714 参考文献自动重排）；
-   - 正文内容撰写、立项逻辑推导、去 AI 腔润色与章节契约，由专属学术写作技能 [academic-writing](../academic-writing/SKILL.md) 负责。
+1. **与学术写作技能及章节契约解耦协同**：
+   - 通用学术写作技能 [academic-writing](../academic-writing/SKILL.md) 专注于**正文学术质量**（论证逻辑、学术语言、证据匹配与去 AI 腔润色）；
+   - 项目专属章节要求与结构由 [docs/contracts/](../../../docs/contracts/) 集中定义与管理；
+   - 本技能（academic-doc-builder）专注于**文档工程与排版格式**（Word 样式注入、原生 OMML 数学公式、封面表格对齐、差异对比版高亮导出及 GB/T 7714 参考文献自动重排与题录实现）；
+   - 日常工作状态与交接优先同步根目录 [PROJECT_NOW.md](../../../PROJECT_NOW.md)，达成重大阶段里程碑时同步更新演进台账 [PROJECT_STATUS.md](../../../PROJECT_STATUS.md)；
+   - **禁止将项目专属知识与技术方案重新写回通用 `academic-writing`**。
 
 
 ---
@@ -30,7 +33,7 @@ description: >-
    - 在运行任何构建或修改脚本前，必须先在终端执行 `git status --short`，检查目标 Word 文档或脚本是否有未暂存的用户手工编辑；
    - 若检测到用户改动，**严禁静默覆盖**，必须先提示用户或将其单独另存为快照备份（如 `*_用户标注备份.*`）；写操作必须保留 `.bak` 备份机制。
 2. **第一步：内容协同与 Markdown 草稿输入**
-   - 正文内容起草由专属技能 [academic-writing](../academic-writing/SKILL.md) 负责，严格对齐章节契约与学术证据门禁；
+   - 正文内容起草遵循通用技能 [academic-writing](../academic-writing/SKILL.md) 的学术质量标准，对齐 [docs/contracts/](../../../docs/contracts/) 章节契约与项目事实/术语门禁；
    - 经审校合格的 Markdown 草稿或文本片段作为本构建技能的排版输入源。
 3. **第二步：参考文献顺序校验与 `.bib` / `.ris` 题录库同步**
    - 按 GB/T 7714-2015 顺序编码制，严格依据文献在正文中**首次出现的先后顺序**编号 `[1] ~ [N]`，同步更新 [references.bib](file:///d:/tj/Graduation%20Project/开题报告/references.bib) 与 [references.ris](file:///d:/tj/Graduation%20Project/开题报告/references.ris)，支持一键导入本地 **Zotero**（`C:\Program Files\Zotero\zotero.exe`）或 **EndNote**。
@@ -43,8 +46,8 @@ description: >-
    - 当前最新轮次的逐段差异高亮对比版直接保存在工作区根目录（如 `*-新旧版本修改对比版_逐段差异高亮.docx`），与正式纯净版并存供导师直接审阅查验；
    - **历次对比版归档铁律**：后续每一轮修改并生成新对比版前，上一轮旧对比版打上时间戳快照移入 `归档/历次修改对比版/`（支持脚本 `--archive-old-diff` 自动快照），并在 `归档/README.md` 台账中记录修改说明，绝不静默覆盖；
    - 正式提交版必须确保全篇清除所有高亮（`HighlightColorIndex = 0`）。
-7. **第六步：Git 里程碑版本提交与 `PROJECT_STATUS.md` 同步**
-   - 文档与脚本自检验证通过后，同步更新根目录 [PROJECT_STATUS.md](file:///d:/tj/Graduation%20Project/PROJECT_STATUS.md) 台账，并在终端执行 `git add` 与清晰规范的 Git Commit（如 `git commit -m "docs: 更新开题报告..."`），固化阶段成果。
+7. **第六步：Git 里程碑版本提交与状态同步**
+   - 文档与脚本自检及门禁验证通过后，日常工作状态优先同步更新根目录 [PROJECT_NOW.md](../../../PROJECT_NOW.md)，达成重大阶段里程碑时同步更新 [PROJECT_STATUS.md](../../../PROJECT_STATUS.md) 演进台账，并在终端执行 `git add` 与清晰规范的 Git Commit（如 `git commit -m "docs: 更新开题报告..."`），固化阶段成果。
 
 ---
 
