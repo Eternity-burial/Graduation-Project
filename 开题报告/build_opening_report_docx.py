@@ -87,27 +87,6 @@ def set_paragraph_spacing(paragraph, line_pt=18.0, line_rule="exact", before_pt=
         sp.set(qn("w:after"), str(int(after_pt * 20)))
 
 
-def configure_normal_style(doc):
-    """校准文档全局 Normal 样式为杨佳轩学长终稿规范：五号宋体/Times New Roman，固定值 18 磅行距"""
-    s = doc.styles["Normal"]
-    s.font.name = "Times New Roman"
-    s.font.size = Pt(10.5)
-    rPr = s._element.get_or_add_rPr()
-    rFonts = rPr.find(qn("w:rFonts"))
-    if rFonts is None:
-        rFonts = OxmlElement("w:rFonts")
-        rPr.append(rFonts)
-    rFonts.set(qn("w:ascii"), "Times New Roman")
-    rFonts.set(qn("w:hAnsi"), "Times New Roman")
-    rFonts.set(qn("w:eastAsia"), "宋体")
-
-    pPr = s._element.get_or_add_pPr()
-    sp = pPr.find(qn("w:spacing"))
-    if sp is None:
-        sp = OxmlElement("w:spacing")
-        pPr.append(sp)
-    sp.set(qn("w:line"), "360")
-    sp.set(qn("w:lineRule"), "exact")
 
 
 def set_image_paragraph_format(paragraph, before_pt=6.0, after_pt=2.0):
@@ -501,7 +480,16 @@ def build_opening_report():
     # 2. 打开刚刚复制出的文档对象进行就地填充
     print(f"正在打开复制后的文档：{OUTPUT_DOCX}")
     doc = docx.Document(OUTPUT_DOCX)
-    configure_normal_style(doc)
+
+    # 显式保护封面大标题段落 P 5（"毕业设计(论文)开题报告"，字号 36 pt），设定为单倍行距自适应，绝不使用固定值（防止36磅大字被截断裁剪）
+    p_cover_title = doc.paragraphs[5]
+    pPr_cover = p_cover_title._p.get_or_add_pPr()
+    sp_cover = pPr_cover.find(qn("w:spacing"))
+    if sp_cover is None:
+        sp_cover = OxmlElement("w:spacing")
+        pPr_cover.append(sp_cover)
+    sp_cover.set(qn("w:line"), "240")
+    sp_cover.set(qn("w:lineRule"), "auto")
 
     # 3. 就地填充封面表格 Table 0
     print("正在就地填充封面表格 Table 0...")
