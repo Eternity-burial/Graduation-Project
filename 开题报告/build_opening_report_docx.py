@@ -434,7 +434,7 @@ def build_opening_report():
         p.paragraph_format.space_before = Pt(0)
         p.paragraph_format.space_after = Pt(0)
         run = p.add_run(date_val)
-        set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0)
+        set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=14.0)
         set_cell_valign(cell, valign="bottom")
 
     for cell in t1.rows[0].cells:
