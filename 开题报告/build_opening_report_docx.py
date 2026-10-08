@@ -250,7 +250,7 @@ def populate_section_paragraphs(anchor_p, markdown_text):
         if stripped.startswith("- ") or stripped.startswith("* ") or stripped.startswith("+ "):
             stripped = stripped[2:].strip()
 
-        # 三级标题：小四号黑体，首行缩进 2 字符 (480 dxa)，1.5倍行距，段前段后 0.5 行
+        # 三级标题：小四号宋体，首行缩进 2 字符 (480 dxa)，1.5倍行距，无加粗，段前段后 0.5 行
         if stripped.startswith("#### "):
             h3_text = stripped[5:].strip()
             if "课题进度安排与阶段成果表" in h3_text:
@@ -258,16 +258,16 @@ def populate_section_paragraphs(anchor_p, markdown_text):
             p_h3 = anchor_p.insert_paragraph_before()
             set_para_format(p_h3, style_name="正文格式", line_val="360", line_rule="auto", first_line_dxa=480, before_lines=0.5, after_lines=0.5)
             run = p_h3.add_run(h3_text)
-            set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=12.0, bold=True)
+            set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0, bold=False)
             continue
 
-        # 四级标题：小四号黑体，首行缩进 2 字符 (480 dxa)，1.5倍行距，段前段后 0
+        # 四级标题：小四号宋体，首行缩进 2 字符 (480 dxa)，1.5倍行距，无加粗，段前段后 0
         if stripped.startswith("##### "):
             h4_text = stripped[6:].strip()
             p_h4 = anchor_p.insert_paragraph_before()
             set_para_format(p_h4, style_name="正文格式", line_val="360", line_rule="auto", first_line_dxa=480, before_lines=0, after_lines=0)
             run = p_h4.add_run(h4_text)
-            set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=12.0, bold=True)
+            set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0, bold=False)
             continue
 
         if stripped.startswith("|") and any(k in stripped for k in ["阶段", "---", "阶段一"]):
@@ -290,7 +290,7 @@ def populate_section_paragraphs(anchor_p, markdown_text):
                 p_fig_caption.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 set_para_format(p_fig_caption, style_name="Normal", line_val="360", line_rule="auto", first_line_dxa=0, before_pt=2.0, after_pt=6.0)
                 run = p_fig_caption.add_run("图 1 课题总体研究技术路线流程图")
-                set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
+                set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=10.5, bold=False)
             continue
 
         # 普通正文段落：小四号宋体，1.5倍行距，首行缩进 480 dxa，样式 正文格式
@@ -305,7 +305,7 @@ def insert_progress_table(anchor_p, doc):
     p_tbl_caption.alignment = WD_ALIGN_PARAGRAPH.CENTER
     set_para_format(p_tbl_caption, style_name="Normal", line_val="360", line_rule="auto", first_line_dxa=0, before_lines=0.5, after_lines=0.2)
     run = p_tbl_caption.add_run("表 1 课题进度安排与阶段成果表")
-    set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
+    set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=10.5, bold=False)
 
     tbl_data = [
         ["阶段序号", "起止时间（教学周）", "主要研究工作内容", "拟达成的阶段性成果与交付物"],
@@ -349,12 +349,12 @@ def insert_progress_table(anchor_p, doc):
             if r_idx == 0:
                 p_c.alignment = WD_ALIGN_PARAGRAPH.CENTER
                 run = p_c.add_run(cell_text)
-                set_run_font(run, chinese_font="黑体", western_font="Times New Roman", font_size_pt=10.5, bold=True)
+                set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=10.5, bold=False)
             else:
                 if c_idx in [0, 1]:
                     p_c.alignment = WD_ALIGN_PARAGRAPH.CENTER
                     run = p_c.add_run(cell_text)
-                    set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=9.5, bold=(c_idx == 0))
+                    set_run_font(run, chinese_font="宋体", western_font="Times New Roman", font_size_pt=9.5, bold=False)
                 else:
                     p_c.alignment = WD_ALIGN_PARAGRAPH.LEFT
                     run = p_c.add_run(cell_text)
@@ -452,10 +452,12 @@ def build_opening_report():
     sec_3_ref = md_text.split("## 三、毕业设计（论文）的主要参考文献")[1].split("## 四、审核意见")[0]
 
     # 6. 章节骨架定位与 permStart 严格继承
-    # P16: 一、毕业设计（论文）课题背景
+    # P16: 一、毕业设计（论文）课题背景：四号黑体，首行缩进2字符(560 dxa)，无加粗
     p16 = doc.paragraphs[16]
     p16.runs[2].text = "毕业论文"
     set_para_format(p16, style_name="Normal", line_val="360", line_rule="auto", first_line_dxa=560, before_lines=0.5, after_lines=0.5)
+    for r in p16.runs:
+        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=14.0, bold=False)
 
     p17 = doc.paragraphs[17] # contains permStart 1319923814
     p18 = doc.paragraphs[18] # prompt
@@ -488,49 +490,55 @@ def build_opening_report():
     p17._element.getparent().remove(p17._element)
     p18._element.getparent().remove(p18._element)
 
-    # 校准 P19（1． 课题来源及研究的目的和意义）：小四号黑体、顶格、1.5倍行距、段前段后0.5行
-    p19.runs[1].text = "． "
-    set_para_format(p19, style_name="条", line_val="360", line_rule="auto", first_line_dxa=0, before_lines=0.5, after_lines=0.5)
+    # 校准 P19（1．课题来源及研究的目的和意义）：严格遵循官方模板，首行缩进2字符(480 dxa)，宋体小四号，无加粗
+    p19.runs[1].text = "．"
+    set_para_format(p19, style_name="条", line_val="360", line_rule="auto", first_line_dxa=480, before_lines=0.5, after_lines=0.5)
     for r in p19.runs:
-        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=12.0, bold=True)
+        set_run_font(r, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0, bold=False)
 
-    # 校准 P21（2． 国内外在该方向的研究现状）：小四号黑体、顶格、1.5倍行距、段前段后0.5行
-    p21.runs[1].text = "． 国内外在该方向的研究现状"
+    # 校准 P21（2．国内外在该方向的研究现状和发展趋势）：严格遵循官方模板，首行缩进2字符(480 dxa)，宋体小四号，无加粗
+    p21.runs[1].text = "．国内外在该方向的研究现状"
     p21.runs[3].text = "" # 清除末尾制表符
-    set_para_format(p21, style_name="条", line_val="360", line_rule="auto", first_line_dxa=0, before_lines=0.5, after_lines=0.5)
+    set_para_format(p21, style_name="条", line_val="360", line_rule="auto", first_line_dxa=480, before_lines=0.5, after_lines=0.5)
     for r in p21.runs:
-        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=12.0, bold=True)
+        set_run_font(r, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0, bold=False)
 
-    # 校准 P23（二、毕业论文方案介绍）
+    # 校准 P23（二、毕业论文方案介绍）：四号黑体，首行缩进2字符(560 dxa)，无加粗
     p23.runs[1].text = "毕业论文"
     set_para_format(p23, style_name="Normal", line_val="360", line_rule="auto", first_line_dxa=560, before_lines=0.5, after_lines=0.5)
+    for r in p23.runs:
+        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=14.0, bold=False)
 
-    # 校准 P24（1． 主要研究内容）：保留 permStart 1741359920，小四号黑体、顶格、1.5倍行距、段前段后0.5行
-    p24.runs[1].text = "． "
+    # 校准 P24（1．主要研究内容）：严格遵循官方模板，首行缩进2字符(480 dxa)，宋体小四号，无加粗，保留 permStart 1741359920
+    p24.runs[1].text = "．"
     p24.runs[3].text = ""
-    set_para_format(p24, style_name="条", line_val="360", line_rule="auto", first_line_dxa=0, before_lines=0.5, after_lines=0.5)
+    set_para_format(p24, style_name="条", line_val="360", line_rule="auto", first_line_dxa=480, before_lines=0.5, after_lines=0.5)
     for r in p24.runs:
-        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=12.0, bold=True)
+        set_run_font(r, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0, bold=False)
 
-    # 校准 P26（2． 研究方案）
-    p26.runs[1].text = "． "
+    # 校准 P26（2．研究方案）：严格遵循官方模板，首行缩进2字符(480 dxa)，宋体小四号，无加粗
+    p26.runs[1].text = "．"
     p26.runs[3].text = ""
-    set_para_format(p26, style_name="条", line_val="360", line_rule="auto", first_line_dxa=0, before_lines=0.5, after_lines=0.5)
+    set_para_format(p26, style_name="条", line_val="360", line_rule="auto", first_line_dxa=480, before_lines=0.5, after_lines=0.5)
     for r in p26.runs:
-        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=12.0, bold=True)
+        set_run_font(r, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0, bold=False)
 
-    # 校准 P28（3． 工作进度安排）
-    p28.runs[1].text = "． "
-    set_para_format(p28, style_name="条", line_val="360", line_rule="auto", first_line_dxa=0, before_lines=0.5, after_lines=0.5)
+    # 校准 P28（3．工作进度安排）：严格遵循官方模板，首行缩进2字符(480 dxa)，宋体小四号，无加粗
+    p28.runs[1].text = "．"
+    set_para_format(p28, style_name="条", line_val="360", line_rule="auto", first_line_dxa=480, before_lines=0.5, after_lines=0.5)
     for r in p28.runs:
-        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=12.0, bold=True)
+        set_run_font(r, chinese_font="宋体", western_font="Times New Roman", font_size_pt=12.0, bold=False)
 
-    # 校准 P30（三、毕业论文的主要参考文献）
+    # 校准 P30（三、毕业论文的主要参考文献）：四号黑体，首行缩进2字符(560 dxa)，无加粗
     p30.runs[1].text = "毕业论文"
     set_para_format(p30, style_name="Normal", line_val="360", line_rule="auto", first_line_dxa=560, before_lines=0.5, after_lines=0.5)
+    for r in p30.runs:
+        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=14.0, bold=False)
 
-    # 校准 P34（四、审核意见）
+    # 校准 P34（四、审核意见）：四号黑体，首行缩进2字符(560 dxa)，无加粗
     set_para_format(p34, style_name="Normal", line_val="360", line_rule="auto", first_line_dxa=560, before_lines=0.5, after_lines=0.5)
+    for r in p34.runs:
+        set_run_font(r, chinese_font="黑体", western_font="Times New Roman", font_size_pt=14.0, bold=False)
 
     # 7. 在对应锚点处注入各节正文内容
     print("注入 Section 1 正文内容...")
@@ -641,21 +649,29 @@ def run_automated_audit(doc_path):
         p_cov = com_doc.Paragraphs(6)
         print(f"【审计 5 通过】封面标题 Word COM 检查：文本='{p_cov.Range.Text.strip()}', 字号={p_cov.Range.Font.Size}pt, 行距={rule_map.get(p_cov.LineSpacingRule)}, 裁切风险=0")
 
-        # 采样检查正文段落
+        # 采样检查正文段落与标题
+        found_h2 = False
         found_body = False
         found_ref = False
         for i in range(1, com_doc.Paragraphs.Count + 1):
             p = com_doc.Paragraphs(i)
             t = p.Range.Text.strip()
+            if not found_h2 and "1．课题来源" in t:
+                assert round(p.FirstLineIndent, 1) == 24.0, f"二级标题缩进错误: {p.FirstLineIndent}pt"
+                assert p.Range.Font.Bold == 0, f"二级标题不应加粗！实际 Bold={p.Range.Font.Bold}"
+                assert p.Range.Font.Size == 12.0, f"二级标题字号错误: {p.Range.Font.Size}pt"
+                print(f"【审计 6 通过】二级标题('1．') Word COM 检查：首行缩进={p.FirstLineIndent}pt (2字符/24pt), 无加粗(Bold={p.Range.Font.Bold}), 字体={p.Range.Font.NameFarEast}, 字号={p.Range.Font.Size}pt (小四号)，100%严格对齐官方模板！")
+                found_h2 = True
+
             if not found_body and "海洋强国战略" in t:
-                print(f"【审计 6 通过】正文段落 Word COM 检查：字号={p.Range.Font.Size}pt (小四号), 行距={rule_map.get(p.LineSpacingRule)} (1.5倍), 首行缩进={p.FirstLineIndent}pt (2字符/24pt)")
+                print(f"【审计 7 通过】正文段落 Word COM 检查：字号={p.Range.Font.Size}pt (小四号), 行距={rule_map.get(p.LineSpacingRule)} (1.5倍), 首行缩进={p.FirstLineIndent}pt (2字符/24pt), 无加粗(Bold={p.Range.Font.Bold})")
                 found_body = True
 
             if not found_ref and t.startswith("[1]"):
-                print(f"【审计 7 通过】参考文献 Word COM 检查：字号={p.Range.Font.Size}pt (小四号), 行距={rule_map.get(p.LineSpacingRule)} (1.5倍), 悬挂缩进={p.LeftIndent}pt (0.74cm/21pt)")
+                print(f"【审计 8 通过】参考文献 Word COM 检查：字号={p.Range.Font.Size}pt (小四号), 行距={rule_map.get(p.LineSpacingRule)} (1.5倍), 悬挂缩进={p.LeftIndent}pt (0.74cm/21pt)")
                 found_ref = True
 
-            if found_body and found_ref:
+            if found_h2 and found_body and found_ref:
                 break
 
         com_doc.Close(False)
