@@ -1,8 +1,8 @@
 # 毕业论文全周期进度、决策与跨会话记忆总控台账 (`PROJECT_STATUS.md`)
 
-> **使用规范（Planning with Files 跨窗口持久化记忆机制）**：
-> 1. **新对话必读**：每当开启新的对话窗口推进毕设任务时，Agent 必须首先读取本文件，快速恢复上下文，无需用户重复交代背景；
-> 2. **里程碑必更**：每当完成一节文档修订、一次参数辨识/控制仿真实验、或达成新的技术决策时，Agent 必须在执行 `git commit` 前同步更新本文件。
+> **使用规范（历史演进台账与双轨恢复机制）**：
+> 1. **新会话优先读取**：新会话请首先读取 [PROJECT_NOW.md](file:///d:/tj/Graduation%20Project/PROJECT_NOW.md) 极速恢复当前工作状态与有效来源（严格遵守 [.agents/rules/academic-entry.md](file:///d:/tj/Graduation%20Project/.agents/rules/academic-entry.md)）；
+> 2. **本文件定位**：本文件为全周期历史演进与里程碑总控台账，在需要追溯历史决策或更新重大阶段里程碑时按需查阅与同步更新。
 
 ---
 
@@ -28,7 +28,7 @@
   - `04_控制分配与水下传感实验`：Johansen & Fossen (2013 Automatica) 控制分配行业宪法综述、Fossen 第6章推力模型与分配 (52p)、Li 2025 冗余推进分配与抗饱和、LIAS 实验室水下传感数据集与标定等；
   - **规范化处理**：全量 7 篇新增核心文献原版 PDF 已归入各主题纯净目录，并在 `资料/md/` 编写配套中文精读导读手册，同步更新 `资料/README.md`、`references.bib` 与 `references.ris`。
 - [x] 建立 Git 版本控制体系、全局规则 [AGENTS.md](file:///d:/tj/Graduation%20Project/AGENTS.md) 及 4 大专业 Skill
-- [x] 建立开题报告章节契约、证据映射与学术规范体系（[.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md)）
+- [x] 建立开题报告章节契约、证据映射与学术规范体系（[docs/contracts/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/docs/contracts/opening_report_contracts_and_evidence.md)）
 - [x] **旧版开题全量作废与物理移出（方案 A）**：因导师 9/30 批示原开题报告存在“大作业思维、缺乏外部恶劣场景物理矛盾驱动、提前剧透算法公式”等重大硬伤，2026/09/30 之前的所有旧版草稿（`.md`）、生成脚本及历史 `.docx` 已全部作废并物理移出至项目外部 `D:\tj\Graduation_Project_旧版开题作废备份_20260930\`；严禁任何 Agent 读取或沿用旧版草稿！
 - [ ] **【核心进行中】开题报告从零全新起草（执行 5 轮中颗粒度小节交付 + 文件持久化工作法）**：严格对标郑祺耀优秀开题范式（标准三段式）与章节契约（Section Contracts），直接基于学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 推进：
   - [x] 第 1 轮：§1.1 课题来源及研究的目的和意义（战略高位 + 紧凑 ROV 深水流扰矛盾 + 4/6/8 构型可控度对比 + 嵌入式算力与 PX4 切入点，标准三段式定稿，约 1350 字，持久化至 `开题报告/开题报告_正文起草稿.md`）
@@ -171,7 +171,7 @@
   - **基于 `/radio` 录音指导与同组范文，启动开题报告全篇推倒重来与顶层逻辑重构**：
     1. **导师核心批示落地（破除大作业思维）**：录音明确指出，开题不能以“实验室有八推进器硬件，所以我来做控制”的大作业思维立项，必须由外部客观场景难点驱动；研究内容收敛为三大理论主干（建模辨识、闭环控制、八推控制分配），闭环仿真与 PX4 架构降维为实验验证手段，正文去公式化讲方法论，参考文献扩充至 40+ 篇；
     2. **两阶段学术推导工作流确立（已持久化至 AGENTS.md）**：文献先行 $\rightarrow$ 对标郑祺耀三段式范文 $\rightarrow$ 锁定元规则章节契约 $\rightarrow$ 细化具体推演；
-    3. **吸收开源顶级学术 Skill 机制（`nature-proposal-writer` / `researchwrite`）完成配置沉淀**：建立 [opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-doc-builder/references/opening_report_contracts_and_evidence.md) 章节契约与证据库体系；
+    3. **吸收开源顶级学术 Skill 机制（`nature-proposal-writer` / `researchwrite`）完成配置沉淀**：建立 [opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/docs/contracts/opening_report_contracts_and_evidence.md) 章节契约与证据库体系；
     4. **【全面执行方案 A：旧版开题物理移出与工作区彻底清洗】**：
        - 为彻底杜绝后续新对话或任何 Agent 扫描到旧版开题草稿导致“借尸还魂”，已将 2026/09/30 之前的所有旧版文件（全部 Markdown 草稿、代码 `build_opening_report_doc.py` / `generate_report_figures.py`、旧版 `.docx` 及历史归档目录 `归档/`）**全量物理移出至项目外部：`D:\tj\Graduation_Project_旧版开题作废备份_20260930\`**；
        - 当前项目工作区内 [开题报告/](file:///d:/tj/Graduation%20Project/开题报告/) 根目录彻底净化，仅保留前期参考任务书工作底稿（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)，仅作参考，可随时联动修订）、配图素材与参考文献源文件；

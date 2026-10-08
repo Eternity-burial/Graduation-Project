@@ -27,7 +27,7 @@
    - 2026/09/30 之前撰写的旧版开题报告草稿与代码因存在严重的“大作业思维、缺乏外部恶劣场景物理驱动、提前剧透算法与公式”等问题，已被导师批评并全量推倒重来；
    - 旧版所有相关 Markdown 草稿（`开题报告_全文草稿.md` 等）、生成脚本（`build_opening_report_doc.py`）及历史 `.docx` 文件已全量物理移出至仓库外部 `D:\tj\Graduation_Project_旧版开题作废备份_20260930\`；
    - **严禁任何 Agent 读取、恢复、全局搜索或沿用旧版开题报告中的任何段落与表述！**
-   - 开题报告必须严格依据 [.agents/skills/academic-writing/references/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/.agents/skills/academic-writing/references/opening_report_contracts_and_evidence.md) 章节契约，直接向学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 从零撰写。
+   - 开题报告必须严格依据 [docs/contracts/opening_report_contracts_and_evidence.md](file:///d:/tj/Graduation%20Project/docs/contracts/opening_report_contracts_and_evidence.md) 章节契约，直接向学校官方空白模板 [模板/2毕业设计(论文)开题报告.docx](file:///d:/tj/Graduation%20Project/模板/2毕业设计(论文)开题报告.docx) 从零撰写。
 6. **任务书定位铁律（仅作前期参考，绝非死板基准）**：
    - 任务书文件（[基于PX4的水下航行器模型控制方法研究.docx](file:///d:/tj/Graduation%20Project/开题报告/基于PX4的水下航行器模型控制方法研究.docx)）目前仅作为前期参考工作底稿，**绝非不可更改的死板基准**；
    - 毕业论文的核心研究任务、模块边界与重心仍处于重新审视与深入考量中；
@@ -77,9 +77,9 @@
 为确保毕业论文高质高效推进，日常开发与写作遵循以下统一闭环：
 
 1. **跨对话持久化记忆（Planning with Files 铁律）**：
-   - 根目录维护单文件总控台账 [PROJECT_STATUS.md](file:///d:/tj/Graduation%20Project/PROJECT_STATUS.md)（含四阶段里程碑进度、当前待办、关键决策发现与交接记录）；
-   - **新窗口必读**：开启新对话推进项目任务时，优先查阅 `PROJECT_STATUS.md` 恢复上下文；
-   - **里程碑必更**：每完成一节论文修改、一次系统辨识/控制仿真实验或重要配置升级，必须在执行 `git commit` 前同步更新 `PROJECT_STATUS.md`。
+   - 根目录维护双轨台账：[PROJECT_NOW.md](file:///d:/tj/Graduation%20Project/PROJECT_NOW.md)（当前工作状态与极速恢复入口）与 [PROJECT_STATUS.md](file:///d:/tj/Graduation%20Project/PROJECT_STATUS.md)（历史里程碑与演进总控台账）；
+   - **新窗口必读**：开启新对话推进学术任务时，严格遵循 [.agents/rules/academic-entry.md](file:///d:/tj/Graduation%20Project/.agents/rules/academic-entry.md)，优先查阅 `PROJECT_NOW.md` 恢复当前上下文；需要追溯历史演进或重大里程碑时按需查阅 `PROJECT_STATUS.md`；
+   - **状态同步更新**：每完成一项任务，优先在 `PROJECT_NOW.md` 记录交接；达成重大阶段里程碑时同步更新 `PROJECT_STATUS.md`。
 2. **学术文档两阶段推导推进规范（先定边界，再定细节）**：
    - 撰写学术章节时，必须遵守以下四步递进工作法，严禁在未理清边界时盲目堆砌具体内容：
      1. **文献与证据先行**：必须先检索中英文权威文献，以扎实的物理与工程证据驱动论述，不凭空捏造；
