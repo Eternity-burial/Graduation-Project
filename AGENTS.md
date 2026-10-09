@@ -66,7 +66,9 @@
 2. **里程碑及时提交（Commit Early & Often）**：
    - 每当完成一节论文撰写、通过一次重要仿真验证、排版完一个官方表格或完成重要重构后，必须主动执行有意义的 `git commit`（推荐使用 Conventional Commits 格式，如 `feat:`, `fix:`, `docs:`, `style:`）；
    - 禁止长时间积累大量未提交改动。
-3. **环境与编码配置守则**：
+3. **提交即推送铁律（Commit and Push Immediately）**：
+   - **每一次 git 改动提交（commit）完成后，必须立即且无条件执行 `git push origin master` 推送到远程仓库**，严禁仅保留在本地；确保远端与本地时刻保持强一致，彻底杜绝数据丢失隐患。
+4. **环境与编码配置守则**：
    - 仓库根目录严格维护 [.gitignore](file:///d:/tj/Graduation%20Project/.gitignore)，禁止将 Office 临时锁死文件（`~$*`、`*.wbk`、`*.asd`）、Python 编译缓存（`__pycache__/`）及 >50MB 的非关键压缩包提交入库；
    - 保持 `git config core.quotepath false`，确保 Windows 终端下所有中文路径清晰可读；
    - 保持 `git config core.autocrlf false`，防止多平台换行符意外变动引发大面积无意义 diff。

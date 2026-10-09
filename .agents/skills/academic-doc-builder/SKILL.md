@@ -47,7 +47,7 @@ description: >-
    - **历次对比版归档铁律**：后续每一轮修改并生成新对比版前，上一轮旧对比版打上时间戳快照移入 `归档/历次修改对比版/`（支持脚本 `--archive-old-diff` 自动快照），并在 `归档/README.md` 台账中记录修改说明，绝不静默覆盖；
    - 正式提交版必须确保全篇清除所有高亮（`HighlightColorIndex = 0`）。
 7. **第六步：Git 里程碑版本提交与状态同步**
-   - 文档与脚本自检及门禁验证通过后，日常工作状态优先同步更新根目录 [PROJECT_NOW.md](../../../PROJECT_NOW.md)，达成重大阶段里程碑时同步更新 [PROJECT_STATUS.md](../../../PROJECT_STATUS.md) 演进台账，并在终端执行 `git add` 与清晰规范的 Git Commit（如 `git commit -m "docs: 更新开题报告..."`），固化阶段成果。
+   - 文档与脚本自检及门禁验证通过后，日常工作状态优先同步更新根目录 [PROJECT_NOW.md](../../../PROJECT_NOW.md)，达成重大阶段里程碑时同步更新 [PROJECT_STATUS.md](../../../PROJECT_STATUS.md) 演进台账，并在终端执行 `git add` 与清晰规范的 Git Commit（如 `git commit -m "docs: 更新开题报告..."`），随后**立即执行 `git push origin master` 推送至远端仓库**，固化阶段成果。
 
 ---
 
