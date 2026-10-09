@@ -1,5 +1,0 @@
-menuconfig MODULES_RATE_CONTROL_INDI
-	bool "rate_control_indi"
-	default n
-	---help---
-		Enable support for Incremental Nonlinear Dynamic Inversion (INDI) angular rate controller.
