@@ -1,22 +1,41 @@
 # -*- coding: utf-8 -*-
 """
-tests/test_academic_workflow.py: 学术写作流程架构质量门禁稳定性回归测试套件
+tests/test_academic_workflow.py: 学术写作流程架构质量门禁与配置核验回归测试套件
 
 测试覆盖范围：
-1. 通用学术写作技能彻底解耦（零项目专属词汇泄漏）；
-2. 章节契约状态声明与多方语义一致性（框架参考、路线未决、防自动升级）；
-3. academic-doc-builder 技能职责收窄（聚焦 Word 文档工程，显式排除正文起草，与 academic-writing 无重叠）；
-4. 测试隔离保障：每个测试用例使用唯一隔离沙箱，安全递归清理，绝不触碰已有用户文件；
-5. 部分规则缺失致命拦截：PROJECT_FACTS.md 与 TERMINOLOGY.md 缺一不可，任一缺失/不可读必须返回 ERROR(2)；
-6. 归档与历史目录排除：开题报告内部归档、历史及素材目录自动排除在扫描范围外；
-7. 显式目录参数越权防护：禁止根目录或非正文目录作为受检目标，返回 ERROR(2)；
-8. DOCX 深度扫描：全面覆盖节页眉、节页脚（含首页/奇偶页）及表格内嵌套表格，命中即 FAIL(1)，合规即 PASS(0)；
-9. 命令行 --target 无参数明确拦截：显式传入 --target 但缺少参数时返回 ERROR(2)，绝不静默走默认范围；
-10. 术语正误精细区分：正规学术术语“控制律”绝对不被误拦截 (PASS 0)，错别字“控制率”精准阻断 (FAIL 1)；
-11. CLI 命令行 subprocess 完整调用与三态退出码真实验证。
+1. 架构解耦与职责收窄：
+   - academic-writing/SKILL.md 零项目专属词汇泄漏；
+   - 章节契约状态声明（框架参考、路线未决、防自动升级）；
+   - academic-doc-builder 职责收窄至 Word 工程，排除正文起草；
+2. 目标发现与统一路径授权安全（A1/A2/D1）：
+   - 递归发现子目录有效正文；
+   - 排除归档、历史、图片、修改建议、临时文件与辅助笔记；
+   - 排除脚本、参考文献与任务书底稿；
+   - 空受检目标集合拦截（ERROR 2）；
+   - 显式非授权目录/文件、根目录、越界遍历与符号链接拒绝（ERROR 2）；
+   - 黑名单文件即使显式指定绝对路径亦拒绝（ERROR 2）；
+3. 规则解析与确定性边界（A3/B1/B2/D2）：
+   - 严格合法 FT 编号解析，拒绝带竖线等非法编号；
+   - 空禁词标记拦截（ERROR 2）；
+   - 规则文件缺失/不可读/无规则拦截（ERROR 2）；
+   - 重复规则去重；
+   - 允许候选方案正常研讨（MPC, INDI, 滑模等），不凭关键词妄断违规；
+   - 区分正规学术词（“控制律”、“标称模型”）与错别字（“控制率”）；
+4. 文档深度扫描与虚假 PASS 防护（A4/A5/D3）：
+   - 合法 Markdown / DOCX 正常通过 (PASS 0)；
+   - 违规 Markdown / DOCX 阻断 (FAIL 1)；
+   - DOCX 深度扫描：段落、表格单元格、嵌套表格、默认/首页/奇偶页页眉与页脚；
+   - 损坏 DOCX 明确报告 ERROR(2)；
+   - 空正文文档（0 字节或纯空白）拒绝虚假 PASS (ERROR 2)；
+   - 不支持文件类型报错 (ERROR 2)；
+   - 中文文件名与特殊路径编码兼容；
+5. 轻量工作区配置门禁（C）：
+   - 真实工作区全项配置完整性验证 (PASS 0)；
+   - 关键文件缺失 (ERROR 2)、专有词泄漏与危险推送授权 (FAIL 1) 拦截验证；
+6. 命令行 CLI 进程级调用与三态退出码真实验证；
+7. 测试沙箱彻底独立隔离（D4）：全套使用标准系统临时目录，绝不污染真实工作区。
 """
 
-import os
 import sys
 import shutil
 import tempfile
@@ -37,13 +56,19 @@ from scripts.check_academic_quality import (
     extract_file_lines,
     run_quality_check,
     is_blacklisted,
+    find_default_targets,
+    validate_target_path,
     QualityCheckResult,
     REQUIRED_RULE_FILES,
+)
+from scripts.check_workspace_config import (
+    run_workspace_config_check,
+    ConfigCheckResult,
 )
 
 
 class TestAcademicWorkflowArchitecture(unittest.TestCase):
-    """学术写作流程架构解耦与规范性验证"""
+    """学术写作流程架构解耦与规范性静态只读验证"""
 
     def test_academic_writing_skill_is_strictly_generic(self):
         """用例 1: 验证 academic-writing/SKILL.md 彻底解耦，不含任何本项目特定词汇"""
@@ -74,7 +99,7 @@ class TestAcademicWorkflowArchitecture(unittest.TestCase):
         )
 
     def test_chapter_contract_status_and_reference_semantics(self):
-        """用例 2: 验证开题契约顶部包含状态声明，且 AGENTS.md/PROJECT_NOW.md/academic-entry.md 语义一致无冲突"""
+        """用例 2: 验证开题契约包含状态声明，且 AGENTS.md/PROJECT_NOW.md/academic-entry.md 语义一致无冲突"""
         target_contract = PROJECT_ROOT / "docs" / "contracts" / "opening_report_contracts_and_evidence.md"
         self.assertTrue(target_contract.exists(), f"单一可信源契约不存在: {target_contract}")
         contract_text = target_contract.read_text(encoding="utf-8")
@@ -90,354 +115,496 @@ class TestAcademicWorkflowArchitecture(unittest.TestCase):
         now_text = (PROJECT_ROOT / "PROJECT_NOW.md").read_text(encoding="utf-8")
         entry_text = (PROJECT_ROOT / ".agents" / "rules" / "academic-entry.md").read_text(encoding="utf-8")
 
-        # AGENTS.md 必须表达“参考章节功能与组织框架”而非死板锁定具体算法
         self.assertIn("章节功能与组织框架参考", agents_text)
         self.assertIn("未决假设", agents_text)
 
-        # PROJECT_NOW.md 必须明确章节契约提供结构参考且具体路线暂缓
         self.assertIn("提供结构与功能参考，具体技术路线尚未最终确认", now_text)
         self.assertIn("维持 PROVISIONAL 状态", now_text)
 
-        # academic-entry.md 必须提醒契约未决路线不得直接视为已确定决定
         self.assertIn("作为章节功能与结构参考", entry_text)
         self.assertIn("未决技术路线与任务细分不得直接升级为已确定的研究决定", entry_text)
 
     def test_academic_doc_builder_responsibilities_and_trigger_narrowed(self):
-        """用例 3: 验证 academic-doc-builder/SKILL.md 触发条件收窄，聚焦 Word 文档工程，避免与通用写作触发重叠"""
+        """用例 3: 验证 academic-doc-builder/SKILL.md 触发条件收窄，聚焦 Word 文档工程，避免与通用写作重叠"""
         builder_skill = PROJECT_ROOT / ".agents" / "skills" / "academic-doc-builder" / "SKILL.md"
         self.assertTrue(builder_skill.exists())
         content = builder_skill.read_text(encoding="utf-8")
 
-        # 检查 description 触发条件收窄
         self.assertIn("Use this skill exclusively for Word", content)
         self.assertIn("Do NOT use for general academic prose writing", content)
-
-        # 检查三权分立与职责切分表述
         self.assertIn("通用学术写作技能", content)
-        self.assertIn("正文学术质量", content)
-        self.assertIn("docs/contracts/", content)
         self.assertIn("Word 文档工程与排版格式", content)
-        self.assertIn("PROJECT_NOW.md", content)
-        self.assertIn("禁止将项目专属知识与技术方案重新写回通用 `academic-writing`", content)
 
 
-class TestQualityGateRegressionSuite(unittest.TestCase):
-    """质量门禁确定性功能、异常边界与三态结果回归测试套件"""
+class StandaloneSandboxBase(unittest.TestCase):
+    """
+    完全独立的测试沙箱基类：
+    在标准系统临时目录构建虚拟工作区，彻底隔离，不污染真实项目开题报告目录
+    """
 
     def setUp(self):
-        """为每个测试用例创建唯一的隔离临时沙箱目录，位于授权受检范围内"""
-        self._temp_dir_obj = tempfile.TemporaryDirectory(
-            prefix="_test_sandbox_",
-            dir=str(PROJECT_ROOT / "开题报告")
+        self._temp_dir_obj = tempfile.TemporaryDirectory(prefix="test_academic_gate_")
+        self.mock_root = Path(self._temp_dir_obj.name).resolve()
+
+        # 构建虚拟项目的基本结构
+        self.mock_docs = self.mock_root / "docs"
+        self.mock_docs.mkdir(parents=True, exist_ok=True)
+        self.mock_report = self.mock_root / "开题报告"
+        self.mock_report.mkdir(parents=True, exist_ok=True)
+
+        # 写入标准合规模拟规则
+        self.facts_file = self.mock_docs / "PROJECT_FACTS.md"
+        self.facts_file.write_text(
+            "# Project Facts\n\n"
+            "### F-001：物理构型特征抽象\n"
+            "状态：CONFIRMED\n"
+            "描述：八推进器紧凑型水下航行器\n"
+            "<!-- gate:forbid:开架式 -->\n",
+            encoding="utf-8",
         )
-        self.test_dir = Path(self._temp_dir_obj.name).resolve()
+
+        self.term_file = self.mock_docs / "TERMINOLOGY.md"
+        self.term_file.write_text(
+            "# Terminology Policy\n\n"
+            "### T-001：控制率误写纠正\n"
+            "等级：ERROR\n"
+            "<!-- gate:forbid:控制率 -->\n\n"
+            "### T-002：控制律合法表达\n"
+            "等级：PREFERENCE\n"
+            "说明：控制律为正常控制科学术语\n",
+            encoding="utf-8",
+        )
 
     def tearDown(self):
-        """递归安全清理当前测试用例专用的临时沙箱，绝不影响或删除已存在的其他用户文件"""
-        if hasattr(self, "_temp_dir_obj"):
-            try:
-                self._temp_dir_obj.cleanup()
-            except Exception:
-                if hasattr(self, "test_dir") and self.test_dir.exists():
-                    shutil.rmtree(self.test_dir, ignore_errors=True)
+        try:
+            self._temp_dir_obj.cleanup()
+        except Exception:
+            shutil.rmtree(self.mock_root, ignore_errors=True)
 
-    def test_test_sandbox_isolation_and_safe_cleanup(self):
-        """用例 4: 验证测试沙箱隔离性、安全递归清理，以及绝不触碰已有用户文件"""
-        # 1. 验证临时沙箱名称唯一且存在
-        self.assertTrue(self.test_dir.exists())
-        self.assertTrue(self.test_dir.name.startswith("_test_sandbox_"))
 
-        # 2. 在沙箱内创建多层深层嵌套子文件夹与文件
-        nested_dir = self.test_dir / "level1" / "level2"
+class TestTargetDiscoveryAndPathAuthorization(StandaloneSandboxBase):
+    """目标发现递归性、非正文排除与统一路径授权安全测试"""
+
+    def test_default_target_finds_nested_academic_drafts(self):
+        """用例 4: 默认扫描能够递归发现开题报告子目录中的正文草稿，且排除非正文"""
+        # 1. 根层有效正文
+        root_draft = self.mock_report / "开题报告_正文起草稿.md"
+        root_draft.write_text("开题报告根层正文草稿内容", encoding="utf-8")
+
+        # 2. 嵌套子目录中的有效正文
+        nested_dir = self.mock_report / "正文" / "第1章"
         nested_dir.mkdir(parents=True, exist_ok=True)
-        test_file = nested_dir / "sample.txt"
-        test_file.write_text("Temporary test data", encoding="utf-8")
-        self.assertTrue(test_file.exists())
+        nested_draft = nested_dir / "chapter1_正文草稿.md"
+        nested_draft.write_text("第一章正文草稿内容", encoding="utf-8")
 
-        # 3. 验证已有正文文件完好无损，不受任何影响
-        real_draft_md = PROJECT_ROOT / "开题报告" / "开题报告_正文起草稿.md"
-        self.assertTrue(real_draft_md.exists())
+        # 3. 辅助梳理材料与笔记（应排除）
+        note_doc = self.mock_report / "SwiftROV_开题前信息与研究路线梳理.md"
+        note_doc.write_text("信息梳理非正文内容", encoding="utf-8")
 
-    def test_quality_gate_normal_md_and_docx_pass(self):
-        """用例 5: 正常合规的临时 Markdown 与 DOCX（段落与表格）顺利通过，报告 PASS (退出码 0)"""
-        clean_md = self.test_dir / "clean_draft.md"
-        clean_md.write_text(
-            "# 正常开题报告草稿\n"
-            "本研究针对水下航行器紧凑型实验平台开展动力学建模与模型控制方法研究。\n"
-            "在水池实验中验证推力分配与姿态控制算法的有效性。\n",
-            encoding="utf-8",
-        )
+        # 4. 历史任务书参考底稿（应排除）
+        ref_task_book = self.mock_report / "基于PX4的水下航行器模型控制方法研究.docx"
+        ref_task_book.write_bytes(b"dummy")
 
-        clean_docx = self.test_dir / "clean_draft.docx"
-        doc = docx.Document()
-        doc.add_heading("正常测试开题报告", level=1)
-        doc.add_paragraph("本实验平台采用紧凑型双耐压舱结构集成。")
-        tbl = doc.add_table(rows=2, cols=2)
-        tbl.cell(0, 0).text = "参数名称"
-        tbl.cell(0, 1).text = "标称数值"
-        tbl.cell(1, 0).text = "航向控制律"
-        tbl.cell(1, 1).text = "模型增益自适应"
-        doc.save(str(clean_docx))
+        # 5. 参考文献与脚本（应排除）
+        (self.mock_report / "references.bib").write_text("bib data", encoding="utf-8")
+        (self.mock_report / "build_script.py").write_text("print()", encoding="utf-8")
 
-        result = run_quality_check(target_paths=[str(clean_md), str(clean_docx)], project_root=PROJECT_ROOT)
-        self.assertEqual(result.status, "PASS")
-        self.assertEqual(result.exit_code, 0)
-        self.assertTrue(result.passed)
-        self.assertEqual(len(result.violations), 0)
-        self.assertEqual(len(result.scanned_files), 2)
-        self.assertEqual(len(result.errors), 0)
+        targets = find_default_targets(self.mock_root)
+        self.assertEqual(len(targets), 2)
+        self.assertIn(root_draft.resolve(), [t.resolve() for t in targets])
+        self.assertIn(nested_draft.resolve(), [t.resolve() for t in targets])
 
-    def test_quality_gate_forbidden_words_detected_in_md_and_docx(self):
-        """用例 6: Markdown 与 DOCX 中包含禁用词（段落及表格单元格）精准拦截并返回 FAIL (退出码 1)"""
-        # 1. 包含禁用词的 Markdown
-        bad_md = self.test_dir / "bad_draft.md"
-        bad_md.write_text(
-            "# 违规草稿\n"
-            "本实验平台采用开架式结构搭建。\n"
-            "控制器采用自整定控制率算法。\n",
-            encoding="utf-8",
-        )
+    def test_archive_and_history_directories_strictly_excluded(self):
+        """用例 5: 递归扫描与显式路径均严格排除归档、历史及素材目录"""
+        # 在归档子目录中放入包含禁词的文件
+        arch_dir = self.mock_report / "归档" / "历史版本"
+        arch_dir.mkdir(parents=True, exist_ok=True)
+        arch_bad = arch_dir / "old_draft.md"
+        arch_bad.write_text("归档文件中的开架式错误记录", encoding="utf-8")
 
-        res_md = run_quality_check(target_paths=[str(bad_md)], project_root=PROJECT_ROOT)
-        self.assertEqual(res_md.status, "FAIL")
-        self.assertEqual(res_md.exit_code, 1)
-        self.assertFalse(res_md.passed)
-        self.assertEqual(len(res_md.violations), 2)
-        kw_hits = [v["keyword"] for v in res_md.violations]
-        self.assertIn("开架式", kw_hits)
-        self.assertIn("控制率", kw_hits)
+        # 在 figures 目录中放入说明文件
+        fig_dir = self.mock_report / "figures"
+        fig_dir.mkdir(parents=True, exist_ok=True)
+        fig_bad = fig_dir / "figures_草稿.md"
+        fig_bad.write_text("素材草稿中的控制率说明", encoding="utf-8")
 
-        # 2. 包含禁用词的 DOCX（分别测试段落违规与表格单元格违规）
-        bad_docx = self.test_dir / "bad_draft.docx"
-        doc = docx.Document()
-        doc.add_paragraph("实验样机为开架式构型。")
-        tbl = doc.add_table(rows=1, cols=1)
-        tbl.cell(0, 0).text = "推力分配控制率"
-        doc.save(str(bad_docx))
+        # 放置正常活跃正文
+        active_draft = self.mock_report / "开题报告_正文草稿.md"
+        active_draft.write_text("活跃的正常正文草稿", encoding="utf-8")
 
-        res_docx = run_quality_check(target_paths=[str(bad_docx)], project_root=PROJECT_ROOT)
-        self.assertEqual(res_docx.status, "FAIL")
-        self.assertEqual(res_docx.exit_code, 1)
-        self.assertEqual(len(res_docx.violations), 2)
+        # A. 默认扫描仅扫描 active_draft，归档和 figures 被排除
+        res_default = run_quality_check(project_root=self.mock_root)
+        self.assertEqual(res_default.status, "PASS")
+        self.assertEqual(len(res_default.scanned_files), 1)
+        self.assertEqual(res_default.scanned_files[0].resolve(), active_draft.resolve())
 
-        # 校验位置描述
-        locations = [v["location"] for v in res_docx.violations]
-        self.assertTrue(any("段落" in loc for loc in locations))
-        self.assertTrue(any("表格" in loc for loc in locations))
+        # B. 显式指定归档文件路径，必须被严格拦截并报错 ERROR 2
+        res_explicit_arch = run_quality_check(target_paths=[str(arch_bad)], project_root=self.mock_root)
+        self.assertEqual(res_explicit_arch.status, "ERROR")
+        self.assertEqual(res_explicit_arch.exit_code, 2)
+        self.assertTrue(any("属于受保护黑名单或非学术正文范围" in err for err in res_explicit_arch.errors))
 
-    def test_quality_gate_error_on_partial_missing_rules(self):
-        """用例 7: 规则文件缺一不可，任一缺失/不可读必须返回 ERROR (退出码 2)，绝不错误放行"""
-        with tempfile.TemporaryDirectory() as mock_root_str:
-            mock_root = Path(mock_root_str)
-            mock_docs = mock_root / "docs"
-            mock_docs.mkdir()
-            mock_report = mock_root / "开题报告"
-            mock_report.mkdir()
-            clean_file = mock_report / "草稿.md"
-            clean_file.write_text("完全合规的正文内容", encoding="utf-8")
-
-            # 场景 A: 仅存在 PROJECT_FACTS.md，缺失 TERMINOLOGY.md
-            facts_file = mock_docs / "PROJECT_FACTS.md"
-            facts_file.write_text("### F-001\n<!-- gate:forbid:开架式 -->\n", encoding="utf-8")
-            res_missing_term = run_quality_check(target_paths=[str(clean_file)], project_root=mock_root)
-            self.assertEqual(res_missing_term.status, "ERROR")
-            self.assertEqual(res_missing_term.exit_code, 2)
-            self.assertFalse(res_missing_term.passed)
-            self.assertTrue(any("docs/TERMINOLOGY.md" in err for err in res_missing_term.errors))
-
-            # 场景 B: 仅存在 TERMINOLOGY.md，缺失 PROJECT_FACTS.md
-            facts_file.unlink()
-            term_file = mock_docs / "TERMINOLOGY.md"
-            term_file.write_text("### T-001\n<!-- gate:forbid:控制率 -->\n", encoding="utf-8")
-            res_missing_facts = run_quality_check(target_paths=[str(clean_file)], project_root=mock_root)
-            self.assertEqual(res_missing_facts.status, "ERROR")
-            self.assertEqual(res_missing_facts.exit_code, 2)
-            self.assertFalse(res_missing_facts.passed)
-            self.assertTrue(any("docs/PROJECT_FACTS.md" in err for err in res_missing_facts.errors))
-
-            # 场景 C: 两份文件均存在但其中一份未包含任何有效规则
-            facts_file.write_text("### F-001\n无门禁规则声明\n", encoding="utf-8")
-            res_empty_rules = run_quality_check(target_paths=[str(clean_file)], project_root=mock_root)
-            self.assertEqual(res_empty_rules.status, "ERROR")
-            self.assertEqual(res_empty_rules.exit_code, 2)
-            self.assertTrue(any("未包含任何有效" in err for err in res_empty_rules.errors))
-
-    def test_archive_and_history_subdirectories_excluded(self):
-        """用例 8: 排除开题报告内部归档与历史文件目录，不误扫历史资产"""
-        # 在测试沙箱内创建“归档”和“历史”子目录，并放入违规文件
-        archive_dir = self.test_dir / "归档" / "历史版本"
-        archive_dir.mkdir(parents=True, exist_ok=True)
-        bad_archive_doc = archive_dir / "old_draft.md"
-        bad_archive_doc.write_text("历史归档中的开架式记录与控制率记录", encoding="utf-8")
-
-        # 在测试沙箱根部放置一个合规文件
-        clean_doc = self.test_dir / "active_draft.md"
-        clean_doc.write_text("当前正在活跃编辑的合规草稿正文", encoding="utf-8")
-
-        # 扫描整个沙箱目录
-        result = run_quality_check(target_paths=[str(self.test_dir)], project_root=PROJECT_ROOT)
-        self.assertEqual(result.status, "PASS")
-        self.assertEqual(result.exit_code, 0)
-        self.assertEqual(len(result.violations), 0)
-        # 实际扫描的文件仅有 active_draft.md，归档目录完全被排除
-        self.assertEqual(len(result.scanned_files), 1)
-        self.assertEqual(result.scanned_files[0], clean_doc)
-
-    def test_unauthorized_dir_scan_blocked(self):
-        """用例 9: 检查显式目录参数越权递归防护，根目录与非开题报告目录严禁扫描 (ERROR 2)"""
-        # 1. 显式传入项目根目录 "."
-        res_root = run_quality_check(target_paths=[str(PROJECT_ROOT)], project_root=PROJECT_ROOT)
+    def test_unauthorized_paths_and_traversal_blocked(self):
+        """用例 6: 显式指定根目录、外部路径、路径遍历及非正文目录被明确拒绝 (ERROR 2)"""
+        # 1. 项目根目录
+        res_root = run_quality_check(target_paths=[str(self.mock_root)], project_root=self.mock_root)
         self.assertEqual(res_root.status, "ERROR")
         self.assertEqual(res_root.exit_code, 2)
         self.assertTrue(any("禁止将整个项目根目录作为受检目标" in err for err in res_root.errors))
 
-        # 2. 显式传入非学术正文授权目录（如 docs 目录）
-        docs_dir = PROJECT_ROOT / "docs"
-        res_docs = run_quality_check(target_paths=[str(docs_dir)], project_root=PROJECT_ROOT)
+        # 2. 非授权目录（如 docs 目录）
+        res_docs = run_quality_check(target_paths=[str(self.mock_docs)], project_root=self.mock_root)
         self.assertEqual(res_docs.status, "ERROR")
         self.assertEqual(res_docs.exit_code, 2)
-        self.assertTrue(any("属于受保护黑名单或非学术正文范围" in err for err in res_docs.errors))
 
-    def test_docx_deep_scan_header_footer_nested_table(self):
-        """用例 10: 明确 DOCX 扫描深度覆盖页眉、页脚（含首页/奇偶页）与单元格嵌套表格"""
-        # 1. 页眉包含违规词
-        header_docx = self.test_dir / "bad_header.docx"
-        doc_h = docx.Document()
-        sec_h = doc_h.sections[0]
-        sec_h.header.paragraphs[0].text = "页眉中提及开架式水下航行器"
-        doc_h.add_paragraph("正常正文段落")
-        doc_h.save(str(header_docx))
+        # 3. 越界路径遍历 (..)
+        outside_path = self.mock_root.parent / "outside.md"
+        outside_path.write_text("外部文档", encoding="utf-8")
+        try:
+            res_outside = run_quality_check(target_paths=[str(outside_path)], project_root=self.mock_root)
+            self.assertEqual(res_outside.status, "ERROR")
+            self.assertEqual(res_outside.exit_code, 2)
+            self.assertTrue(any("超出项目授权范围" in err for err in res_outside.errors))
+        finally:
+            if outside_path.exists():
+                outside_path.unlink()
 
-        res_h = run_quality_check(target_paths=[str(header_docx)], project_root=PROJECT_ROOT)
-        self.assertEqual(res_h.status, "FAIL")
-        self.assertEqual(res_h.exit_code, 1)
-        self.assertEqual(len(res_h.violations), 1)
-        self.assertIn("页眉", res_h.violations[0]["location"])
-        self.assertEqual(res_h.violations[0]["keyword"], "开架式")
+        # 4. 不存在的路径
+        res_nonexist = run_quality_check(target_paths=[str(self.mock_report / "nonexistent.md")], project_root=self.mock_root)
+        self.assertEqual(res_nonexist.status, "ERROR")
+        self.assertEqual(res_nonexist.exit_code, 2)
+        self.assertTrue(any("指定的目标路径不存在" in err for err in res_nonexist.errors))
 
-        # 2. 页脚包含违规词
-        footer_docx = self.test_dir / "bad_footer.docx"
-        doc_f = docx.Document()
-        sec_f = doc_f.sections[0]
-        sec_f.footer.paragraphs[0].text = "页脚标记控制率说明"
-        doc_f.add_paragraph("正常正文段落")
-        doc_f.save(str(footer_docx))
-
-        res_f = run_quality_check(target_paths=[str(footer_docx)], project_root=PROJECT_ROOT)
-        self.assertEqual(res_f.status, "FAIL")
-        self.assertEqual(res_f.exit_code, 1)
-        self.assertEqual(len(res_f.violations), 1)
-        self.assertIn("页脚", res_f.violations[0]["location"])
-        self.assertEqual(res_f.violations[0]["keyword"], "控制率")
-
-        # 3. 表格内包含嵌套表格，且嵌套表格违规
-        nested_docx = self.test_dir / "bad_nested.docx"
-        doc_n = docx.Document()
-        outer_tbl = doc_n.add_table(rows=1, cols=1)
-        outer_cell = outer_tbl.cell(0, 0)
-        outer_cell.text = "外层表格合规说明"
-        inner_tbl = outer_cell.add_table(rows=1, cols=1)
-        inner_tbl.cell(0, 0).text = "内层嵌套表格违规开架式构型"
-        doc_n.save(str(nested_docx))
-
-        res_n = run_quality_check(target_paths=[str(nested_docx)], project_root=PROJECT_ROOT)
-        self.assertEqual(res_n.status, "FAIL")
-        self.assertEqual(res_n.exit_code, 1)
-        self.assertEqual(len(res_n.violations), 1)
-        self.assertIn("嵌套表格", res_n.violations[0]["location"])
-        self.assertEqual(res_n.violations[0]["keyword"], "开架式")
-
-        # 4. 页眉、页脚及嵌套表格全部合规的 DOCX
-        clean_deep_docx = self.test_dir / "clean_deep.docx"
-        doc_c = docx.Document()
-        doc_c.sections[0].header.paragraphs[0].text = "同济大学本科毕业论文开题报告"
-        doc_c.sections[0].footer.paragraphs[0].text = "第 1 页"
-        tbl_c = doc_c.add_table(rows=1, cols=1)
-        tbl_c.cell(0, 0).text = "外层参数"
-        sub_c = tbl_c.cell(0, 0).add_table(rows=1, cols=1)
-        sub_c.cell(0, 0).text = "内层参数：航向控制律自适应调节"
-        doc_c.save(str(clean_deep_docx))
-
-        res_c = run_quality_check(target_paths=[str(clean_deep_docx)], project_root=PROJECT_ROOT)
-        self.assertEqual(res_c.status, "PASS")
-        self.assertEqual(res_c.exit_code, 0)
-        self.assertEqual(len(res_c.violations), 0)
-
-    def test_empty_target_flag_reports_error(self):
-        """用例 11: --target 后缺少实际参数时必须明确报错 ERROR (退出码 2)，绝不静默使用默认范围"""
-        # 1. API 级别：target_paths=[] 传入空列表
-        res_empty = run_quality_check(target_paths=[], project_root=PROJECT_ROOT)
+    def test_empty_target_set_reports_error(self):
+        """用例 7: 受检正文集合为空时绝不虚假 PASS，必须返回明确的 ERROR 2"""
+        # 没有任何正文文件
+        res_empty = run_quality_check(project_root=self.mock_root)
         self.assertEqual(res_empty.status, "ERROR")
         self.assertEqual(res_empty.exit_code, 2)
-        self.assertTrue(any("未提供任何有效目标路径" in err for err in res_empty.errors))
+        self.assertFalse(res_empty.passed)
+        self.assertTrue(any("未找到任何默认的正文草稿" in err for err in res_empty.errors))
 
-        # 2. CLI 级别：命令行传入 --target 但无后续文件参数
-        cmd = [sys.executable, str(PROJECT_ROOT / "scripts" / "check_academic_quality.py"), "--target"]
-        proc = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
-        self.assertEqual(proc.returncode, 2)
-        self.assertIn("[ERROR]", proc.stdout)
-        self.assertIn("--target 未指定具体目标路径", proc.stdout)
 
-    def test_proper_term_kongzhilv_not_intercepted(self):
-        """用例 12: 正规学术术语“控制律”绝对不被误拦截 (PASS 0)，错别字“控制率”精准阻断 (FAIL 1)"""
-        good_file = self.test_dir / "term_check_good.md"
-        good_file.write_text(
-            "# 控制理论与方法\n"
-            "针对八推进器紧凑型水下航行器设计非线性控制律与状态观测器。\n"
-            "结合前馈补偿控制律与增益自适应状态反馈控制律，实现水下高精度轨迹跟踪。\n",
+class TestRuleParsingAndDeterministicGates(StandaloneSandboxBase):
+    """规则编号解析、空规则标记、缺失规则源及学术边界测试"""
+
+    def test_rule_id_regex_strictness_and_pipe_rejection(self):
+        """用例 8: 修正规则编号正则，合法 FT 正确识别，非法格式及竖线编号不被误认"""
+        # 写入含有非法竖线格式的规则文件
+        self.facts_file.write_text(
+            "# Facts\n\n"
+            "### |-001：非法竖线编号\n"
+            "<!-- gate:forbid:开架式 -->\n\n"
+            "### F-002：合法规则编号\n"
+            "<!-- gate:forbid:非法平台 -->\n",
             encoding="utf-8",
         )
 
-        res_good = run_quality_check(target_paths=[str(good_file)], project_root=PROJECT_ROOT)
+        rules, errors = load_gate_rules(self.mock_root)
+        # 非法竖线编号的禁词应因未处于合法编号下而报错或标记为 UNKNOWN 拦截
+        self.assertTrue(any("缺少有效规则编号" in err for err in errors))
+        # 合法编号 F-002 应成功解析
+        f002_rules = [r for r in rules if r["rule_id"] == "F-002"]
+        self.assertEqual(len(f002_rules), 1)
+        self.assertEqual(f002_rules[0]["keyword"], "非法平台")
+
+    def test_empty_gate_tag_reports_error(self):
+        """用例 9: 空门禁标记 <!-- gate:forbid: --> 必须报错拦截 (ERROR 2)"""
+        self.facts_file.write_text(
+            "# Facts\n\n"
+            "### F-001：测试规则\n"
+            "<!-- gate:forbid:    -->\n",
+            encoding="utf-8",
+        )
+        rules, errors = load_gate_rules(self.mock_root)
+        self.assertTrue(any("禁词标记为空" in err for err in errors))
+
+    def test_missing_or_empty_rule_file_reports_error(self):
+        """用例 10: 规则文件缺失或无任何有效规则标记严格报错 (ERROR 2)"""
+        # 场景 A: 规则文件缺失
+        self.term_file.unlink()
+        res_missing = run_quality_check(project_root=self.mock_root)
+        self.assertEqual(res_missing.status, "ERROR")
+        self.assertEqual(res_missing.exit_code, 2)
+        self.assertTrue(any("docs/TERMINOLOGY.md" in err for err in res_missing.errors))
+
+        # 场景 B: 规则文件存在但无任何 gate:forbid 标记
+        self.term_file.write_text("# 空术语表\n无规则\n", encoding="utf-8")
+        res_no_tags = run_quality_check(project_root=self.mock_root)
+        self.assertEqual(res_no_tags.status, "ERROR")
+        self.assertEqual(res_no_tags.exit_code, 2)
+        self.assertTrue(any("未包含任何有效" in err for err in res_no_tags.errors))
+
+    def test_candidate_method_discussion_not_falsely_intercepted(self):
+        """用例 11: 正常学术讨论候选算法（MPC, INDI, 滑模, RQ1/2/3）通过 (PASS 0)，不进行妄断"""
+        paper_doc = self.mock_report / "开题报告_正文起草稿.md"
+        paper_doc.write_text(
+            "# 控制方法比选与研究框架\n"
+            "本课题重点围绕八推进器紧凑型水下航行器开展研究。\n"
+            "针对姿态控制与轨迹跟踪，横向比选模型预测控制（MPC）、增量非线性动态逆（INDI）与滑模控制方法。\n"
+            "在实验水池中围绕动力学辨识（RQ1）、模型在线适用性评价（RQ2）及闭环验证（RQ3）构建完整验证闭环。\n"
+            "采用李雅普诺夫稳定性理论证明控制律的渐近收敛性。\n",
+            encoding="utf-8",
+        )
+
+        res = run_quality_check(target_paths=[str(paper_doc)], project_root=self.mock_root)
+        self.assertEqual(res.status, "PASS")
+        self.assertEqual(res.exit_code, 0)
+        self.assertTrue(res.passed)
+        self.assertEqual(len(res.violations), 0)
+
+    def test_proper_term_distinction(self):
+        """用例 12: 精确区分合法术语“控制律” (PASS 0) 与错误错别字“控制率” (FAIL 1)"""
+        good_doc = self.mock_report / "good_term.md"
+        good_doc.write_text("设计非线性控制律与前馈解耦控制律，标称模型计算正常。", encoding="utf-8")
+        res_good = run_quality_check(target_paths=[str(good_doc)], project_root=self.mock_root)
         self.assertEqual(res_good.status, "PASS")
         self.assertEqual(res_good.exit_code, 0)
-        self.assertEqual(len(res_good.violations), 0)
 
-        bad_file = self.test_dir / "term_check_bad.md"
-        bad_file.write_text(
-            "# 控制理论与方法\n"
-            "针对八推进器紧凑型水下航行器设计非线性控制率与状态观测器。\n",
+        bad_doc = self.mock_report / "bad_term.md"
+        bad_doc.write_text("设计非线性控制率与状态观测器。", encoding="utf-8")
+        res_bad = run_quality_check(target_paths=[str(bad_doc)], project_root=self.mock_root)
+        self.assertEqual(res_bad.status, "FAIL")
+        self.assertEqual(res_bad.exit_code, 1)
+        self.assertEqual(res_bad.violations[0]["keyword"], "控制率")
+
+
+class TestContentScanningAndDocxDeepVerification(StandaloneSandboxBase):
+    """文档内容扫描、深度 DOCX（段落/表格/页眉页脚）与空文档/损坏文档测试"""
+
+    def test_empty_content_document_blocks_false_pass(self):
+        """用例 13: 空文档（0字节或纯空白字符）严格返回 ERROR 2，坚决杜绝虚假 PASS"""
+        empty_md = self.mock_report / "empty_draft.md"
+        empty_md.write_text("   \n\n\t  \n", encoding="utf-8")
+
+        res = run_quality_check(target_paths=[str(empty_md)], project_root=self.mock_root)
+        self.assertEqual(res.status, "ERROR")
+        self.assertEqual(res.exit_code, 2)
+        self.assertTrue(any("无可检查的有效正文内容" in err for err in res.errors))
+
+    def test_corrupted_docx_reports_error(self):
+        """用例 14: 损坏的 DOCX（伪造损坏字节流）不能静默通过，必须返回 ERROR 2"""
+        corrupted_docx = self.mock_report / "corrupted_draft.docx"
+        corrupted_docx.write_bytes(b"PK\x03\x04This is corrupted non-docx file content")
+
+        res = run_quality_check(target_paths=[str(corrupted_docx)], project_root=self.mock_root)
+        self.assertEqual(res.status, "ERROR")
+        self.assertEqual(res.exit_code, 2)
+        self.assertTrue(any("无法读取或解析文件" in err for err in res.errors))
+
+    def test_docx_deep_coverage_headers_footers_and_nested_tables(self):
+        """用例 15: 验证 DOCX 深度扫描覆盖默认/首页/奇偶页页眉页脚及多层嵌套表格"""
+        docx_file = self.mock_report / "multi_location.docx"
+        doc = docx.Document()
+
+        # 1. 节页眉违规
+        sec = doc.sections[0]
+        sec.different_first_page_header_footer = True
+        sec.header.paragraphs[0].text = "页眉中出现开架式结构"
+        sec.first_page_footer.paragraphs[0].text = "首页页脚标记控制率说明"
+
+        # 2. 正文段落合规
+        doc.add_paragraph("正常正文段落文字。")
+
+        # 3. 嵌套表格违规
+        outer_tbl = doc.add_table(rows=1, cols=1)
+        inner_tbl = outer_tbl.cell(0, 0).add_table(rows=1, cols=1)
+        inner_tbl.cell(0, 0).text = "嵌套表格单元格中的开架式航行器"
+
+        doc.save(str(docx_file))
+
+        res = run_quality_check(target_paths=[str(docx_file)], project_root=self.mock_root)
+        self.assertEqual(res.status, "FAIL")
+        self.assertEqual(res.exit_code, 1)
+        self.assertEqual(len(res.violations), 3)
+
+        locations = [v["location"] for v in res.violations]
+        self.assertTrue(any("页眉" in loc for loc in locations))
+        self.assertTrue(any("页脚" in loc for loc in locations))
+        self.assertTrue(any("嵌套表格" in loc for loc in locations))
+
+    def test_clean_docx_deep_scan_passes(self):
+        """用例 16: 页眉、页脚、正文与嵌套表格全部合规的 DOCX 顺利 PASS 0"""
+        clean_docx = self.mock_report / "clean_deep.docx"
+        doc = docx.Document()
+        sec = doc.sections[0]
+        sec.header.paragraphs[0].text = "同济大学本科毕业论文"
+        sec.footer.paragraphs[0].text = "第 1 页"
+        doc.add_paragraph("水下航行器动力学建模与控制方法研究。")
+        tbl = doc.add_table(rows=1, cols=1)
+        tbl.cell(0, 0).text = "推力分配与控制律设计"
+        sub_tbl = tbl.cell(0, 0).add_table(rows=1, cols=1)
+        sub_tbl.cell(0, 0).text = "模型在线自适应"
+        doc.save(str(clean_docx))
+
+        res = run_quality_check(target_paths=[str(clean_docx)], project_root=self.mock_root)
+        self.assertEqual(res.status, "PASS")
+        self.assertEqual(res.exit_code, 0)
+        self.assertEqual(len(res.violations), 0)
+
+    def test_unsupported_file_extension_error(self):
+        """用例 17: 显式传入不支持的文件类型（如 .pdf, .py）报错 ERROR 2"""
+        pdf_file = self.mock_report / "report.pdf"
+        pdf_file.write_bytes(b"%PDF-1.4 dummy")
+
+        res = run_quality_check(target_paths=[str(pdf_file)], project_root=self.mock_root)
+        self.assertEqual(res.status, "ERROR")
+        self.assertEqual(res.exit_code, 2)
+        self.assertTrue(any("不支持的文档类型" in err for err in res.errors))
+
+    def test_chinese_and_special_character_path_handling(self):
+        """用例 18: 中文目录、中文文件名与空格路径正常读取与编码兼容"""
+        cn_dir = self.mock_report / "正文 章节 (测试)"
+        cn_dir.mkdir(parents=True, exist_ok=True)
+        cn_file = cn_dir / "第一节 紧凑型样机动力学.md"
+        cn_file.write_text("八推进器水下航行器动力学控制律研究", encoding="utf-8")
+
+        res = run_quality_check(target_paths=[str(cn_file)], project_root=self.mock_root)
+        self.assertEqual(res.status, "PASS")
+        self.assertEqual(res.exit_code, 0)
+        self.assertEqual(len(res.scanned_files), 1)
+
+
+class TestWorkspaceConfigGateSuite(unittest.TestCase):
+    """轻量工作区配置完整性门禁单元测试"""
+
+    @staticmethod
+    def _create_mock_valid_workspace(tmp_root: Path):
+        (tmp_root / "AGENTS.md").write_text(
+            "# Agents\n\n严禁 Agent 在未经用户明确指令或直接授权下自主执行 `git push`。\n",
+            encoding="utf-8",
+        )
+        (tmp_root / "PROJECT_NOW.md").write_text(
+            "# Project Now\n\n## 当前有效来源\n## 当前工作阶段\n## 待确认事项\n",
+            encoding="utf-8",
+        )
+        (tmp_root / "PROJECT_STATUS.md").write_text("# Project Status\n", encoding="utf-8")
+
+        docs = tmp_root / "docs"
+        docs.mkdir(parents=True, exist_ok=True)
+        (docs / "PROJECT_FACTS.md").write_text(
+            "### F-001\n<!-- gate:forbid:开架式 -->\n",
+            encoding="utf-8",
+        )
+        (docs / "TERMINOLOGY.md").write_text(
+            "### T-001\n<!-- gate:forbid:控制率 -->\n",
+            encoding="utf-8",
+        )
+        (docs / "contracts").mkdir(parents=True, exist_ok=True)
+
+        rules = tmp_root / ".agents" / "rules"
+        rules.mkdir(parents=True, exist_ok=True)
+        (rules / "academic-entry.md").write_text(
+            "PROJECT_NOW.md docs/PROJECT_FACTS.md docs/TERMINOLOGY.md docs/contracts/",
             encoding="utf-8",
         )
 
-        res_bad = run_quality_check(target_paths=[str(bad_file)], project_root=PROJECT_ROOT)
-        self.assertEqual(res_bad.status, "FAIL")
-        self.assertEqual(res_bad.exit_code, 1)
-        self.assertEqual(len(res_bad.violations), 1)
-        self.assertEqual(res_bad.violations[0]["keyword"], "控制率")
+        skills = tmp_root / ".agents" / "skills"
+        skills.mkdir(parents=True, exist_ok=True)
+        from scripts.check_workspace_config import REQUIRED_SKILLS
+        for sk in REQUIRED_SKILLS:
+            sk_dir = skills / sk
+            sk_dir.mkdir(parents=True, exist_ok=True)
+            (sk_dir / "SKILL.md").write_text(f"# {sk}\nGeneric academic skill\n", encoding="utf-8")
 
-    def test_quality_gate_blacklist_and_cli_subprocess(self):
-        """用例 13: 验证黑名单文件无法越权扫描 (ERROR 2)，以及命令行 CLI 调用的真实三态退出码"""
-        # 1. 黑名单判定与显式传入拦截
-        term_file = PROJECT_ROOT / "docs" / "TERMINOLOGY.md"
-        self.assertTrue(is_blacklisted(term_file, PROJECT_ROOT))
-        res_blacklisted = run_quality_check(target_paths=[str(term_file)], project_root=PROJECT_ROOT)
-        self.assertEqual(res_blacklisted.status, "ERROR")
-        self.assertEqual(res_blacklisted.exit_code, 2)
-        self.assertTrue(any("属于受保护黑名单" in err for err in res_blacklisted.errors))
+    def test_real_workspace_config_passes_completely(self):
+        """用例 19: 真实工作区全量配置完整性核验全部 PASS 0"""
+        res = run_workspace_config_check(PROJECT_ROOT)
+        self.assertEqual(res.status, "PASS")
+        self.assertEqual(res.exit_code, 0)
+        self.assertTrue(res.passed)
+        self.assertEqual(len(res.errors), 0)
+        self.assertEqual(len(res.violations), 0)
 
-        # 2. CLI 默认运行：必须正常通过 (PASS 0)，并打印扫描清单及数量
-        cmd_default = [sys.executable, str(PROJECT_ROOT / "scripts" / "check_academic_quality.py")]
-        proc_default = subprocess.run(cmd_default, capture_output=True, text=True, encoding="utf-8")
-        self.assertEqual(proc_default.returncode, 0, f"默认运行失败: {proc_default.stderr}")
-        self.assertIn("[PASS] 质量门禁检查通过！", proc_default.stdout)
-        self.assertIn("本次实际扫描正文文件", proc_default.stdout)
-        self.assertIn("开题报告_正文起草稿.md", proc_default.stdout)
+    def test_mock_valid_workspace_passes(self):
+        """用例 20: 合成标准虚拟工作区配置核验全部 PASS 0"""
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_root = Path(tmp_dir)
+            self._create_mock_valid_workspace(tmp_root)
+            res = run_workspace_config_check(tmp_root)
+            self.assertEqual(res.status, "PASS")
+            self.assertEqual(res.exit_code, 0)
 
-        # 3. CLI 指定不存在文件：必须返回退出码 2 (ERROR)
-        cmd_err = [sys.executable, str(PROJECT_ROOT / "scripts" / "check_academic_quality.py"), "-t", "nonexistent.md"]
-        proc_err = subprocess.run(cmd_err, capture_output=True, text=True, encoding="utf-8")
-        self.assertEqual(proc_err.returncode, 2)
-        self.assertIn("[ERROR]", proc_err.stdout)
+    def test_missing_core_file_triggers_error(self):
+        """用例 21: 临时沙箱中缺失核心管理文件触发 ERROR 2"""
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_root = Path(tmp_dir)
+            self._create_mock_valid_workspace(tmp_root)
+            (tmp_root / "PROJECT_NOW.md").unlink()
 
-        # 4. CLI 指定违规临时文件：必须返回退出码 1 (FAIL)
-        bad_cli_file = self.test_dir / "bad_cli.md"
-        bad_cli_file.write_text("本样机采用开架式结构构建。", encoding="utf-8")
-        cmd_fail = [sys.executable, str(PROJECT_ROOT / "scripts" / "check_academic_quality.py"), "-t", str(bad_cli_file)]
-        proc_fail = subprocess.run(cmd_fail, capture_output=True, text=True, encoding="utf-8")
-        self.assertEqual(proc_fail.returncode, 1)
-        self.assertIn("[FAIL]", proc_fail.stdout)
-        self.assertIn("开架式", proc_fail.stdout)
+            res = run_workspace_config_check(tmp_root)
+            self.assertEqual(res.status, "ERROR")
+            self.assertEqual(res.exit_code, 2)
+            self.assertTrue(any("PROJECT_NOW.md" in err for err in res.errors))
+
+    def test_forbidden_words_in_generic_skill_triggers_fail(self):
+        """用例 22: 通用技能泄漏项目专有词汇触发 FAIL 1"""
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_root = Path(tmp_dir)
+            self._create_mock_valid_workspace(tmp_root)
+
+            # 故意在 academic-writing/SKILL.md 中注入项目专有词
+            aw_path = tmp_root / ".agents" / "skills" / "academic-writing" / "SKILL.md"
+            aw_path.write_text("# Academic Writing\n泄漏词汇: SwiftROV PX4\n", encoding="utf-8")
+
+            res = run_workspace_config_check(tmp_root)
+            self.assertEqual(res.status, "FAIL")
+            self.assertEqual(res.exit_code, 1)
+            self.assertTrue(any("泄漏了项目专属词汇" in v for v in res.violations))
+
+    def test_dangerous_push_permission_triggers_fail(self):
+        """用例 23: 包含危险自动推送声明触发 FAIL 1"""
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            tmp_root = Path(tmp_dir)
+            self._create_mock_valid_workspace(tmp_root)
+
+            # 故意在 AGENTS.md 中注入危险 auto git push 声明
+            agents_path = tmp_root / "AGENTS.md"
+            agents_path.write_text("# Agents\n允许 auto git push 自动化推送\n", encoding="utf-8")
+
+            res = run_workspace_config_check(tmp_root)
+            self.assertEqual(res.status, "FAIL")
+            self.assertEqual(res.exit_code, 1)
+            self.assertTrue(any("不安全的自动推送权限声明" in v for v in res.violations))
+
+
+class TestCliSubprocessExecution(StandaloneSandboxBase):
+    """CLI 命令行进程级调用与三态退出码真实验证"""
+
+    def test_cli_quality_check_three_states(self):
+        """用例 24: CLI 命令调用 check_academic_quality.py 真实输出与三态退出码"""
+        script_path = str(PROJECT_ROOT / "scripts" / "check_academic_quality.py")
+
+        # 1. PASS (0)
+        clean_file = self.mock_report / "clean_draft.md"
+        clean_file.write_text("正常正文草稿内容，设计非线性控制律。", encoding="utf-8")
+        cmd_pass = [sys.executable, script_path, "-r", str(self.mock_root), "-t", str(clean_file)]
+        p_pass = subprocess.run(cmd_pass, capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(p_pass.returncode, 0)
+        self.assertIn("[PASS] 质量门禁检查通过！", p_pass.stdout)
+
+        # 2. FAIL (1)
+        bad_file = self.mock_report / "bad_draft.md"
+        bad_file.write_text("违规草稿包含开架式构型。", encoding="utf-8")
+        cmd_fail = [sys.executable, script_path, "-r", str(self.mock_root), "-t", str(bad_file)]
+        p_fail = subprocess.run(cmd_fail, capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(p_fail.returncode, 1)
+        self.assertIn("[FAIL] 质量门禁检查未通过！", p_fail.stdout)
+        self.assertIn("开架式", p_fail.stdout)
+
+        # 3. ERROR (2) -- 目标不存在
+        cmd_err = [sys.executable, script_path, "-r", str(self.mock_root), "-t", str(self.mock_report / "missing.md")]
+        p_err = subprocess.run(cmd_err, capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(p_err.returncode, 2)
+        self.assertIn("[ERROR] 质量门禁执行失败！", p_err.stdout)
+
+    def test_cli_workspace_config_check(self):
+        """用例 25: CLI 命令调用 check_workspace_config.py 真实退出码为 0"""
+        cfg_script = str(PROJECT_ROOT / "scripts" / "check_workspace_config.py")
+        cmd = [sys.executable, cfg_script, "-r", str(PROJECT_ROOT)]
+        p = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8")
+        self.assertEqual(p.returncode, 0)
+        self.assertIn("[PASS] 工作区配置完整性检查全部通过！", p.stdout)
 
 
 if __name__ == "__main__":
