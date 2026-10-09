@@ -1,6 +1,6 @@
 # 水下航行器与飞控领域标准中英术语对照表 (Standard Terminology Reference)
 
-在进行外文文献翻译、撰写开题报告或毕业论文时，必须严格统一使用以下标准中文译名：
+> **使用说明**：本表为外文文献翻译中英术语速查对照参考。课题级核心事实、定性与学术写作门禁一律以项目根目录 [docs/TERMINOLOGY.md](../../../../docs/TERMINOLOGY.md) 与 [docs/PROJECT_FACTS.md](../../../../docs/PROJECT_FACTS.md) 为最高单一权威来源。
 
 ## 1. 航行器构型与运动学/动力学 (Vehicle & Hydrodynamics)
 
@@ -10,7 +10,7 @@
 | Remotely Operated Vehicle (ROV) | 遥控水下航行器 / 遥控无人潜水器 | 远程操作车 |
 | Autonomous Underwater Vehicle (AUV) | 自主水下航行器 | 自动水下车 |
 | Intervention AUV (I-AUV) | 干预作业型自主水下航行器 | 介入式AUV |
-| Open-frame configuration | 开架式构型 | 开放框架结构 |
+| Open-frame configuration | 开架式构型 | 开放框架结构（注：仅用于外部文献客观描述；本项目样机统一定性为八推进器紧凑型水下航行器，严禁对本项目使用开架式） |
 | Over-actuated system | 过驱动系统（冗余驱动系统） | 超驱动系统 |
 | Underactuated system | 欠驱动系统 | 欠致动系统 |
 | Six Degrees of Freedom (6-DOF) | 六自由度 | 六个自由度 |

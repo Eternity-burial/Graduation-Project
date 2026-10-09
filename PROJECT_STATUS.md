@@ -1,8 +1,12 @@
 # 毕业论文全周期进度、决策与跨会话记忆总控台账 (`PROJECT_STATUS.md`)
 
 > **使用规范（历史演进台账与双轨恢复机制）**：
-> 1. **新会话优先读取**：新会话请首先读取 [PROJECT_NOW.md](file:///d:/tj/Graduation%20Project/PROJECT_NOW.md) 极速恢复当前工作状态与有效来源（严格遵守 [.agents/rules/academic-entry.md](file:///d:/tj/Graduation%20Project/.agents/rules/academic-entry.md)）；
-> 2. **本文件定位**：本文件为全周期历史演进与里程碑总控台账，在需要追溯历史决策或更新重大阶段里程碑时按需查阅与同步更新。
+> 1. **新会话优先读取**：新会话请首先读取 [PROJECT_NOW.md](PROJECT_NOW.md) 极速恢复当前工作状态与有效来源（严格遵守 [.agents/rules/academic-entry.md](.agents/rules/academic-entry.md)）；
+> 2. **本文件定位**：本文件为全周期历史演进与里程碑总控台账，在需要追溯历史决策或更新重大阶段里程碑时按需查阅与同步更新；
+> 3. **信息状态与当前效力说明**：
+>    - 本台账如实记录项目全周期的历史演进与研讨足迹（`HISTORICAL`）；
+>    - 历史条目中记载的讨论方案与探索性路线（如 RQ1/RQ2/RQ3、MPC、INDI 等）属于特定阶段的候选假设（`PROVISIONAL`）或讨论记录，不自动升级为当前有效决策（`CONFIRMED`）；
+>    - 当前有效决定与状态一律以 [PROJECT_NOW.md](PROJECT_NOW.md)、[docs/PROJECT_FACTS.md](docs/PROJECT_FACTS.md) 与最新用户确认指令为准。
 
 ---
 
@@ -10,7 +14,7 @@
 
 - **毕业论文题目**：《基于PX4的水下航行器模型控制方法研究》
   - **任务书关联全称**：《基于PX4的水下航行器动力学建模、系统辨识、运动控制与推力分配研究》
-- **研究对象**：**八推进器便携式/微小型水下航行器（SwiftROV / Compact ROV）**（双耐压舱紧凑构型，绝非开架式；空间对称与矢量倾斜布置的 8 推进器过驱动冗余构型，物理样机仅作为后文方案验证载体）。
+- **研究对象**：**八推进器紧凑型水下航行器（SwiftROV / Compact Vectored ROV）**（紧凑集成构型，绝非开架式；空间对称与矢量倾斜布置的 8 推进器过驱动冗余构型，物理样机仅作为后文方案验证载体）。
 - **依托实验室背景**：香港中文大学（深圳）智能自主系统实验室（CUHK-SZ LIAS, Prof. Junfeng Wu），专注水下机器人感知定位、VI-SLAM、DVL 时空标定与自主控制。
 - **核心表述红线**：坚持立项逻辑立足客观物理矛盾与工程瓶颈，保持技术方案学术开放性与合理比选余地，严禁在纲领性文件中僵化限定具体数学形式或实现细节。
 
@@ -18,7 +22,7 @@
 
 ## 二、 四阶段里程碑总进度（Roadmap & Checklist）
 
-### 阶段 0：选题论证、核心任务考量、主线全局重构与开题准备（当前阶段：主线全局重构定调，全项目资产清理归档完毕，契约升级完成，准备开启新版起草）
+### 阶段 0：选题论证、核心任务考量与开题准备（当前阶段：资产大扫除完成，正开展第一阶段配置治理与规则解耦；研究主线方案维持 PROVISIONAL 状态，保持学术开放性）
 - [x] PX4 与 ArduSub 水下控制架构深度对比调研（[PX4与ArduSub对比分析.md](file:///d:/tj/Graduation%20Project/选题/PX4与ArduSub对比分析.md)）
 - [x] **【核心任务考量与精简闭环确立】**：破译学长实验室暗语，确立学术研究与工程验证合理边界；
 - [x] **【全课题四大专题文献库整备与权威综述补全完成】**：
@@ -332,4 +336,11 @@
     2. **系统辨识锚定为真核心 Base**：100% 承接学长正在攻坚的顶刊辨识算法（动量回归、零空间自适应 vs SINDy、PH-NODE、Neural-Fly）与真实运行数据，筑牢毕设理论硬核底座；
     3. **控制算法明确指向 MPC / MPCC**：开题报告保持方案开放性与比选空间（MPC/MPCC为主线，滑模与前馈为备选）；
     4. **成果沉淀入库**：完整落盘纲领性技术文件《开题报告修改论证与背景补充说明_针对三份报告对比建议的辩证剖析.md》与《课题核心技术路线演进与学长交流共识沉淀.md》。
+- **2026-10-09**：
+  - **开展第一阶段配置、规则与 Skills 保守重构治理**：
+    1. **研究内容与配置规则彻底解耦**：在 `AGENTS.md`、`PROJECT_NOW.md` 与 `.agents/rules/academic-entry.md` 中全面落实四类信息状态（CONFIRMED / PROVISIONAL / UNDECIDED / HISTORICAL）分级原则，消除将暂定候选主线（RQ1/RQ2/RQ3、MPC、INDI 等）当作既定决策的过度约束，保持学术开放性；
+    2. **Git 权限治理与安全兜底**：废除规则中“提交后无条件自动推送远程仓库”的过度授权，确立 git commit 本地固化与 git push 必须经用户明确指令/授权的受控底线，本次不执行任何 commit 与 push；
+    3. **路径与环境便携化**：清理 `.vscode/settings.json`、`AGENTS.md` 中的硬编码绝对路径（`D:\tj\...`），替换为 `${workspaceFolder}` 或相对路径；
+    4. **Skills 职责收窄与失效依赖清理**：清理 `academic-doc-builder/SKILL.md` 中不存在的绘图脚本和指南引用；解耦 `paper-translation-reader/SKILL.md` 对外部已独立归档 Web 阅读器前端路径的死板依赖；
+    5. **回归测试验证**：`tests/test_academic_workflow.py` 13项全通，`scripts/check_academic_quality.py` 门禁 PASS。
 
