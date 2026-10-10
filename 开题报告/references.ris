@@ -1,221 +1,45 @@
-TY  - GEN
-ID  - ref1
-M1  - [1]
-TI  - 工业和信息化部, 国家发展和改革委员会, 科学技术部, 等. “十四五”机器人产业发展规划[J]. 中华人民共和国工业和信息化部公报, 2021(12): 20-27.
-ER  -
+TY  - JOUR
+ID  - miit2021
+TI  - “十四五”机器人产业发展规划
+AU  - 工业和信息化部
+AU  - 国家发展和改革委员会
+AU  - 科学技术部
+T2  - 中华人民共和国工业和信息化部公报
+PY  - 2021
+IS  - 12
+SP  - 20
+EP  - 27
+ER  - 
 
-TY  - GEN
-ID  - ref2
-M1  - [2]
-TI  - 工业和信息化部, 教育部, 科学技术部, 等. “机器人+”应用行动实施方案[J]. 中华人民共和国工业和信息化部公报, 2023(1): 18-24.
-ER  -
+TY  - JOUR
+ID  - miit2023
+TI  - “机器人+”应用行动实施方案
+AU  - 工业和信息化部
+AU  - 教育部
+AU  - 科学技术部
+T2  - 中华人民共和国工业和信息化部公报
+PY  - 2023
+IS  - 1
+SP  - 18
+EP  - 24
+ER  - 
 
-TY  - GEN
-ID  - ref3
-M1  - [3]
-TI  - FOSSEN T I. Handbook of Marine Craft Hydrodynamics and Motion Control[M]. 2nd ed. Chichester, UK: John Wiley & Sons, 2021.
-ER  -
+TY  - BOOK
+ID  - fossen2021
+TI  - Handbook of Marine Craft Hydrodynamics and Motion Control
+AU  - Fossen, Thor I.
+PB  - John Wiley & Sons
+CY  - Chichester, UK
+ET  - 2nd
+PY  - 2021
+DO  - 10.1002/9781119575016
+ER  - 
 
-TY  - GEN
-ID  - ref4
-M1  - [4]
-TI  - PX4 Development Team. Submarines (Unmanned Underwater Vehicles—UUV)[EB/OL]. (2024)[2026-10-10]. https://docs.px4.io/main/en/frames_sub/index.
-ER  -
-
-TY  - GEN
-ID  - ref5
-M1  - [5]
-TI  - FOSSEN T I. Nonlinear modelling of marine vehicles in 6 degrees of freedom[J]. Mathematical Modelling of Systems, 1995, 1(1): 17-27.
-ER  -
-
-TY  - GEN
-ID  - ref6
-M1  - [6]
-TI  - 严卫生, 高剑, 崔荣鑫, 等. 水下航行器控制技术[M]. 北京: 国防工业出版社, 2020.
-ER  -
-
-TY  - GEN
-ID  - ref7
-M1  - [7]
-TI  - PRESTERO T. Verification of a six-degree of freedom simulation model for the REMUS autonomous underwater vehicle[D]. Cambridge, MA: Massachusetts Institute of Technology, 2001.
-ER  -
-
-TY  - GEN
-ID  - ref8
-M1  - [8]
-TI  - CACCIA M, INDIVERI G, VERUGGIO G. Modeling and identification of open-frame variable configuration unmanned underwater vehicles[J]. IEEE Journal of Oceanic Engineering, 2000, 25(2): 227-240.
-ER  -
-
-TY  - GEN
-ID  - ref9
-M1  - [9]
-TI  - SMALLWOOD D A, WHITCOMB L L. Model-based dynamic positioning of underwater robotic vehicles: Theory and experiment[J]. IEEE Journal of Oceanic Engineering, 2004, 29(1): 169-186.
-ER  -
-
-TY  - GEN
-ID  - ref10
-M1  - [10]
-TI  - VON BENZON M, SØRENSEN F F, UTH E, et al. An open-source benchmark simulator: Control of a BlueROV2 underwater robot[J]. Journal of Marine Science and Engineering, 2022, 10(12): 1898.
-ER  -
-
-TY  - GEN
-ID  - ref11
-M1  - [11]
-TI  - 高婷, 庞永杰, 王亚兴, 等. 水下航行器水动力系数计算方法[J]. 哈尔滨工程大学学报, 2019, 40(1): 174-180.
-ER  -
-
-TY  - GEN
-ID  - ref12
-M1  - [12]
-TI  - CHIN C S, LAU M W S. Modeling and testing of hydrodynamic damping for a complex-shaped underwater robot operating at low speed[C]//2012 Oceans - Yeosu. Yeosu, Korea: IEEE, 2012: 1-7.
-ER  -
-
-TY  - GEN
-ID  - ref13
-M1  - [13]
-TI  - ROSS A, FOSSEN T I, JOHANSEN T A. Identification of underwater vehicle hydrodynamic coefficients using free decay tests[C]//IFAC Conference on Control Applications in Marine Systems. Ancona, Italy: IFAC, 2004: 363-368.
-ER  -
-
-TY  - GEN
-ID  - ref14
-M1  - [14]
-TI  - AVILA J P J, ADAMOWSKI J C. Experimental model identification of open-frame unmanned underwater vehicles[C]//2013 Oceans - San Diego. San Diego, CA: IEEE, 2013: 1-7.
-ER  -
-
-TY  - GEN
-ID  - ref15
-M1  - [15]
-TI  - HARRIS Z J, MAO A M, PAINE T M, et al. Stable nullspace adaptive parameter identification of 6 degree-of-freedom plant and actuator models for underactuated vehicles: Theory and experimental evaluation[J]. The International Journal of Robotics Research, 2023, 42(12): 1070-1093.
-ER  -
-
-TY  - GEN
-ID  - ref16
-M1  - [16]
-TI  - BRUNTON S L, PROCTOR J L, KUTZ J N. Discovering governing equations from data by sparse identification of nonlinear dynamical systems[J]. Proceedings of the National Academy of Sciences, 2016, 113(15): 3932-3937.
-ER  -
-
-TY  - GEN
-ID  - ref17
-M1  - [17]
-TI  - RAISSI M, PERDIKARIS P, KARNIADAKIS G E. Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations[J]. Journal of Computational Physics, 2019, 378: 686-707.
-ER  -
-
-TY  - GEN
-ID  - ref18
-M1  - [18]
-TI  - CHEN R T Q, RUBANOVA Y, BETTENCOURT J, et al. Neural ordinary differential equations[C]//Advances in Neural Information Processing Systems (NeurIPS 2018). Montréal, QC, Canada, 2018: 6571-6583.
-ER  -
-
-TY  - GEN
-ID  - ref19
-M1  - [19]
-TI  - LIU A, ZHANG X, XIAO F, et al. Koopman-based online identification with Sim2Real transfer for hydrodynamic modeling of turtle-inspired robot[J]. IEEE Robotics and Automation Letters, 2026, 11(6): 6632-6639.
-ER  -
-
-TY  - GEN
-ID  - ref20
-M1  - [20]
-TI  - YUH J. Design and control of autonomous underwater robots: A survey[J]. Autonomous Robots, 2000, 8(1): 7-24.
-ER  -
-
-TY  - GEN
-ID  - ref21
-M1  - [21]
-TI  - 朱大奇, 孙兵. 水下机器人运动控制研究进展[J]. 控制与决策, 2012, 27(3): 321-333.
-ER  -
-
-TY  - GEN
-ID  - ref22
-M1  - [22]
-TI  - YOERGER D R, SLOTINE J J E. Robust trajectory control of underwater vehicles[J]. IEEE Journal of Oceanic Engineering, 1985, 10(4): 462-470.
-ER  -
-
-TY  - GEN
-ID  - ref23
-M1  - [23]
-TI  - HEALEY A J, LIENARD D. Multivariable sliding mode control for autonomous diving and steering of unmanned underwater vehicles[J]. IEEE Journal of Oceanic Engineering, 1993, 18(3): 327-339.
-ER  -
-
-TY  - GEN
-ID  - ref24
-M1  - [24]
-TI  - CHU Z, XIANG X, ZHU D, et al. Adaptive trajectory tracking control for remotely operated vehicles considering thruster dynamics and saturation constraints[J]. ISA Transactions, 2020, 100: 28-37.
-ER  -
-
-TY  - GEN
-ID  - ref25
-M1  - [25]
-TI  - 张磊, 严卫生, 付明玉. 自主水下航行器模型预测控制研究现状与展望[J]. 控制理论与应用, 2018, 35(9): 1181-1192.
-ER  -
-
-TY  - GEN
-ID  - ref26
-M1  - [26]
-TI  - HESHMATI-ALAMDARI S, KARRAS G C, MARANTOS P, et al. A robust model predictive control approach for autonomous underwater vehicles operating in a constrained workspace[C]//2018 IEEE International Conference on Robotics and Automation (ICRA). Brisbane, QLD, Australia: IEEE, 2018: 6183-6188.
-ER  -
-
-TY  - GEN
-ID  - ref27
-M1  - [27]
-TI  - HESHMATI-ALAMDARI S, NIKOU A, DIMAROGONAS D V. Robust trajectory tracking control for underactuated autonomous underwater vehicles in uncertain environments[J]. IEEE Transactions on Automation Science and Engineering, 2020, 18(3): 1288-1301.
-ER  -
-
-TY  - GEN
-ID  - ref28
-M1  - [28]
-TI  - JOHANSEN T A, FOSSEN T I. Control allocation: A survey[J]. Automatica, 2013, 49(5): 1087-1103.
-ER  -
-
-TY  - GEN
-ID  - ref29
-M1  - [29]
-TI  - BODSON M. Evaluation of optimization methods for control allocation[J]. Journal of Guidance, Control, and Dynamics, 2002, 25(4): 703-711.
-ER  -
-
-TY  - GEN
-ID  - ref30
-M1  - [30]
-TI  - HÄRKEGÅRD O. Efficient active set algorithms for solving constrained linear quadratic control allocation problems[J]. Journal of Guidance, Control, and Dynamics, 2002, 25(5): 827-835.
-ER  -
-
-TY  - GEN
-ID  - ref31
-M1  - [31]
-TI  - 程卫平, 王猛, 曾现敏, 等. 基于可行方向法的水下机器人推力分配[J]. 舰船科学技术, 2022, 44(13): 102-106.
-ER  -
-
-TY  - GEN
-ID  - ref32
-M1  - [32]
-TI  - 孙功武, 苏义鑫, 毛英, 等. 基于模糊逻辑的混合推进ROV多级推力分配策略[J]. 机器人, 2023, 45(4): 472-482.
-ER  -
-
-TY  - GEN
-ID  - ref33
-M1  - [33]
-TI  - LI J H, LEE M J, KIM M G, et al. MCE-based direct FTC method for dynamic positioning of underwater vehicles with thruster redundancy[C]//2025 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). Hangzhou, China: IEEE, 2025: 1542-1549. DOI: 10.1109/IROS60139.2025.11246250.
-ER  -
-
-TY  - GEN
-ID  - ref34
-M1  - [34]
-TI  - MEIER L, HONEGGER D, POLLEFEYS M. PX4: A node-based multithreaded open source robotics framework for deeply embedded platforms[C]//2015 IEEE International Conference on Robotics and Automation (ICRA). Seattle, WA, USA: IEEE, 2015: 6235-6240.
-ER  -
-
-TY  - GEN
-ID  - ref35
-M1  - [35]
-TI  - PX4 Development Team. Control Allocation (Mixing)[EB/OL]. [2026-10-10]. https://docs.px4.io/main/en/concept/control_allocation.
-ER  -
-
-TY  - GEN
-ID  - ref36
-M1  - [36]
-TI  - PX4 Development Team. BlueROV2 (UUV)[EB/OL]. [2026-10-10]. https://docs.px4.io/main/en/frames_sub/bluerov2.
-ER  -
-
-TY  - GEN
-ID  - ref37
-M1  - [37]
-TI  - PX4 Development Team. Offboard Mode (Generic/All Frames)[EB/OL]. [2026-10-10]. https://docs.px4.io/main/en/flight_modes/offboard.
-ER  -
+TY  - ELEC
+ID  - px4_uuv
+TI  - Submarines (Unmanned Underwater Vehicles—UUV)
+AU  - PX4 Development Team
+PB  - PX4 Guide
+UR  - https://docs.px4.io/main/en/frames_sub/index
+PY  - 2024
+ER  - 
