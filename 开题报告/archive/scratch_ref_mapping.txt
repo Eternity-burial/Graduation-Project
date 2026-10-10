@@ -1,0 +1,38 @@
+=== MAPPING OLD -> NEW ===
+[1] (was [1]): 工业和信息化部, 国家发展和改革委员会, 科学技术部, 等. “十四五”机器人产业发展规划[J]. 中华人民共和国工业和信息化部公报, 2021(12): 20-27.
+[2] (was [2]): 工业和信息化部, 教育部, 科学技术部, 等. “机器人+”应用行动实施方案[J]. 中华人民共和国工业和信息化部公报, 2023(1): 18-24.
+[3] (was [3]): FOSSEN T I. Handbook of Marine Craft Hydrodynamics and Motion Control[M]. 2nd ed. Chichester, UK: John Wiley & Sons, 2021.
+[4] (was [4]): PX4 Development Team. Submarines (Unmanned Underwater Vehicles—UUV)[EB/OL]. (2024)[2026-10-10]. https://docs.px4.io/main/en/frames_sub/index.
+[5] (was [5]): FOSSEN T I. Nonlinear modelling of marine vehicles in 6 degrees of freedom[J]. Mathematical Modelling of Systems, 1995, 1(1): 17-27.
+[6] (was [6]): 严卫生, 高剑, 崔荣鑫, 等. 水下航行器控制技术[M]. 北京: 国防工业出版社, 2020.
+[7] (was [7]): PRESTERO T. Verification of a six-degree of freedom simulation model for the REMUS autonomous underwater vehicle[D]. Cambridge, MA: Massachusetts Institute of Technology, 2001.
+[8] (was [8]): CACCIA M, INDIVERI G, VERUGGIO G. Modeling and identification of open-frame variable configuration unmanned underwater vehicles[J]. IEEE Journal of Oceanic Engineering, 2000, 25(2): 227-240.
+[9] (was [9]): SMALLWOOD D A, WHITCOMB L L. Model-based dynamic positioning of underwater robotic vehicles: Theory and experiment[J]. IEEE Journal of Oceanic Engineering, 2004, 29(1): 169-186.
+[10] (was [45]): VON BENZON M, SØRENSEN F F, UTH E, et al. An open-source benchmark simulator: Control of a BlueROV2 underwater robot[J]. Journal of Marine Science and Engineering, 2022, 10(12): 1898.
+[11] (was [10]): 高婷, 庞永杰, 王亚兴, 等. 水下航行器水动力系数计算方法[J]. 哈尔滨工程大学学报, 2019, 40(1): 174-180.
+[12] (was [11]): CHIN C S, LAU M W S. Modeling and testing of hydrodynamic damping for a complex-shaped underwater robot operating at low speed[C]//2012 Oceans - Yeosu. Yeosu, Korea: IEEE, 2012: 1-7.
+[13] (was [12]): ROSS A, FOSSEN T I, JOHANSEN T A. Identification of underwater vehicle hydrodynamic coefficients using free decay tests[C]//IFAC Conference on Control Applications in Marine Systems. Ancona, Italy: IFAC, 2004: 363-368.
+[14] (was [13]): AVILA J P J, ADAMOWSKI J C. Experimental model identification of open-frame unmanned underwater vehicles[C]//2013 Oceans - San Diego. San Diego, CA: IEEE, 2013: 1-7.
+[15] (was [15]): HARRIS Z J, MAO A M, PAINE T M, et al. Stable nullspace adaptive parameter identification of 6 degree-of-freedom plant and actuator models for underactuated vehicles: Theory and experimental evaluation[J]. The International Journal of Robotics Research, 2023, 42(12): 1070-1093.
+[16] (was [16]): BRUNTON S L, PROCTOR J L, KUTZ J N. Discovering governing equations from data by sparse identification of nonlinear dynamical systems[J]. Proceedings of the National Academy of Sciences, 2016, 113(15): 3932-3937.
+[17] (was [17]): RAISSI M, PERDIKARIS P, KARNIADAKIS G E. Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations[J]. Journal of Computational Physics, 2019, 378: 686-707.
+[18] (was [18]): CHEN R T Q, RUBANOVA Y, BETTENCOURT J, et al. Neural ordinary differential equations[C]//Advances in Neural Information Processing Systems (NeurIPS 2018). Montréal, QC, Canada, 2018: 6571-6583.
+[19] (was [19]): LIU A, ZHANG X, XIAO F, et al. Koopman-based online identification with Sim2Real transfer for hydrodynamic modeling of turtle-inspired robot[J]. IEEE Robotics and Automation Letters, 2026, 11(6): 6632-6639.
+[20] (was [20]): YUH J. Design and control of autonomous underwater robots: A survey[J]. Autonomous Robots, 2000, 8(1): 7-24.
+[21] (was [21]): 朱大奇, 孙兵. 水下机器人运动控制研究进展[J]. 控制与决策, 2012, 27(3): 321-333.
+[22] (was [23]): YOERGER D R, SLOTINE J J E. Robust trajectory control of underwater vehicles[J]. IEEE Journal of Oceanic Engineering, 1985, 10(4): 462-470.
+[23] (was [24]): HEALEY A J, LIENARD D. Multivariable sliding mode control for autonomous diving and steering of unmanned underwater vehicles[J]. IEEE Journal of Oceanic Engineering, 1993, 18(3): 327-339.
+[24] (was [25]): CHU Z, XIANG X, ZHU D, et al. Adaptive trajectory tracking control for remotely operated vehicles considering thruster dynamics and saturation constraints[J]. ISA Transactions, 2020, 100: 28-37.
+[25] (was [29]): 张磊, 严卫生, 付明玉. 自主水下航行器模型预测控制研究现状与展望[J]. 控制理论与应用, 2018, 35(9): 1181-1192.
+[26] (was [30]): HESHMATI-ALAMDARI S, KARRAS G C, MARANTOS P, et al. A robust model predictive control approach for autonomous underwater vehicles operating in a constrained workspace[C]//2018 IEEE International Conference on Robotics and Automation (ICRA). Brisbane, QLD, Australia: IEEE, 2018: 6183-6188.
+[27] (was [31]): HESHMATI-ALAMDARI S, NIKOU A, DIMAROGONAS D V. Robust trajectory tracking control for underactuated autonomous underwater vehicles in uncertain environments[J]. IEEE Transactions on Automation Science and Engineering, 2020, 18(3): 1288-1301.
+[28] (was [37]): JOHANSEN T A, FOSSEN T I. Control allocation: A survey[J]. Automatica, 2013, 49(5): 1087-1103.
+[29] (was [38]): BODSON M. Evaluation of optimization methods for control allocation[J]. Journal of Guidance, Control, and Dynamics, 2002, 25(4): 703-711.
+[30] (was [39]): HÄRKEGÅRD O. Efficient active set algorithms for solving constrained linear quadratic control allocation problems[J]. Journal of Guidance, Control, and Dynamics, 2002, 25(5): 827-835.
+[31] (was [40]): 程卫平, 王猛, 曾现敏, 等. 基于可行方向法的水下机器人推力分配[J]. 舰船科学技术, 2022, 44(13): 102-106.
+[32] (was [41]): 孙功武, 苏义鑫, 毛英, 等. 基于模糊逻辑的混合推进ROV多级推力分配策略[J]. 机器人, 2023, 45(4): 472-482.
+[33] (was [42]): LI J H, LEE M J, KIM M G, et al. MCE-based direct FTC method for dynamic positioning of underwater vehicles with thruster redundancy[C]//2025 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). Abu Dhabi, UAE: IEEE, 2025: arXiv:2503.18348.
+[34] (was [43]): MEIER L, HONEGGER D, POLLEFEYS M. PX4: A node-based multithreaded open source robotics framework for deeply embedded platforms[C]//2015 IEEE International Conference on Robotics and Automation (ICRA). Seattle, WA, USA: IEEE, 2015: 6235-6240.
+[35] (was [46]): PX4 Development Team. Control Allocation (Mixing)[EB/OL]. [2026-10-10]. https://docs.px4.io/main/en/concept/control_allocation.
+[36] (was [47]): PX4 Development Team. BlueROV2 (UUV)[EB/OL]. [2026-10-10]. https://docs.px4.io/main/en/frames_sub/bluerov2.
+[37] (was [48]): PX4 Development Team. Offboard Mode (Generic/All Frames)[EB/OL]. [2026-10-10]. https://docs.px4.io/main/en/flight_modes/offboard.

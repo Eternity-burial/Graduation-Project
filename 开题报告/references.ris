@@ -1,574 +1,221 @@
-TY  - JOUR
-AU  - 中华人民共和国工业和信息化部
-AU  - 国家发展和改革委员会
-AU  - 科学技术部
-TI  - “十四五”机器人产业发展规划
-JO  - 中华人民共和国工业和信息化部公报
-PY  - 2021
-IS  - 12
-SP  - 20
-EP  - 27
-ER  - 
+TY  - GEN
+ID  - ref1
+M1  - [1]
+TI  - 工业和信息化部, 国家发展和改革委员会, 科学技术部, 等. “十四五”机器人产业发展规划[J]. 中华人民共和国工业和信息化部公报, 2021(12): 20-27.
+ER  -
 
-TY  - JOUR
-AU  - 工业和信息化部
-AU  - 教育部
-AU  - 科学技术部
-TI  - “机器人+”应用行动实施方案
-JO  - 中华人民共和国工业和信息化部公报
-PY  - 2023
-IS  - 1
-SP  - 18
-EP  - 24
-ER  - 
+TY  - GEN
+ID  - ref2
+M1  - [2]
+TI  - 工业和信息化部, 教育部, 科学技术部, 等. “机器人+”应用行动实施方案[J]. 中华人民共和国工业和信息化部公报, 2023(1): 18-24.
+ER  -
 
-TY  - BOOK
-AU  - Fossen, Thor I.
-TI  - Handbook of Marine Craft Hydrodynamics and Motion Control
-ET  - 2nd
-PB  - John Wiley & Sons
-CY  - Chichester, UK
-PY  - 2021
-DO  - 10.1002/9781119575016
-ER  - 
+TY  - GEN
+ID  - ref3
+M1  - [3]
+TI  - FOSSEN T I. Handbook of Marine Craft Hydrodynamics and Motion Control[M]. 2nd ed. Chichester, UK: John Wiley & Sons, 2021.
+ER  -
 
-TY  - JOUR
-AU  - Fernandes, Daniel
-AU  - Sørensen, Dag
-AU  - Pettersen, Kristin Y.
-TI  - Output-feedback motion control of an underwater vehicle-manipulator system
-JO  - Control Engineering Practice
-VL  - 39
-SP  - 50
-EP  - 64
-PY  - 2015
-DO  - 10.1016/j.conengprac.2014.12.005
-ER  - 
+TY  - GEN
+ID  - ref4
+M1  - [4]
+TI  - PX4 Development Team. Submarines (Unmanned Underwater Vehicles—UUV)[EB/OL]. (2024)[2026-10-10]. https://docs.px4.io/main/en/frames_sub/index.
+ER  -
 
-TY  - JOUR
-AU  - von Benzon, Mikkel
-AU  - Sørensen, Frederik F.
-AU  - Uth, Emil
-TI  - An open-source benchmark simulator: Control of a BlueROV2 underwater robot
-JO  - Journal of Marine Science and Engineering
-VL  - 10
-IS  - 12
-SP  - 1898
-PY  - 2022
-DO  - 10.3390/jmse10121898
-ER  - 
+TY  - GEN
+ID  - ref5
+M1  - [5]
+TI  - FOSSEN T I. Nonlinear modelling of marine vehicles in 6 degrees of freedom[J]. Mathematical Modelling of Systems, 1995, 1(1): 17-27.
+ER  -
 
-TY  - CONF
-AU  - Duecker, Daniel A.
-AU  - Bauschmann, Nils
-AU  - Hansen, Torben
-TI  - HippoCampus X: A hydrobatic open-source micro AUV for confined environments
-T2  - 2020 IEEE/OES Autonomous Underwater Vehicles Symposium (AUV)
-CY  - St. John's, NL, Canada
-PB  - IEEE
-SP  - 1
-EP  - 6
-PY  - 2020
-DO  - 10.1109/AUV50043.2020.9267923
-ER  - 
+TY  - GEN
+ID  - ref6
+M1  - [6]
+TI  - 严卫生, 高剑, 崔荣鑫, 等. 水下航行器控制技术[M]. 北京: 国防工业出版社, 2020.
+ER  -
 
-TY  - JOUR
-AU  - Johansen, Tor A.
-AU  - Fossen, Thor I.
-TI  - Control allocation: A survey
-JO  - Automatica
-VL  - 49
-IS  - 5
-SP  - 1087
-EP  - 1103
-PY  - 2013
-DO  - 10.1016/j.automatica.2013.01.035
-ER  - 
+TY  - GEN
+ID  - ref7
+M1  - [7]
+TI  - PRESTERO T. Verification of a six-degree of freedom simulation model for the REMUS autonomous underwater vehicle[D]. Cambridge, MA: Massachusetts Institute of Technology, 2001.
+ER  -
 
-TY  - CONF
-AU  - Meier, Lorenz
-AU  - Honegger, Dominik
-AU  - Pollefeys, Marc
-TI  - PX4: A node-based multithreaded open source robotics framework for deeply embedded platforms
-T2  - 2015 IEEE International Conference on Robotics and Automation (ICRA)
-CY  - Seattle, WA, USA
-PB  - IEEE
-SP  - 6235
-EP  - 6240
-PY  - 2015
-DO  - 10.1109/ICRA.2015.7140074
-ER  - 
+TY  - GEN
+ID  - ref8
+M1  - [8]
+TI  - CACCIA M, INDIVERI G, VERUGGIO G. Modeling and identification of open-frame variable configuration unmanned underwater vehicles[J]. IEEE Journal of Oceanic Engineering, 2000, 25(2): 227-240.
+ER  -
 
-TY  - JOUR
-AU  - Smallwood, David A.
-AU  - Whitcomb, Louis L.
-TI  - Model-based dynamic positioning of underwater robotic vehicles: Theory and experiment
-JO  - IEEE Journal of Oceanic Engineering
-VL  - 29
-IS  - 1
-SP  - 169
-EP  - 186
-PY  - 2004
-DO  - 10.1109/JOE.2003.823312
-ER  - 
+TY  - GEN
+ID  - ref9
+M1  - [9]
+TI  - SMALLWOOD D A, WHITCOMB L L. Model-based dynamic positioning of underwater robotic vehicles: Theory and experiment[J]. IEEE Journal of Oceanic Engineering, 2004, 29(1): 169-186.
+ER  -
 
-TY  - JOUR
-AU  - Fossen, Thor I.
-TI  - Nonlinear modelling of marine vehicles in 6 degrees of freedom
-JO  - Mathematical Modelling of Systems
-VL  - 1
-IS  - 1
-SP  - 17
-EP  - 27
-PY  - 1995
-DO  - 10.1080/13873959508837004
-ER  - 
+TY  - GEN
+ID  - ref10
+M1  - [10]
+TI  - VON BENZON M, SØRENSEN F F, UTH E, et al. An open-source benchmark simulator: Control of a BlueROV2 underwater robot[J]. Journal of Marine Science and Engineering, 2022, 10(12): 1898.
+ER  -
 
-TY  - BOOK
-AU  - 严卫生
-AU  - 高剑
-AU  - 崔荣鑫
-TI  - 水下航行器控制技术
-PB  - 国防工业出版社
-CY  - 北京
-PY  - 2020
-ER  - 
+TY  - GEN
+ID  - ref11
+M1  - [11]
+TI  - 高婷, 庞永杰, 王亚兴, 等. 水下航行器水动力系数计算方法[J]. 哈尔滨工程大学学报, 2019, 40(1): 174-180.
+ER  -
 
-TY  - THES
-AU  - Prestero, Timothy
-TI  - Verification of a six-degree of freedom simulation model for the REMUS autonomous underwater vehicle
-PB  - Massachusetts Institute of Technology
-CY  - Cambridge, MA
-PY  - 2001
-ER  - 
+TY  - GEN
+ID  - ref12
+M1  - [12]
+TI  - CHIN C S, LAU M W S. Modeling and testing of hydrodynamic damping for a complex-shaped underwater robot operating at low speed[C]//2012 Oceans - Yeosu. Yeosu, Korea: IEEE, 2012: 1-7.
+ER  -
 
-TY  - JOUR
-AU  - 高婷
-AU  - 庞永杰
-AU  - 王亚兴
-TI  - 水下航行器水动力系数计算方法
-JO  - 哈尔滨工程大学学报
-VL  - 40
-IS  - 1
-SP  - 174
-EP  - 180
-PY  - 2019
-DO  - 10.11990/jheu.201710080
-ER  - 
+TY  - GEN
+ID  - ref13
+M1  - [13]
+TI  - ROSS A, FOSSEN T I, JOHANSEN T A. Identification of underwater vehicle hydrodynamic coefficients using free decay tests[C]//IFAC Conference on Control Applications in Marine Systems. Ancona, Italy: IFAC, 2004: 363-368.
+ER  -
 
-TY  - JOUR
-AU  - Caccia, Massimo
-AU  - Indiveri, Giovanni
-AU  - Veruggio, Gianmarco
-TI  - Modeling and identification of open-frame variable configuration unmanned underwater vehicles
-JO  - IEEE Journal of Oceanic Engineering
-VL  - 25
-IS  - 2
-SP  - 227
-EP  - 240
-PY  - 2000
-DO  - 10.1109/48.838986
-ER  - 
+TY  - GEN
+ID  - ref14
+M1  - [14]
+TI  - AVILA J P J, ADAMOWSKI J C. Experimental model identification of open-frame unmanned underwater vehicles[C]//2013 Oceans - San Diego. San Diego, CA: IEEE, 2013: 1-7.
+ER  -
 
-TY  - JOUR
-AU  - Chin, Cheng
-AU  - Lau, Michael
-TI  - Modeling and testing of hydrodynamic damping model for a complex-shaped remotely-operated vehicle for control
-JO  - Journal of Marine Science and Application
-VL  - 11
-IS  - 2
-SP  - 150
-EP  - 163
-PY  - 2012
-DO  - 10.1007/s11804-012-1117-2
-ER  - 
+TY  - GEN
+ID  - ref15
+M1  - [15]
+TI  - HARRIS Z J, MAO A M, PAINE T M, et al. Stable nullspace adaptive parameter identification of 6 degree-of-freedom plant and actuator models for underactuated vehicles: Theory and experimental evaluation[J]. The International Journal of Robotics Research, 2023, 42(12): 1070-1093.
+ER  -
 
-TY  - JOUR
-AU  - Ross, A.
-AU  - Fossen, Thor I.
-AU  - Johansen, Tor A.
-TI  - Identification of underwater vehicle hydrodynamic coefficients using free decay tests
-JO  - IFAC Proceedings Volumes
-VL  - 37
-IS  - 10
-SP  - 363
-EP  - 368
-PY  - 2004
-DO  - 10.1016/S1474-6670(17)31759-7
-ER  - 
+TY  - GEN
+ID  - ref16
+M1  - [16]
+TI  - BRUNTON S L, PROCTOR J L, KUTZ J N. Discovering governing equations from data by sparse identification of nonlinear dynamical systems[J]. Proceedings of the National Academy of Sciences, 2016, 113(15): 3932-3937.
+ER  -
 
-TY  - JOUR
-AU  - Avila, J. P. J.
-AU  - Donha, D. C.
-AU  - Adamowski, J. C.
-TI  - Experimental model identification of open-frame underwater vehicles
-JO  - Ocean Engineering
-VL  - 60
-SP  - 81
-EP  - 94
-PY  - 2013
-DO  - 10.1016/j.oceaneng.2012.10.007
-ER  - 
+TY  - GEN
+ID  - ref17
+M1  - [17]
+TI  - RAISSI M, PERDIKARIS P, KARNIADAKIS G E. Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations[J]. Journal of Computational Physics, 2019, 378: 686-707.
+ER  -
 
-TY  - JOUR
-AU  - Park, Sanghyun
-AU  - Sung, Sangkyung
-AU  - Choi, Hangseok
-TI  - System identification method for robotic manipulator based on dynamic momentum regressor
-JO  - IEEE Transactions on Instrumentation and Measurement
-VL  - 65
-IS  - 9
-SP  - 2085
-EP  - 2095
-PY  - 2016
-DO  - 10.1109/TIM.2016.2571373
-ER  - 
+TY  - GEN
+ID  - ref18
+M1  - [18]
+TI  - CHEN R T Q, RUBANOVA Y, BETTENCOURT J, et al. Neural ordinary differential equations[C]//Advances in Neural Information Processing Systems (NeurIPS 2018). Montréal, QC, Canada, 2018: 6571-6583.
+ER  -
 
-TY  - JOUR
-AU  - Harris, Mark
-AU  - Maurya, Pradeep
-TI  - Stable nullspace adaptive parameter identification of 6 degree-of-freedom plant and actuator models
-JO  - IEEE Transactions on Control Systems Technology
-VL  - 31
-IS  - 6
-SP  - 2816
-EP  - 2823
-PY  - 2023
-DO  - 10.1109/TCST.2023.3276856
-ER  - 
+TY  - GEN
+ID  - ref19
+M1  - [19]
+TI  - LIU A, ZHANG X, XIAO F, et al. Koopman-based online identification with Sim2Real transfer for hydrodynamic modeling of turtle-inspired robot[J]. IEEE Robotics and Automation Letters, 2026, 11(6): 6632-6639.
+ER  -
 
-TY  - JOUR
-AU  - Raissi, Maziar
-AU  - Perdikaris, Paris
-AU  - Karniadakis, George E.
-TI  - Physics-informed neural networks: A deep learning framework for solving forward and inverse problems involving nonlinear partial differential equations
-JO  - Journal of Computational Physics
-VL  - 378
-SP  - 686
-EP  - 707
-PY  - 2019
-DO  - 10.1016/j.jcp.2018.10.045
-ER  - 
+TY  - GEN
+ID  - ref20
+M1  - [20]
+TI  - YUH J. Design and control of autonomous underwater robots: A survey[J]. Autonomous Robots, 2000, 8(1): 7-24.
+ER  -
 
-TY  - JOUR
-AU  - Brunton, Steven L.
-AU  - Proctor, Joshua L.
-AU  - Kutz, J. Nathan
-TI  - Discovering governing equations from data by sparse identification of nonlinear dynamical systems
-JO  - Proceedings of the National Academy of Sciences
-VL  - 113
-IS  - 15
-SP  - 3932
-EP  - 3937
-PY  - 2016
-DO  - 10.1073/pnas.1517384113
-ER  - 
+TY  - GEN
+ID  - ref21
+M1  - [21]
+TI  - 朱大奇, 孙兵. 水下机器人运动控制研究进展[J]. 控制与决策, 2012, 27(3): 321-333.
+ER  -
 
-TY  - CONF
-AU  - Chen, Ricky T. Q.
-AU  - Rubanova, Yulia
-AU  - Bettencourt, Jesse
-TI  - Neural ordinary differential equations
-T2  - Advances in Neural Information Processing Systems (NeurIPS 2018)
-CY  - Montréal, QC, Canada
-SP  - 6571
-EP  - 6583
-PY  - 2018
-ER  - 
+TY  - GEN
+ID  - ref22
+M1  - [22]
+TI  - YOERGER D R, SLOTINE J J E. Robust trajectory control of underwater vehicles[J]. IEEE Journal of Oceanic Engineering, 1985, 10(4): 462-470.
+ER  -
 
-TY  - JOUR
-AU  - Duong, Thai
-AU  - Atanasov, Nikolay
-TI  - Port-Hamiltonian neural ODE networks on Lie groups for robot dynamics learning and control
-JO  - IEEE Transactions on Robotics
-VL  - 40
-SP  - 1215
-EP  - 1233
-PY  - 2024
-DO  - 10.1109/TRO.2024.3353270
-ER  - 
+TY  - GEN
+ID  - ref23
+M1  - [23]
+TI  - HEALEY A J, LIENARD D. Multivariable sliding mode control for autonomous diving and steering of unmanned underwater vehicles[J]. IEEE Journal of Oceanic Engineering, 1993, 18(3): 327-339.
+ER  -
 
-TY  - JOUR
-AU  - Yuh, Junku
-TI  - Design and control of autonomous underwater robots: A survey
-JO  - Autonomous Robots
-VL  - 8
-IS  - 1
-SP  - 7
-EP  - 24
-PY  - 2000
-DO  - 10.1023/A:1008984701078
-ER  - 
+TY  - GEN
+ID  - ref24
+M1  - [24]
+TI  - CHU Z, XIANG X, ZHU D, et al. Adaptive trajectory tracking control for remotely operated vehicles considering thruster dynamics and saturation constraints[J]. ISA Transactions, 2020, 100: 28-37.
+ER  -
 
-TY  - JOUR
-AU  - 朱大奇
-AU  - 孙兵
-TI  - 水下机器人运动控制研究进展
-JO  - 控制与决策
-VL  - 27
-IS  - 3
-SP  - 321
-EP  - 333
-PY  - 2012
-ER  - 
+TY  - GEN
+ID  - ref25
+M1  - [25]
+TI  - 张磊, 严卫生, 付明玉. 自主水下航行器模型预测控制研究现状与展望[J]. 控制理论与应用, 2018, 35(9): 1181-1192.
+ER  -
 
-TY  - JOUR
-AU  - Capocci, Roman
-AU  - Droniou, Nicolas
-AU  - Boyer, Frédéric
-TI  - Inspection-class remotely operated vehicles: A review
-JO  - Journal of Marine Science and Engineering
-VL  - 5
-IS  - 1
-SP  - 13
-PY  - 2017
-DO  - 10.3390/jmse5010013
-ER  - 
+TY  - GEN
+ID  - ref26
+M1  - [26]
+TI  - HESHMATI-ALAMDARI S, KARRAS G C, MARANTOS P, et al. A robust model predictive control approach for autonomous underwater vehicles operating in a constrained workspace[C]//2018 IEEE International Conference on Robotics and Automation (ICRA). Brisbane, QLD, Australia: IEEE, 2018: 6183-6188.
+ER  -
 
-TY  - JOUR
-AU  - Yoerger, Dana R.
-AU  - Slotine, Jean-Jacques E.
-TI  - Robust trajectory control of underwater vehicles
-JO  - IEEE Journal of Oceanic Engineering
-VL  - 10
-IS  - 4
-SP  - 462
-EP  - 470
-PY  - 1985
-DO  - 10.1109/JOE.1985.1145134
-ER  - 
+TY  - GEN
+ID  - ref27
+M1  - [27]
+TI  - HESHMATI-ALAMDARI S, NIKOU A, DIMAROGONAS D V. Robust trajectory tracking control for underactuated autonomous underwater vehicles in uncertain environments[J]. IEEE Transactions on Automation Science and Engineering, 2020, 18(3): 1288-1301.
+ER  -
 
-TY  - JOUR
-AU  - Healey, Anthony J.
-AU  - Lienard, David
-TI  - Multivariable sliding mode control for autonomous diving and steering of unmanned underwater vehicles
-JO  - IEEE Journal of Oceanic Engineering
-VL  - 18
-IS  - 3
-SP  - 327
-EP  - 339
-PY  - 2013
-DO  - 10.1109/JOE.1993.236372
-ER  - 
+TY  - GEN
+ID  - ref28
+M1  - [28]
+TI  - JOHANSEN T A, FOSSEN T I. Control allocation: A survey[J]. Automatica, 2013, 49(5): 1087-1103.
+ER  -
 
-TY  - JOUR
-AU  - Chu, Zhenzhong
-AU  - Zhu, Daqi
-AU  - Yang, Simon X.
-TI  - Observer-based adaptive sliding mode trajectory tracking control for autonomous underwater vehicles with input saturation
-JO  - ISA Transactions
-VL  - 100
-SP  - 28
-EP  - 40
-PY  - 2020
-DO  - 10.1016/j.isatra.2019.11.026
-ER  - 
+TY  - GEN
+ID  - ref29
+M1  - [29]
+TI  - BODSON M. Evaluation of optimization methods for control allocation[J]. Journal of Guidance, Control, and Dynamics, 2002, 25(4): 703-711.
+ER  -
 
-TY  - JOUR
-AU  - 钱辰
-AU  - 方勇纯
-TI  - 面向扑翼飞行控制的建模与奇异摄动分析
-JO  - 自动化学报
-VL  - 46
-IS  - 12
-SP  - 2585
-EP  - 2595
-PY  - 2020
-DO  - 10.16383/j.aas.c190623
-ER  - 
+TY  - GEN
+ID  - ref30
+M1  - [30]
+TI  - HÄRKEGÅRD O. Efficient active set algorithms for solving constrained linear quadratic control allocation problems[J]. Journal of Guidance, Control, and Dynamics, 2002, 25(5): 827-835.
+ER  -
 
-TY  - JOUR
-AU  - Smeur, Ewoud J. J.
-AU  - Chu, Q. Ping
-AU  - de Croon, Guido C. H. E.
-TI  - Adaptive incremental nonlinear dynamic inversion for attitude control of micro air vehicles
-JO  - Journal of Guidance, Control, and Dynamics
-VL  - 39
-IS  - 3
-SP  - 450
-EP  - 461
-PY  - 2016
-DO  - 10.2514/1.G001490
-ER  - 
+TY  - GEN
+ID  - ref31
+M1  - [31]
+TI  - 程卫平, 王猛, 曾现敏, 等. 基于可行方向法的水下机器人推力分配[J]. 舰船科学技术, 2022, 44(13): 102-106.
+ER  -
 
-TY  - CONF
-AU  - Slawik, Torben
-AU  - Vyas, Siddhant
-AU  - Christensen, Leif
-TI  - Attitude control of the hydrobatic intervention AUV Cuttlefish using incremental nonlinear dynamic inversion
-T2  - 2024 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS)
-CY  - Abu Dhabi, UAE
-PB  - IEEE
-SP  - 781
-EP  - 787
-PY  - 2024
-DO  - 10.1109/IROS58592.2024.10802498
-ER  - 
+TY  - GEN
+ID  - ref32
+M1  - [32]
+TI  - 孙功武, 苏义鑫, 毛英, 等. 基于模糊逻辑的混合推进ROV多级推力分配策略[J]. 机器人, 2023, 45(4): 472-482.
+ER  -
 
-TY  - JOUR
-AU  - Heshmati-Alamdari, Shahab
-AU  - Nikou, Alexandros
-AU  - Dimarogonas, Dimos V.
-TI  - Robust trajectory tracking control for underactuated autonomous underwater vehicles in presence of current disturbances
-JO  - IEEE Transactions on Automation Science and Engineering
-VL  - 18
-IS  - 3
-SP  - 1292
-EP  - 1306
-PY  - 2020
-DO  - 10.1109/TASE.2020.3005315
-ER  - 
+TY  - GEN
+ID  - ref33
+M1  - [33]
+TI  - LI J H, LEE M J, KIM M G, et al. MCE-based direct FTC method for dynamic positioning of underwater vehicles with thruster redundancy[C]//2025 IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS). Hangzhou, China: IEEE, 2025: 1542-1549. DOI: 10.1109/IROS60139.2025.11246250.
+ER  -
 
-TY  - JOUR
-AU  - Liniger, Alexander
-AU  - Domahidi, Alexander
-AU  - Morari, Manfred
-TI  - Optimization-based autonomous racing of 1:43 scale RC cars
-JO  - Optimal Control Applications and Methods
-VL  - 36
-IS  - 5
-SP  - 628
-EP  - 647
-PY  - 2015
-DO  - 10.1002/oca.2123
-ER  - 
+TY  - GEN
+ID  - ref34
+M1  - [34]
+TI  - MEIER L, HONEGGER D, POLLEFEYS M. PX4: A node-based multithreaded open source robotics framework for deeply embedded platforms[C]//2015 IEEE International Conference on Robotics and Automation (ICRA). Seattle, WA, USA: IEEE, 2015: 6235-6240.
+ER  -
 
-TY  - JOUR
-AU  - Torrente, Guillem
-AU  - Kaufmann, Elia
-AU  - Föhn, Philipp
-TI  - Data-driven MPC for quadrotors
-JO  - IEEE Transactions on Control Systems Technology
-VL  - 29
-IS  - 4
-SP  - 1599
-EP  - 1613
-PY  - 2021
-DO  - 10.1109/TCST.2020.3013733
-ER  - 
+TY  - GEN
+ID  - ref35
+M1  - [35]
+TI  - PX4 Development Team. Control Allocation (Mixing)[EB/OL]. [2026-10-10]. https://docs.px4.io/main/en/concept/control_allocation.
+ER  -
 
-TY  - CONF
-AU  - Shi, Guanya
-AU  - Hönig, Wolfgang
-AU  - Yue, Yisong
-TI  - Neural-Lander: Stable drone landing in ground effect with learning-based dynamics
-T2  - 2019 International Conference on Robotics and Automation (ICRA)
-CY  - Montreal, QC, Canada
-PB  - IEEE
-SP  - 9811
-EP  - 9818
-PY  - 2019
-DO  - 10.1109/ICRA.2019.8794350
-ER  - 
+TY  - GEN
+ID  - ref36
+M1  - [36]
+TI  - PX4 Development Team. BlueROV2 (UUV)[EB/OL]. [2026-10-10]. https://docs.px4.io/main/en/frames_sub/bluerov2.
+ER  -
 
-TY  - JOUR
-AU  - O'Connell, Michael
-AU  - Shi, Guanya
-AU  - Shi, Xichen
-TI  - Neural-Fly enables rapid learning for agile flight in strong winds
-JO  - Science Robotics
-VL  - 7
-IS  - 66
-SP  - eabg6513
-PY  - 2022
-DO  - 10.1126/scirobotics.abg6513
-ER  - 
-
-TY  - JOUR
-AU  - Bodson, Marc
-TI  - Evaluation of optimization methods for control allocation
-JO  - Journal of Guidance, Control, and Dynamics
-VL  - 25
-IS  - 4
-SP  - 703
-EP  - 711
-PY  - 2002
-DO  - 10.2514/2.4939
-ER  - 
-
-TY  - JOUR
-AU  - Härkegård, Ola
-TI  - Efficient active set algorithms for solving constrained linear quadratic control allocation problems
-JO  - Journal of Guidance, Control, and Dynamics
-VL  - 25
-IS  - 5
-SP  - 827
-EP  - 835
-PY  - 2002
-DO  - 10.2514/2.4984
-ER  - 
-
-TY  - JOUR
-AU  - 程卫平
-AU  - 王猛
-AU  - 曾现敏
-TI  - 基于可行方向法的水下机器人推力分配
-JO  - 舰船科学技术
-VL  - 44
-IS  - 13
-SP  - 102
-EP  - 106
-PY  - 2022
-DO  - 10.3404/j.issn.1672-7649.2022.13.020
-ER  - 
-
-TY  - JOUR
-AU  - 孙功武
-AU  - 苏义鑫
-AU  - 毛英
-TI  - 基于模糊逻辑的混合推进ROV多级推力分配策略
-JO  - 机器人
-VL  - 45
-IS  - 4
-SP  - 472
-EP  - 482
-PY  - 2023
-DO  - 10.13973/j.cnki.robot.220268
-ER  - 
-
-TY  - JOUR
-AU  - Li, Yan
-AU  - Zhang, Ming
-AU  - Chen, Yong
-TI  - MCE-based direct FTC method for underwater vehicles with thruster redundancy
-JO  - Ocean Engineering
-VL  - 317
-SP  - 119985
-PY  - 2025
-DO  - 10.1016/j.oceaneng.2024.119985
-ER  - 
-
-TY  - JOUR
-AU  - Brunke, Lukas
-AU  - Greeff, Melissa
-AU  - Hall, Adam W.
-TI  - Safe learning in robotics: From learning-based control to safe reinforcement learning
-JO  - Annual Review of Control, Robotics, and Autonomous Systems
-VL  - 5
-SP  - 411
-EP  - 444
-PY  - 2022
-DO  - 10.1146/annurev-control-042920-010511
-ER  - 
-
-TY  - JOUR
-AU  - Zhao, Yuhang
-AU  - Peng, Xiaodong
-AU  - Wu, Junfeng
-TI  - Spatiotemporal calibration of Doppler velocity logs for underwater robots
-JO  - arXiv preprint arXiv:2510.24571
-PY  - 2025
-ER  - 
-
-TY  - CONF
-AU  - Peng, Xiaodong
-AU  - Zhao, Yuhang
-AU  - Wu, Junfeng
-TI  - AquaticVision: Benchmarking visual SLAM in underwater environment with events and frames
-T2  - 2025 IEEE International Conference on Robotics and Automation (ICRA)
-CY  - Atlanta, GA, USA
-PB  - IEEE
-SP  - 1
-EP  - 7
-PY  - 2025
+TY  - GEN
+ID  - ref37
+M1  - [37]
+TI  - PX4 Development Team. Offboard Mode (Generic/All Frames)[EB/OL]. [2026-10-10]. https://docs.px4.io/main/en/flight_modes/offboard.
 ER  -
